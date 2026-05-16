@@ -10,7 +10,8 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$lib: 'src/lib',
-			$assets: 'src/lib/assets'
+			$assets: 'src/lib/assets',
+			$shadcn: 'src/lib/shadcn/ui'
 		}
 	}
 };
