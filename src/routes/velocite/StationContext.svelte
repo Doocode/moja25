@@ -12,7 +12,7 @@
 	} from '@lucide/svelte';
 	import StationCounter from './StationCounter.svelte';
 	import StationStatus from './StationStatus.svelte';
-	import { VelociteSortField } from '$lib/core/helper/velocite/sort';
+	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 
 	interface Props {

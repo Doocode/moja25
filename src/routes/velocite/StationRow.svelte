@@ -11,7 +11,7 @@
 		Zap
 	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { VelociteSortField } from '$lib/core/helper/velocite/sort';
+	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
 
@@ -56,17 +56,17 @@
 
 <li
 	class={{
-		'flex items-center justify-between gap-4 px-4 py-3': true,
-		'bg-green-300/20':
+		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
+		'bg-green-200/70 hover:bg-green-300 dark:bg-green-950/70 hover:dark:bg-green-900':
 			(isCountSort && countValue > 3 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue <= 0 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.BANKING && station.banking) ||
 			(sortField === VelociteSortField.OPEN && isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && station.connected),
-		'bg-orange-300/20':
+		'bg-orange-200/70 hover:bg-orange-300 dark:bg-yellow-950/70 hover:dark:bg-yellow-900':
 			(isCountSort && countValue > 0 && countValue <= 3) ||
 			(sortField === VelociteSortField.BONUS && station.bonus),
-		'bg-red-300/20':
+		'bg-red-200/70 hover:bg-red-300 dark:bg-red-950/70 hover:dark:bg-red-900':
 			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue > 3 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
@@ -74,7 +74,7 @@
 	}}
 >
 	<!-- Gauche : icône + nom -->
-	<div class="flex min-w-0 items-center gap-3">
+	<div class="flex min-w-0 flex-1 items-center gap-3">
 		<StationIcon {station} {sortField} {countValue} />
 		<span class="truncate font-medium">{station.formattedName}</span>
 	</div>

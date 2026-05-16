@@ -1,20 +1,5 @@
 import type { FormattedStation, Station } from '$core/dto/jcdecaux';
-
-// Champs de tri disponibles pour les stations Vélocité
-export enum VelociteSortField {
-	NAME = 'NAME',
-	NUMBER = 'NUMBER',
-	MECHANICAL_BIKES = 'MECHANICAL_BIKES',
-	ELECTRICAL_BIKES = 'ELECTRICAL_BIKES',
-	TOTAL_BIKES = 'TOTAL_BIKES',
-	AVAILABLE_STANDS = 'AVAILABLE_STANDS',
-	UNAVAILABLE_STANDS = 'UNAVAILABLE_STANDS',
-	CAPACITY = 'CAPACITY',
-	BONUS = 'BONUS',
-	BANKING = 'BANKING',
-	OPEN = 'OPEN',
-	CONNECTED = 'CONNECTED'
-}
+import { VelociteSortField } from '$core/enum/VelociteSortField';
 
 // Trie les stations selon un champ et un ordre spécifiés
 export function sortStations(

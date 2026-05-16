@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { sortStations, VelociteSortField } from '$lib/core/helper/velocite/sort';
+	import { sortStations } from '$lib/core/helper/velocite/sort';
+	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import StationRow from './StationRow.svelte';
 
 	interface Props {
@@ -27,7 +28,7 @@
 		{/each}
 	</select>
 
-	<ul class="divide-y divide-neutral-300 dark:divide-neutral-700">
+	<ul class="grid gap-0.5 px-4 pb-4">
 		{#each sortedStations as station}
 			<StationRow {station} {sortField} />
 		{/each}
