@@ -10,6 +10,7 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$lib: 'src/lib',
+			$core: 'src/lib/core',
 			$assets: 'src/lib/assets',
 			$shadcn: 'src/lib/shadcn/ui'
 		}
