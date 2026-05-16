@@ -3,9 +3,9 @@
 	import { sortStations } from '$lib/core/helper/velocite/sort';
 	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { Input } from '$shadcn/input';
 	import { SearchX } from '@lucide/svelte';
 	import StationRow from './StationRow.svelte';
+	import SearchBar from './SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
 
 	interface Props {
@@ -29,14 +29,9 @@
 </svelte:head>
 
 <main class="m-auto max-w-lg p-4">
-	<h1 class="mb-2 text-3xl font-bold">Vélocité</h1>
+	<h1 class="mb-2 text-center text-3xl font-bold">Vélocité</h1>
 
-	<Input
-		type="search"
-		placeholder="Rechercher"
-		class="mb-1 h-auto w-full px-4 py-3"
-		bind:value={searchQuery}
-	/>
+	<SearchBar class="mb-1" bind:value={searchQuery} />
 
 	<div class="mb-4 flex items-center justify-between">
 		<p>{filteredStations.length} stations</p>
