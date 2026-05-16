@@ -8,5 +8,5 @@
 
 <h1>Accueil</h1>
 
-<Button variant="primary">Primary</Button>
-<Button>Secondary</Button>
+<Button>Primary</Button>
+<Button variant="secondary">Secondary</Button>
