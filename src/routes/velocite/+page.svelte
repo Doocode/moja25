@@ -1,5 +1,7 @@
 <script lang="ts">
-	import type { FormattedStation } from '$core/api/JCDecauxApi';
+	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import { sortStations, VelociteSortField } from '$lib/core/helper/velocite';
+	import StationRow from './StationRow.svelte';
 
 	interface Props {
 		data: {
@@ -8,14 +10,26 @@
 	}
 
 	let { data }: Props = $props();
+
+	// Flags de tri
+	let sortField = $state(VelociteSortField.UNAVAILABLE_STANDS);
+	let sortAscending = $state(true);
+
+	const sortedStations = $derived(sortStations(data.stations, sortField, sortAscending));
 </script>
 
-<main>
-	<h1>Vélocité</h1>
+<main class="_container m-auto max-w-lg">
+	<h1 class="p-4 text-3xl font-bold">Vélocité</h1>
 
-	<ul>
-		{#each data.stations as station}
-			<li>{station.formattedName}</li>
+	<select bind:value={sortField} class="bg-background">
+		{#each Object.values(VelociteSortField) as field}
+			<option value={field}>{field}</option>
+		{/each}
+	</select>
+
+	<ul class="divide-y divide-neutral-300 dark:divide-neutral-700">
+		{#each sortedStations as station}
+			<StationRow {station} {sortField} />
 		{/each}
 	</ul>
 </main>
