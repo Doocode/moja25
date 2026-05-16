@@ -1,7 +1,9 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { sortStations } from '$lib/core/helper/velocite/sort';
+	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { Input } from '$shadcn/input';
 	import StationRow from './StationRow.svelte';
 
 	interface Props {
@@ -12,15 +14,23 @@
 
 	let { data }: Props = $props();
 
-	// Flags de tri
-	let sortField = $state(VelociteSortField.UNAVAILABLE_STANDS);
+	let searchQuery = $state('');
+	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
 
-	const sortedStations = $derived(sortStations(data.stations, sortField, sortAscending));
+	const filteredStations = $derived(filterStations(data.stations, searchQuery));
+	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
-<main class="_container m-auto max-w-lg">
-	<h1 class="p-4 text-3xl font-bold">Vélocité</h1>
+<main class="m-auto p-4 max-w-lg">
+	<h1 class="font-bold text-3xl">Vélocité</h1>
+
+	<Input
+		type="search"
+		placeholder="Rechercher"
+		class="mb-4 px-4 py-3 w-full h-auto"
+		bind:value={searchQuery}
+	/>
 
 	<select bind:value={sortField} class="bg-background">
 		{#each Object.values(VelociteSortField) as field}
@@ -28,7 +38,7 @@
 		{/each}
 	</select>
 
-	<ul class="grid gap-0.5 px-4 pb-4">
+	<ul class="gap-0.5 grid">
 		{#each sortedStations as station}
 			<StationRow {station} {sortField} />
 		{/each}
