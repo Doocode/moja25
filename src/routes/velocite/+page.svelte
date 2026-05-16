@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Station } from '$core/api/JCDecauxApi';
+	import type { FormattedStation } from '$core/api/JCDecauxApi';
 
 	interface Props {
 		data: {
-			stations: Station[];
+			stations: FormattedStation[];
 		};
 	}
 
@@ -15,7 +15,7 @@
 
 	<ul>
 		{#each data.stations as station}
-			<li>{station.name}</li>
+			<li>{station.formattedName}</li>
 		{/each}
 	</ul>
 </main>
