@@ -35,8 +35,8 @@
 <main>
 	{#if sortField === VelociteSortField.NAME || sortField === VelociteSortField.NUMBER}
 		<span class="shrink-0 tabular-nums">
-			<span class="text-xs text-muted-foreground">#</span><span class="font-medium text-primary"
-				>{station.number}</span
+			<span class="mx-0.5 text-xs text-muted-foreground">#</span><span
+				class="font-medium text-primary">{station.number}</span
 			>
 		</span>
 	{:else if sortField === VelociteSortField.CAPACITY}

@@ -57,21 +57,21 @@
 <li
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
-		'bg-green-200/70 hover:bg-green-300 dark:bg-green-950/70 hover:dark:bg-green-900':
+		'bg-green-200/70 hover:bg-green-300 active:bg-green-400 dark:bg-green-950/70 hover:dark:bg-green-900 active:dark:bg-green-800':
 			(isCountSort && countValue > 3 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue <= 0 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.BANKING && station.banking) ||
 			(sortField === VelociteSortField.OPEN && isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && station.connected),
-		'bg-orange-200/70 hover:bg-orange-300 dark:bg-yellow-950/70 hover:dark:bg-yellow-900':
+		'bg-orange-200/70 hover:bg-orange-300 active:bg-orange-400 dark:bg-yellow-950/70 hover:dark:bg-yellow-900 active:dark:bg-yellow-800':
 			(isCountSort && countValue > 0 && countValue <= 3) ||
 			(sortField === VelociteSortField.BONUS && station.bonus),
-		'bg-red-200/70 hover:bg-red-300 dark:bg-red-950/70 hover:dark:bg-red-900':
+		'bg-red-200/70 hover:bg-red-300 active:bg-red-400 dark:bg-red-950/70 hover:dark:bg-red-900 active:dark:bg-red-800':
 			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue > 3 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
-		'hover:bg-primary/30':
+		'hover:bg-primary/30 active:bg-primary/40':
 			(sortField === VelociteSortField.BONUS && !station.bonus) ||
 			(sortField === VelociteSortField.BANKING && !station.banking) ||
 			[VelociteSortField.NAME, VelociteSortField.NUMBER, VelociteSortField.CAPACITY].includes(
