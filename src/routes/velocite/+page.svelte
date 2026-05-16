@@ -4,6 +4,7 @@
 	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import { Input } from '$shadcn/input';
+	import { SearchX } from '@lucide/svelte';
 	import StationRow from './StationRow.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
 
@@ -45,6 +46,16 @@
 	<ul class="grid gap-0.5">
 		{#each sortedStations as station}
 			<StationRow {station} {sortField} />
+		{:else}
+			<li class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">
+				<SearchX class="size-30" />
+				<div>
+					<p class="mb-2 font-medium">Oups ! Nous n’avons rien trouvé</p>
+					<p class="text-sm">
+						Aucun résultat pour <span class="font-medium text-foreground">"{searchQuery}"</span>
+					</p>
+				</div>
+			</li>
 		{/each}
 	</ul>
 </main>
