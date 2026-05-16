@@ -4,14 +4,14 @@ import type { Availabilities, FormattedStation, Stands } from '$core/dto/jcdecau
 
 // Crée une station minimale pour les tests
 function makeStation(name: string, id = 0): FormattedStation {
-    const availabilities: Availabilities = {
-        bikes: 10,
-        stands: 20,
-        mechanicalBikes: 5,
-        electricalBikes: 5,
-        electricalInternalBatteryBikes: 0,
-        electricalRemovableBatteryBikes: 0
-    };
+	const availabilities: Availabilities = {
+		bikes: 10,
+		stands: 20,
+		mechanicalBikes: 5,
+		electricalBikes: 5,
+		electricalInternalBatteryBikes: 0,
+		electricalRemovableBatteryBikes: 0
+	};
 	const stands: Stands = {
 		availabilities,
 		capacity: 30

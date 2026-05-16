@@ -5,6 +5,7 @@
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import { Input } from '$shadcn/input';
 	import StationRow from './StationRow.svelte';
+	import SortButtonGroup from './SortButtonGroup.svelte';
 
 	interface Props {
 		data: {
@@ -22,23 +23,23 @@
 	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
-<main class="m-auto p-4 max-w-lg">
-	<h1 class="font-bold text-3xl">Vélocité</h1>
+<svelte:head>
+	<title>Vélocité</title>
+</svelte:head>
+
+<main class="m-auto max-w-lg p-4">
+	<h1 class="mb-2 text-3xl font-bold">Vélocité</h1>
 
 	<Input
 		type="search"
 		placeholder="Rechercher"
-		class="mb-4 px-4 py-3 w-full h-auto"
+		class="mb-1 h-auto w-full px-4 py-3"
 		bind:value={searchQuery}
 	/>
 
-	<select bind:value={sortField} class="bg-background">
-		{#each Object.values(VelociteSortField) as field}
-			<option value={field}>{field}</option>
-		{/each}
-	</select>
+	<SortButtonGroup bind:sortField bind:sortAscending />
 
-	<ul class="gap-0.5 grid">
+	<ul class="grid gap-0.5">
 		{#each sortedStations as station}
 			<StationRow {station} {sortField} />
 		{/each}
