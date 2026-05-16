@@ -70,7 +70,13 @@
 			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue > 3 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
-			(sortField === VelociteSortField.CONNECTED && !station.connected)
+			(sortField === VelociteSortField.CONNECTED && !station.connected),
+		'hover:bg-primary/30':
+			(sortField === VelociteSortField.BONUS && !station.bonus) ||
+			(sortField === VelociteSortField.BANKING && !station.banking) ||
+			[VelociteSortField.NAME, VelociteSortField.NUMBER, VelociteSortField.CAPACITY].includes(
+				sortField
+			)
 	}}
 >
 	<!-- Gauche : icône + nom -->

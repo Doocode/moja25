@@ -37,7 +37,10 @@
 		bind:value={searchQuery}
 	/>
 
-	<SortButtonGroup bind:sortField bind:sortAscending />
+	<div class="mb-4 flex items-center justify-between">
+		<p>{filteredStations.length} stations</p>
+		<SortButtonGroup bind:sortField bind:sortAscending />
+	</div>
 
 	<ul class="grid gap-0.5">
 		{#each sortedStations as station}
