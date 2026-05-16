@@ -1,4 +1,4 @@
-import type { FormattedStation } from '../dto/jcdecaux';
+import type { FormattedStation, Station } from '$core/dto/jcdecaux';
 
 // Champs de tri disponibles pour les stations Vélocité
 export enum VelociteSortField {
@@ -16,6 +16,7 @@ export enum VelociteSortField {
 	CONNECTED = 'CONNECTED'
 }
 
+// Trie les stations selon un champ et un ordre spécifiés
 export function sortStations(
 	stations: FormattedStation[],
 	field: VelociteSortField,
@@ -37,11 +38,7 @@ export function sortStations(
 				case VelociteSortField.AVAILABLE_STANDS:
 					return s.mainStands.availabilities.stands;
 				case VelociteSortField.UNAVAILABLE_STANDS:
-					return (
-						s.totalStands.capacity -
-						s.mainStands.availabilities.bikes -
-						s.mainStands.availabilities.stands
-					);
+					return getUnavailableStands(s);
 				case VelociteSortField.CAPACITY:
 					return s.totalStands.capacity;
 				case VelociteSortField.BONUS:
@@ -66,50 +63,10 @@ export function sortStations(
 	});
 }
 
-// Mots à conserver en majuscules
-const UPPERCASE_WORDS = [
-	// Universités et instituts
-	'BU', // Bibliothèque Universitaire
-	'IUT', // Institut Universitaire de Technologie
-	'UFC',
-	'UFR',
-	'IAE',
-	'ISBA',
-	'AFPA',
-	'CNRS',
-	'SHLS',
-	'ISTA',
-	'ISIFC',
-	'SJEPG',
-	'STAPS',
-
-	// Hopitaux et centres de santé
-	'CH', // Centre Hospitalier
-	'EFS', // Établissement Français du Sang
-	'CHU', // Centre Hospitalier Universitaire
-	'CHRU', // Centre Hospitalier Régional Universitaire
-
-	// Autres lieux
-	'CAF' // Caisse d'Allocations Familiales
-];
-
-// Formate le nom d'une station Vélocité JCDecaux
-// Ex: "12345 - STATION NAME (CB)" → "Station Name"
-export function formatStationName(name: string): string {
-	// Retire le numéro et le tiret au début : "12345 - "
-	let formatted = name.replace(/^\d+\s*-\s*/, '');
-
-	// Retire "(CB)" à la fin
-	formatted = formatted.replace(/\s*\(CB\)\s*$/i, '').trim();
-
-	// Capitalise chaque mot, sauf ceux dans UPPERCASE_WORDS qui restent en majuscules
-	return formatted
-		.split(' ')
-		.map((word) => {
-			if (UPPERCASE_WORDS.includes(word.toUpperCase())) {
-				return word.toUpperCase();
-			}
-			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-		})
-		.join(' ');
+export function getUnavailableStands(station: FormattedStation | Station): number {
+	return (
+		station.totalStands.capacity -
+		station.totalStands.availabilities.bikes -
+		station.totalStands.availabilities.stands
+	);
 }

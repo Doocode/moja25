@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatStationName } from './velocite';
+import { formatStationName } from './format';
 
 describe('formatStationName', () => {
 	it('retire le numéro et le tiret au début', () => {

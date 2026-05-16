@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { sortStations, VelociteSortField } from '$lib/core/helper/velocite';
+	import { sortStations, VelociteSortField } from '$lib/core/helper/velocite/sort';
 	import StationRow from './StationRow.svelte';
 
 	interface Props {

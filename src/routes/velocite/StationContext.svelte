@@ -12,7 +12,7 @@
 	} from '@lucide/svelte';
 	import StationCounter from './StationCounter.svelte';
 	import StationStatus from './StationStatus.svelte';
-	import { VelociteSortField } from '$lib/core/helper/velocite';
+	import { VelociteSortField } from '$lib/core/helper/velocite/sort';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 
 	interface Props {
@@ -29,7 +29,7 @@
 	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const availableStands = $derived(station.mainStands.availabilities.stands);
 	const capacity = $derived(station.totalStands.capacity);
-	const unavailableStands = $derived(capacity - totalBikes - availableStands);
+	const unavailableStands = $derived(station.unavailableStands);
 </script>
 
 <main>

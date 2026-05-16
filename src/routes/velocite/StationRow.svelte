@@ -11,7 +11,7 @@
 		Zap
 	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { VelociteSortField } from '$lib/core/helper/velocite';
+	import { VelociteSortField } from '$lib/core/helper/velocite/sort';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
 
@@ -28,7 +28,7 @@
 	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const availableStands = $derived(station.mainStands.availabilities.stands);
 	const capacity = $derived(station.totalStands.capacity);
-	const unavailableStands = $derived(capacity - availableStands - totalBikes);
+	const unavailableStands = $derived(station.unavailableStands);
 
 	function countColor(n: number): string {
 		if (n <= 0) return 'text-red-500';
