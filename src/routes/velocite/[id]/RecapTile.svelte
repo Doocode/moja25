@@ -5,15 +5,23 @@
 		count: number;
 		title: string;
 		icon: Component;
-		tint?: string;
+		lightTint?: string;
+		darkTint?: string;
 	}
 
-	let { count, title, icon, tint = '#777777' }: Props = $props();
+	const ERROR_LIGHT = '#ffa2a2';
+	const ERROR_DARK = '#c10007';
+
+	let { count, title, icon, lightTint = '#94a3b8', darkTint = '#777777' }: Props = $props();
 </script>
 
 <main
-	class="flex flex-col items-start gap-2 rounded-lg p-2 pt-1 md:p-4 md:pt-3"
-	style:--tint={tint}
+	class={{
+		'flex flex-col items-start gap-2 rounded-lg p-2 pt-1 md:p-4 md:pt-3': true,
+		'bg-blue-500 text-red-600 dark:text-red-400': count <= 0
+	}}
+	style:--light-tint={count > 0 ? lightTint : 'oklch(71.1% 0.019 323.02)'}
+	style:--dark-tint={count > 0 ? darkTint : 'oklch(36.4% 0.029 323.89)'}
 >
 	<div class="flex flex-col">
 		<span class="text-3xl font-bold md:text-5xl">{count}</span>
@@ -27,7 +35,7 @@
 
 <style>
 	main {
-		background-color: var(--tint);
+		--tint: var(--light-tint);
 		border-top: 5px solid var(--tint);
 		background: linear-gradient(
 			to bottom right,
@@ -36,11 +44,7 @@
 		);
 	}
 
-	:root.dark main {
-		background: linear-gradient(
-			to bottom right,
-			color-mix(in oklab, var(--tint), transparent 80%) 0%,
-			var(--tint) 100%
-		);
+	:global(.dark) main {
+		--tint: var(--dark-tint);
 	}
 </style>

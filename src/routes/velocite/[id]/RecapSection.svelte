@@ -24,26 +24,30 @@
 		title="Vélos mécaniques"
 		count={station.totalStands.availabilities.mechanicalBikes}
 		icon={Bike}
-		tint="#b7007a"
+		lightTint="#e879b0"
+		darkTint="#b7007a"
 	/>
 	<RecapTile
 		title="Vélos électriques"
 		count={station.totalStands.availabilities.electricalBikes}
 		icon={Zap}
-		tint="#00abc4"
+		lightTint="#22d3ee"
+		darkTint="#00abc4"
 	/>
 	<RecapTile
 		title="Places disponibles"
 		count={station.totalStands.availabilities.stands}
 		icon={SquareParking}
-		tint="#777777"
+		lightTint="oklch(70.4% 0.04 256.788)"
+		darkTint="oklch(43.9% 0 0)"
 	/>
 	{#if station.unavailableStands > 0}
 		<RecapTile
 			title="Place non disponibles"
 			count={station.unavailableStands}
 			icon={Ban}
-			tint="#FF8F00"
+			lightTint="oklch(82.8% 0.189 84.429)"
+			darkTint="#FF8F00"
 		/>
 	{/if}
 </main>
