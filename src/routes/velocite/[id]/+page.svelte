@@ -16,23 +16,26 @@
 		Zap
 	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import RecapSection from './RecapSection.svelte';
 
 	interface Props {
 		data: { station: FormattedStation };
 	}
 
 	let { data }: Props = $props();
-	const s = $derived(data.station);
+	const station = $derived(data.station);
 
-	const isOpen = $derived(s.status === 'OPEN');
-	const totalBikes = $derived(s.mainStands.availabilities.bikes);
-	const mechanicalBikes = $derived(s.mainStands.availabilities.mechanicalBikes);
-	const electricalBikes = $derived(s.mainStands.availabilities.electricalBikes);
-	const internalBikes = $derived(s.mainStands.availabilities.electricalInternalBatteryBikes);
-	const removableBikes = $derived(s.mainStands.availabilities.electricalRemovableBatteryBikes);
-	const availableStands = $derived(s.mainStands.availabilities.stands);
-	const capacity = $derived(s.totalStands.capacity);
-	const lastUpdate = $derived(new Date(s.lastUpdate));
+	const isOpen = $derived(station.status === 'OPEN');
+	const totalBikes = $derived(station.mainStands.availabilities.bikes);
+	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
+	const electricalBikes = $derived(station.mainStands.availabilities.electricalBikes);
+	const internalBikes = $derived(station.mainStands.availabilities.electricalInternalBatteryBikes);
+	const removableBikes = $derived(
+		station.mainStands.availabilities.electricalRemovableBatteryBikes
+	);
+	const availableStands = $derived(station.mainStands.availabilities.stands);
+	const capacity = $derived(station.totalStands.capacity);
+	const lastUpdate = $derived(new Date(station.lastUpdate));
 
 	function countColor(n: number, capacity: number): string {
 		const ratio = capacity > 0 ? n / capacity : 0;
@@ -43,7 +46,7 @@
 </script>
 
 <svelte:head>
-	<title>{s.formattedName} — Vélocité</title>
+	<title>{station.formattedName} — Vélocité</title>
 </svelte:head>
 
 <main class="m-auto max-w-lg p-4">
@@ -59,7 +62,7 @@
 	<!-- En-tête -->
 	<div class="mb-4">
 		<div class="mb-1 flex items-start justify-between gap-3">
-			<h1 class="text-2xl leading-tight font-bold">{s.formattedName}</h1>
+			<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
 			<span
 				class="mt-1 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold
 				{isOpen
@@ -71,9 +74,11 @@
 		</div>
 		<div class="flex items-center gap-1.5 text-sm text-muted-foreground">
 			<MapPin class="size-3.5 shrink-0" />
-			<span>{s.address}</span>
+			<span>{station.address}</span>
 		</div>
 	</div>
+
+	<RecapSection {station} class="mb-4" />
 
 	<!-- Disponibilités principales -->
 	<div class="mb-3 grid grid-cols-2 gap-2">
@@ -136,8 +141,8 @@
 					<span class="flex items-center gap-1.5 text-muted-foreground">
 						<Ban class="size-3.5" /> Indisponibles
 					</span>
-					<span class="font-semibold {s.unavailableStands > 0 ? 'text-orange-500' : ''}"
-						>{s.unavailableStands}</span
+					<span class="font-semibold {station.unavailableStands > 0 ? 'text-orange-500' : ''}"
+						>{station.unavailableStands}</span
 					>
 				</div>
 			</div>
@@ -150,7 +155,7 @@
 			Informations
 		</h2>
 		<div class="grid grid-cols-2 gap-2">
-			{#each [{ Icon: CheckCircle, label: 'Ouverte', active: isOpen, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: Wifi, label: 'Connectée', active: s.connected, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: CreditCard, label: 'Carte bancaire', active: s.banking, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: Star, label: 'Bonus', active: s.bonus, activeClass: 'text-yellow-500', inactiveIcon: XCircle }, { Icon: TriangleAlert, label: 'Débordement', active: s.overflow, activeClass: 'text-orange-500', inactiveIcon: XCircle }] as item}
+			{#each [{ Icon: CheckCircle, label: 'Ouverte', active: isOpen, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: Wifi, label: 'Connectée', active: station.connected, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: CreditCard, label: 'Carte bancaire', active: station.banking, activeClass: 'text-green-500', inactiveIcon: XCircle }, { Icon: Star, label: 'Bonus', active: station.bonus, activeClass: 'text-yellow-500', inactiveIcon: XCircle }, { Icon: TriangleAlert, label: 'Débordement', active: station.overflow, activeClass: 'text-orange-500', inactiveIcon: XCircle }] as item}
 				<div class="flex items-center gap-2 text-sm">
 					{#if item.active}
 						<item.Icon class="size-4 {item.activeClass}" />
@@ -173,19 +178,19 @@
 				<span class="flex items-center gap-1.5 text-muted-foreground">
 					<Hash class="size-3.5" /> Numéro
 				</span>
-				<span class="font-mono font-medium">{s.number}</span>
+				<span class="font-mono font-medium">{station.number}</span>
 			</div>
 			<div class="flex items-center justify-between">
 				<span class="flex items-center gap-1.5 text-muted-foreground">
 					<MapPin class="size-3.5" /> Coordonnées
 				</span>
 				<span class="font-mono text-xs"
-					>{s.position.latitude.toFixed(5)}, {s.position.longitude.toFixed(5)}</span
+					>{station.position.latitude.toFixed(5)}, {station.position.longitude.toFixed(5)}</span
 				>
 			</div>
 			<div class="flex items-center justify-between">
 				<span class="text-muted-foreground">Contrat</span>
-				<span class="capitalize">{s.contractName}</span>
+				<span class="capitalize">{station.contractName}</span>
 			</div>
 			<div class="flex items-center justify-between">
 				<span class="text-muted-foreground">Mis à jour</span>
