@@ -14,6 +14,7 @@
 	import StationStatus from './StationStatus.svelte';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
 
 	interface Props {
 		station: FormattedStation;
@@ -57,8 +58,8 @@
 		<CounterIcon
 			class={{
 				'size-6! shrink-0': true,
-				'text-green-500': countValue > 3,
-				'text-orange-500': countValue > 0 && countValue <= 3,
+				'text-green-500': countValue > MEDIUM_LEVEL_THRESHOLD,
+				'text-orange-500': countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
 				'text-red-500': countValue === 0
 			}}
 		/>
@@ -67,8 +68,8 @@
 		<CounterIcon
 			class={{
 				'size-6! shrink-0': true,
-				'text-red-500': countValue > 3,
-				'text-orange-500': countValue > 0 && countValue <= 3,
+				'text-red-500': countValue > MEDIUM_LEVEL_THRESHOLD,
+				'text-orange-500': countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
 				'text-green-500': countValue === 0
 			}}
 		/>

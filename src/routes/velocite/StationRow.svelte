@@ -12,6 +12,7 @@
 	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
 
@@ -32,7 +33,7 @@
 
 	function countColor(n: number): string {
 		if (n <= 0) return 'text-red-500';
-		if (n <= 3) return 'text-orange-500';
+		if (n <= MEDIUM_LEVEL_THRESHOLD) return 'text-orange-500';
 		return 'text-green-500';
 	}
 
@@ -58,17 +59,21 @@
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
 		'bg-green-200/70 hover:bg-green-300 active:bg-green-400 dark:bg-green-950/70 hover:dark:bg-green-900 active:dark:bg-green-800':
-			(isCountSort && countValue > 3 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
+			(isCountSort &&
+				countValue > MEDIUM_LEVEL_THRESHOLD &&
+				sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort && countValue <= 0 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.BANKING && station.banking) ||
 			(sortField === VelociteSortField.OPEN && isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && station.connected),
 		'bg-orange-200/70 hover:bg-orange-300 active:bg-orange-400 dark:bg-yellow-950/70 hover:dark:bg-yellow-900 active:dark:bg-yellow-800':
-			(isCountSort && countValue > 0 && countValue <= 3) ||
+			(isCountSort && countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD) ||
 			(sortField === VelociteSortField.BONUS && station.bonus),
 		'bg-red-200/70 hover:bg-red-300 active:bg-red-400 dark:bg-red-950/70 hover:dark:bg-red-900 active:dark:bg-red-800':
 			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
-			(isCountSort && countValue > 3 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
+			(isCountSort &&
+				countValue > MEDIUM_LEVEL_THRESHOLD &&
+				sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
 		'hover:bg-primary/30 active:bg-primary/40':

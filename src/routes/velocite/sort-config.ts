@@ -14,6 +14,9 @@ import {
 import type { Component } from 'svelte';
 import { VelociteSortField } from '$core/enum/VelociteSortField';
 
+// Seuil max pour le niveau moyen (orange) dans les indicateurs de quantité/ratio
+export const MEDIUM_LEVEL_THRESHOLD = 3;
+
 export interface SortFieldConfig {
 	label: string;
 	shortLabel?: string; // Libellé court pour l'affichage en grille

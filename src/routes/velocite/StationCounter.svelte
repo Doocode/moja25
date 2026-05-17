@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
+	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
 
 	interface Props {
 		icon: Component;
@@ -14,12 +15,12 @@
 		if (!negative) {
 			// Si le role de ce compteur est de représenter une quantité positive (ex: vélos disponibles, places disponibles)
 			if (value <= 0) return 'text-red-500';
-			if (value <= 3) return 'text-amber-500';
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-500';
 			return 'text-green-500';
 		} else {
 			// Si le role de ce compteur est de représenter une quantité négative (ex: places/vélos non-disponibles)
 			if (value <= 0) return 'text-green-500';
-			if (value <= 3) return 'text-amber-500';
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-500';
 			return 'text-red-500';
 		}
 	}
