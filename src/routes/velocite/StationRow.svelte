@@ -55,7 +55,8 @@
 	});
 </script>
 
-<li
+<a
+	href="/velocite/{station.number}"
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
 		'bg-green-200/70 hover:bg-green-300 active:bg-green-400 dark:bg-green-950/70 hover:dark:bg-green-900 active:dark:bg-green-800':
@@ -92,4 +93,4 @@
 
 	<!-- Droite : informations contextuelle -->
 	<StationContext {station} {sortField} />
-</li>
+</a>

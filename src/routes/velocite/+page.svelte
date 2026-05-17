@@ -66,11 +66,11 @@
 		</div>
 	</div>
 
-	<ul class="grid gap-0.5">
+	<div class="grid gap-0.5">
 		{#each sortedStations as station}
 			<StationRow {station} {sortField} />
 		{:else}
-			<li class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">
+			<div class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">
 				<SearchX class="size-30" />
 				<div>
 					<p class="mb-2 font-medium">Oups ! Nous n’avons rien trouvé</p>
@@ -78,7 +78,7 @@
 						Aucun résultat pour <span class="font-medium text-foreground">"{searchQuery}"</span>
 					</p>
 				</div>
-			</li>
+			</div>
 		{/each}
-	</ul>
+	</div>
 </main>

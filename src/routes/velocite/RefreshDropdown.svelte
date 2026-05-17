@@ -10,7 +10,7 @@
 
 	let { interval = $bindable(15_000) }: Props = $props();
 
-	const STORAGE_KEY = 'velocite-refresh-interval';
+	const STORAGE_KEY = 'velocite-search-refresh-interval';
 
 	type RefreshOption =
 		| { value: 0; label: string }
