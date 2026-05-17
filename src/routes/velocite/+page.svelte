@@ -16,11 +16,24 @@
 
 	let { data }: Props = $props();
 
+	let stations = $state<FormattedStation[]>(data.stations);
 	let searchQuery = $state('');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
 
-	const filteredStations = $derived(filterStations(data.stations, searchQuery));
+	async function refreshStations() {
+		const res = await fetch('/api/jcdecaux/stations');
+		if (res.ok) {
+			stations = await res.json();
+		}
+	}
+
+	$effect(() => {
+		const interval = setInterval(refreshStations, 15_000);
+		return () => clearInterval(interval);
+	});
+
+	const filteredStations = $derived(filterStations(stations, searchQuery));
 	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
