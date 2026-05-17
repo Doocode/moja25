@@ -4,14 +4,24 @@
 	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import { SearchX } from '@lucide/svelte';
+	import { browser } from '$app/environment';
 	import StationRow from './StationRow.svelte';
 	import SearchBar from './SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
+	import RefreshDropdown from './RefreshDropdown.svelte';
 
 	interface Props {
 		data: {
 			stations: FormattedStation[];
 		};
+	}
+
+	const VALID_REFRESH_INTERVALS = [0, 15_000, 60_000, 300_000, 600_000, 1_800_000];
+
+	function loadRefreshInterval(): number {
+		if (!browser) return 15_000;
+		const parsed = Number(localStorage.getItem('velocite-refresh-interval'));
+		return VALID_REFRESH_INTERVALS.includes(parsed) ? parsed : 15_000;
 	}
 
 	let { data }: Props = $props();
@@ -20,6 +30,7 @@
 	let searchQuery = $state('');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
+	let refreshInterval = $state(loadRefreshInterval());
 
 	async function refreshStations() {
 		const res = await fetch('/api/jcdecaux/stations');
@@ -29,8 +40,9 @@
 	}
 
 	$effect(() => {
-		const interval = setInterval(refreshStations, 15_000);
-		return () => clearInterval(interval);
+		if (refreshInterval === 0) return;
+		const id = setInterval(refreshStations, refreshInterval);
+		return () => clearInterval(id);
 	});
 
 	const filteredStations = $derived(filterStations(stations, searchQuery));
@@ -48,7 +60,10 @@
 
 	<div class="mb-4 flex items-center justify-between">
 		<p>{filteredStations.length} stations</p>
-		<SortButtonGroup bind:sortField bind:sortAscending />
+		<div class="flex gap-1">
+			<RefreshDropdown bind:interval={refreshInterval} />
+			<SortButtonGroup bind:sortField bind:sortAscending />
+		</div>
 	</div>
 
 	<ul class="grid gap-0.5">
