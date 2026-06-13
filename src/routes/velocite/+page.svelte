@@ -18,19 +18,41 @@
 
 	const VALID_REFRESH_INTERVALS = [0, 15_000, 60_000, 300_000, 600_000, 1_800_000];
 
-	function loadRefreshInterval(): number {
-		if (!browser) return 15_000;
-		const parsed = Number(localStorage.getItem('velocite-refresh-interval'));
-		return VALID_REFRESH_INTERVALS.includes(parsed) ? parsed : 15_000;
-	}
-
 	let { data }: Props = $props();
 
-	let stations = $state<FormattedStation[]>(data.stations);
+	let stations = $derived<FormattedStation[]>(data.stations);
 	let searchQuery = $state('');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
-	let refreshInterval = $state(loadRefreshInterval());
+	let refreshInterval = $state(15_000);
+
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		const storedInterval = localStorage.getItem('velocite-refresh-interval');
+		if (storedInterval !== null) {
+			const parsed = Number(storedInterval);
+			if (VALID_REFRESH_INTERVALS.includes(parsed)) refreshInterval = parsed;
+		}
+
+		const storedSortField = localStorage.getItem('velocite-sort-field');
+		if (storedSortField !== null) {
+			sortField = storedSortField as VelociteSortField;
+		}
+
+		const storedSortAscending = localStorage.getItem('velocite-sort-ascending');
+		if (storedSortAscending !== null) {
+			sortAscending = storedSortAscending === 'true';
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+			localStorage.setItem('velocite-sort-field', sortField);
+			localStorage.setItem('velocite-sort-ascending', String(sortAscending));
+		}
+	});
 
 	async function refreshStations() {
 		const res = await fetch('/api/jcdecaux/stations');
