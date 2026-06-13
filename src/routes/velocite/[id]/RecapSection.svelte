@@ -14,7 +14,7 @@
 
 <main
 	class={cn(
-		'm-auto grid max-w-lg gap-1',
+		'm-auto grid max-w-156 gap-1 rounded-[2rem] bg-neutral-100/30 backdrop-blur-2xl lg:gap-2 lg:border lg:border-card lg:p-4 lg:shadow-2xl dark:bg-neutral-900/30 lg:dark:border-input lg:dark:shadow-background',
 		className,
 		station.unavailableStands <= 0 && 'grid-cols-3',
 		station.unavailableStands > 0 && 'grid-cols-4'
@@ -24,30 +24,26 @@
 		title="Vélos mécaniques"
 		count={station.totalStands.availabilities.mechanicalBikes}
 		icon={Bike}
-		lightTint="#e879b0"
-		darkTint="#b7007a"
+		type="mechanical-bikes"
 	/>
 	<RecapTile
 		title="Vélos électriques"
 		count={station.totalStands.availabilities.electricalBikes}
 		icon={Zap}
-		lightTint="#22d3ee"
-		darkTint="#00abc4"
+		type="electrical-bikes"
 	/>
 	<RecapTile
 		title="Places disponibles"
 		count={station.totalStands.availabilities.stands}
 		icon={SquareParking}
-		lightTint="oklch(70.4% 0.04 256.788)"
-		darkTint="oklch(43.9% 0 0)"
+		type="available-stands"
 	/>
 	{#if station.unavailableStands > 0}
 		<RecapTile
-			title="Place non disponibles"
+			title="Places non disponibles"
 			count={station.unavailableStands}
 			icon={Ban}
-			lightTint="oklch(82.8% 0.189 84.429)"
-			darkTint="#FF8F00"
+			type="unavailable-stands"
 		/>
 	{/if}
 </main>

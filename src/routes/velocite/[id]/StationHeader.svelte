@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { ArrowLeft, MapPin } from '@lucide/svelte';
+	import { ArrowLeft } from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 
 	interface Props {
@@ -7,11 +7,9 @@
 	}
 
 	let { station }: Props = $props();
-
-	const isOpen = $derived(station.status === 'OPEN');
 </script>
 
-<div class="mb-4 bg-[#98c5ff] dark:bg-[#3266aa]">
+<div class="bg-linear-to-b from-[#8e86ff] to-[#3fc9c9] dark:from-[#204174] dark:to-[#007cc7]">
 	<div class="container mx-auto p-4">
 		<a
 			href="/velocite"
@@ -22,12 +20,12 @@
 		</a>
 
 		<div class="flex items-start justify-between gap-3 pb-1">
-			<div class="grid">
-				<p class="text-8xl font-thin">{station.number}</p>
+			<div class="grid max-w-40">
+				<p class="-ml-1 text-8xl font-thin" title="Numéro de la station">{station.number}</p>
 				<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
 			</div>
 
-			<div class="flex justify-end">
+			<div class="flex max-w-40 justify-end">
 				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
 			</div>
 		</div>

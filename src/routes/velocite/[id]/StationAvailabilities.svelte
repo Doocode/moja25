@@ -29,7 +29,7 @@
 	}
 </script>
 
-<div class={cn('grid grid-cols-2 gap-2', className)}>
+<div class={cn('relative z-10 grid grid-cols-2 gap-2', className)}>
 	<AvailabilityCard
 		title="Vélos disponibles"
 		icon={Bike}

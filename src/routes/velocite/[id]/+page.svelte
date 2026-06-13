@@ -20,7 +20,7 @@
 
 <StationHeader {station} />
 
-<main class="m-auto max-w-4xl p-4">
+<main class="m-auto max-w-4xl p-4 lg:-mt-50">
 	<RecapSection {station} class="mb-4" />
 	<StationAvailabilities {station} class="mb-3" />
 	<StationInfos {station} class="mb-3" />

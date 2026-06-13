@@ -5,46 +5,71 @@
 		count: number;
 		title: string;
 		icon: Component;
-		lightTint?: string;
-		darkTint?: string;
+		type: 'mechanical-bikes' | 'electrical-bikes' | 'available-stands' | 'unavailable-stands';
 	}
 
-	const ERROR_LIGHT = '#ffa2a2';
-	const ERROR_DARK = '#c10007';
-
-	let { count, title, icon, lightTint = '#94a3b8', darkTint = '#777777' }: Props = $props();
+	let { count, title, icon, type }: Props = $props();
 </script>
 
 <main
 	class={{
-		'flex flex-col items-start gap-2 rounded-lg p-2 pt-1 md:p-4 md:pt-3': true,
-		'bg-blue-500 text-red-600 dark:text-red-400': count <= 0
+		'grid gap-2 overflow-clip rounded-lg md:h-48 md:rounded-2xl': true,
+		'text-red-400': count <= 0,
+		'text-white': count > 0
 	}}
-	style:--light-tint={count > 0 ? lightTint : 'oklch(71.1% 0.019 323.02)'}
-	style:--dark-tint={count > 0 ? darkTint : 'oklch(36.4% 0.029 323.89)'}
+	class:mechanical-bikes={type === 'mechanical-bikes' && count > 0}
+	class:electrical-bikes={type === 'electrical-bikes' && count > 0}
+	class:available-stands={type === 'available-stands' && count > 0}
+	class:unavailable-stands={type === 'unavailable-stands' && count > 0}
+	class:empty={count <= 0}
 >
-	<div class="flex flex-col">
-		<span class="text-3xl font-bold md:text-5xl">{count}</span>
-		<span class="text-[0.65rem] uppercase md:text-xs">{title}</span>
+	<div class="stripe h-2 bg-(--gradient-end)" class:bg-red-400={count <= 0}></div>
+	<div class="flex flex-col items-start justify-between gap-2 p-4">
+		<div class="-mt-4 flex flex-col md:-mt-10">
+			<span class="text-4xl font-bold md:text-6xl">{count}</span>
+			<span class="text-[0.65rem] font-semibold uppercase md:text-xs">{title}</span>
+		</div>
+		{#if icon !== undefined}
+			{@const Icon = icon}
+			<Icon class="size-10 md:size-12" />
+		{/if}
 	</div>
-	{#if icon !== undefined}
-		{@const Icon = icon}
-		<Icon class="size-10 md:size-12" />
-	{/if}
 </main>
 
 <style>
 	main {
-		--tint: var(--light-tint);
-		border-top: 5px solid var(--tint);
+		--gradient-start: red;
+		--gradient-end: lime;
+
 		background: linear-gradient(
 			to bottom right,
-			color-mix(in oklab, var(--tint), transparent 80%) 0%,
-			var(--tint) 100%
+			var(--gradient-start) 0%,
+			var(--gradient-end) 100%
 		);
-	}
 
-	:global(.dark) main {
-		--tint: var(--dark-tint);
+		&.mechanical-bikes {
+			--gradient-start: #411537;
+			--gradient-end: #ee09a2;
+		}
+
+		&.electrical-bikes {
+			--gradient-start: #0f2127;
+			--gradient-end: #02c9e7;
+		}
+
+		&.available-stands {
+			--gradient-start: #212326;
+			--gradient-end: #879292;
+		}
+
+		&.unavailable-stands {
+			--gradient-start: #794e0d;
+			--gradient-end: #ff8f00;
+		}
+
+		&.empty {
+			--gradient-start: #0e0705;
+			--gradient-end: #640a04;
+		}
 	}
 </style>
