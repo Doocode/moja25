@@ -47,5 +47,11 @@
 				second: '2-digit'
 			})
 		)}
+
+		<div class="flex items-center gap-1.5 text-sm text-muted-foreground">
+			<MapPin class="size-3.5 shrink-0" />
+			<span class="font-semibold">Emplacement</span>
+			<span>{station.address}</span>
+		</div>
 	</div>
 </InfoCard>

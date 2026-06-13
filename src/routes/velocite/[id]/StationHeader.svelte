@@ -11,29 +11,25 @@
 	const isOpen = $derived(station.status === 'OPEN');
 </script>
 
-<div class="mb-4">
-	<a
-		href="/velocite"
-		class="mb-4 inline-flex items-center gap-1.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-	>
-		<ArrowLeft class="size-5" />
-		Toutes les stations
-	</a>
-
-	<div class="mb-1 flex items-start justify-between gap-3">
-		<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
-		<span
-			class="mt-1 shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold
-			{isOpen
-				? 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400'
-				: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-400'}"
+<div class="mb-4 bg-[#98c5ff] dark:bg-[#3266aa]">
+	<div class="container mx-auto p-4">
+		<a
+			href="/velocite"
+			class="-mt-4 mb-4 inline-flex items-center gap-1.5 py-4 text-sm transition-colors hover:text-foreground hover:underline"
 		>
-			{isOpen ? 'Ouvert' : 'Fermé'}
-		</span>
-	</div>
+			<ArrowLeft class="size-5" />
+			Liste des stations
+		</a>
 
-	<div class="flex items-center gap-1.5 text-sm text-muted-foreground">
-		<MapPin class="size-3.5 shrink-0" />
-		<span>{station.address}</span>
+		<div class="flex items-start justify-between gap-3 pb-1">
+			<div class="grid">
+				<p class="text-8xl font-thin">{station.number}</p>
+				<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
+			</div>
+
+			<div class="flex justify-end">
+				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
+			</div>
+		</div>
 	</div>
 </div>

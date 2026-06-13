@@ -18,8 +18,9 @@
 	<title>{station.formattedName} — Vélocité</title>
 </svelte:head>
 
+<StationHeader {station} />
+
 <main class="m-auto max-w-4xl p-4">
-	<StationHeader {station} />
 	<RecapSection {station} class="mb-4" />
 	<StationAvailabilities {station} class="mb-3" />
 	<StationInfos {station} class="mb-3" />
