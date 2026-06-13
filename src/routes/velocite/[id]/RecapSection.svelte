@@ -14,7 +14,7 @@
 
 <main
 	class={cn(
-		'grid gap-1',
+		'm-auto grid max-w-lg gap-1',
 		className,
 		station.unavailableStands <= 0 && 'grid-cols-3',
 		station.unavailableStands > 0 && 'grid-cols-4'
