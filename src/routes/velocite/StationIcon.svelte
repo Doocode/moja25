@@ -1,17 +1,5 @@
 <script lang="ts">
-	import {
-		Ban,
-		Bike,
-		Check,
-		CreditCard,
-		SquareParking,
-		Star,
-		TriangleAlert,
-		Wifi,
-		Zap
-	} from '@lucide/svelte';
-	import StationCounter from './StationCounter.svelte';
-	import StationStatus from './StationStatus.svelte';
+	import { Ban, Bike, Check, CreditCard, SquareParking, Star, Wifi, Zap } from '@lucide/svelte';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
@@ -22,15 +10,8 @@
 		countValue?: number;
 	}
 
-	let { station, sortField, countValue }: Props = $props();
+	let { station, sortField, countValue = 0 }: Props = $props();
 
-	const isOpen = $derived(station.status === 'OPEN');
-	const connected = $derived(station.connected);
-	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
-	const electricalBikes = $derived(station.mainStands.availabilities.electricalBikes);
-	const totalBikes = $derived(station.mainStands.availabilities.bikes);
-	const availableStands = $derived(station.mainStands.availabilities.stands);
-	const capacity = $derived(station.totalStands.capacity);
 	const unavailableStands = $derived(station.unavailableStands);
 
 	let counterIcon = $derived.by(() => {
@@ -58,9 +39,10 @@
 		<CounterIcon
 			class={{
 				'size-6! shrink-0': true,
-				'text-green-500': countValue > MEDIUM_LEVEL_THRESHOLD,
-				'text-orange-500': countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
-				'text-red-500': countValue === 0
+				'text-green-600 dark:text-green-400': countValue > MEDIUM_LEVEL_THRESHOLD,
+				'text-amber-600 dark:text-amber-400':
+					countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
+				'text-red-600 dark:text-red-400': countValue === 0
 			}}
 		/>
 	{:else if [VelociteSortField.UNAVAILABLE_STANDS].includes(sortField)}
@@ -68,14 +50,15 @@
 		<CounterIcon
 			class={{
 				'size-6! shrink-0': true,
-				'text-red-500': countValue > MEDIUM_LEVEL_THRESHOLD,
-				'text-orange-500': countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
-				'text-green-500': countValue === 0
+				'text-red-600 dark:text-red-400': countValue > MEDIUM_LEVEL_THRESHOLD,
+				'text-amber-600 dark:text-amber-400':
+					countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD,
+				'text-green-600 dark:text-green-400': countValue === 0
 			}}
 		/>
 	{:else if sortField === VelociteSortField.BONUS}
 		{#if station.bonus}
-			<Star class="size-6! shrink-0 text-yellow-500" />
+			<Star class="size-6! shrink-0 text-yellow-600 dark:text-yellow-400" />
 		{:else}
 			<Bike class="size-6! shrink-0 text-primary" />
 		{/if}
@@ -87,15 +70,15 @@
 		{/if}
 	{:else if sortField === VelociteSortField.OPEN}
 		{#if station.status === 'OPEN'}
-			<Check class="size-6! shrink-0 text-green-500" />
+			<Check class="size-6! shrink-0 text-green-600 dark:text-green-400" />
 		{:else}
-			<Ban class="size-6! shrink-0 text-red-500" />
+			<Ban class="size-6! shrink-0 text-red-600 dark:text-red-400" />
 		{/if}
 	{:else if sortField === VelociteSortField.CONNECTED}
 		{#if station.connected}
-			<Wifi class="size-6! shrink-0 text-green-500" />
+			<Wifi class="size-6! shrink-0 text-green-600 dark:text-green-400" />
 		{:else}
-			<Ban class="size-6! shrink-0 text-red-500" />
+			<Ban class="size-6! shrink-0 text-red-600 dark:text-red-400" />
 		{/if}
 	{/if}
 </main>

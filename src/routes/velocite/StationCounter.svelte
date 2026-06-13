@@ -14,14 +14,14 @@
 	function countColor(n: number): string {
 		if (!negative) {
 			// Si le role de ce compteur est de représenter une quantité positive (ex: vélos disponibles, places disponibles)
-			if (value <= 0) return 'text-red-500';
-			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-500';
-			return 'text-green-500';
+			if (value <= 0) return 'text-red-600 dark:text-red-400';
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
+			return 'text-green-600 dark:text-green-400';
 		} else {
 			// Si le role de ce compteur est de représenter une quantité négative (ex: places/vélos non-disponibles)
-			if (value <= 0) return 'text-green-500';
-			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-500';
-			return 'text-red-500';
+			if (value <= 0) return 'text-green-600 dark:text-green-400';
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
+			return 'text-red-600 dark:text-red-400';
 		}
 	}
 

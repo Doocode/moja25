@@ -59,7 +59,7 @@
 	href="/velocite/{station.number}"
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
-		'bg-green-200/70 hover:bg-green-300 active:bg-green-400 dark:bg-green-950/70 hover:dark:bg-green-900 active:dark:bg-green-800':
+		'bg-green-200 hover:bg-green-300 active:bg-green-400 dark:bg-green-900 hover:dark:bg-green-800 active:dark:bg-green-700':
 			(isCountSort &&
 				countValue > MEDIUM_LEVEL_THRESHOLD &&
 				sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
@@ -67,10 +67,10 @@
 			(sortField === VelociteSortField.BANKING && station.banking) ||
 			(sortField === VelociteSortField.OPEN && isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && station.connected),
-		'bg-orange-200/70 hover:bg-orange-300 active:bg-orange-400 dark:bg-yellow-950/70 hover:dark:bg-yellow-900 active:dark:bg-yellow-800':
+		'bg-orange-200 hover:bg-orange-300 active:bg-orange-400 dark:bg-yellow-900 hover:dark:bg-yellow-800 active:dark:bg-yellow-700':
 			(isCountSort && countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD) ||
 			(sortField === VelociteSortField.BONUS && station.bonus),
-		'bg-red-200/70 hover:bg-red-300 active:bg-red-400 dark:bg-red-950/70 hover:dark:bg-red-900 active:dark:bg-red-800':
+		'bg-red-200 hover:bg-red-300 active:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800 active:dark:bg-red-700':
 			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
 			(isCountSort &&
 				countValue > MEDIUM_LEVEL_THRESHOLD &&
