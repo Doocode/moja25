@@ -3,6 +3,7 @@
 	import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '$shadcn/dropdown-menu';
 	import { buttonVariants } from '$shadcn/button';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		interval: number;
@@ -32,6 +33,14 @@
 
 	const currentLabel = $derived(REFRESH_OPTIONS.find((o) => o.value === interval)?.label ?? '');
 	const isNever = $derived(interval === 0);
+
+	onMount(() => {
+		if (!browser) return;
+		const stored = Number(localStorage.getItem(STORAGE_KEY));
+		if (REFRESH_OPTIONS.some((o) => o.value === stored)) {
+			interval = stored;
+		}
+	});
 </script>
 
 <DropdownMenu>
