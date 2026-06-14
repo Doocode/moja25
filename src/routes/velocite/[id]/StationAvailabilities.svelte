@@ -7,9 +7,10 @@
 	interface Props {
 		station: FormattedStation;
 		class?: string;
+		displayBatteryDetails?: boolean;
 	}
 
-	let { station, class: className }: Props = $props();
+	let { station, class: className, displayBatteryDetails = false }: Props = $props();
 
 	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
@@ -49,7 +50,7 @@
 			</span>
 			<span class="font-semibold {countClass(electricalBikes)}">{electricalBikes}</span>
 		</div>
-		{#if internalBikes > 0 || removableBikes > 0}
+		{#if displayBatteryDetails && (internalBikes > 0 || removableBikes > 0)}
 			<div class="flex items-center justify-between pl-5 text-xs text-muted-foreground">
 				<span>Batterie interne</span>
 				<span>{internalBikes}</span>

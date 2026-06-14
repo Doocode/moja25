@@ -26,7 +26,7 @@
 			</div>
 
 			<div class="flex max-w-40 justify-end">
-				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
+				<!-- TODO: Actions (add to bookmarks, share, open in map, refresh interval selector) -->
 			</div>
 		</div>
 	</div>

@@ -14,13 +14,12 @@
 </script>
 
 <div class="rounded-xl border bg-card p-4">
-	<div class="mb-3 flex items-center gap-2 text-sm font-medium text-muted-foreground">
+	<div class="mb-3 flex items-center gap-2 text-sm font-medium">
 		<Icon class="size-4" />
 		{title}
 	</div>
 	<p class="text-4xl font-bold {countClass}">{count}</p>
-	<p class="mt-0.5 text-xs text-muted-foreground">sur {capacity} places</p>
-	<div class="mt-3 space-y-1.5 border-t pt-3">
+	<div class="mt-3 space-y-1.5">
 		{@render children()}
 	</div>
 </div>

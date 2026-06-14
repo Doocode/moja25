@@ -13,7 +13,7 @@
 
 <div class={cn('rounded-xl border bg-card p-4', className)}>
 	{#if title}
-		<h2 class="mb-3 text-sm font-medium tracking-wider text-muted-foreground uppercase">
+		<h2 class="mb-3 text-sm font-medium tracking-wider uppercase">
 			{title}
 		</h2>
 	{/if}
