@@ -3,12 +3,14 @@
 	import { sortStations } from '$lib/core/helper/velocite/sort';
 	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { defaultRefreshInterval, refreshIntervals } from './settings';
 	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import StationRow from './StationRow.svelte';
 	import SearchBar from './SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
 	import RefreshDropdown from './RefreshDropdown.svelte';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		data: {
@@ -16,23 +18,19 @@
 		};
 	}
 
-	const VALID_REFRESH_INTERVALS = [0, 15_000, 60_000, 300_000, 600_000, 1_800_000];
-
 	let { data }: Props = $props();
 
 	let stations = $derived<FormattedStation[]>(data.stations);
 	let searchQuery = $state('');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
-	let refreshInterval = $state(15_000);
-
-	import { onMount } from 'svelte';
+	let refreshInterval = $state(defaultRefreshInterval);
 
 	onMount(() => {
 		const storedInterval = localStorage.getItem('velocite-refresh-interval');
 		if (storedInterval !== null) {
 			const parsed = Number(storedInterval);
-			if (VALID_REFRESH_INTERVALS.includes(parsed)) refreshInterval = parsed;
+			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
 		}
 
 		const storedSortField = localStorage.getItem('velocite-sort-field');
@@ -54,6 +52,12 @@
 		}
 	});
 
+	$effect(() => {
+		if (refreshInterval === 0) return;
+		const id = setInterval(refreshStations, refreshInterval);
+		return () => clearInterval(id);
+	});
+
 	async function refreshStations() {
 		const res = await fetch('/api/jcdecaux/stations');
 		if (res.ok) {
@@ -61,18 +65,12 @@
 		}
 	}
 
-	$effect(() => {
-		if (refreshInterval === 0) return;
-		const id = setInterval(refreshStations, refreshInterval);
-		return () => clearInterval(id);
-	});
-
 	const filteredStations = $derived(filterStations(stations, searchQuery));
 	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
 <svelte:head>
-	<title>Vélocité</title>
+	<title>Stations Vélocité</title>
 </svelte:head>
 
 <main class="m-auto max-w-lg p-4">
