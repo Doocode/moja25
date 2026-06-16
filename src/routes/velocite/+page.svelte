@@ -45,11 +45,10 @@
 	});
 
 	$effect(() => {
-		if (browser) {
-			localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
-			localStorage.setItem('velocite-sort-field', sortField);
-			localStorage.setItem('velocite-sort-ascending', String(sortAscending));
-		}
+		if (!browser) return;
+		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+		localStorage.setItem('velocite-sort-field', sortField);
+		localStorage.setItem('velocite-sort-ascending', String(sortAscending));
 	});
 
 	$effect(() => {

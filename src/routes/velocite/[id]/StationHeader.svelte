@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import { ArrowLeft } from '@lucide/svelte';
 	import RefreshDropdown from '../RefreshDropdown.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
+	import KeepScreenOnToggle from '../KeepScreenOnToggle.svelte';
 
 	interface Props {
 		station: FormattedStation;
@@ -12,12 +14,24 @@
 
 	let { station, refreshInterval = $bindable(defaultRefreshInterval) }: Props = $props();
 
+	let wakeLockSupported = $state(false);
+
 	onMount(() => {
 		const storedInterval = localStorage.getItem('velocite-refresh-interval');
 		if (storedInterval !== null) {
 			const parsed = Number(storedInterval);
 			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
 		}
+	});
+
+	$effect(() => {
+		if (!browser) return;
+
+		// Update refresh interval
+		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+
+		// Check if we can use the Wake Lock API
+		wakeLockSupported = 'wakeLock' in navigator;
 	});
 </script>
 
@@ -37,9 +51,13 @@
 				<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
 			</div>
 
-			<div class="flex max-w-40 justify-end">
+			<div class="flex max-w-40 justify-end gap-2">
 				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
 				<RefreshDropdown bind:interval={refreshInterval} />
+
+				{#if wakeLockSupported}
+					<KeepScreenOnToggle />
+				{/if}
 			</div>
 		</div>
 	</div>

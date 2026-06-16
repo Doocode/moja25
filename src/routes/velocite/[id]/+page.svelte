@@ -26,9 +26,10 @@
 	});
 
 	$effect(() => {
-		if (browser) {
-			localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
-		}
+		if (!browser) return;
+
+		// Update refresh interval
+		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
 	});
 
 	$effect(() => {
