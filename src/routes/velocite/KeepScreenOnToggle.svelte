@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/shadcn/ui/button';
 	import { Lightbulb, LightbulbOff } from '@lucide/svelte';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		lightOn?: boolean;
@@ -13,6 +14,10 @@
 		lightOn = !lightOn;
 		if (lightOn) {
 			requestWakeLock();
+		} else {
+			wakeLock?.release();
+			wakeLock = null;
+			localStorage.removeItem('velocite-keep-screen-on');
 		}
 	}
 
@@ -23,6 +28,7 @@
 			wakeLock.addEventListener('release', () => {
 				console.log('Wake Lock désactivé');
 			});
+			localStorage.setItem('velocite-keep-screen-on', 'true');
 		} catch (err) {
 			console.error('Wake Lock Error :', err);
 		}
@@ -42,6 +48,16 @@
 			wakeLock?.release();
 			wakeLock = null;
 		};
+	});
+
+	onMount(() => {
+		const storedValue = localStorage.getItem('velocite-keep-screen-on');
+		if (storedValue !== null) {
+			lightOn = storedValue === 'true';
+			if (lightOn) {
+				requestWakeLock();
+			}
+		}
 	});
 </script>
 
