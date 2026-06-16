@@ -7,7 +7,7 @@
 	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import StationRow from './StationRow.svelte';
-	import SearchBar from './SearchBar.svelte';
+	import SearchBar from '../SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
 	import RefreshDropdown from './RefreshDropdown.svelte';
 	import { onMount } from 'svelte';

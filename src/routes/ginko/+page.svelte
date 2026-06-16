@@ -44,7 +44,7 @@
 			<Button
 				href={link.href}
 				variant="outline"
-				class="flex h-auto flex-col items-center rounded-4xl rounded-lg border px-4 py-8 md:aspect-square"
+				class="flex h-auto flex-col items-center rounded-4xl! rounded-lg border px-4 py-8 md:aspect-square"
 			>
 				<Icon class="size-[5rem] text-chart-2" />
 				<p class="text-xl font-bold text-primary">{link.title}</p>
