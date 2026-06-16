@@ -10,6 +10,8 @@ import type {
 } from '$core/dto/ginko';
 import { GINKO_API_KEY } from '$env/static/private';
 
+const BASE_URL = 'https://api.ginko.voyage'; // Base URL for Ginko API
+
 // Helper to construct API URL with method and parameters
 function apiUrl(method: string, params: Record<string, any> = {}) {
 	const queryString = new URLSearchParams({
@@ -17,7 +19,7 @@ function apiUrl(method: string, params: Record<string, any> = {}) {
 		...params
 	}).toString();
 
-	return `https://api.ginko.voyage/${method}.do?${queryString}`;
+	return `${BASE_URL}/${method}.do?${queryString}`;
 }
 
 // Helper to make API calls and parse response
