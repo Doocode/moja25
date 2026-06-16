@@ -3,6 +3,7 @@
 	import type { Arret } from '$core/dto/ginko';
 	import ArretRow from './ArretRow.svelte';
 	import { filterArrets } from '$lib/core/helper/ginko/filter';
+	import { SearchX } from '@lucide/svelte';
 
 	interface Props {
 		data: {
@@ -36,6 +37,16 @@
 	<div class="grid gap-0.5">
 		{#each filteredArrets as arret (arret.id)}
 			<ArretRow {arret} />
+		{:else}
+			<div class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">
+				<SearchX class="size-30" />
+				<div>
+					<p class="mb-2 font-medium">Oups ! Nous n’avons rien trouvé</p>
+					<p class="text-sm">
+						Aucun résultat pour <span class="font-medium text-foreground">"{searchQuery}"</span>
+					</p>
+				</div>
+			</div>
 		{/each}
 	</div>
 </main>
