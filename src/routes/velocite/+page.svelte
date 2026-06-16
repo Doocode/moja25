@@ -65,8 +65,8 @@
 		}
 	}
 
-	const filteredStations = $derived(filterStations(stations, searchQuery));
-	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
+	let filteredStations = $derived(filterStations(stations, searchQuery));
+	let sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
 <svelte:head>

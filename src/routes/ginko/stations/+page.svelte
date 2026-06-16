@@ -2,6 +2,7 @@
 	import SearchBar from '../../SearchBar.svelte';
 	import type { Arret } from '$core/dto/ginko';
 	import ArretRow from './ArretRow.svelte';
+	import { filterArrets } from '$lib/core/helper/ginko/filter';
 
 	interface Props {
 		data: {
@@ -13,7 +14,7 @@
 
 	let arrets = $derived<Arret[]>(data.arrets);
 	let searchQuery = $state('');
-	$inspect(arrets);
+	let filteredArrets = $derived<Arret[]>(filterArrets(arrets, searchQuery));
 </script>
 
 <svelte:head>
@@ -25,8 +26,15 @@
 
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
+	<div class="mb-4 flex items-center justify-between">
+		<p>{filteredArrets.length} stations</p>
+		<div class="flex gap-1">
+			<!-- <SortButtonGroup bind:sortField bind:sortAscending /> -->
+		</div>
+	</div>
+
 	<div class="grid gap-0.5">
-		{#each arrets as arret (arret.id)}
+		{#each filteredArrets as arret (arret.id)}
 			<ArretRow {arret} />
 		{/each}
 	</div>
