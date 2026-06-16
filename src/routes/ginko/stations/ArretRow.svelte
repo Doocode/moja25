@@ -10,6 +10,7 @@
 	let { arret, displayId = false }: Props = $props();
 
 	let isTramStop = $derived(arret.id.startsWith('t_'));
+	let nameSplit = $derived(arret.nom.split(' - '));
 </script>
 
 <a
@@ -22,7 +23,15 @@
 		{:else}
 			<BusFront class="size-6 text-primary" />
 		{/if}
-		<span class="truncate font-medium">{arret.nom}</span>
+
+		{#if nameSplit.length == 1}
+			<span class="truncate font-medium">{arret.nom}</span>
+		{:else}
+			<div class="flex flex-col">
+				<span class="truncate text-xs text-muted-foreground">{nameSplit[0]}</span>
+				<span class="truncate font-medium">{nameSplit[1]}</span>
+			</div>
+		{/if}
 	</div>
 
 	{#if displayId}
