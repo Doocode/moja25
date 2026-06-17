@@ -15,7 +15,7 @@
 
 <a
 	href="/ginko/stations/{arret.id}"
-	class="flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75 hover:bg-primary/30 active:bg-primary/40"
+	class="flex items-center justify-between gap-4 rounded-md bg-slate-200 px-4 py-3 duration-75 hover:bg-primary/30 active:bg-primary/40 dark:bg-slate-800 dark:hover:bg-primary/30 dark:active:bg-primary/40"
 >
 	<div class="flex flex-2 items-center gap-3">
 		{#if isTramStop}

@@ -59,7 +59,7 @@
 				sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
-		'hover:bg-primary/30 active:bg-primary/40':
+		'bg-slate-200 hover:bg-primary/30 active:bg-primary/40 dark:bg-slate-800 dark:hover:bg-primary/30 dark:active:bg-primary/40':
 			(sortField === VelociteSortField.BONUS && !station.bonus) ||
 			(sortField === VelociteSortField.BANKING && !station.banking) ||
 			[VelociteSortField.NAME, VelociteSortField.NUMBER, VelociteSortField.CAPACITY].includes(
