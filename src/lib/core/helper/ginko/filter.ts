@@ -5,5 +5,9 @@ export function filterArrets(arrets: Arret[], query: string): Arret[] {
 	const normalizedQuery = normalize(query.trim());
 	if (!normalizedQuery) return arrets;
 
-	return arrets.filter((arret) => normalize(arret.nom).includes(normalizedQuery));
+	return arrets.filter(
+		(arret) =>
+			normalize(arret.nom).includes(normalizedQuery) ||
+			normalize(arret.id).includes(normalizedQuery)
+	);
 }
