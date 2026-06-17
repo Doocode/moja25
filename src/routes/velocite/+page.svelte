@@ -11,6 +11,7 @@
 	import SortButtonGroup from './SortButtonGroup.svelte';
 	import RefreshDropdown from './RefreshDropdown.svelte';
 	import { onMount } from 'svelte';
+	import CountResults from '../CountResults.svelte';
 
 	interface Props {
 		data: {
@@ -79,7 +80,8 @@
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
 	<div class="mb-4 flex items-center justify-between">
-		<p>{filteredStations.length} stations</p>
+		<CountResults totalLength={stations.length} filteredLength={filteredStations.length} />
+
 		<div class="flex gap-1">
 			<RefreshDropdown bind:interval={refreshInterval} />
 			<SortButtonGroup bind:sortField bind:sortAscending />

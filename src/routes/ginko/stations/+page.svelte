@@ -4,6 +4,7 @@
 	import ArretRow from './ArretRow.svelte';
 	import { filterArrets } from '$lib/core/helper/ginko/filter';
 	import { SearchX } from '@lucide/svelte';
+	import CountResults from '../../CountResults.svelte';
 
 	interface Props {
 		data: {
@@ -28,7 +29,8 @@
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
 	<div class="mb-4 flex items-center justify-between">
-		<p>{filteredArrets.length} stations</p>
+		<CountResults totalLength={arrets.length} filteredLength={filteredArrets.length} />
+
 		<div class="flex gap-1">
 			<!-- <SortButtonGroup bind:sortField bind:sortAscending /> -->
 		</div>
