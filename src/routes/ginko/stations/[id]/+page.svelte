@@ -15,6 +15,7 @@
 			arret: Arret;
 			tempsLieu: TempsLieu;
 			variantes: Ligne[];
+			nomQuery: string | null;
 			arrivalsPerLine: number;
 		};
 	}
@@ -48,7 +49,12 @@
 	});
 
 	async function refreshInformations() {
-		const res = await fetch(`/api/ginko/stations/${station.id}?nb=${data.arrivalsPerLine}`);
+		const params = new URLSearchParams({ nb: String(data.arrivalsPerLine) });
+		if (data.nomQuery) {
+			params.set('nom', data.nomQuery);
+		}
+
+		const res = await fetch(`/api/ginko/stations/${station.id}?${params.toString()}`);
 		if (!res.ok) {
 			console.error('Failed to refresh station data');
 			return;
