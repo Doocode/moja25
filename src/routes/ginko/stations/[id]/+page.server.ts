@@ -1,4 +1,4 @@
-import { getDetailsArret, getTempsLieu } from '$core/api/GinkoApi';
+import { getDetailsArret, getTempsLieu, getVariantesDesservantArret } from '$core/api/GinkoApi';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -10,14 +10,16 @@ export const load: PageServerLoad = async ({ params }) => {
 		error(400, 'Missing station id');
 	}
 
-	const [arret, tempsLieu] = await Promise.all([
+	const [arret, tempsLieu, variantes] = await Promise.all([
 		getDetailsArret({ id }),
-		getTempsLieu({ idArret: id, nb: ARRIVALS_PER_LINE })
+		getTempsLieu({ idArret: id, nb: ARRIVALS_PER_LINE }),
+		getVariantesDesservantArret({ idArret: id })
 	]);
 
 	return {
 		arret,
 		tempsLieu,
+		variantes,
 		arrivalsPerLine: ARRIVALS_PER_LINE
 	};
 };

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import type { Arret, TempsLieu } from '$core/dto/ginko';
+	import type { Arret, TempsLieu, Ligne } from '$core/dto/ginko';
 	import {
 		groupTempsByLineAndDirection,
 		type GroupedTempsByLine
@@ -14,6 +14,7 @@
 		data: {
 			arret: Arret;
 			tempsLieu: TempsLieu;
+			variantes: Ligne[];
 			arrivalsPerLine: number;
 		};
 	}
@@ -66,7 +67,7 @@
 	<title>{station.nom} - Ginko</title>
 </svelte:head>
 
-<Header {station} bind:refreshInterval />
+<Header {station} variantes={data.variantes} bind:refreshInterval />
 
 <main class="m-auto max-w-4xl p-4 lg:-mt-6">
 	<section class="grid gap-3">
