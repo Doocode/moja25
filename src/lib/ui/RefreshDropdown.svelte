@@ -9,9 +9,12 @@
 
 	let { interval = $bindable(15_000) }: Props = $props();
 
-	type RefreshOption =
-		| { value: 0; label: string }
-		| { value: number; number: string; unit: string; label: string };
+	type RefreshOption = {
+		value: number;
+		label: string;
+		number?: string;
+		unit?: string;
+	};
 
 	const REFRESH_OPTIONS: RefreshOption[] = [
 		{ value: 0, label: 'Jamais' },
@@ -42,7 +45,7 @@
 
 	<DropdownMenuContent
 		align="end"
-		class="dark; w-auto rounded-xl bg-popover/20 p-4 ring-foreground/30 backdrop-blur-lg dark:bg-popover/40"
+		class="w-auto rounded-xl bg-popover/20 p-4 ring-foreground/30 backdrop-blur-lg dark:bg-popover/40"
 	>
 		<p class="mb-1 px-0.5 text-xs font-medium tracking-wider text-muted-foreground uppercase">
 			Actualiser

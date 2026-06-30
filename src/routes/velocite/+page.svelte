@@ -9,7 +9,7 @@
 	import StationRow from './StationRow.svelte';
 	import SearchBar from '../SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
-	import RefreshDropdown from './RefreshDropdown.svelte';
+	import RefreshDropdown from '$lib/ui/RefreshDropdown.svelte';
 	import { onMount } from 'svelte';
 	import CountResults from '../CountResults.svelte';
 
@@ -79,7 +79,7 @@
 
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
-	<div class="mb-4 flex items-center justify-between">
+	<div class="my-4 flex items-center justify-between">
 		<CountResults totalLength={stations.length} filteredLength={filteredStations.length} />
 
 		<div class="flex gap-1">

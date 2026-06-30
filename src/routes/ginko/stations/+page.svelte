@@ -28,7 +28,7 @@
 
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
-	<div class="mb-4 flex items-center justify-between">
+	<div class="my-4 flex items-center justify-between">
 		<CountResults totalLength={arrets.length} filteredLength={filteredArrets.length} />
 
 		<div class="flex gap-1">

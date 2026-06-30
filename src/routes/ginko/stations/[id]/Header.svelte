@@ -5,12 +5,15 @@
 	import { Button } from '$shadcn/button';
 	import { ArrowLeft } from '@lucide/svelte';
 	import MenuMaps from './MenuMaps.svelte';
+	import RefreshDropdown from '$lib/ui/RefreshDropdown.svelte';
+	import { defaultRefreshInterval } from './settings';
 
 	interface Props {
 		station: Arret;
+		refreshInterval: number;
 	}
 
-	let { station }: Props = $props();
+	let { station, refreshInterval = $bindable(defaultRefreshInterval) }: Props = $props();
 
 	const pmrStatus = $derived.by(() => {
 		if (station.accessibilite === 1) {
@@ -56,6 +59,7 @@
 		</div>
 
 		<div class="flex items-center justify-end gap-2">
+			<RefreshDropdown bind:interval={refreshInterval} />
 			<MenuMaps {station} />
 		</div>
 	</div>
