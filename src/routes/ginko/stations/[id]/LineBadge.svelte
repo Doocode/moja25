@@ -20,7 +20,7 @@
 
 <div
 	class={cn(
-		'relative inline-flex aspect-square w-10 items-center justify-center gap-1 overflow-clip rounded-md px-2 py-1 text-2xl font-bold whitespace-nowrap',
+		'relative inline-flex aspect-square size-10 items-center justify-center gap-1 overflow-clip rounded-md px-2 py-1 text-2xl font-bold whitespace-nowrap',
 		className
 	)}
 	style:background-color={`#${couleurFond}` || '#111827'}

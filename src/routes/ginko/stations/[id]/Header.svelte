@@ -12,6 +12,8 @@
 
 	let { station, refreshInterval = $bindable(defaultRefreshInterval) }: Props = $props();
 
+	let nameSplit = $derived(station.nom.split(' - '));
+
 	const pmrStatus = $derived.by(() => {
 		if (station.accessibilite === 1) {
 			return { text: 'Accessible PMR', className: 'bg-emerald-500/20 text-emerald-700' };
@@ -30,7 +32,18 @@
 		</div>
 
 		<div class="flex-2 text-center">
-			<h1 class="mb-2 text-2xl leading-tight font-black sm:text-3xl md:text-5xl">{station.nom}</h1>
+			<h1 class="mb-2 text-2xl leading-tight font-black sm:text-3xl md:text-5xl">
+				{#if nameSplit.length == 1}
+					<span class="truncate">{station.nom}</span>
+				{:else}
+					<div class="flex flex-col">
+						<span class="truncate">{nameSplit[1]}</span>
+						<span class="-mt-2 block truncate text-base tracking-widest text-primary uppercase"
+							>{nameSplit[0]}</span
+						>
+					</div>
+				{/if}
+			</h1>
 			<p class="inline-flex rounded-full px-2 py-1 text-xs font-medium {pmrStatus.className}">
 				{pmrStatus.text}
 			</p>

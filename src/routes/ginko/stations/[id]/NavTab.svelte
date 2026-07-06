@@ -6,14 +6,19 @@
 		href: string;
 		label?: string;
 		children?: Snippet;
+		selected?: boolean;
 	}
 
-	let { onClick, href, label = 'Lorem ipsum', children }: Props = $props();
+	let { onClick, href, label = 'Lorem ipsum', children, selected = false }: Props = $props();
 </script>
 
 <a {href} onclick={onClick} class="group">
 	<div
-		class="flex size-30 items-center justify-center rounded-4xl border border-input bg-secondary duration-200 group-hover:bg-accent"
+		class={{
+			'flex size-30 items-center justify-center rounded-4xl border duration-200': true,
+			'border-primary bg-primary': selected,
+			'border-input bg-secondary group-hover:bg-accent': !selected
+		}}
 	>
 		{@render children?.()}
 	</div>

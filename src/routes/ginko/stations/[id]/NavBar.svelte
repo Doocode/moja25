@@ -17,7 +17,7 @@
 </script>
 
 <nav class="flex items-center justify-center gap-2">
-	<NavTab href="#arrivals" label="Bus & tram">
+	<NavTab href="#arrivals" label="Bus & tram" selected>
 		<div
 			class={{
 				'items-center justify-center gap-1 overflow-hidden': true,
@@ -31,7 +31,9 @@
 					couleurFond={variante.couleurFond}
 					couleurTexte={variante.couleurTexte}
 					modeTransport={variante.modeTransport}
-					class={displayedVariantes.length > 1 ? 'w-10' : 'm-4 w-auto flex-1 rounded-xl text-6xl'}
+					class={displayedVariantes.length > 1
+						? 'size-10 border-1 border-background'
+						: 'm-4 size-20 flex-1 rounded-xl border-1 border-background text-6xl'}
 				/>
 			{/each}
 
@@ -41,6 +43,7 @@
 					couleurFond="334155"
 					couleurTexte="ffffff"
 					modeTransport={0}
+					class="border-1 border-background"
 				/>
 			{/if}
 		</div>
