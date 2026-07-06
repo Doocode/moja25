@@ -2,19 +2,19 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import type { Arret, TempsLieu, Ligne } from '$core/dto/ginko';
-	import {
-		groupTempsByLineAndDirection,
-		type GroupedTempsByLine
-	} from '$core/helper/ginko/groupTemps';
 	import Header from './Header.svelte';
-	import ArrivalCard from './ArrivalCard.svelte';
+	import ListArrivalCard from './ListArrivalCard.svelte';
+	import ListNearbyStations from './ListNearbyStations.svelte';
 	import { defaultRefreshInterval, refreshIntervals } from './settings';
+	import Section from './Section.svelte';
+	import { Clock, MapPin } from '@lucide/svelte';
 
 	interface Props {
 		data: {
 			arret: Arret;
 			tempsLieu: TempsLieu;
 			variantes: Ligne[];
+			nearbyArrets: Arret[];
 			nomQuery: string | null;
 			arrivalsPerLine: number;
 		};
@@ -24,9 +24,6 @@
 	let refreshInterval = $state(defaultRefreshInterval);
 
 	const station = $derived(data.arret);
-	const groupedArrivals = $derived<GroupedTempsByLine[]>(
-		groupTempsByLineAndDirection(data.tempsLieu?.listeTemps ?? [], data.arrivalsPerLine)
-	);
 
 	onMount(() => {
 		const storedInterval = localStorage.getItem('ginko-station-refresh-interval');
@@ -75,14 +72,13 @@
 
 <Header {station} variantes={data.variantes} bind:refreshInterval />
 
-<main class="m-auto max-w-4xl p-4 lg:-mt-6">
-	<section class="grid gap-3">
-		{#each groupedArrivals as group (group.key)}
-			<ArrivalCard {group} />
-		{:else}
-			<div class="rounded-xl border bg-card p-6 text-center text-muted-foreground">
-				Cette station n'est pas desservie pour le moment.
-			</div>
-		{/each}
-	</section>
+<main class="m-auto w-full max-w-6xl p-4 lg:-mt-6">
+	<div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_400px]">
+		<Section title="Prochains passages" icon={Clock}>
+			<ListArrivalCard tempsLieu={data.tempsLieu} arrivalsPerLine={data.arrivalsPerLine} />
+		</Section>
+		<Section title="Stations à proximité" icon={MapPin}>
+			<ListNearbyStations arrets={data.nearbyArrets} />
+		</Section>
+	</div>
 </main>

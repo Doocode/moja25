@@ -30,7 +30,7 @@
 	}
 </script>
 
-<div class="grid grid-cols-2 gap-1 sm:grid-cols-3">
+<div class="grid grid-cols-3 gap-1">
 	{#each estimations as estimation, index (`${estimation.idLigne}-${estimation.numVehicule}-${index}`)}
 		<div class="rounded-xl px-2 py-2 text-center {estimationClass(estimation.typeDeTemps)}">
 			<p class="text-lg font-extrabold">

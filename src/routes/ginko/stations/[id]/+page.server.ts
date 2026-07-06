@@ -1,4 +1,9 @@
-import { getDetailsArret, getTempsLieu, getVariantesDesservantArret } from '$core/api/GinkoApi';
+import {
+	getArretsProches,
+	getDetailsArret,
+	getTempsLieu,
+	getVariantesDesservantArret
+} from '$core/api/GinkoApi';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
@@ -21,10 +26,15 @@ export const load: PageServerLoad = async ({ params, url }) => {
 		getVariantesDesservantArret({ idArret: id })
 	]);
 
+	const nearbyArrets = (
+		await getArretsProches({ latitude: arret.latitude, longitude: arret.longitude })
+	).filter((nearbyArret) => nearbyArret.id !== arret.id);
+
 	return {
 		arret,
 		tempsLieu,
 		variantes,
+		nearbyArrets,
 		nomQuery: nom ?? null,
 		arrivalsPerLine: ARRIVALS_PER_LINE
 	};

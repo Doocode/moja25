@@ -10,7 +10,7 @@
 </script>
 
 <div
-	class="relative inline-flex aspect-square w-10 items-center justify-center gap-1 overflow-clip rounded-md px-2 py-1 text-2xl font-bold"
+	class="relative inline-flex aspect-square w-10 items-center justify-center gap-1 overflow-clip rounded-md px-2 py-1 text-2xl font-bold whitespace-nowrap"
 	style:background-color={`#${couleurFond}` || '#111827'}
 	style:color={`#${couleurTexte}` || '#ffffff'}
 >

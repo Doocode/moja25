@@ -31,7 +31,7 @@
 </script>
 
 <header class="bg-gradient-to-b from-primary/30 to-transparent">
-	<div class="m-auto flex max-w-4xl items-center justify-between gap-3 p-4 pb-8">
+	<div class="m-auto flex max-w-6xl items-center justify-between gap-3 p-4 pb-8">
 		<div class="flex flex-1 items-center gap-2">
 			<BackButton href="/ginko/stations" label="Retour" />
 		</div>
