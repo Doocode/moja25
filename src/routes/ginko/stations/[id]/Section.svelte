@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Component, Snippet } from 'svelte';
-	import { slide } from 'svelte/transition';
 
 	interface Props {
 		title: string;
@@ -20,7 +19,7 @@
 		</div>
 	</header>
 
-	<div class="mt-1" transition:slide={{ duration: 200 }}>
+	<div class="mt-1">
 		{@render children()}
 	</div>
 </section>

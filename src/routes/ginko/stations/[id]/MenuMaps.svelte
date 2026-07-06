@@ -54,7 +54,7 @@
 <DropdownMenu>
 	<DropdownMenuTrigger class={buttonVariants({ variant: 'outline', size: 'icon' })}>
 		<MapPin class="size-5" />
-		<span class="sr-only">Voir sur la carte</span>
+		<span class="sr-only">Voir la carte</span>
 	</DropdownMenuTrigger>
 	<DropdownMenuContent align="end" class="w-56">
 		<DropdownMenuLabel class="flex items-center gap-2">

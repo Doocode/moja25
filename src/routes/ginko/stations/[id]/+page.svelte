@@ -8,6 +8,7 @@
 	import { defaultRefreshInterval, refreshIntervals } from './settings';
 	import Section from './Section.svelte';
 	import { Clock, MapPin } from '@lucide/svelte';
+	import NavBar from './NavBar.svelte';
 
 	interface Props {
 		data: {
@@ -70,9 +71,11 @@
 	<title>{station.nom} - Ginko</title>
 </svelte:head>
 
-<Header {station} variantes={data.variantes} bind:refreshInterval />
+<Header {station} bind:refreshInterval />
 
-<main class="m-auto w-full max-w-6xl p-4 lg:-mt-6">
+<NavBar variantes={data.variantes} />
+
+<main class="m-auto w-full max-w-6xl p-4">
 	<div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_400px]">
 		<Section title="Prochains passages" icon={Clock}>
 			<ListArrivalCard tempsLieu={data.tempsLieu} arrivalsPerLine={data.arrivalsPerLine} />
