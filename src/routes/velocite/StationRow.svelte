@@ -1,15 +1,4 @@
 <script lang="ts">
-	import {
-		Ban,
-		Bike,
-		CheckCircle,
-		CreditCard,
-		SquareParking,
-		Star,
-		TriangleAlert,
-		Wifi,
-		Zap
-	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
@@ -28,14 +17,7 @@
 	const electricalBikes = $derived(station.mainStands.availabilities.electricalBikes);
 	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const availableStands = $derived(station.mainStands.availabilities.stands);
-	const capacity = $derived(station.totalStands.capacity);
 	const unavailableStands = $derived(station.unavailableStands);
-
-	function countColor(n: number): string {
-		if (n <= 0) return 'text-red-500';
-		if (n <= MEDIUM_LEVEL_THRESHOLD) return 'text-orange-500';
-		return 'text-green-500';
-	}
 
 	const isCountSort = $derived(
 		sortField === VelociteSortField.MECHANICAL_BIKES ||
@@ -77,7 +59,7 @@
 				sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
-		'hover:bg-primary/30 active:bg-primary/40':
+		'bg-slate-200 hover:bg-primary/30 active:bg-primary/40 dark:bg-slate-800 dark:hover:bg-primary/30 dark:active:bg-primary/40':
 			(sortField === VelociteSortField.BONUS && !station.bonus) ||
 			(sortField === VelociteSortField.BANKING && !station.banking) ||
 			[VelociteSortField.NAME, VelociteSortField.NUMBER, VelociteSortField.CAPACITY].includes(

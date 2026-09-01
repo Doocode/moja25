@@ -7,10 +7,11 @@
 	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import StationRow from './StationRow.svelte';
-	import SearchBar from './SearchBar.svelte';
+	import SearchBar from '../SearchBar.svelte';
 	import SortButtonGroup from './SortButtonGroup.svelte';
-	import RefreshDropdown from './RefreshDropdown.svelte';
+	import RefreshDropdown from '$lib/ui/RefreshDropdown.svelte';
 	import { onMount } from 'svelte';
+	import CountResults from '../CountResults.svelte';
 
 	interface Props {
 		data: {
@@ -64,8 +65,8 @@
 		}
 	}
 
-	const filteredStations = $derived(filterStations(stations, searchQuery));
-	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
+	let filteredStations = $derived(filterStations(stations, searchQuery));
+	let sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
 <svelte:head>
@@ -77,8 +78,9 @@
 
 	<SearchBar class="mb-1" bind:value={searchQuery} />
 
-	<div class="mb-4 flex items-center justify-between">
-		<p>{filteredStations.length} stations</p>
+	<div class="my-4 flex items-center justify-between">
+		<CountResults totalLength={stations.length} filteredLength={filteredStations.length} />
+
 		<div class="flex gap-1">
 			<RefreshDropdown bind:interval={refreshInterval} />
 			<SortButtonGroup bind:sortField bind:sortAscending />

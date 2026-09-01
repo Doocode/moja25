@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { ArrowLeft } from '@lucide/svelte';
-	import RefreshDropdown from '../RefreshDropdown.svelte';
+	import RefreshDropdown from '$lib/ui/RefreshDropdown.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
 	import KeepScreenOnToggle from '../KeepScreenOnToggle.svelte';

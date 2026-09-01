@@ -2,7 +2,7 @@
 	import favicon from '$assets/favicon.svg';
 	import DarkModeToggle from './lib/DarkModeToggle.svelte';
 	import type { Component } from 'svelte';
-	import { Bike, House } from '@lucide/svelte';
+	import { Bike, BusFront, House } from '@lucide/svelte';
 	import { page } from '$app/state';
 
 	interface Link {
@@ -17,6 +17,12 @@
 			href: '/',
 			label: 'Accueil',
 			icon: House
+		},
+		{
+			href: '/ginko',
+			label: 'Ginko',
+			icon: BusFront,
+			highlightOnSubpage: true
 		},
 		{
 			href: '/velocite',
