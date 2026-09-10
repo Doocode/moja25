@@ -2,7 +2,7 @@
 	import './layout.css';
 	import './fonts.css';
 	import favicon from '$lib/assets/favicon.svg';
-	import Header from './Header.svelte';
+	import Header from '$lib/ui/header/Header.svelte';
 	import { ModeWatcher } from 'mode-watcher';
 
 	let { children } = $props();
