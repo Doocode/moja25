@@ -4,7 +4,7 @@
 	import StationHeader from './StationHeader.svelte';
 	import StationAvailabilities from './StationAvailabilities.svelte';
 	import StationIndicators from './StationIndicators.svelte';
-	import StationDetails from './StationDetails.svelte';
+	import StationAddress from './StationAddress.svelte';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
@@ -59,5 +59,5 @@
 	<RecapSection {station} class="mb-4" />
 	<StationAvailabilities {station} class="mb-3" />
 	<StationIndicators {station} class="mb-3" />
-	<StationDetails {station} />
+	<StationAddress {station} />
 </main>

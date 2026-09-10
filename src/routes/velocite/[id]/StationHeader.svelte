@@ -53,11 +53,11 @@
 
 			<div class="flex max-w-40 justify-end gap-2">
 				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
-				<RefreshDropdown bind:interval={refreshInterval} />
-
 				{#if wakeLockSupported}
 					<KeepScreenOnToggle />
 				{/if}
+
+				<RefreshDropdown bind:interval={refreshInterval} />
 			</div>
 		</div>
 	</div>
