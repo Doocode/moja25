@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Search, X } from '@lucide/svelte';
+	import { cn } from '$lib/utils';
 
 	interface Props {
 		class?: string;
@@ -10,7 +11,7 @@
 	let { value = $bindable(''), placeholder = 'Rechercher', class: className }: Props = $props();
 </script>
 
-<div class="relative {className}">
+<div class="relative">
 	<Search
 		class="pointer-events-none absolute top-1/2 left-4 size-5.5 -translate-y-1/2 text-muted-foreground"
 	/>
@@ -18,9 +19,11 @@
 		type="text"
 		{placeholder}
 		bind:value
-		class="flex w-full rounded-full border border-input bg-transparent py-3 pr-12 pl-12! text-sm shadow-xs transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 {value
-			? 'pr-9'
-			: ''}"
+		class={cn(
+			'flex w-full rounded-full border border-input bg-transparent py-3 pr-12 pl-12! text-sm shadow-xs transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50',
+			value && 'pr-9',
+			className
+		)}
 	/>
 	{#if value}
 		<button

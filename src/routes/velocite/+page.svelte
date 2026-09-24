@@ -73,17 +73,19 @@
 </svelte:head>
 
 <main class="m-auto max-w-lg p-4">
-	<h1 class="mb-2 text-center text-3xl font-bold">Vélocité</h1>
-
-	<SearchBar class="mb-1" bind:value={searchQuery} />
+	<header class="mb-1 flex items-center justify-between">
+		<h1 class="text-3xl font-bold">Vélocité</h1>
+		<RefreshDropdown bind:interval={refreshInterval} />
+	</header>
 
 	<div class="mb-4 flex items-center justify-between">
 		<p>{filteredStations.length} stations</p>
 		<div class="flex gap-1">
-			<RefreshDropdown bind:interval={refreshInterval} />
 			<SortButtonGroup bind:sortField bind:sortAscending />
 		</div>
 	</div>
+
+	<SearchBar class="mb-1 rounded-lg" bind:value={searchQuery} />
 
 	<div class="mb:pb-0 grid gap-0.5 pb-18">
 		{#each sortedStations as station (station.number)}
