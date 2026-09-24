@@ -11,16 +11,16 @@
 
 	let { icon, value = 0, total = 0, negative = false }: Props = $props();
 
-	function countColor(n: number): string {
+	function countColor(count: number): string {
 		if (!negative) {
-			// Si le role de ce compteur est de représenter une quantité positive (ex: vélos disponibles, places disponibles)
-			if (value <= 0) return 'text-red-600 dark:text-red-400';
-			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
+			// This counter represents a positive quantity (e.g., available bikes, available stands)
+			if (count <= 0) return 'text-red-600 dark:text-red-400';
+			if (count <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
 			return 'text-green-600 dark:text-green-400';
 		} else {
-			// Si le role de ce compteur est de représenter une quantité négative (ex: places/vélos non-disponibles)
-			if (value <= 0) return 'text-green-600 dark:text-green-400';
-			if (value <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
+			// This counter represents a negative quantity (e.g., unavailable stands, unavailable bikes)
+			if (count <= 0) return 'text-green-600 dark:text-green-400';
+			if (count <= MEDIUM_LEVEL_THRESHOLD) return 'text-amber-600 dark:text-amber-400';
 			return 'text-red-600 dark:text-red-400';
 		}
 	}

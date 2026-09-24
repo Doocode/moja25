@@ -85,8 +85,8 @@
 		</div>
 	</div>
 
-	<div class="grid gap-0.5">
-		{#each sortedStations as station}
+	<div class="mb:pb-0 grid gap-0.5 pb-18">
+		{#each sortedStations as station (station.number)}
 			<StationRow {station} {sortField} />
 		{:else}
 			<div class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">

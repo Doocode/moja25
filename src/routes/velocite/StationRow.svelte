@@ -1,18 +1,8 @@
 <script lang="ts">
-	import {
-		Ban,
-		Bike,
-		CheckCircle,
-		CreditCard,
-		SquareParking,
-		Star,
-		TriangleAlert,
-		Wifi,
-		Zap
-	} from '@lucide/svelte';
+	import { resolve } from '$app/paths';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
+	import { StationColorStatus, getStationColorStatus } from './sort-config';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
 
@@ -28,14 +18,7 @@
 	const electricalBikes = $derived(station.mainStands.availabilities.electricalBikes);
 	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const availableStands = $derived(station.mainStands.availabilities.stands);
-	const capacity = $derived(station.totalStands.capacity);
 	const unavailableStands = $derived(station.unavailableStands);
-
-	function countColor(n: number): string {
-		if (n <= 0) return 'text-red-500';
-		if (n <= MEDIUM_LEVEL_THRESHOLD) return 'text-orange-500';
-		return 'text-green-500';
-	}
 
 	const isCountSort = $derived(
 		sortField === VelociteSortField.MECHANICAL_BIKES ||
@@ -56,25 +39,21 @@
 </script>
 
 <a
-	href="/velocite/{station.number}"
+	href={resolve('/velocite/' + station.number)}
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
 		'bg-green-200 hover:bg-green-300 active:bg-green-400 dark:bg-green-900 hover:dark:bg-green-800 active:dark:bg-green-700':
 			(isCountSort &&
-				countValue > MEDIUM_LEVEL_THRESHOLD &&
-				sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
-			(isCountSort && countValue <= 0 && sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
+				getStationColorStatus(countValue, sortField) === StationColorStatus.Success) ||
 			(sortField === VelociteSortField.BANKING && station.banking) ||
 			(sortField === VelociteSortField.OPEN && isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && station.connected),
 		'bg-orange-200 hover:bg-orange-300 active:bg-orange-400 dark:bg-yellow-900 hover:dark:bg-yellow-800 active:dark:bg-yellow-700':
-			(isCountSort && countValue > 0 && countValue <= MEDIUM_LEVEL_THRESHOLD) ||
+			(isCountSort &&
+				getStationColorStatus(countValue, sortField) === StationColorStatus.Warning) ||
 			(sortField === VelociteSortField.BONUS && station.bonus),
 		'bg-red-200 hover:bg-red-300 active:bg-red-400 dark:bg-red-900 hover:dark:bg-red-800 active:dark:bg-red-700':
-			(isCountSort && countValue <= 0 && sortField !== VelociteSortField.UNAVAILABLE_STANDS) ||
-			(isCountSort &&
-				countValue > MEDIUM_LEVEL_THRESHOLD &&
-				sortField === VelociteSortField.UNAVAILABLE_STANDS) ||
+			(isCountSort && getStationColorStatus(countValue, sortField) === StationColorStatus.Danger) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
 		'hover:bg-primary/30 active:bg-primary/40':
@@ -85,12 +64,12 @@
 			)
 	}}
 >
-	<!-- Gauche : icône + nom -->
+	<!-- Left side : icon + station name -->
 	<div class="flex min-w-0 flex-1 items-center gap-3">
 		<StationIcon {station} {sortField} {countValue} />
 		<span class="truncate font-medium">{station.formattedName}</span>
 	</div>
 
-	<!-- Droite : informations contextuelle -->
+	<!-- Right side : contextual information (count or status) -->
 	<StationContext {station} {sortField} />
 </a>

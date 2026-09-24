@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import * as Drawer from '$shadcn/drawer';
-	import { COUNT_FIELDS, PRIMARY_FIELDS, STATUS_FIELDS } from './sort-config';
 	import GridSortField from './GridSortField.svelte';
 	import ListSortField from './ListSortField.svelte';
 	import SortSection from './SortSection.svelte';
@@ -12,6 +11,30 @@
 	}
 
 	let { sortField = $bindable(), open = $bindable() }: Props = $props();
+
+	// Main sorting fields
+	const PRIMARY_FIELDS = [
+		VelociteSortField.NAME,
+		VelociteSortField.TOTAL_BIKES,
+		VelociteSortField.AVAILABLE_STANDS,
+		VelociteSortField.CAPACITY
+	];
+
+	// Numeric counts fields
+	const COUNT_FIELDS = [
+		VelociteSortField.NUMBER,
+		VelociteSortField.MECHANICAL_BIKES,
+		VelociteSortField.ELECTRICAL_BIKES,
+		VelociteSortField.UNAVAILABLE_STANDS
+	];
+
+	// Boolean status fields
+	const STATUS_FIELDS = [
+		VelociteSortField.BONUS,
+		VelociteSortField.BANKING,
+		VelociteSortField.OPEN,
+		VelociteSortField.CONNECTED
+	];
 
 	function select(field: VelociteSortField) {
 		sortField = field;

@@ -4,6 +4,7 @@ import {
 	Bike,
 	Check,
 	CreditCard,
+	Footprints,
 	Hash,
 	Layers,
 	SquareParking,
@@ -14,55 +15,53 @@ import {
 import type { Component } from 'svelte';
 import { VelociteSortField } from '$core/enum/VelociteSortField';
 
-// Seuil max pour le niveau moyen (orange) dans les indicateurs de quantité/ratio
+// Max value for the medium level threshold (orange) in count indicators
 export const MEDIUM_LEVEL_THRESHOLD = 3;
 
 export interface SortFieldConfig {
 	label: string;
-	shortLabel?: string; // Libellé court pour l'affichage en grille
-	Icon: Component<{ class?: string; size?: number }>;
+	shortLabel?: string; // Short label for grid display
+	icon: Component<{ class?: string; size?: number }>;
 	isText?: boolean;
 }
 
 export const FIELD_CONFIG: Record<VelociteSortField, SortFieldConfig> = {
-	[VelociteSortField.NAME]: { label: 'Nom', Icon: ArrowDownAZ, isText: true },
-	[VelociteSortField.TOTAL_BIKES]: { label: 'Vélos disponibles', shortLabel: 'Vélos', Icon: Bike },
+	[VelociteSortField.NAME]: { label: 'Nom', icon: ArrowDownAZ, isText: true },
+	[VelociteSortField.TOTAL_BIKES]: { label: 'Vélos disponibles', shortLabel: 'Vélos', icon: Bike },
 	[VelociteSortField.AVAILABLE_STANDS]: {
 		label: 'Places disponibles',
 		shortLabel: 'Places',
-		Icon: SquareParking
+		icon: SquareParking
 	},
-	[VelociteSortField.CAPACITY]: { label: 'Capacité', Icon: Layers },
-	[VelociteSortField.NUMBER]: { label: 'Numéro', Icon: Hash },
-	[VelociteSortField.MECHANICAL_BIKES]: { label: 'Vélos mécaniques', Icon: Bike },
-	[VelociteSortField.ELECTRICAL_BIKES]: { label: 'Vélos électriques', Icon: Zap },
-	[VelociteSortField.UNAVAILABLE_STANDS]: { label: 'Places indisponibles', Icon: Ban },
-	[VelociteSortField.BONUS]: { label: 'Bonus', Icon: Star },
-	[VelociteSortField.BANKING]: { label: 'Carte bancaire', Icon: CreditCard },
-	[VelociteSortField.OPEN]: { label: 'Ouvert', Icon: Check },
-	[VelociteSortField.CONNECTED]: { label: 'Connecté', Icon: Wifi }
+	[VelociteSortField.CAPACITY]: { label: 'Capacité', icon: Layers },
+	[VelociteSortField.NUMBER]: { label: 'Numéro', icon: Hash },
+	[VelociteSortField.MECHANICAL_BIKES]: { label: 'Vélos mécaniques', icon: Footprints },
+	[VelociteSortField.ELECTRICAL_BIKES]: { label: 'Vélos électriques', icon: Zap },
+	[VelociteSortField.UNAVAILABLE_STANDS]: { label: 'Places non-disponibles', icon: Ban },
+	[VelociteSortField.BONUS]: { label: 'Bonus', icon: Star },
+	[VelociteSortField.BANKING]: { label: 'Carte bancaire', icon: CreditCard },
+	[VelociteSortField.OPEN]: { label: 'Ouvert', icon: Check },
+	[VelociteSortField.CONNECTED]: { label: 'Connecté', icon: Wifi }
 };
 
-// Section 1 : champs de tri principaux
-export const PRIMARY_FIELDS = [
-	VelociteSortField.NAME,
-	VelociteSortField.TOTAL_BIKES,
-	VelociteSortField.AVAILABLE_STANDS,
-	VelociteSortField.CAPACITY
-] as const;
+export enum StationColorStatus {
+	Danger = 'velocite-station--danger',
+	Warning = 'velocite-station--warning',
+	Success = 'velocite-station--success',
+	Neutral = 'velocite-station--neutral'
+}
 
-// Section 2 : décomptes numériques
-export const COUNT_FIELDS = [
-	VelociteSortField.NUMBER,
-	VelociteSortField.MECHANICAL_BIKES,
-	VelociteSortField.ELECTRICAL_BIKES,
-	VelociteSortField.UNAVAILABLE_STANDS
-] as const;
-
-// Section 3 : statuts booléens
-export const STATUS_FIELDS = [
-	VelociteSortField.BONUS,
-	VelociteSortField.BANKING,
-	VelociteSortField.OPEN,
-	VelociteSortField.CONNECTED
-] as const;
+export function getStationColorStatus(value: number | boolean | string, field: VelociteSortField) {
+	if (typeof value === 'number') {
+		if (field === VelociteSortField.UNAVAILABLE_STANDS) {
+			if (value <= 0) return StationColorStatus.Success;
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return StationColorStatus.Warning;
+			return StationColorStatus.Danger;
+		} else {
+			if (value <= 0) return StationColorStatus.Danger;
+			if (value <= MEDIUM_LEVEL_THRESHOLD) return StationColorStatus.Warning;
+			return StationColorStatus.Success;
+		}
+	}
+	return StationColorStatus.Neutral;
+}
