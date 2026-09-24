@@ -1,3 +1,5 @@
+import { goto } from '$app/navigation';
+import { resolve } from '$app/paths';
 import type { FormattedStation } from '$core/dto/jcdecaux';
 import { VelociteSortField } from '$core/enum/VelociteSortField';
 import { StationColorStatus, getStationColorStatus } from '../sort-config';
@@ -37,6 +39,8 @@ export function getStatusValue(station: FormattedStation, field: StatusFilter): 
 			return station.status === 'OPEN';
 		case VelociteSortField.CONNECTED:
 			return station.connected;
+		default:
+			return false;
 	}
 }
 
@@ -54,6 +58,7 @@ export function getCountColorClass(value: number, selectedFilter: VelociteSortFi
 		case StationColorStatus.Warning:
 			return 'velocite-map-marker--warning';
 		case StationColorStatus.Success:
+		default:
 			return 'velocite-map-marker--success';
 	}
 }
@@ -107,6 +112,9 @@ export function renderStationMarkers(
 			.bindTooltip(`${station.formattedName}`, {
 				direction: 'top',
 				offset: [0, -18]
+			})
+			.on('click', () => {
+				void goto(resolve(`/velocite/${station.number}`));
 			});
 
 		marker.addTo(markersLayer);
