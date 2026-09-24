@@ -1,5 +1,13 @@
 <script lang="ts">
-	import { CircleCheckBig, CreditCard, Star, TriangleAlert, Wifi, ThumbsUp } from '@lucide/svelte';
+	import {
+		CircleCheckBig,
+		CreditCard,
+		Star,
+		TriangleAlert,
+		Wifi,
+		ThumbsUp,
+		GlobeOff
+	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import Indicator from './Indicator.svelte';
 	import { cn } from '$lib/utils.js';
@@ -21,16 +29,18 @@
 		enabled={isOpen}
 	/>
 	<Indicator
-		icon={Wifi}
+		icon={station.connected ? Wifi : GlobeOff}
 		text={station.connected ? 'Station en ligne' : 'Station hors ligne'}
 		enabled={station.connected}
 	/>
 	<Indicator
+		slash
 		icon={CreditCard}
 		text={station.banking ? 'Paiement CB disponible' : 'Paiement CB indisponible'}
 		enabled={station.banking}
 	/>
 	<Indicator
+		slash
 		icon={Star}
 		text={station.bonus ? 'Station bonus' : 'Station non bonus'}
 		enabled={station.bonus}
