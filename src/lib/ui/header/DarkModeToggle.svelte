@@ -9,7 +9,7 @@
 	onclick={toggleMode}
 	variant="ghost"
 	size="icon"
-	class="h-11.25 w-11.25"
+	class="h-11.25 w-11.25 rounded-lg dark:hover:bg-input/50"
 	title="Changer d'ambiance"
 >
 	<SunIcon class="size-6! scale-100 rotate-0 transition-all! dark:scale-0 dark:-rotate-90" />

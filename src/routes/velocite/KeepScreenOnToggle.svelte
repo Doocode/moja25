@@ -61,10 +61,16 @@
 	});
 </script>
 
-<Button variant={lightOn ? 'outline' : 'ghost'} size="icon" onclick={toggle}>
+<Button
+	title="Garder l'écran allumé"
+	variant={lightOn ? 'outline' : 'ghost'}
+	size="icon"
+	class="h-11.25 w-11.25 rounded-lg"
+	onclick={toggle}
+>
 	{#if lightOn}
-		<Lightbulb class="size-5" />
+		<Lightbulb class="size-6" />
 	{:else}
-		<LightbulbOff class="size-5" />
+		<LightbulbOff class="size-6" />
 	{/if}
 </Button>

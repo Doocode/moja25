@@ -3,7 +3,7 @@
 	import RecapSection from './RecapSection.svelte';
 	import StationHeader from './StationHeader.svelte';
 	import StationAvailabilities from './StationAvailabilities.svelte';
-	import StationIndicators from './StationIndicators.svelte';
+	import Indicators from './Indicators.svelte';
 	import StationAddress from './StationAddress.svelte';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
 	import { browser } from '$app/environment';
@@ -57,7 +57,7 @@
 
 <main class="m-auto max-w-4xl p-4 lg:-mt-50">
 	<RecapSection {station} class="mb-4" />
+	<Indicators {station} class="mt-6 mb-3 sm:mt-8" />
 	<StationAvailabilities {station} class="mb-3" />
-	<StationIndicators {station} class="mb-3" />
 	<StationAddress {station} />
 </main>

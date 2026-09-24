@@ -10,8 +10,7 @@
 	let { interval = $bindable(15_000) }: Props = $props();
 
 	type RefreshOption =
-		| { value: 0; label: string }
-		| { value: number; number: string; unit: string; label: string };
+		{ value: 0; label: string } | { value: number; number: string; unit: string; label: string };
 
 	const REFRESH_OPTIONS: RefreshOption[] = [
 		{ value: 0, label: 'Jamais' },
@@ -31,11 +30,15 @@
 </script>
 
 <DropdownMenu>
-	<DropdownMenuTrigger class={buttonVariants({ variant: 'outline', size: 'icon' })}>
+	<DropdownMenuTrigger
+		title="Fréquence d'actualisation des informations"
+		class={'h-11.25 w-11.25 rounded-lg ' +
+			buttonVariants({ variant: isNever ? 'ghost' : 'outline', size: 'icon' })}
+	>
 		{#if isNever}
-			<RefreshCwOff class="size-5 text-red-500" />
+			<RefreshCwOff class="size-6" />
 		{:else}
-			<RefreshCw class="size-5" />
+			<RefreshCw class="size-6" />
 		{/if}
 		<span class="sr-only">Fréquence de rafraîchissement : {currentLabel}</span>
 	</DropdownMenuTrigger>
