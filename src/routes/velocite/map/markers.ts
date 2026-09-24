@@ -88,13 +88,18 @@ export function buildMarkerHtml(
 	return `<div class="velocite-map-marker ${stateClass}"><span class="velocite-map-marker__icon">${icon}</span></div>`;
 }
 
+export const MIN_MARKER_ZOOM = 14;
+
 export function renderStationMarkers(
 	leaflet: typeof import('leaflet'),
 	markersLayer: LayerGroup,
 	stations: FormattedStation[],
-	selectedFilter: VelociteSortField
+	selectedFilter: VelociteSortField,
+	currentZoom: number = MIN_MARKER_ZOOM
 ): void {
 	markersLayer.clearLayers();
+
+	if (currentZoom < MIN_MARKER_ZOOM) return;
 
 	for (const station of stations) {
 		const icon: DivIcon = leaflet.divIcon({

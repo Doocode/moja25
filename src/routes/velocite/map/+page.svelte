@@ -30,7 +30,7 @@
 
 	function updateMarkers() {
 		if (!leaflet || !map || !markersLayer) return;
-		renderStationMarkers(leaflet, markersLayer, stations, selectedFilter);
+		renderStationMarkers(leaflet, markersLayer, stations, selectedFilter, map.getZoom());
 	}
 
 	function initializeBounds() {
@@ -74,6 +74,10 @@
 				.addTo(map);
 
 			markersLayer = leaflet.layerGroup().addTo(map);
+
+			map.on('zoomend', () => {
+				updateMarkers();
+			});
 
 			initializeBounds();
 			updateMarkers();
