@@ -29,7 +29,7 @@
 </script>
 
 <div
-	class="fixed bottom-4 left-[50%] z-20 flex -translate-x-1/2 justify-center gap-1 rounded-2xl border bg-background/20 p-2 shadow-xl backdrop-blur dark:bg-background/80"
+	class="fixed bottom-20 left-[50%] z-20 flex -translate-x-1/2 justify-center gap-1 rounded-2xl border bg-background/20 p-2 shadow-xl backdrop-blur transition-[bottom] md:bottom-4 dark:bg-background/80"
 >
 	{#each QUICK_FILTERS as field (FIELD_CONFIG[field].label)}
 		{@const isActive = selectedFilter === field}
