@@ -7,7 +7,6 @@
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
 	import KeepScreenOnToggle from '../KeepScreenOnToggle.svelte';
-	import { slide } from 'svelte/transition';
 
 	interface Props {
 		station: FormattedStation;
@@ -37,11 +36,8 @@
 	});
 </script>
 
-<div
-	class="bg-linear-to-b from-[#91bdff] to-[#76adff] dark:from-[#0e3877] dark:to-[#038de4]"
-	in:slide|local
->
-	<div class="container mx-auto p-4 pt-0">
+<div class="bg-linear-to-b from-[#91bdff] to-[#589bff] dark:from-[#0e3877] dark:to-[#038de4]">
+	<div class="container mx-auto p-4 pt-0 xl:pb-10">
 		<a
 			href={resolve('/velocite')}
 			class="-mt-4 mb-4 inline-flex items-center gap-1.5 py-4 text-sm transition-colors hover:text-foreground hover:underline"
@@ -50,11 +46,17 @@
 			Liste des stations
 		</a>
 
-		<div class="flex items-start justify-between gap-3 pb-1">
-			<div class="grid max-w-40">
+		<div class="flex items-end justify-between gap-3 pb-1">
+			<div class="max-w-40">
 				<p class="text-8xl font-thin" title="Numéro de la station">{station.number}</p>
-				<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
+				<h1 class="text-2xl leading-tight font-bold xl:hidden">{station.formattedName}</h1>
 			</div>
+
+			<h1 class="absolute top-58 z-50 hidden w-70 text-5xl leading-[1.35] font-bold xl:block">
+				<span class="inline bg-foreground box-decoration-clone px-3.5 py-1 text-primary-foreground">
+					{station.formattedName}
+				</span>
+			</h1>
 
 			<div class="flex max-w-40 justify-end gap-2">
 				<!-- TODO: Actions (add to bookmarks, share, open in map) -->
