@@ -17,12 +17,3 @@
 		</div>
 	</div>
 </header>
-
-<style>
-	:root header {
-		--muted: #e375ff;
-	}
-	:root.dark header {
-		--muted: #8b00ad;
-	}
-</style>
