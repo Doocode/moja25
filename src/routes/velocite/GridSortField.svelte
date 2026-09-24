@@ -19,7 +19,7 @@
 	class:grid-cols-5={fields.length === 5}
 	class:grid-cols-6={fields.length === 6}
 >
-	{#each fields as field (field.label)}
+	{#each fields as field (FIELD_CONFIG[field].label)}
 		{@const { shortLabel, label, icon } = FIELD_CONFIG[field]}
 		{@const Icon = icon}
 		{@const isSelected = sortField === field}

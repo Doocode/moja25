@@ -13,7 +13,7 @@
 </script>
 
 <ul class="flex flex-col gap-0.5">
-	{#each fields as field (field.label)}
+	{#each fields as field (FIELD_CONFIG[field].label)}
 		{@const { label, icon } = FIELD_CONFIG[field]}
 		{@const Icon = icon}
 		{@const isSelected = sortField === field}
