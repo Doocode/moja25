@@ -34,7 +34,7 @@
 			>
 				<Icon class="size-7" />
 			</div>
-			<span class="text-xs leading-tight {isSelected ? 'font-semibold text-primary' : ''}">
+			<span class="px-2 text-xs leading-tight {isSelected ? 'font-semibold text-primary' : ''}">
 				{shortLabel ?? label}
 			</span>
 		</button>

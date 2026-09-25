@@ -19,7 +19,7 @@
 		{@const isSelected = sortField === field}
 		<li>
 			<button
-				class="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left transition-colors hover:bg-muted {isSelected
+				class="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-muted sm:rounded-lg {isSelected
 					? 'bg-muted'
 					: ''}"
 				onclick={() => onSelect(field)}

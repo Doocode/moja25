@@ -27,9 +27,14 @@
 
 		<div class="overflow-y-auto pb-8">
 			<div class="mx-auto w-full max-w-125">
-				<SortSection title="Filtrer par nombre" class="mb-6">
+				<SortSection title="Filtrer par nombre" class="mb-6 grid gap-4">
 					<GridSortField
-						fields={countFilters}
+						fields={countFilters.slice(0, 3)}
+						sortField={selectedFilter}
+						onSelect={onSelectFilter}
+					/>
+					<ListSortField
+						fields={countFilters.slice(3)}
 						sortField={selectedFilter}
 						onSelect={onSelectFilter}
 					/>
