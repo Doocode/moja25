@@ -63,29 +63,36 @@ export function getCountColorClass(value: number, selectedFilter: VelociteSortFi
 	}
 }
 
+export function markerTemplate(
+	content: string | number,
+	variantClass: string = 'velocite-map-marker--neutral'
+): string {
+	return `<div class="velocite-map-marker ${variantClass}"><span>${content}</span></div>`;
+}
+
 export function buildMarkerHtml(
 	station: FormattedStation,
 	selectedFilter: VelociteSortField
 ): string {
 	if (countFilters.includes(selectedFilter)) {
 		const value = getCountValue(station, selectedFilter as CountFilter) || 0;
-		return `<div class="velocite-map-marker ${getCountColorClass(value, selectedFilter)}"><span>${value}</span></div>`;
+		return markerTemplate(value, getCountColorClass(value, selectedFilter));
 	}
 
 	if (numberFilters.includes(selectedFilter)) {
 		const value = getNumberValue(station, selectedFilter as NumberFilter);
-		return `<div class="velocite-map-marker velocite-map-marker--neutral"><span>${value}</span></div>`;
+		return markerTemplate(value, 'velocite-map-marker--neutral');
 	}
 
 	if (!statusFilters.includes(selectedFilter)) {
-		return `<div class="velocite-map-marker velocite-map-marker--neutral"><span>${station.number}</span></div>`;
+		return markerTemplate(station.number, 'velocite-map-marker--neutral');
 	}
 
 	const active = getStatusValue(station, selectedFilter as StatusFilter);
 	const icon = getStatusIcon(selectedFilter as StatusFilter, active);
 	const stateClass = active ? 'velocite-map-marker--status-on' : 'velocite-map-marker--status-off';
 
-	return `<div class="velocite-map-marker ${stateClass}"><span class="velocite-map-marker__icon">${icon}</span></div>`;
+	return markerTemplate(`<span class="velocite-map-marker__icon">${icon}</span>`, stateClass);
 }
 
 export const MIN_MARKER_ZOOM = 13;

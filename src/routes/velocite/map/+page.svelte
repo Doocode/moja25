@@ -6,7 +6,7 @@
 	import './markers.css';
 
 	import type { LayerGroup, Map as LeafletMap } from 'leaflet';
-	import QuickFilters from './QuickFilters.svelte';
+	import FilterBar from './FilterBar.svelte';
 	import FilterDrawer from './FilterDrawer.svelte';
 	import { renderStationMarkers } from './markers';
 
@@ -105,7 +105,7 @@
 <main class="relative mx-auto flex min-h-[calc(100dvh-78px)] flex-col">
 	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
 
-	<QuickFilters bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />
+	<FilterBar bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />
 
 	<FilterDrawer bind:selectedFilter bind:open={drawerOpen} onSelectFilter={selectFilter} />
 </main>
