@@ -88,7 +88,7 @@ export function buildMarkerHtml(
 	return `<div class="velocite-map-marker ${stateClass}"><span class="velocite-map-marker__icon">${icon}</span></div>`;
 }
 
-export const MIN_MARKER_ZOOM = 14;
+export const MIN_MARKER_ZOOM = 13;
 
 export function renderStationMarkers(
 	leaflet: typeof import('leaflet'),

@@ -102,8 +102,8 @@
 	<title>Carte Vélocité</title>
 </svelte:head>
 
-<main class="relative mx-auto flex min-h-[calc(100dvh-68px)] flex-col">
-	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-68px)] w-full overflow-hidden"></div>
+<main class="relative mx-auto flex min-h-[calc(100dvh-78px)] flex-col">
+	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
 
 	<QuickFilters bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />
 

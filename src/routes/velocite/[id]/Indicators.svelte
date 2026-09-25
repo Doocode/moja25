@@ -3,10 +3,12 @@
 		CircleCheckBig,
 		CreditCard,
 		Star,
+		StarOff,
 		TriangleAlert,
 		Wifi,
 		ThumbsUp,
-		GlobeOff
+		GlobeOff,
+		Ban
 	} from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import Indicator from './Indicator.svelte';
@@ -24,7 +26,7 @@
 
 <div class={cn('m-auto grid max-w-80 grid-cols-4 gap-1 sm:max-w-110 sm:gap-4', className)}>
 	<Indicator
-		icon={CircleCheckBig}
+		icon={isOpen ? CircleCheckBig : Ban}
 		text={isOpen ? 'Station ouverte' : 'Station fermée'}
 		enabled={isOpen}
 	/>
@@ -40,8 +42,7 @@
 		enabled={station.banking}
 	/>
 	<Indicator
-		slash
-		icon={Star}
+		icon={station.bonus ? Star : StarOff}
 		text={station.bonus ? 'Station bonus' : 'Station non bonus'}
 		enabled={station.bonus}
 		kind="warning"
