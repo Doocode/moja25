@@ -2,12 +2,15 @@
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import 'leaflet/dist/leaflet.css';
 	import './markers.css';
 
 	import type { LayerGroup, Map as LeafletMap } from 'leaflet';
 	import FilterBar from './FilterBar.svelte';
 	import FilterDrawer from './FilterDrawer.svelte';
+	import RefreshDropdown from '../RefreshDropdown.svelte';
+	import { defaultRefreshInterval, refreshIntervals } from '../settings';
 	import { renderStationMarkers } from './markers';
 
 	interface Props {
@@ -18,17 +21,26 @@
 
 	let { data }: Props = $props();
 
+	let fetchedStations = $state<FormattedStation[] | null>(null);
+	let stations = $derived<FormattedStation[]>(fetchedStations ?? data.stations);
 	let selectedFilter = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
 	let drawerOpen = $state(false);
+	let refreshInterval = $state(defaultRefreshInterval);
 
 	const BESANCON_CENTER: [number, number] = [47.2378, 6.024];
 	const DEFAULT_ZOOM = 14.5;
-	const stations = $derived(data.stations);
 
 	let mapElement = $state<HTMLDivElement | null>(null);
 	let map = $state<LeafletMap | null>(null);
 	let markersLayer = $state<LayerGroup | null>(null);
 	let leaflet = $state<typeof import('leaflet') | null>(null);
+
+	async function refreshStations() {
+		const res = await fetch('/api/jcdecaux/stations');
+		if (res.ok) {
+			fetchedStations = await res.json();
+		}
+	}
 
 	function updateMarkers() {
 		if (!leaflet || !map || !markersLayer) return;
@@ -41,6 +53,12 @@
 	}
 
 	onMount(() => {
+		const storedInterval = localStorage.getItem('velocite-refresh-interval');
+		if (storedInterval !== null) {
+			const parsed = Number(storedInterval);
+			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
+		}
+
 		let destroyed = false;
 
 		void (async () => {
@@ -81,6 +99,17 @@
 	});
 
 	$effect(() => {
+		if (!browser) return;
+		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+	});
+
+	$effect(() => {
+		if (refreshInterval === 0) return;
+		const id = setInterval(refreshStations, refreshInterval);
+		return () => clearInterval(id);
+	});
+
+	$effect(() => {
 		void selectedFilter;
 		void stations;
 		updateMarkers();
@@ -94,7 +123,19 @@
 <main class="relative mx-auto flex min-h-[calc(100dvh-78px)] flex-col">
 	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
 
+	<div
+		class="fixed top-19 right-4 z-20 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur sm:top-23 dark:bg-background/80"
+	>
+		<RefreshDropdown bind:interval={refreshInterval} />
+	</div>
+
 	<FilterBar bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />
 
 	<FilterDrawer bind:selectedFilter bind:open={drawerOpen} onSelectFilter={selectFilter} />
 </main>
+
+<style>
+	/*:global(.leaflet-top.leaflet-left) {
+		top: 160px;
+	}*/
+</style>
