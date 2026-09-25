@@ -21,6 +21,8 @@
 	let selectedFilter = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
 	let drawerOpen = $state(false);
 
+	const BESANCON_CENTER: [number, number] = [47.2378, 6.024];
+	const DEFAULT_ZOOM = 14.5;
 	const stations = $derived(data.stations);
 
 	let mapElement = $state<HTMLDivElement | null>(null);
@@ -31,20 +33,6 @@
 	function updateMarkers() {
 		if (!leaflet || !map || !markersLayer) return;
 		renderStationMarkers(leaflet, markersLayer, stations, selectedFilter, map.getZoom());
-	}
-
-	function initializeBounds() {
-		if (!leaflet || !map || stations.length === 0) return;
-
-		const bounds = leaflet.latLngBounds(
-			stations.map(
-				(station) => [station.position.latitude, station.position.longitude] as [number, number]
-			)
-		);
-
-		if (bounds.isValid()) {
-			map.fitBounds(bounds.pad(0.2));
-		}
 	}
 
 	function selectFilter(field: VelociteSortField) {
@@ -62,6 +50,8 @@
 			if (destroyed || !mapElement) return;
 
 			map = leaflet.map(mapElement, {
+				center: BESANCON_CENTER,
+				zoom: DEFAULT_ZOOM,
 				zoomControl: true,
 				minZoom: 12,
 				maxZoom: 19
@@ -79,7 +69,6 @@
 				updateMarkers();
 			});
 
-			initializeBounds();
 			updateMarkers();
 		})();
 
