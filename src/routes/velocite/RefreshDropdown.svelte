@@ -45,10 +45,18 @@
 
 	<DropdownMenuContent
 		align="end"
-		class="dark; w-auto rounded-xl bg-popover/70 p-4 ring-foreground/30 backdrop-blur-lg dark:bg-popover/70"
+		class="w-auto rounded-xl bg-popover/70 p-4 ring-foreground/30 backdrop-blur-lg dark:bg-popover/70"
 	>
 		<p class="mb-1 px-0.5 text-xs font-bold">Données en temps-réel</p>
 		<p class="mb-4 w-50 px-0.5 text-xs">Fréquence de rafraîchissement des données en temps-réel</p>
+
+		{#if isNever}
+			<p class="my-4 text-xs">
+				<span class="mr-2 -mb-0.75 inline-block size-4 rounded-xl bg-red-500"></span>
+				Actualisation désactivée
+			</p>
+		{/if}
+
 		<div class="grid grid-cols-3 gap-1.5">
 			{#each REFRESH_OPTIONS as option (option.value)}
 				<button
@@ -56,10 +64,11 @@
 					onclick={() => select(option.value)}
 					aria-label={option.label}
 					aria-pressed={interval === option.value}
-					class="flex aspect-square w-16 flex-col items-center justify-center rounded-md border transition-colors
-						{interval === option.value
-						? 'border-primary bg-primary text-primary-foreground'
-						: 'border-border bg-background text-foreground hover:bg-muted'}"
+					class={{
+						'flex aspect-square w-16 flex-col items-center justify-center rounded-md border transition-colors': true,
+						'border-primary bg-primary text-primary-foreground': interval === option.value,
+						'border-border bg-background text-foreground hover:bg-muted': interval !== option.value
+					}}
 				>
 					{#if option.value === 0}
 						<span class:text-red-500={!isNever}>

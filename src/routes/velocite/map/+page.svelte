@@ -124,7 +124,7 @@
 	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
 
 	<div
-		class="fixed top-19 right-4 z-20 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur sm:top-23 dark:bg-background/80"
+		class="fixed top-17 right-2 z-20 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur md:top-19 lg:top-21 dark:bg-background/80"
 	>
 		<RefreshDropdown bind:interval={refreshInterval} />
 	</div>
