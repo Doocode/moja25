@@ -6,12 +6,13 @@
 	import 'leaflet/dist/leaflet.css';
 	import './markers.css';
 
-	import type { LayerGroup, Map as LeafletMap } from 'leaflet';
+	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import FilterBar from './FilterBar.svelte';
 	import FilterDrawer from './FilterDrawer.svelte';
 	import RefreshDropdown from '../RefreshDropdown.svelte';
+	import LocateButton from '../LocateButton.svelte';
 	import { defaultRefreshInterval, refreshIntervals } from '../settings';
-	import { renderStationMarkers } from './markers';
+	import { createUserLocationIcon, renderStationMarkers } from './markers';
 
 	interface Props {
 		data: {
@@ -26,6 +27,12 @@
 	let selectedFilter = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
 	let drawerOpen = $state(false);
 	let refreshInterval = $state(defaultRefreshInterval);
+
+	let userLocation = $state<{ lat: number; lng: number } | null>(null);
+	let userMarker = $state<Marker | null>(null);
+	let permissionDenied = $state(false);
+	let isLocating = $state(false);
+	let hasLocation = $derived(userLocation !== null);
 
 	const BESANCON_CENTER: [number, number] = [47.2378, 6.024];
 	const DEFAULT_ZOOM = 14.5;
@@ -52,11 +59,76 @@
 		drawerOpen = false;
 	}
 
+	function locateUser() {
+		if (!browser || !('geolocation' in navigator)) {
+			alert("La géolocalisation n'est pas supportée par votre navigateur.");
+			return;
+		}
+
+		isLocating = true;
+
+		navigator.geolocation.getCurrentPosition(
+			(pos) => {
+				isLocating = false;
+				permissionDenied = false;
+
+				const lat = pos.coords.latitude;
+				const lng = pos.coords.longitude;
+				userLocation = { lat, lng };
+
+				if (!leaflet || !map) return;
+
+				if (!userMarker) {
+					const icon = createUserLocationIcon(leaflet);
+					userMarker = leaflet
+						.marker([lat, lng], {
+							icon,
+							keyboard: false,
+							zIndexOffset: 1000
+						})
+						.addTo(map);
+				} else {
+					userMarker.setLatLng([lat, lng]);
+				}
+
+				map.flyTo([lat, lng], 16, {
+					duration: 0.5,
+					easeLinearity: 0.25
+				});
+			},
+			(err) => {
+				isLocating = false;
+				if (err.code === err.PERMISSION_DENIED) {
+					permissionDenied = true;
+				}
+			},
+			{
+				enableHighAccuracy: true,
+				timeout: 10000,
+				maximumAge: 10000
+			}
+		);
+	}
+
 	onMount(() => {
 		const storedInterval = localStorage.getItem('velocite-refresh-interval');
 		if (storedInterval !== null) {
 			const parsed = Number(storedInterval);
 			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
+		}
+
+		if (browser && 'permissions' in navigator) {
+			void navigator.permissions
+				?.query({ name: 'geolocation' })
+				.then((permissionStatus) => {
+					permissionDenied = permissionStatus.state === 'denied';
+					permissionStatus.onchange = () => {
+						permissionDenied = permissionStatus.state === 'denied';
+					};
+				})
+				.catch(() => {
+					// Inactive ou non supporté
+				});
 		}
 
 		let destroyed = false;
@@ -92,6 +164,8 @@
 
 		return () => {
 			destroyed = true;
+			userMarker?.remove();
+			userMarker = null;
 			map?.remove();
 			map = null;
 			markersLayer = null;
@@ -124,9 +198,10 @@
 	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
 
 	<div
-		class="fixed top-17 right-2 z-20 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur md:top-19 lg:top-21 dark:bg-background/80"
+		class="fixed top-17 right-2 z-20 flex flex-col gap-1 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur md:top-19 lg:top-21 dark:bg-background/80"
 	>
 		<RefreshDropdown bind:interval={refreshInterval} />
+		<LocateButton {permissionDenied} {hasLocation} loading={isLocating} onclick={locateUser} />
 	</div>
 
 	<FilterBar bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />

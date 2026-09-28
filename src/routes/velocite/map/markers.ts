@@ -70,6 +70,18 @@ export function markerTemplate(
 	return `<div class="velocite-map-marker ${variantClass}"><span>${content}</span></div>`;
 }
 
+export function createUserLocationIcon(leaflet: typeof import('leaflet')): DivIcon {
+	return leaflet.divIcon({
+		html: `<div class="user-location-marker-container">
+			<div class="user-location-marker__halo"></div>
+			<div class="user-location-marker__dot"></div>
+		</div>`,
+		className: 'velocite-map-div-icon',
+		iconSize: [36, 36],
+		iconAnchor: [18, 18]
+	});
+}
+
 export function buildMarkerHtml(
 	station: FormattedStation,
 	selectedFilter: VelociteSortField
