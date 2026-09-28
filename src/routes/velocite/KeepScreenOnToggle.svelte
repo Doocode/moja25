@@ -5,10 +5,12 @@
 
 	interface Props {
 		lightOn?: boolean;
+		size?: 'md' | 'lg';
 	}
 
-	let { lightOn = $bindable(false) }: Props = $props();
+	let { lightOn = $bindable(false), size = 'md' }: Props = $props();
 	let wakeLock: WakeLockSentinel | null = $state(null);
+	const iconSize = $derived(size === 'md' ? 'size-5' : 'size-6');
 
 	function toggle() {
 		lightOn = !lightOn;
@@ -65,12 +67,16 @@
 	title="Garder l'écran allumé"
 	variant={lightOn ? 'outline' : 'ghost'}
 	size="icon"
-	class="h-11.25 w-11.25 rounded-lg"
+	class={{
+		'rounded-lg': true,
+		'size-9': size === 'md',
+		'size-11.25': size === 'lg'
+	}}
 	onclick={toggle}
 >
 	{#if lightOn}
-		<Lightbulb class="size-6" />
+		<Lightbulb class={iconSize} />
 	{:else}
-		<LightbulbOff class="size-6" />
+		<LightbulbOff class={iconSize} />
 	{/if}
 </Button>

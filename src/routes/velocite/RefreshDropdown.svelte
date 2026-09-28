@@ -2,12 +2,14 @@
 	import { Ban, RefreshCw, RefreshCwOff } from '@lucide/svelte';
 	import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '$shadcn/dropdown-menu';
 	import { buttonVariants } from '$shadcn/button';
+	import { cn } from '$lib/utils';
 
 	interface Props {
 		interval: number;
+		size?: 'md' | 'lg';
 	}
 
-	let { interval = $bindable(15_000) }: Props = $props();
+	let { interval = $bindable(15_000), size = 'md' }: Props = $props();
 
 	type RefreshOption =
 		{ value: 0; label: string } | { value: number; number: string; unit: string; label: string };
@@ -27,18 +29,25 @@
 
 	const currentLabel = $derived(REFRESH_OPTIONS.find((o) => o.value === interval)?.label ?? '');
 	const isNever = $derived(interval === 0);
+	const iconSize = $derived(size === 'md' ? 'size-5' : 'size-6');
 </script>
 
 <DropdownMenu>
 	<DropdownMenuTrigger
 		title="Fréquence d'actualisation des informations"
-		class={'h-11.25 w-11.25 rounded-lg ' +
-			buttonVariants({ variant: isNever ? 'ghost' : 'outline', size: 'icon' })}
+		class={cn(
+			buttonVariants({
+				variant: isNever ? 'ghost' : 'outline',
+				size: 'icon'
+			}),
+			size === 'md' ? 'size-9 rounded-lg' : '',
+			size === 'lg' ? 'size-11.25 rounded-lg' : ''
+		)}
 	>
 		{#if isNever}
-			<RefreshCwOff class="size-6" />
+			<RefreshCwOff class={iconSize} />
 		{:else}
-			<RefreshCw class="size-6" />
+			<RefreshCw class={iconSize} />
 		{/if}
 		<span class="sr-only">Fréquence de rafraîchissement : {currentLabel}</span>
 	</DropdownMenuTrigger>
