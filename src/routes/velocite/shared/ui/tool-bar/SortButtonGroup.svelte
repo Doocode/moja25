@@ -3,7 +3,7 @@
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import { Button } from '$shadcn/button';
 	import { ButtonGroup } from '$shadcn/button-group';
-	import { FIELD_CONFIG } from './sort-config';
+	import { FIELD_CONFIG } from '../../core/sort-config';
 	import SortDrawer from './SortDrawer.svelte';
 
 	interface Props {

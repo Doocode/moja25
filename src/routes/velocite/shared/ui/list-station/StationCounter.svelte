@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
-	import { MEDIUM_LEVEL_THRESHOLD } from './sort-config';
+	import { MEDIUM_LEVEL_THRESHOLD } from '../../core/sort-config';
 
 	interface Props {
 		icon: Component;

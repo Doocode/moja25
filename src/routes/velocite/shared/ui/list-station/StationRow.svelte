@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { StationColorStatus, getStationColorStatus } from './sort-config';
+	import { StationColorStatus, getStationColorStatus } from '../../core/sort-config';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
 
@@ -39,7 +39,7 @@
 </script>
 
 <a
-	href={resolve('/velocite/' + station.number)}
+	href={resolve('/velocite/stations/' + station.number)}
 	class={{
 		'flex items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
 		'bg-green-200 hover:bg-green-300 active:bg-green-400 dark:bg-green-900 hover:dark:bg-green-800 active:dark:bg-green-700':

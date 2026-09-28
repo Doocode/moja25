@@ -9,9 +9,8 @@
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import FilterBar from './FilterBar.svelte';
 	import FilterDrawer from './FilterDrawer.svelte';
-	import RefreshDropdown from '../RefreshDropdown.svelte';
-	import LocateButton from '../LocateButton.svelte';
-	import { defaultRefreshInterval, refreshIntervals } from '../settings';
+	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
+	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { createUserLocationIcon, renderStationMarkers } from './markers';
 
 	interface Props {
@@ -191,7 +190,7 @@
 </script>
 
 <svelte:head>
-	<title>Carte Vélocité</title>
+	<title>Plan des station Vélocité</title>
 </svelte:head>
 
 <main class="relative mx-auto flex min-h-[calc(100dvh-78px)] flex-col">

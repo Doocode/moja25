@@ -5,7 +5,7 @@
 	import StationAvailabilities from './StationAvailabilities.svelte';
 	import Indicators from './Indicators.svelte';
 	import StationAddress from './StationAddress.svelte';
-	import { defaultRefreshInterval, refreshIntervals } from '../settings';
+	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 
@@ -50,7 +50,7 @@
 </script>
 
 <svelte:head>
-	<title>{station.formattedName} — Vélocité</title>
+	<title>{station.formattedName} - Vélocité</title>
 </svelte:head>
 
 <StationHeader {station} bind:refreshInterval />

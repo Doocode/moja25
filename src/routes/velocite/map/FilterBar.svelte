@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { VelociteSortField } from '$lib/core/enum/VelociteSortField';
-	import { FIELD_CONFIG } from '../sort-config';
-	import { Button } from '$shadcn/button';
+	import { FIELD_CONFIG } from '../shared/core/sort-config';
 	import { EllipsisVertical } from '@lucide/svelte';
+	import { Button } from '$shadcn/button';
 
 	interface Props {
 		selectedFilter: VelociteSortField;

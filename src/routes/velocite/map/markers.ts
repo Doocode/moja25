@@ -2,7 +2,7 @@ import { goto } from '$app/navigation';
 import { resolve } from '$app/paths';
 import type { FormattedStation } from '$core/dto/jcdecaux';
 import { VelociteSortField } from '$core/enum/VelociteSortField';
-import { StationColorStatus, getStationColorStatus } from '../sort-config';
+import { StationColorStatus, getStationColorStatus } from '../shared/core/sort-config';
 import { countFilters, numberFilters, statusFilters } from './filters';
 import type { DivIcon, LayerGroup } from 'leaflet';
 
@@ -138,7 +138,7 @@ export function renderStationMarkers(
 				offset: [0, -18]
 			})
 			.on('click', () => {
-				void goto(resolve(`/velocite/${station.number}`));
+				void goto(resolve(`/velocite/stations/${station.number}`));
 			});
 
 		marker.addTo(markersLayer);

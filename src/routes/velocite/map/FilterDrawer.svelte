@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { countFilters, numberFilters, statusFilters } from './filters';
 	import { VelociteSortField } from '$lib/core/enum/VelociteSortField';
-	import ListSortField from '../ListSortField.svelte';
-	import GridSortField from '../GridSortField.svelte';
-	import SortSection from '../SortSection.svelte';
+	import { GridSortField, ListSortField, SortSection } from '../shared/ui/tool-bar';
 	import * as Drawer from '$shadcn/drawer';
 
 	interface Props {

@@ -3,10 +3,9 @@
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { ArrowLeft } from '@lucide/svelte';
-	import RefreshDropdown from '../RefreshDropdown.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { defaultRefreshInterval, refreshIntervals } from '../settings';
-	import KeepScreenOnToggle from '../KeepScreenOnToggle.svelte';
+	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
+	import { KeepScreenOnToggle, RefreshDropdown } from '../../shared/ui/tool-bar';
 
 	interface Props {
 		station: FormattedStation;
@@ -36,10 +35,10 @@
 	});
 </script>
 
-<div class="bg-linear-to-b from-[#91bdff] to-[#589bff] dark:from-[#0e3877] dark:to-[#038de4]">
+<header class="bg-linear-to-b from-[#91bdff] to-[#589bff] dark:from-[#0e3877] dark:to-[#038de4]">
 	<div class="container mx-auto p-4 pt-0 xl:pb-10">
 		<a
-			href={resolve('/velocite')}
+			href={resolve('/velocite/stations')}
 			class="-mt-4 mb-4 inline-flex items-center gap-1.5 py-4 text-sm transition-colors hover:text-foreground hover:underline"
 		>
 			<ArrowLeft class="size-5" />
@@ -68,4 +67,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</header>

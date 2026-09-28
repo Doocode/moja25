@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { FIELD_CONFIG } from './sort-config';
+	import { FIELD_CONFIG } from '../../core/sort-config';
 
 	interface Props {
 		fields: readonly VelociteSortField[];
