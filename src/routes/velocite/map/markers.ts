@@ -70,6 +70,12 @@ export function markerTemplate(
 	return `<div class="velocite-map-marker ${variantClass}"><span>${content}</span></div>`;
 }
 
+export function compactMarkerTemplate(
+	variantClass: string = 'velocite-map-marker--neutral'
+): string {
+	return `<div class="velocite-map-marker-compact ${variantClass}"></div>`;
+}
+
 export function createUserLocationIcon(leaflet: typeof import('leaflet')): DivIcon {
 	return leaflet.divIcon({
 		html: `<div class="user-location-marker-container">
@@ -80,6 +86,35 @@ export function createUserLocationIcon(leaflet: typeof import('leaflet')): DivIc
 		iconSize: [36, 36],
 		iconAnchor: [18, 18]
 	});
+}
+
+export function getStationVariantClass(
+	station: FormattedStation,
+	selectedFilter: VelociteSortField
+): string {
+	if (countFilters.includes(selectedFilter)) {
+		const value = getCountValue(station, selectedFilter as CountFilter) || 0;
+		return getCountColorClass(value, selectedFilter);
+	}
+
+	if (numberFilters.includes(selectedFilter)) {
+		return 'velocite-map-marker--neutral';
+	}
+
+	if (!statusFilters.includes(selectedFilter)) {
+		return 'velocite-map-marker--neutral';
+	}
+
+	const active = getStatusValue(station, selectedFilter as StatusFilter);
+	return active ? 'velocite-map-marker--status-on' : 'velocite-map-marker--status-off';
+}
+
+export function buildCompactMarkerHtml(
+	station: FormattedStation,
+	selectedFilter: VelociteSortField
+): string {
+	const variantClass = getStationVariantClass(station, selectedFilter);
+	return compactMarkerTemplate(variantClass);
 }
 
 export function buildMarkerHtml(
@@ -107,25 +142,36 @@ export function buildMarkerHtml(
 	return markerTemplate(`<span class="velocite-map-marker__icon">${icon}</span>`, stateClass);
 }
 
-export const MIN_MARKER_ZOOM = 13;
+export const COMPACT_MARKER_ZOOM_THRESHOLD = 14.5;
+export const MIN_MARKER_ZOOM = 10;
 
 export function renderStationMarkers(
 	leaflet: typeof import('leaflet'),
 	markersLayer: LayerGroup,
 	stations: FormattedStation[],
 	selectedFilter: VelociteSortField,
-	currentZoom: number = MIN_MARKER_ZOOM
+	currentZoom: number = COMPACT_MARKER_ZOOM_THRESHOLD
 ): void {
 	markersLayer.clearLayers();
 
 	if (currentZoom < MIN_MARKER_ZOOM) return;
 
+	const isCompact = currentZoom < COMPACT_MARKER_ZOOM_THRESHOLD;
+
 	for (const station of stations) {
+		const html = isCompact
+			? buildCompactMarkerHtml(station, selectedFilter)
+			: buildMarkerHtml(station, selectedFilter);
+
+		const iconSize: [number, number] = isCompact ? [30, 30] : [42, 42];
+		const iconAnchor: [number, number] = isCompact ? [15, 15] : [21, 21];
+		const tooltipOffset: [number, number] = isCompact ? [-2, -17] : [0, -18];
+
 		const icon: DivIcon = leaflet.divIcon({
-			html: buildMarkerHtml(station, selectedFilter),
+			html,
 			className: 'velocite-map-div-icon',
-			iconSize: [42, 42],
-			iconAnchor: [21, 21]
+			iconSize,
+			iconAnchor
 		});
 
 		const marker = leaflet
@@ -135,7 +181,7 @@ export function renderStationMarkers(
 			})
 			.bindTooltip(`${station.formattedName}`, {
 				direction: 'top',
-				offset: [0, -18]
+				offset: tooltipOffset
 			})
 			.on('click', () => {
 				void goto(resolve(`/velocite/stations/${station.number}`));

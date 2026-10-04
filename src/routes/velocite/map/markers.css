@@ -23,32 +23,47 @@
 	box-shadow: 0 6px 16px rgb(0 0 0 / 0.25);
 }
 
-.velocite-map-marker--danger {
+.velocite-map-marker-compact {
+	width: 25px;
+	height: 25px;
+	border-radius: 9999px;
+	border: 2px solid rgb(255 255 255 / 0.95);
+	box-shadow: 0 2px 6px rgb(0 0 0 / 0.3);
+	cursor: pointer;
+}
+
+.velocite-map-marker--danger,
+.velocite-map-marker-compact.velocite-map-marker--danger {
 	background: #d32f2f;
 	color: #fff;
 }
 
-.velocite-map-marker--warning {
+.velocite-map-marker--warning,
+.velocite-map-marker-compact.velocite-map-marker--warning {
 	background: #ff9800;
 	color: #fff;
 }
 
-.velocite-map-marker--success {
+.velocite-map-marker--success,
+.velocite-map-marker-compact.velocite-map-marker--success {
 	background: #4caf50;
 	color: #fff;
 }
 
-.velocite-map-marker--neutral {
+.velocite-map-marker--neutral,
+.velocite-map-marker-compact.velocite-map-marker--neutral {
 	background: #475569;
 	color: #fff;
 }
 
-.velocite-map-marker--status-on {
+.velocite-map-marker--status-on,
+.velocite-map-marker-compact.velocite-map-marker--status-on {
 	background: #4caf50;
 	color: #fff;
 }
 
-.velocite-map-marker--status-off {
+.velocite-map-marker--status-off,
+.velocite-map-marker-compact.velocite-map-marker--status-off {
 	background: #757575;
 	color: #fff;
 }
