@@ -3,7 +3,8 @@ import GridSortField from './GridSortField.svelte';
 import ListSortField from './ListSortField.svelte';
 import SortDrawer from './SortDrawer.svelte';
 import SortSection from './SortSection.svelte';
-export { GridSortField, ListSortField, SortDrawer, SortSection };
+import SortForm from './SortForm.svelte';
+export { GridSortField, ListSortField, SortDrawer, SortSection, SortForm };
 
 // Actions
 import KeepScreenOnToggle from './KeepScreenOnToggle.svelte';
