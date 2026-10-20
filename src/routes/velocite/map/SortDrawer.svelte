@@ -5,36 +5,36 @@
 	import * as Drawer from '$shadcn/drawer';
 
 	interface Props {
-		selectedFilter: VelociteSortField;
-		onSelectFilter: (filter: VelociteSortField) => void;
+		selectedSort: VelociteSortField;
+		onSelectSort: (filter: VelociteSortField) => void;
 		open: boolean;
 	}
 
 	let {
-		selectedFilter = $bindable(VelociteSortField.TOTAL_BIKES),
+		selectedSort = $bindable(VelociteSortField.TOTAL_BIKES),
 		open = $bindable(false),
-		onSelectFilter
+		onSelectSort
 	}: Props = $props();
 </script>
 
 <Drawer.Root bind:open>
 	<Drawer.Content class="pb-safe mx-auto max-w-150">
 		<Drawer.Header>
-			<Drawer.Title>Filtrer</Drawer.Title>
+			<Drawer.Title>Trier les stations Vélocité</Drawer.Title>
 		</Drawer.Header>
 
 		<div class="overflow-y-auto pb-8">
 			<div class="mx-auto w-full max-w-125">
-				<SortSection title="Filtrer par nombre" class="mb-6 grid gap-4">
+				<SortSection title="Trier par nombre" class="mb-6 grid gap-4">
 					<GridSortField
 						fields={countFilters.slice(0, 3)}
-						sortField={selectedFilter}
-						onSelect={onSelectFilter}
+						sortField={selectedSort}
+						onSelect={onSelectSort}
 					/>
 					<ListSortField
 						fields={countFilters.slice(3)}
-						sortField={selectedFilter}
-						onSelect={onSelectFilter}
+						sortField={selectedSort}
+						onSelect={onSelectSort}
 					/>
 				</SortSection>
 
@@ -42,16 +42,16 @@
 					<SortSection title="Caractéristiques">
 						<ListSortField
 							fields={numberFilters}
-							sortField={selectedFilter}
-							onSelect={onSelectFilter}
+							sortField={selectedSort}
+							onSelect={onSelectSort}
 						/>
 					</SortSection>
 
 					<SortSection title="État de la station">
 						<ListSortField
 							fields={statusFilters}
-							sortField={selectedFilter}
-							onSelect={onSelectFilter}
+							sortField={selectedSort}
+							onSelect={onSelectSort}
 						/>
 					</SortSection>
 				</div>

@@ -7,8 +7,8 @@
 	import './markers.css';
 
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
-	import FilterBar from './FilterBar.svelte';
-	import FilterDrawer from './FilterDrawer.svelte';
+	import SortBar from './SortBar.svelte';
+	import SortDrawer from './SortDrawer.svelte';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { createUserLocationIcon, renderStationMarkers } from './markers';
@@ -23,7 +23,7 @@
 
 	let fetchedStations = $state<FormattedStation[] | null>(null);
 	let stations = $derived<FormattedStation[]>(fetchedStations ?? data.stations);
-	let selectedFilter = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
+	let selectedSort = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
 	let drawerOpen = $state(false);
 	let refreshInterval = $state(defaultRefreshInterval);
 
@@ -53,8 +53,8 @@
 		renderStationMarkers(leaflet, markersLayer, stations, selectedFilter, map.getZoom());
 	}
 
-	function selectFilter(field: VelociteSortField) {
-		selectedFilter = field;
+	function selectSort(field: VelociteSortField) {
+		selectedSort = field;
 		drawerOpen = false;
 	}
 
@@ -203,9 +203,9 @@
 		<LocateButton {permissionDenied} {hasLocation} loading={isLocating} onclick={locateUser} />
 	</div>
 
-	<FilterBar bind:selectedFilter bind:drawerOpen onSelectFilter={selectFilter} />
+	<SortBar bind:selectedSort bind:drawerOpen onSelectSort={selectSort} />
 
-	<FilterDrawer bind:selectedFilter bind:open={drawerOpen} onSelectFilter={selectFilter} />
+	<SortDrawer bind:selectedSort bind:open={drawerOpen} onSelectSort={selectSort} />
 </main>
 
 <style>

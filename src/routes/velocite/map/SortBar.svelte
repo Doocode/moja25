@@ -5,15 +5,15 @@
 	import { Button } from '$shadcn/button';
 
 	interface Props {
-		selectedFilter: VelociteSortField;
-		onSelectFilter: (filter: VelociteSortField) => void;
+		selectedSort: VelociteSortField;
+		onSelectSort: (filter: VelociteSortField) => void;
 		drawerOpen?: boolean;
 	}
 
 	let {
-		selectedFilter = $bindable(VelociteSortField.TOTAL_BIKES),
+		selectedSort = $bindable(VelociteSortField.TOTAL_BIKES),
 		drawerOpen = $bindable(false),
-		onSelectFilter
+		onSelectSort
 	}: Props = $props();
 
 	const QUICK_FILTERS_LARGE = [
@@ -33,14 +33,14 @@
 <div
 	class="fixed bottom-20 left-[50%] z-20 flex -translate-x-1/2 justify-center gap-1 rounded-2xl border bg-background/20 p-2 shadow-xl backdrop-blur transition-[bottom] md:bottom-4 dark:bg-background/80"
 >
-	{#snippet listFilters(filters)}
+	{#snippet listFilters(filters: VelociteSortField[])}
 		{#each filters as field (FIELD_CONFIG[field].label)}
-			{@const isActive = selectedFilter === field}
+			{@const isActive = selectedSort === field}
 			{@const { icon: Icon, shortLabel, label } = FIELD_CONFIG[field]}
 			<Button
 				variant={isActive ? 'default' : 'outline'}
 				class="size-14 rounded-lg"
-				onclick={() => onSelectFilter(field)}
+				onclick={() => onSelectSort(field)}
 				title={label}
 			>
 				<Icon class="size-7" />
@@ -61,9 +61,9 @@
 		variant={drawerOpen ? 'default' : 'outline'}
 		class="size-14 rounded-lg"
 		onclick={openDrawer}
-		title="Plus de filtres"
+		title="Plus d'options de tri des stations Vélocité"
 	>
 		<EllipsisVertical class="size-7" />
-		<span class="sr-only">Plus de filtres</span>
+		<span class="sr-only">Plus d'options de tri des stations Vélocité</span>
 	</Button>
 </div>
