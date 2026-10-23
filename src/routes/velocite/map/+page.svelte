@@ -11,7 +11,7 @@
 	import SortDrawer from './SortDrawer.svelte';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { createUserLocationIcon, renderStationMarkers } from './markers';
+	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
 
 	interface Props {
 		data: {
@@ -41,6 +41,10 @@
 	let markersLayer = $state<LayerGroup | null>(null);
 	let leaflet = $state<typeof import('leaflet') | null>(null);
 
+	// Non reactive : these values change every second and should not trigger a re-render
+	let stationMarkers = new Map<number, Marker>();
+	let blink = false;
+
 	async function refreshStations() {
 		const res = await fetch('/api/jcdecaux/stations');
 		if (res.ok) {
@@ -50,7 +54,14 @@
 
 	function updateMarkers() {
 		if (!leaflet || !map || !markersLayer) return;
-		renderStationMarkers(leaflet, markersLayer, stations, selectedFilter, map.getZoom());
+		stationMarkers = renderStationMarkers(
+			leaflet,
+			markersLayer,
+			stations,
+			selectedSort,
+			map.getZoom(),
+			blink
+		);
 	}
 
 	function selectSort(field: VelociteSortField) {
@@ -182,8 +193,19 @@
 		return () => clearInterval(id);
 	});
 
+	// Alternate the display of markers that need to blink between two markers every second
 	$effect(() => {
-		void selectedFilter;
+		if (!browser) return;
+		const id = setInterval(() => {
+			blink = !blink;
+			if (!leaflet || !map) return;
+			blinkStationMarkers(leaflet, stations, stationMarkers, selectedSort, map.getZoom(), blink);
+		}, 1000);
+		return () => clearInterval(id);
+	});
+
+	$effect(() => {
+		void selectedSort;
 		void stations;
 		updateMarkers();
 	});

@@ -12,7 +12,7 @@ export const numberFilters = [VelociteSortField.NUMBER, VelociteSortField.CAPACI
 
 export const statusFilters = [
 	VelociteSortField.BONUS,
-	VelociteSortField.BANKING
-	/*VelociteSortField.OPEN,
-    VelociteSortField.CONNECTED*/
+	VelociteSortField.BANKING,
+	VelociteSortField.OPEN,
+	VelociteSortField.CONNECTED
 ];

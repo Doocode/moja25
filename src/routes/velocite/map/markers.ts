@@ -4,7 +4,8 @@ import type { FormattedStation } from '$core/dto/jcdecaux';
 import { VelociteSortField } from '$core/enum/VelociteSortField';
 import { StationColorStatus, getStationColorStatus } from '../shared/core/sort-config';
 import { countFilters, numberFilters, statusFilters } from './filters';
-import type { DivIcon, LayerGroup } from 'leaflet';
+import { getAlertState, getDisplayedFilter } from './alternation';
+import type { DivIcon, LayerGroup, Marker } from 'leaflet';
 
 type CountFilter = (typeof countFilters)[number];
 type NumberFilter = (typeof numberFilters)[number];
@@ -145,48 +146,89 @@ export function buildMarkerHtml(
 export const COMPACT_MARKER_ZOOM_THRESHOLD = 14.5;
 export const MIN_MARKER_ZOOM = 10;
 
+// Creates the icon for a station, in compact (low zoom) or full version.
+function createStationIcon(
+	leaflet: typeof import('leaflet'),
+	station: FormattedStation,
+	displayedFilter: VelociteSortField,
+	isCompact: boolean
+): DivIcon {
+	const html = isCompact
+		? buildCompactMarkerHtml(station, displayedFilter)
+		: buildMarkerHtml(station, displayedFilter);
+	const size = isCompact ? 30 : 42;
+
+	return leaflet.divIcon({
+		html,
+		className: 'velocite-map-div-icon',
+		iconSize: [size, size],
+		iconAnchor: [size / 2, size / 2]
+	});
+}
+
+/**
+ * Redraws all markers (list, layer, or zoom changed).
+ * Returns the map of station [number -> marker], to update icons without redrawing everything.
+ */
 export function renderStationMarkers(
 	leaflet: typeof import('leaflet'),
 	markersLayer: LayerGroup,
 	stations: FormattedStation[],
 	selectedFilter: VelociteSortField,
-	currentZoom: number = COMPACT_MARKER_ZOOM_THRESHOLD
-): void {
+	currentZoom: number,
+	blink: boolean
+): Map<number, Marker> {
 	markersLayer.clearLayers();
+	const markers = new Map<number, Marker>();
 
+	if (currentZoom < MIN_MARKER_ZOOM) return markers;
+
+	const isCompact = currentZoom < COMPACT_MARKER_ZOOM_THRESHOLD;
+	// The tooltip offset follows the size of the marker
+	const tooltipOffset: [number, number] = isCompact ? [-2, -17] : [0, -18];
+
+	for (const station of stations) {
+		const displayedFilter = getDisplayedFilter(station, selectedFilter, blink);
+		const marker = leaflet
+			.marker([station.position.latitude, station.position.longitude], {
+				icon: createStationIcon(leaflet, station, displayedFilter, isCompact),
+				keyboard: false
+			})
+			.bindTooltip(station.formattedName, { direction: 'top', offset: tooltipOffset })
+			.on('click', () => {
+				void goto(resolve('/velocite/stations/[id]', { id: `${station.number}` }));
+			});
+
+		marker.addTo(markersLayer);
+		markers.set(station.number, marker);
+	}
+
+	return markers;
+}
+
+/**
+ * Called every second to update the icons of stations that need to blink.
+ * Only updates the markers of stations that need to blink.
+ */
+export function blinkStationMarkers(
+	leaflet: typeof import('leaflet'),
+	stations: FormattedStation[],
+	markers: Map<number, Marker>,
+	selectedFilter: VelociteSortField,
+	currentZoom: number,
+	blink: boolean
+): void {
 	if (currentZoom < MIN_MARKER_ZOOM) return;
 
 	const isCompact = currentZoom < COMPACT_MARKER_ZOOM_THRESHOLD;
 
 	for (const station of stations) {
-		const html = isCompact
-			? buildCompactMarkerHtml(station, selectedFilter)
-			: buildMarkerHtml(station, selectedFilter);
+		if (!getAlertState(station, selectedFilter)) continue;
 
-		const iconSize: [number, number] = isCompact ? [30, 30] : [42, 42];
-		const iconAnchor: [number, number] = isCompact ? [15, 15] : [21, 21];
-		const tooltipOffset: [number, number] = isCompact ? [-2, -17] : [0, -18];
+		const marker = markers.get(station.number);
+		if (!marker) continue;
 
-		const icon: DivIcon = leaflet.divIcon({
-			html,
-			className: 'velocite-map-div-icon',
-			iconSize,
-			iconAnchor
-		});
-
-		const marker = leaflet
-			.marker([station.position.latitude, station.position.longitude], {
-				icon,
-				keyboard: false
-			})
-			.bindTooltip(`${station.formattedName}`, {
-				direction: 'top',
-				offset: tooltipOffset
-			})
-			.on('click', () => {
-				void goto(resolve(`/velocite/stations/${station.number}`));
-			});
-
-		marker.addTo(markersLayer);
+		const displayedFilter = getDisplayedFilter(station, selectedFilter, blink);
+		marker.setIcon(createStationIcon(leaflet, station, displayedFilter, isCompact));
 	}
 }

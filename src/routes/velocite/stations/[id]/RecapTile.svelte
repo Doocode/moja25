@@ -13,7 +13,7 @@
 
 <main
 	class={{
-		'grid gap-2 overflow-clip rounded-lg md:h-48 md:rounded-2xl': true,
+		'relative grid gap-2 overflow-clip rounded-lg md:h-48 md:rounded-2xl': true,
 		'text-red-400': count <= 0,
 		'text-white': count > 0
 	}}
@@ -23,8 +23,8 @@
 	class:unavailable-stands={type === 'unavailable-stands' && count > 0}
 	class:empty={count <= 0}
 >
-	<div class="stripe h-2 bg-(--gradient-end)" class:bg-red-400={count <= 0}></div>
-	<div class="flex flex-col items-start justify-between gap-2 p-4">
+	<div class="stripe relative z-10 h-2 bg-(--gradient-end)" class:bg-red-400={count <= 0}></div>
+	<div class="flex flex-col items-start justify-between gap-2 p-3 sm:p-4">
 		<div class="-mt-4 flex flex-col md:-mt-10">
 			<span class="text-4xl font-bold md:text-6xl">{count}</span>
 			<span class="text-[0.65rem] font-semibold uppercase md:text-xs">{title}</span>
@@ -32,6 +32,10 @@
 		{#if icon !== undefined}
 			{@const Icon = icon}
 			<Icon class="size-10 md:size-12" />
+
+			<div class="absolute -top-4 -right-4 opacity-15">
+				<Icon class="size-20 -rotate-12 md:size-35" />
+			</div>
 		{/if}
 	</div>
 </main>

@@ -5,7 +5,7 @@
 	import { page } from '$app/stores';
 
 	const links: Link[] = [
-		{ href: resolve('/velocite'), label: 'Accueil', icon: House },
+		{ href: '/velocite', label: 'Accueil', icon: House },
 		{ href: '/velocite/map', label: 'Carte', icon: MapPin },
 		{ href: '/velocite/stations', label: 'Stations', icon: Bike }
 	];
@@ -22,7 +22,7 @@
 			{#each links as { href, label, icon } (icon)}
 				<li>
 					<a
-						{href}
+						href={resolve(href)}
 						class={{
 							'flex items-center gap-2 rounded-t-lg px-4 py-3  transition-colors duration-200 hover:bg-background/40': true,
 							'bg-background': $page.url.pathname === href
