@@ -5,13 +5,13 @@
 	import { browser } from '$app/environment';
 	import 'leaflet/dist/leaflet.css';
 	import './markers.css';
-
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import SortBar from './SortBar.svelte';
 	import SortDrawer from './SortDrawer.svelte';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
+	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 
 	interface Props {
 		data: {
@@ -121,11 +121,13 @@
 	}
 
 	onMount(() => {
-		const storedInterval = localStorage.getItem('velocite-refresh-interval');
-		if (storedInterval !== null) {
-			const parsed = Number(storedInterval);
-			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
-		}
+		const storedInterval = Number(
+			LocalStorageHelper.getValue(
+				LocalStorageKey.VELOCITE_REFRESH_INTERVAL,
+				String(defaultRefreshInterval)
+			)
+		);
+		if (refreshIntervals.includes(storedInterval)) refreshInterval = storedInterval;
 
 		if (browser && 'permissions' in navigator) {
 			void navigator.permissions
@@ -184,7 +186,7 @@
 
 	$effect(() => {
 		if (!browser) return;
-		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_REFRESH_INTERVAL, String(refreshInterval));
 	});
 
 	$effect(() => {

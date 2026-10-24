@@ -8,6 +8,7 @@
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
+	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 
 	interface Props {
 		data: { station: FormattedStation };
@@ -18,18 +19,20 @@
 	let refreshInterval = $state(defaultRefreshInterval);
 
 	onMount(() => {
-		const storedInterval = localStorage.getItem('velocite-refresh-interval');
-		if (storedInterval !== null) {
-			const parsed = Number(storedInterval);
-			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
-		}
+		const storedInterval = Number(
+			LocalStorageHelper.getValue(
+				LocalStorageKey.VELOCITE_REFRESH_INTERVAL,
+				String(defaultRefreshInterval)
+			)
+		);
+		if (refreshIntervals.includes(storedInterval)) refreshInterval = storedInterval;
 	});
 
 	$effect(() => {
 		if (!browser) return;
 
 		// Update refresh interval
-		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_REFRESH_INTERVAL, String(refreshInterval));
 	});
 
 	$effect(() => {

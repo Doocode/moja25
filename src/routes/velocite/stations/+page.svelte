@@ -4,6 +4,7 @@
 	import { sortStations } from '$lib/core/helper/velocite/sort';
 	import { filterStations } from '$lib/core/helper/velocite/filter';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import { StationRow } from '../shared/ui/list-station';
@@ -25,28 +26,30 @@
 	let refreshInterval = $state(defaultRefreshInterval);
 
 	onMount(() => {
-		const storedInterval = localStorage.getItem('velocite-refresh-interval');
-		if (storedInterval !== null) {
-			const parsed = Number(storedInterval);
-			if (refreshIntervals.includes(parsed)) refreshInterval = parsed;
-		}
+		const storedInterval = Number(
+			LocalStorageHelper.getValue(
+				LocalStorageKey.VELOCITE_REFRESH_INTERVAL,
+				String(defaultRefreshInterval)
+			)
+		);
+		if (refreshIntervals.includes(storedInterval)) refreshInterval = storedInterval;
 
-		const storedSortField = localStorage.getItem('velocite-sort-field');
-		if (storedSortField !== null) {
-			sortField = storedSortField as VelociteSortField;
-		}
+		const storedSortField = LocalStorageHelper.getValue(LocalStorageKey.VELOCITE_SORT_FIELD, '');
+		const validSortField = Object.values(VelociteSortField).find(
+			(field) => field === storedSortField
+		);
+		if (validSortField) sortField = validSortField;
 
-		const storedSortAscending = localStorage.getItem('velocite-sort-ascending');
-		if (storedSortAscending !== null) {
-			sortAscending = storedSortAscending === 'true';
-		}
+		const storedSortOrder = LocalStorageHelper.getValue(LocalStorageKey.VELOCITE_SORT_ORDER, '');
+		if (storedSortOrder === 'true') sortAscending = true;
+		if (storedSortOrder === 'false') sortAscending = false;
 	});
 
 	$effect(() => {
 		if (!browser) return;
-		localStorage.setItem('velocite-refresh-interval', String(refreshInterval));
-		localStorage.setItem('velocite-sort-field', sortField);
-		localStorage.setItem('velocite-sort-ascending', String(sortAscending));
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_REFRESH_INTERVAL, String(refreshInterval));
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_SORT_FIELD, sortField);
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_SORT_ORDER, String(sortAscending));
 	});
 
 	$effect(() => {
