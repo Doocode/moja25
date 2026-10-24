@@ -11,6 +11,9 @@
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 	import ListStations from './ListStations.svelte';
+	import { Button } from '$shadcn/button';
+	import { X } from '@lucide/svelte';
+	import { scale } from 'svelte/transition';
 
 	interface Props {
 		data: {
@@ -25,6 +28,7 @@
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
 	let refreshInterval = $state(defaultRefreshInterval);
+	let displaySortingPane = $state(false);
 
 	onMount(() => {
 		const storedInterval = Number(
@@ -34,6 +38,12 @@
 			)
 		);
 		if (refreshIntervals.includes(storedInterval)) refreshInterval = storedInterval;
+
+		const storedDisplaySortingPane = LocalStorageHelper.getValue(
+			LocalStorageKey.VELOCITE_DISPLAY_SORTING_PANE,
+			'false'
+		);
+		displaySortingPane = storedDisplaySortingPane === 'true';
 
 		const storedSortField = LocalStorageHelper.getValue(LocalStorageKey.VELOCITE_SORT_FIELD, '');
 		const validSortField = Object.values(VelociteSortField).find(
@@ -51,6 +61,10 @@
 		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_REFRESH_INTERVAL, String(refreshInterval));
 		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_SORT_FIELD, sortField);
 		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_SORT_ORDER, String(sortAscending));
+		LocalStorageHelper.setValue(
+			LocalStorageKey.VELOCITE_DISPLAY_SORTING_PANE,
+			String(displaySortingPane)
+		);
 	});
 
 	$effect(() => {
@@ -68,6 +82,14 @@
 
 	const filteredStations = $derived(filterStations(stations, queryInput));
 	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
+
+	function onTriggerDrawer() {
+		if (window.innerWidth >= 1280) {
+			displaySortingPane = !displaySortingPane;
+			return false;
+		}
+		return true;
+	}
 </script>
 
 <svelte:head>
@@ -76,11 +98,28 @@
 
 <Header bind:queryInput />
 
-<main class="m-auto grid max-w-lg gap-8 p-4 xl:max-w-5xl xl:grid-cols-2">
-	<div class="hidden content-start xl:grid">
-		<h2 class="heading-font mx-4 mb-6 text-lg font-bold">Options de tri</h2>
-		<SortForm bind:sortField />
-	</div>
+<main
+	class={{
+		'm-auto grid max-w-lg gap-8 p-4': true,
+		'xl:max-w-5xl xl:grid-cols-2': displaySortingPane
+	}}
+>
+	{#if displaySortingPane}
+		<div class="hidden content-start xl:grid">
+			<div class="relative grid rounded-2xl border border-input bg-card p-2" in:scale>
+				<h2 class="heading-font mx-4 mt-2 mb-6 text-lg font-bold">Options de tri</h2>
+				<Button
+					variant="secondary"
+					class="absolute top-3 right-3"
+					size="icon"
+					onclick={() => (displaySortingPane = false)}
+				>
+					<X class="size-5" />
+				</Button>
+				<SortForm bind:sortField />
+			</div>
+		</div>
+	{/if}
 	<div class="grid content-start">
 		<div class="mb-4 flex items-center justify-between">
 			<CountItems
@@ -90,7 +129,7 @@
 			/>
 
 			<div class="flex gap-1">
-				<SortButtonGroup bind:sortField bind:sortAscending />
+				<SortButtonGroup bind:sortField bind:sortAscending {onTriggerDrawer} />
 				<RefreshDropdown bind:interval={refreshInterval} />
 			</div>
 		</div>
