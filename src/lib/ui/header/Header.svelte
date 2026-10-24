@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
 	import DarkModeToggle from './DarkModeToggle.svelte';
 	import TopNavBar from './TopNavBar.svelte';
 
@@ -23,13 +22,13 @@
 	}}
 >
 	<div class="container mx-auto flex items-center justify-between gap-4 p-2 pl-4">
-		<h1 class="text-2xl font-bold">
+		<h1 class="flex-1 text-2xl font-bold">
 			<a href={resolve('/')} class="hover:text-primary hover:underline">Moja25</a>
 		</h1>
 
 		<TopNavBar />
 
-		<div class="flex items-center gap-0">
+		<div class="flex flex-1 items-center justify-end gap-0">
 			<DarkModeToggle />
 		</div>
 	</div>

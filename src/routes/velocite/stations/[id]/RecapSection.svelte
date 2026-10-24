@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { Ban, Bike, Layers, SquareParking, Zap } from '@lucide/svelte';
+	import { Ban, Bike, SquareParking, Zap } from '@lucide/svelte';
 	import RecapTile from './RecapTile.svelte';
 	import { cn } from '$lib/utils.js';
 
