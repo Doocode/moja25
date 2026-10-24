@@ -23,7 +23,10 @@
 	class:unavailable-stands={type === 'unavailable-stands' && count > 0}
 	class:empty={count <= 0}
 >
-	<div class="stripe relative z-10 h-2 bg-(--gradient-end)" class:bg-red-400={count <= 0}></div>
+	<div
+		class="stripe relative z-10 h-1.5 bg-(--gradient-end) sm:h-2"
+		class:bg-red-400={count <= 0}
+	></div>
 	<div class="flex flex-col items-start justify-between gap-2 p-3 sm:p-4">
 		<div class="-mt-4 flex flex-col md:-mt-10">
 			<span class="text-4xl font-bold md:text-6xl">{count}</span>

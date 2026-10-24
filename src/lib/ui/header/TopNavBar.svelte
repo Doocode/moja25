@@ -11,7 +11,7 @@
 			<a
 				href={resolve(href as Parameters<typeof resolve>[0])}
 				class={{
-					'flex items-center gap-1 rounded-lg px-3.25 py-2.5 hover:bg-foreground/25': true,
+					'flex items-center gap-1 rounded-lg px-3.25 py-2.5 hover:bg-foreground/25 hover:text-foreground': true,
 					'bg-primary text-primary-foreground': isCurrent(href)
 				}}
 			>
