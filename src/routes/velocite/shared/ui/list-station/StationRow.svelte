@@ -9,9 +9,10 @@
 	interface Props {
 		station: FormattedStation;
 		sortField?: VelociteSortField;
+		showAddress?: boolean;
 	}
 
-	let { station, sortField = VelociteSortField.NAME }: Props = $props();
+	let { station, sortField = VelociteSortField.NAME, showAddress = false }: Props = $props();
 
 	const isOpen = $derived(station.status === 'OPEN');
 	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
@@ -65,9 +66,18 @@
 	}}
 >
 	<!-- Left side : icon + station name -->
-	<div class="flex min-w-0 flex-1 items-center gap-3">
+	<div
+		class="flex min-w-0 flex-1 gap-3"
+		class:items-center={!showAddress}
+		class:items-start={showAddress}
+	>
 		<StationIcon {station} {sortField} {countValue} />
-		<span class="truncate font-medium">{station.formattedName}</span>
+		<div class="grid">
+			<span class="truncate font-medium">{station.formattedName}</span>
+			{#if showAddress}
+				<span class="truncate text-xs text-foreground/60">{station.address}</span>
+			{/if}
+		</div>
 	</div>
 
 	<!-- Right side : contextual information (count or status) -->

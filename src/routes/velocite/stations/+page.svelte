@@ -97,8 +97,8 @@
 		</div>
 
 		<div class="mb:pb-0 grid gap-0.5 pb-18">
-			{#each sortedStations as station (station.number)}
-				<StationRow {station} {sortField} />
+			{#each sortedStations as station, ii (station.number)}
+				<StationRow {station} {sortField} showAddress={ii === 0} />
 			{:else}
 				<EmptyResult bind:queryInput />
 			{/each}
