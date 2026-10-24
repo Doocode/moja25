@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Header from './Header.svelte';
-	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
+	import CountItems from './CountItems.svelte';
+	import EmptyResult from './EmptyResult.svelte';
 	import { StationRow } from '../shared/ui/list-station';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { sortStations } from '$lib/core/helper/velocite/sort';
@@ -11,7 +12,6 @@
 	import { SortButtonGroup, RefreshDropdown, SortForm } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
-	import CountItems from './CountItems.svelte';
 
 	interface Props {
 		data: {
@@ -77,7 +77,7 @@
 
 <Header bind:queryInput />
 
-<main class="m-auto grid max-w-lg gap-8 p-4 xl:max-w-6xl xl:grid-cols-2">
+<main class="m-auto grid max-w-lg gap-8 p-4 xl:max-w-5xl xl:grid-cols-2">
 	<div class="hidden content-start xl:grid">
 		<h2 class="heading-font mx-4 mb-4 text-lg font-bold">Options de tri</h2>
 		<SortForm bind:sortField />
@@ -100,15 +100,7 @@
 			{#each sortedStations as station (station.number)}
 				<StationRow {station} {sortField} />
 			{:else}
-				<div class="flex flex-col items-center gap-3 py-16 text-muted-foreground text-center">
-					<SearchX class="size-30" />
-					<div>
-						<p class="mb-2 font-medium">Oups ! Nous n’avons rien trouvé</p>
-						<p class="text-sm">
-							Aucun résultat pour <span class="font-medium text-foreground">"{queryInput}"</span>
-						</p>
-					</div>
-				</div>
+				<EmptyResult bind:queryInput />
 			{/each}
 		</div>
 	</div>
