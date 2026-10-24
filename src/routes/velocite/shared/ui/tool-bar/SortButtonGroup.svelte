@@ -31,7 +31,7 @@
 	<!-- Bouton 1 : tri actuel → ouvre le drawer -->
 	<Button variant="outline" class="gap-2" onclick={() => (drawerOpen = true)}>
 		<ArrowUpDown class="size-5" />
-		<span>Trier par</span>
+		<span class="hidden sm:inline">Trier par</span>
 	</Button>
 
 	<!-- Bouton 2 : sens du tri -->

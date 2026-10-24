@@ -13,7 +13,11 @@
 
 <div class="relative">
 	<Search
-		class="pointer-events-none absolute top-1/2 left-4 size-5.5 -translate-y-1/2 text-muted-foreground"
+		class={{
+			'pointer-events-none absolute top-1/2 left-4 size-5.5 -translate-y-1/2': true,
+			'text-foreground': value != null && value.length > 0,
+			'text-muted-foreground': value == null || value.length === 0
+		}}
 	/>
 	<input
 		type="text"

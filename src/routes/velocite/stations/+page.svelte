@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { sortStations } from '$lib/core/helper/velocite/sort';
-	import { filterStations } from '$lib/core/helper/velocite/filter';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import Header from './Header.svelte';
 	import { SearchX } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 	import { StationRow } from '../shared/ui/list-station';
+	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import { sortStations } from '$lib/core/helper/velocite/sort';
+	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { filterStations } from '$lib/core/helper/velocite/filter';
+	import { SortButtonGroup, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { SearchBar, SortButtonGroup, RefreshDropdown } from '../shared/ui/tool-bar';
+	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 
 	interface Props {
 		data: {
@@ -20,7 +21,7 @@
 	let { data }: Props = $props();
 
 	let stations = $derived<FormattedStation[]>(data.stations);
-	let searchQuery = $state('');
+	let queryInput = $state('');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
 	let refreshInterval = $state(defaultRefreshInterval);
@@ -65,7 +66,7 @@
 		}
 	}
 
-	const filteredStations = $derived(filterStations(stations, searchQuery));
+	const filteredStations = $derived(filterStations(stations, queryInput));
 	const sortedStations = $derived(sortStations(filteredStations, sortField, sortAscending));
 </script>
 
@@ -73,20 +74,24 @@
 	<title>Liste des stations Vélocité</title>
 </svelte:head>
 
-<main class="m-auto max-w-lg p-4">
-	<header class="mb-1 flex items-center justify-between">
-		<h1 class="text-3xl font-bold">Vélocité</h1>
-		<RefreshDropdown bind:interval={refreshInterval} />
-	</header>
+<Header bind:queryInput />
 
+<main class="m-auto max-w-lg p-4">
 	<div class="mb-4 flex items-center justify-between">
-		<p>{filteredStations.length} stations</p>
+		{#if queryInput.length > 0}
+			<p class="text-sm">
+				<strong>{filteredStations.length} stations</strong>
+				<span class="text-muted-foreground">sur {stations.length}</span>
+			</p>
+		{:else}
+			<p class="text-sm text-muted-foreground">{filteredStations.length} stations</p>
+		{/if}
+
 		<div class="flex gap-1">
 			<SortButtonGroup bind:sortField bind:sortAscending />
+			<RefreshDropdown bind:interval={refreshInterval} />
 		</div>
 	</div>
-
-	<SearchBar class="mb-1 rounded-lg" bind:value={searchQuery} />
 
 	<div class="mb:pb-0 grid gap-0.5 pb-18">
 		{#each sortedStations as station (station.number)}
@@ -97,7 +102,7 @@
 				<div>
 					<p class="mb-2 font-medium">Oups ! Nous n’avons rien trouvé</p>
 					<p class="text-sm">
-						Aucun résultat pour <span class="font-medium text-foreground">"{searchQuery}"</span>
+						Aucun résultat pour <span class="font-medium text-foreground">"{queryInput}"</span>
 					</p>
 				</div>
 			</div>
