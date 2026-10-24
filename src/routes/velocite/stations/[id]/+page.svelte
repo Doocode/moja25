@@ -9,6 +9,7 @@
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import ProgressCells from './ProgressCells.svelte';
 
 	interface Props {
 		data: { station: FormattedStation };
@@ -61,6 +62,7 @@
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18 lg:-mt-53 xl:-mt-50">
 	<RecapSection {station} class="mb-4" />
 	<Indicators {station} class="mt-6 mb-3 sm:mt-8" />
-	<StationAvailabilities {station} class="mb-3" />
+	<ProgressCells {station} />
+	<StationAvailabilities {station} class="mt-2 mb-3" />
 	<StationAddress {station} />
 </main>
