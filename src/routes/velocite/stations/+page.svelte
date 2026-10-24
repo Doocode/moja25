@@ -79,7 +79,7 @@
 
 <main class="m-auto grid max-w-lg gap-8 p-4 xl:max-w-5xl xl:grid-cols-2">
 	<div class="hidden content-start xl:grid">
-		<h2 class="heading-font mx-4 mb-4 text-lg font-bold">Options de tri</h2>
+		<h2 class="heading-font mx-4 mb-6 text-lg font-bold">Options de tri</h2>
 		<SortForm bind:sortField />
 	</div>
 	<div class="grid content-start">
