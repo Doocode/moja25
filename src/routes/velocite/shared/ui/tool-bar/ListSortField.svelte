@@ -25,7 +25,7 @@
 				onclick={() => onSelect(field)}
 			>
 				<Icon class="size-5 shrink-0 {isSelected ? 'text-primary' : 'text-muted-foreground'}" />
-				<span class="flex-1 {isSelected ? 'font-medium text-primary' : ''}">{label}</span>
+				<span class="flex-1 text-sm {isSelected ? 'font-medium text-primary' : ''}">{label}</span>
 				{#if isSelected}
 					<Check class="size-4 text-primary" />
 				{/if}

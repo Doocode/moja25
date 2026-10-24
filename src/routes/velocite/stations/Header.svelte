@@ -10,7 +10,7 @@
 	let { queryInput = $bindable('') }: Props = $props();
 </script>
 
-<header class="bg-[#f59bd7] dark:bg-[#bb1985]">
+<header class="border-b border-[#00000077] bg-[#f59bd7] dark:border-[#ffffff77] dark:bg-[#bb1985]">
 	<AnimatedGridBg spacing="46px">
 		<div class="container m-auto max-w-lg p-4 md:py-8 lg:py-10">
 			<div class="icons mb-4 flex gap-2 text-white sm:mb-8">
@@ -19,7 +19,9 @@
 				<TextSearch class="size-20 lg:size-25" stroke-width={1} />
 			</div>
 
-			<h1 class="heading-font text-2xl font-bold text-balance text-white lg:text-2xl">
+			<h1
+				class="heading-font text-2xl font-bold text-balance text-white lg:text-2xl xl:mb-4 xl:text-4xl xl:font-light"
+			>
 				Rechercher une station Vélocité
 			</h1>
 			<p class="mb-4 text-sm text-balance text-white">
