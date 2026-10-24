@@ -3,8 +3,6 @@
 	import Header from './Header.svelte';
 	import { browser } from '$app/environment';
 	import CountItems from './CountItems.svelte';
-	import EmptyResult from './EmptyResult.svelte';
-	import { StationRow } from '../shared/ui/list-station';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { sortStations } from '$lib/core/helper/velocite/sort';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
@@ -12,6 +10,7 @@
 	import { SortButtonGroup, RefreshDropdown, SortForm } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import ListStations from './ListStations.svelte';
 
 	interface Props {
 		data: {
@@ -96,12 +95,6 @@
 			</div>
 		</div>
 
-		<div class="mb:pb-0 grid gap-0.5 pb-18">
-			{#each sortedStations as station, ii (station.number)}
-				<StationRow {station} {sortField} showAddress={ii === 0} />
-			{:else}
-				<EmptyResult bind:queryInput />
-			{/each}
-		</div>
+		<ListStations stations={sortedStations} {sortField} bind:queryInput />
 	</div>
 </main>
