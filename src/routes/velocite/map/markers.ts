@@ -47,9 +47,9 @@ export function getStatusValue(station: FormattedStation, field: StatusFilter): 
 
 export function getStatusIcon(field: StatusFilter, active: boolean): string {
 	if (field === VelociteSortField.BONUS) return active ? '★' : '✕';
-	if (field === VelociteSortField.BANKING) return active ? '💳' : '✕';
+	if (field === VelociteSortField.BANKING) return active ? 'CB' : '✕';
 	if (field === VelociteSortField.OPEN) return active ? '✓' : '✕';
-	return active ? '📶' : '✕';
+	return active ? '✓' : '✕';
 }
 
 export function getCountColorClass(value: number, selectedFilter: VelociteSortField): string {

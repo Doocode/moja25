@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { Ban, Bike, SquareParking, Zap } from '@lucide/svelte';
+	import { Bike, SquareParking, Zap } from '@lucide/svelte';
 	import RecapTile from './RecapTile.svelte';
 	import { cn } from '$lib/utils.js';
 
@@ -12,14 +12,7 @@
 	let { station, class: className = '' }: Props = $props();
 </script>
 
-<main
-	class={cn(
-		'm-auto grid max-w-156 gap-1 rounded-[2rem] bg-neutral-100/30 backdrop-blur-2xl lg:gap-2 lg:border lg:border-card lg:p-4 lg:shadow-2xl dark:bg-neutral-900/30 lg:dark:border-input lg:dark:shadow-background',
-		className,
-		station.unavailableStands <= 0 && 'grid-cols-3',
-		station.unavailableStands > 0 && 'grid-cols-4'
-	)}
->
+<main class={cn('m-auto grid max-w-130 grid-cols-3 gap-0.5 lg:gap-1', className)}>
 	<RecapTile
 		title="Vélos mécaniques"
 		count={station.totalStands.availabilities.mechanicalBikes}
@@ -38,12 +31,4 @@
 		icon={SquareParking}
 		type="available-stands"
 	/>
-	{#if station.unavailableStands > 0}
-		<RecapTile
-			title="Places non disponibles"
-			count={station.unavailableStands}
-			icon={Ban}
-			type="unavailable-stands"
-		/>
-	{/if}
 </main>

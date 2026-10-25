@@ -1,15 +1,5 @@
 <script lang="ts">
-	import {
-		Ban,
-		Bike,
-		Check,
-		CreditCard,
-		SquareParking,
-		Star,
-		TriangleAlert,
-		Wifi,
-		Zap
-	} from '@lucide/svelte';
+	import { Ban, Bike, Check, CreditCard, SquareParking, Star, Wifi, Zap } from '@lucide/svelte';
 	import StationCounter from './StationCounter.svelte';
 	import StationStatus from './StationStatus.svelte';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
@@ -74,9 +64,9 @@
 		/>
 	{:else if sortField === VelociteSortField.CONNECTED}
 		<StationStatus
-			enabled={station.connected}
-			icon={station.connected ? Wifi : Ban}
-			text={station.connected ? 'Connecté' : 'Hors-ligne'}
+			enabled={connected}
+			icon={connected ? Wifi : Ban}
+			text={connected ? 'Connecté' : 'Hors-ligne'}
 			negativeClass="text-red-500"
 		/>
 	{/if}

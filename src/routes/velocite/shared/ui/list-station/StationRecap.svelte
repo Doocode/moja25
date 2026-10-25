@@ -12,7 +12,6 @@
 
 	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
 	const electricalBikes = $derived(station.mainStands.availabilities.electricalBikes);
-	const totalBikes = $derived(station.mainStands.availabilities.bikes);
 	const availableStands = $derived(station.mainStands.availabilities.stands);
 	const unavailableStands = $derived(station.unavailableStands);
 	const isOpen = $derived(station.status === 'OPEN');
