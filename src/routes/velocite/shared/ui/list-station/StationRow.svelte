@@ -5,14 +5,21 @@
 	import { StationColorStatus, getStationColorStatus } from '../../core/sort-config';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';
+	import StationRecap from './StationRecap.svelte';
 
 	interface Props {
 		station: FormattedStation;
 		sortField?: VelociteSortField;
 		showAddress?: boolean;
+		showRecap?: boolean;
 	}
 
-	let { station, sortField = VelociteSortField.NAME, showAddress = false }: Props = $props();
+	let {
+		station,
+		sortField = VelociteSortField.NAME,
+		showAddress = false,
+		showRecap = false
+	}: Props = $props();
 
 	const isOpen = $derived(station.status === 'OPEN');
 	const mechanicalBikes = $derived(station.mainStands.availabilities.mechanicalBikes);
@@ -82,4 +89,10 @@
 
 	<!-- Right side : contextual information (count or status) -->
 	<StationContext {station} {sortField} />
+
+	{#if showRecap}
+		<div class="gerg col-span-2">
+			<StationRecap {station} />
+		</div>
+	{/if}
 </a>

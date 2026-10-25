@@ -39,11 +39,11 @@
 	<!-- Station list -->
 	{#if !limitEnabled}
 		{#each stations as station, ii (station.number)}
-			<StationRow {station} {sortField} showAddress={ii === 0} />
+			<StationRow {station} {sortField} showAddress={ii === 0} showRecap={ii === 0} />
 		{/each}
 	{:else}
 		{#each stations.slice(0, currentLimit) as station, ii (station.number)}
-			<StationRow {station} {sortField} showAddress={ii === 0} />
+			<StationRow {station} {sortField} showAddress={ii === 0} showRecap={ii === 0} />
 		{/each}
 	{/if}
 
