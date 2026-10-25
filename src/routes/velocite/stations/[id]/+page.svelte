@@ -60,7 +60,9 @@
 <StationHeader {station} bind:refreshInterval />
 
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18">
-	<div class="recap relative m-auto grid max-w-130 lg:-mt-50 lg:mr-0 xl:mx-auto">
+	<div
+		class="recap relative m-auto grid max-w-130 border-[#000000cc] lg:-mt-61 lg:mr-0 lg:rounded-4xl lg:border-t lg:bg-background lg:p-4 lg:pb-0 xl:mx-auto dark:lg:border-[#ffffffaa]"
+	>
 		<RecapSection {station} class="mb-4" />
 		<ProgressCells {station} />
 	</div>
@@ -68,3 +70,35 @@
 	<StationAvailabilities {station} class="mt-2 mb-3" />
 	<StationAddress {station} />
 </main>
+
+<style>
+	.recap {
+		--corner-size: 30px;
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			background: var(--background);
+			width: var(--corner-size);
+			height: var(--corner-size);
+			top: 197px;
+		}
+
+		&::before {
+			left: calc(-1 * var(--corner-size));
+			mask-image: radial-gradient(
+				circle var(--corner-size) at top left,
+				transparent var(--corner-size),
+				black calc(var(--corner-size) + 0.5px)
+			);
+		}
+		&::after {
+			right: calc(-1 * var(--corner-size));
+			mask-image: radial-gradient(
+				circle var(--corner-size) at top right,
+				transparent var(--corner-size),
+				black calc(var(--corner-size) + 0.5px)
+			);
+		}
+	}
+</style>
