@@ -60,9 +60,11 @@
 <StationHeader {station} bind:refreshInterval />
 
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18">
-	<RecapSection {station} class="mb-4" />
+	<div class="recap relative m-auto grid max-w-130 lg:-mt-50 lg:mr-0 xl:mx-auto">
+		<RecapSection {station} class="mb-4" />
+		<ProgressCells {station} />
+	</div>
 	<Indicators {station} class="mt-6 mb-3 sm:mt-8" />
-	<ProgressCells {station} />
 	<StationAvailabilities {station} class="mt-2 mb-3" />
 	<StationAddress {station} />
 </main>

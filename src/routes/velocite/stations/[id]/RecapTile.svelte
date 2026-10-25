@@ -13,7 +13,7 @@
 
 <main
 	class={{
-		'_md:h-48 relative flex aspect-3/4 flex-col gap-2 overflow-clip rounded-xl sm:rounded-2xl': true,
+		'relative flex aspect-3/4 flex-col gap-2 overflow-clip rounded-xl sm:rounded-2xl': true,
 		'text-red-400': count <= 0,
 		'text-white': count > 0
 	}}

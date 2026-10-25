@@ -12,7 +12,7 @@
 	let { station, class: className = '' }: Props = $props();
 </script>
 
-<main class={cn('m-auto grid max-w-130 grid-cols-3 gap-0.5 lg:gap-1', className)}>
+<main class={cn('grid w-full max-w-130 grid-cols-3 gap-0.5 lg:gap-1', className)}>
 	<RecapTile
 		title="Vélos mécaniques"
 		count={station.totalStands.availabilities.mechanicalBikes}

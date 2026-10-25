@@ -42,27 +42,22 @@
 
 <AnimatedGridBg
 	class="bg-linear-to-b from-[#91bdff] to-[#589bff] dark:from-[#0e3877] dark:to-[#038de4]"
-	spacing="55px"
+	spacing="50px"
 	strokeWidth="3px"
 >
-	<header class="border-b border-[#00000077] dark:border-[#ffffff77]">
-		<div class="container mx-auto p-4">
-			<Button
-				variant="default"
-				size="icon"
-				href={resolve('/velocite/stations')}
-				title="Voir la liste de tous les stations"
-				class="rounded-full p-5"
-			>
-				<ArrowLeft class="size-6" />
-				<span class="sr-only">Liste des stations</span>
-			</Button>
-
-			<div class="flex items-end justify-between gap-3">
-				<div class="max-w-40">
-					<p class="text-8xl font-thin" title="Numéro de la station">{station.number}</p>
-					<h1 class="text-2xl leading-tight font-bold">{station.formattedName}</h1>
-				</div>
+	<header class="grid border-b border-[#00000077] dark:border-[#ffffff77]">
+		<div class="container mx-auto grid max-w-300">
+			<div class="flex justify-between gap-4 p-4">
+				<Button
+					variant="default"
+					size="icon"
+					href={resolve('/velocite/stations')}
+					title="Voir la liste de tous les stations"
+					class="rounded-full p-5"
+				>
+					<ArrowLeft class="size-6" />
+					<span class="sr-only">Liste des stations</span>
+				</Button>
 
 				<div class="flex max-w-40 justify-end gap-2">
 					<!-- TODO: Actions (add to bookmarks, share, open in map) -->
@@ -71,6 +66,17 @@
 					{/if}
 
 					<RefreshDropdown size="lg" bind:interval={refreshInterval} />
+				</div>
+			</div>
+
+			<div class="flex flex-wrap p-4">
+				<div class="grid place-content-end justify-start sm:w-75 md:h-40">
+					<h1 class="text-2xl leading-tight font-bold sm:text-3xl md:text-5xl md:font-light">
+						{station.formattedName}
+					</h1>
+					{#if station.address !== null && station.address !== ''}
+						<p class="text-xs">{station.address}</p>
+					{/if}
 				</div>
 			</div>
 		</div>
