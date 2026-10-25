@@ -40,12 +40,9 @@
 		</div>
 	{/snippet}
 
-	{#if totalBikes == 0}
-		{@render recap(Bike, 'vélo disponible', totalBikes)}
-	{:else}
-		{@render recap(Bike, 'vélos mécaniques disponibles', mechanicalBikes)}
-		{@render recap(Zap, 'vélos électriques disponibles', electricalBikes)}
-	{/if}
+	{@render recap(Bike, 'vélos mécaniques disponibles', mechanicalBikes)}
+	{@render recap(Zap, 'vélos électriques disponibles', electricalBikes)}
+
 	<span class="flex-1"></span>
 	{@render recap(SquareParking, 'places disponibles', availableStands)}
 	{#if unavailableStands > 0}

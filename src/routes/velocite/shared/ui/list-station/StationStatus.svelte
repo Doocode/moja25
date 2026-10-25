@@ -29,7 +29,9 @@
 		{@const Icon = icon}
 		<Icon class="mx-1 size-5!" />
 	{/if}
-	<span class="text-sm font-medium">
-		{text}
-	</span>
+	{#if text.length > 0}
+		<span class="text-sm font-medium">
+			{text}
+		</span>
+	{/if}
 </div>

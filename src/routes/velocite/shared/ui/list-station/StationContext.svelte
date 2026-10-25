@@ -64,11 +64,7 @@
 			positiveClass="text-yellow-500"
 		/>
 	{:else if sortField === VelociteSortField.BANKING}
-		<StationStatus
-			enabled={station.banking}
-			icon={station.banking ? CreditCard : Ban}
-			text={station.banking ? 'CB' : 'Sans CB'}
-		/>
+		<StationStatus enabled={station.banking} icon={station.banking ? CreditCard : Ban} text="" />
 	{:else if sortField === VelociteSortField.OPEN}
 		<StationStatus
 			enabled={isOpen}

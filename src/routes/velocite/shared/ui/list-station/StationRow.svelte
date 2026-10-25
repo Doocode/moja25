@@ -64,7 +64,7 @@
 			(isCountSort && getStationColorStatus(countValue, sortField) === StationColorStatus.Danger) ||
 			(sortField === VelociteSortField.OPEN && !isOpen) ||
 			(sortField === VelociteSortField.CONNECTED && !station.connected),
-		'hover:bg-primary/30 active:bg-primary/40':
+		'bg-secondary/70 hover:bg-primary/30 active:bg-primary/40':
 			(sortField === VelociteSortField.BONUS && !station.bonus) ||
 			(sortField === VelociteSortField.BANKING && !station.banking) ||
 			[VelociteSortField.NAME, VelociteSortField.NUMBER, VelociteSortField.CAPACITY].includes(
