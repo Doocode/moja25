@@ -11,7 +11,10 @@
 </script>
 
 <div
-	class={cn('inline-flex min-w-10 justify-center rounded-sm px-2 py-1 font-bold', className)}
+	class={cn(
+		'inline-flex min-w-10 items-center justify-center rounded-sm px-2 py-1 font-bold',
+		className
+	)}
 	style:background={`#${ligne.couleurFond}`}
 	style:color={`#${ligne.couleurTexte}`}
 >
