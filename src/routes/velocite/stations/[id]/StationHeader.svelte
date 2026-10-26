@@ -46,7 +46,7 @@
 	strokeWidth="3px"
 >
 	<header class="grid border-b border-[#00000077] dark:border-[#ffffff77]">
-		<div class="container mx-auto grid max-w-300">
+		<div class="container mx-auto grid max-w-7xl">
 			<div class="flex justify-between gap-4 p-4">
 				<Button
 					variant="default"
@@ -71,11 +71,13 @@
 
 			<div class="flex flex-wrap p-4">
 				<div class="grid place-content-end justify-start sm:w-75 md:h-40">
-					<h1 class="text-2xl leading-tight font-bold sm:text-3xl md:text-5xl md:font-light">
+					<h1
+						class="text-2xl leading-tight font-bold text-balance sm:text-3xl md:text-5xl md:font-light"
+					>
 						{station.formattedName}
 					</h1>
 					{#if station.address !== null && station.address !== ''}
-						<p class="text-xs">{station.address}</p>
+						<p class="text-xs text-balance">{station.address}</p>
 					{/if}
 				</div>
 			</div>
