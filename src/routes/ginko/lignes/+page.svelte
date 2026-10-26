@@ -13,6 +13,7 @@
 	let { data }: Props = $props();
 
 	let lignes = $derived(data.lignes);
+	let viewmode = $state('grid');
 
 	interface GroupName {
 		icon: Component;
@@ -44,7 +45,7 @@
 	);
 </script>
 
-<main class="container m-auto max-w-lg p-4">
+<main class="container m-auto p-4" class:max-w-lg={viewmode === 'list'}>
 	<h1 class="mb-4 text-2xl font-bold">Lignes</h1>
 
 	<div class="grid gap-8">
@@ -53,6 +54,7 @@
 				icon={typologies[Number(typologie)].icon}
 				label={typologies[Number(typologie)].label ?? 'Autre'}
 				items={items ?? []}
+				viewmode="grid"
 			/>
 		{/each}
 	</div>

@@ -2,14 +2,16 @@
 	import type { Ligne } from '$core/dto/ginko';
 	import type { Component } from 'svelte';
 	import ListLignes from './ListLignes.svelte';
+	import GridLignes from './GridLignes.svelte';
 
 	interface Props {
 		icon?: Component;
 		label: string;
 		items: Ligne[];
+		viewmode?: 'list' | 'grid';
 	}
 
-	let { icon, label, items }: Props = $props();
+	let { icon, label, items, viewmode = 'list' }: Props = $props();
 </script>
 
 <section>
@@ -20,5 +22,10 @@
 		{/if}
 		<h2 class="text-lg font-semibold">{label}</h2>
 	</header>
-	<ListLignes {items} />
+
+	{#if viewmode === 'grid'}
+		<GridLignes {items} />
+	{:else if viewmode === 'list'}
+		<ListLignes {items} />
+	{/if}
 </section>
