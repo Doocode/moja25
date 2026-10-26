@@ -19,7 +19,7 @@
 			</a>
 		</h1>
 
-		<nav class="flex flex-2 gap-1">
+		<nav class="flex flex-2 gap-1 pr-4">
 			{#each mainLinks as { href, label, icon } (icon)}
 				{#if icon !== null}
 					{@const Icon = icon}
