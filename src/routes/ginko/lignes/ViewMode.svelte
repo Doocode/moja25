@@ -10,7 +10,7 @@
 	let { viewmode = $bindable('grid') }: Props = $props();
 </script>
 
-<ButtonGroup class="hidden sm:flex">
+<ButtonGroup>
 	<Button
 		class="size-auto p-3"
 		variant={viewmode === 'list' ? 'default' : 'secondary'}
