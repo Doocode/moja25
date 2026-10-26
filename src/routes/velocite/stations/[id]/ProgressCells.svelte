@@ -46,13 +46,13 @@
 </script>
 
 <div
-	class="grid grid-cols-[repeat(auto-fill,minmax(2rem,1fr))] gap-px"
+	class="grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-0.5"
 	role="img"
 	aria-label="Niveau d'occupation des bornes"
 >
 	{#each cells as cell, index (index)}
 		<div
-			class="flex aspect-square h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
+			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
 			class:unavailable={cell.color === '#e09303'}
 			style:background-color={cell.color ?? 'red'}
 			title={cell.label}

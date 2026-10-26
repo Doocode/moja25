@@ -42,7 +42,7 @@
 
 <AnimatedGridBg
 	class="bg-linear-to-b from-[#91bdff] to-[#589bff] dark:from-[#0e3877] dark:to-[#038de4]"
-	spacing="50px"
+	spacing="30px"
 	strokeWidth="3px"
 >
 	<header class="grid border-b border-[#00000077] dark:border-[#ffffff77]">
@@ -72,12 +72,12 @@
 			<div class="flex flex-wrap p-4">
 				<div class="grid place-content-end justify-start sm:w-75 md:h-40">
 					<h1
-						class="text-2xl leading-tight font-bold text-balance sm:text-3xl md:text-5xl md:font-light"
+						class="text-3xl leading-tight font-bold text-balance sm:text-4xl md:text-5xl md:font-light"
 					>
 						{station.formattedName}
 					</h1>
 					{#if station.address !== null && station.address !== ''}
-						<p class="text-xs text-balance">{station.address}</p>
+						<p class="mt-1 text-xs text-balance">{station.address}</p>
 					{/if}
 				</div>
 			</div>

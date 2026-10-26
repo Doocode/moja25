@@ -10,6 +10,7 @@
 	import { onMount } from 'svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 	import ProgressCells from './ProgressCells.svelte';
+	import UnavailableStandsMsg from './UnavailableStandsMsg.svelte';
 
 	interface Props {
 		data: { station: FormattedStation };
@@ -61,13 +62,23 @@
 
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18">
 	<div
-		class="recap relative m-auto grid max-w-130 border-[#000000cc] lg:-mt-61 lg:mr-0 lg:rounded-4xl lg:border-t lg:bg-background lg:p-4 lg:pb-0 xl:mx-auto dark:lg:border-[#ffffffaa]"
+		class="recap relative m-auto grid max-w-130 border-[#000000cc] lg:-mt-65 lg:mr-0 lg:max-w-138 lg:rounded-4xl lg:border-t lg:bg-background lg:p-4 lg:pb-0 xl:mx-auto dark:lg:border-[#ffffffaa]"
 	>
 		<RecapSection {station} class="mb-4" />
 		<ProgressCells {station} />
 	</div>
-	<Indicators {station} class="mt-6 mb-3 sm:mt-8" />
-	<StationAvailabilities {station} class="mt-2 mb-3" />
+	<Indicators {station} class="mt-6 mb-3 sm:my-10" />
+	<div
+		class={{
+			'grid items-start gap-1': true,
+			'sm:grid-cols-[300px_auto] sm:gap-8': station.unavailableStands > 0
+		}}
+	>
+		<StationAvailabilities {station} class="mt-2 mb-3" />
+		{#if station.unavailableStands > 0}
+			<UnavailableStandsMsg />
+		{/if}
+	</div>
 	<StationAddress {station} />
 </main>
 
@@ -81,7 +92,7 @@
 			background: var(--background);
 			width: var(--corner-size);
 			height: var(--corner-size);
-			top: 197px;
+			top: 213px;
 		}
 
 		&::before {
