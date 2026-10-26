@@ -46,7 +46,7 @@
 	strokeWidth="3px"
 >
 	<header class="grid border-b border-[#00000077] dark:border-[#ffffff77]">
-		<div class="container mx-auto grid max-w-7xl">
+		<div class="container mx-auto grid xl:max-w-7xl">
 			<div class="flex justify-between gap-4 p-4">
 				<Button
 					variant="default"

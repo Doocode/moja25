@@ -46,13 +46,14 @@
 </script>
 
 <div
-	class="grid grid-cols-[repeat(auto-fill,minmax(2rem,1fr))] gap-0.5"
+	class="grid grid-cols-[repeat(auto-fill,minmax(2rem,1fr))] gap-px"
 	role="img"
 	aria-label="Niveau d'occupation des bornes"
 >
 	{#each cells as cell, index (index)}
 		<div
-			class="flex h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
+			class="flex aspect-square h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
+			class:unavailable={cell.color === '#e09303'}
 			style:background-color={cell.color ?? 'red'}
 			title={cell.label}
 		>
@@ -60,3 +61,19 @@
 		</div>
 	{/each}
 </div>
+
+<style>
+	.unavailable {
+		--color1: #e09303;
+		--color2: #ad7101;
+		background: repeating-linear-gradient(
+			-45deg,
+			var(--color1),
+			var(--color1) 10px,
+			var(--color2) 10px,
+			var(--color2) 20px
+		);
+		background-position: center center;
+		background-attachment: fixed;
+	}
+</style>

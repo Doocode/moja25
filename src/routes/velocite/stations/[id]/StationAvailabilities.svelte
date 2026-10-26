@@ -26,6 +26,6 @@
 		icon={Ban}
 		label="Bornes indisponibles"
 		value={station.unavailableStands}
-		class="bg-[#e09303]"
+		class="bg-[#e09303] unavailable"
 	/>
 </div>
