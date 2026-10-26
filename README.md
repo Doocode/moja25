@@ -1,28 +1,23 @@
-# sv
+# SuperBus
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SuperBus (temporary name) is a mobile app designed to be an alternative to the official "Ginko Mobilités" app. It will provides real-time waiting times for bus and tram services.
 
-## Creating a project
+[![Screenshots of SuperBus](./static/assets/velocite-station_details.png)](./static/assets/velocite-station_details.png)
 
-If you're seeing this, you've probably already done this step. Congrats!
+**[WARNING] This project is still under development and many bugs remain unresolved. As this is a proof-of-concept project, the final result may be entirely different.**
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Features
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@0.15.3 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:vercel" --install npm moja25
-```
+- 🗺️ **Map view** to locate nearby station
+- 🚲 **Ginko Vélocité support**: view bike/stand availability in real-time
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
 ```sh
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 
 # or start the server and open the app in a new browser tab
@@ -36,7 +31,3 @@ To create a production version of your app:
 ```sh
 npm run build
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

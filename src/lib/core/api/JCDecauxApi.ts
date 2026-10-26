@@ -29,12 +29,12 @@ async function apiCall<T>(
 	return response.json() as Promise<T>;
 }
 
-// Récupère la liste des stations pour un contrat donné
+// Get all stations for a given contract
 export async function getStations(contract: string = DEFAULT_CONTRACT): Promise<Station[]> {
 	return apiCall<Station[]>('stations', { contract });
 }
 
-// Récupère les détails d'une station par son numéro
+// Get station details by its number
 export async function getStation(
 	stationNumber: number,
 	contract: string = DEFAULT_CONTRACT
