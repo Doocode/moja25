@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Ligne } from '$core/dto/ginko';
-	import BadgeLigne from './BadgeLigne.svelte';
+	import type { Component } from 'svelte';
+	import GroupLignes from './GroupLignes.svelte';
+	import { BusFront, Leaf, TramFront, Bus } from '@lucide/svelte';
 
 	interface Props {
 		data: {
@@ -12,15 +14,20 @@
 
 	let lignes = $derived(data.lignes);
 
-	const typologies: Record<number, string> = {
-		10: 'Tramway',
-		20: 'Lianes',
-		30: 'Lignes urbaines',
-		40: 'Lignes complémentaires',
-		50: 'Lignes périurbaines',
-		60: 'Lignes scolaires',
-		70: 'Services à la demande',
-		80: 'Autre'
+	interface GroupName {
+		icon: Component;
+		label: string;
+	}
+
+	const typologies: Record<number, GroupName> = {
+		10: { icon: TramFront, label: 'Tramway' },
+		20: { icon: Leaf, label: 'Lianes' },
+		30: { icon: BusFront, label: 'Lignes urbaines' },
+		40: { icon: BusFront, label: 'Lignes complémentaires' },
+		50: { icon: Bus, label: 'Lignes périurbaines' },
+		60: { icon: Bus, label: 'Lignes scolaires' },
+		70: { icon: Bus, label: 'Services à la demande' },
+		80: { icon: Bus, label: 'Autre' }
 	};
 
 	let groupes = $derived(
@@ -40,17 +47,13 @@
 <main class="container m-auto max-w-lg p-4">
 	<h1 class="mb-4 text-2xl font-bold">Lignes</h1>
 
-	{#each groupes as [typologie, items] (typologie)}
-		<section class="mb-6">
-			<h2 class="mb-2 text-lg font-semibold">{typologies[Number(typologie)] ?? 'Autre'}</h2>
-			<ul class="flex flex-col gap-2">
-				{#each items ?? [] as ligne (ligne.id)}
-					<li class="flex items-center gap-3">
-						<BadgeLigne {ligne} />
-						<span>{ligne.libellePublic}</span>
-					</li>
-				{/each}
-			</ul>
-		</section>
-	{/each}
+	<div class="grid gap-8">
+		{#each groupes as [typologie, items] (typologie)}
+			<GroupLignes
+				icon={typologies[Number(typologie)].icon}
+				label={typologies[Number(typologie)].label ?? 'Autre'}
+				items={items ?? []}
+			/>
+		{/each}
+	</div>
 </main>
