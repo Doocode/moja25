@@ -3,6 +3,7 @@
 	import type { Component } from 'svelte';
 	import GroupLignes from './GroupLignes.svelte';
 	import { BusFront, Leaf, TramFront, Bus } from '@lucide/svelte';
+	import ViewMode from './ViewMode.svelte';
 
 	interface Props {
 		data: {
@@ -13,7 +14,7 @@
 	let { data }: Props = $props();
 
 	let lignes = $derived(data.lignes);
-	let viewmode = $state('grid');
+	let viewmode: 'grid' | 'list' = $state('grid');
 
 	interface GroupName {
 		icon: Component;
@@ -45,8 +46,11 @@
 	);
 </script>
 
-<main class="container m-auto p-4" class:max-w-lg={viewmode === 'list'}>
-	<h1 class="mb-4 text-2xl font-bold">Lignes</h1>
+<main class="container m-auto p-4 transition-all duration-500" class:max-w-lg={viewmode === 'list'}>
+	<header class="mb-4 flex items-center justify-between">
+		<h1 class="text-2xl font-bold">Lignes</h1>
+		<ViewMode bind:viewmode />
+	</header>
 
 	<div class="grid gap-8">
 		{#each groupes as [typologie, items] (typologie)}
@@ -54,7 +58,7 @@
 				icon={typologies[Number(typologie)].icon}
 				label={typologies[Number(typologie)].label ?? 'Autre'}
 				items={items ?? []}
-				viewmode="grid"
+				{viewmode}
 			/>
 		{/each}
 	</div>
