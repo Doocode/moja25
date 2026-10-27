@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { Ligne } from '$core/dto/ginko';
-	import type { Component } from 'svelte';
-	import GroupLignes from './GroupLignes.svelte';
-	import { BusFront, Leaf, TramFront, Bus } from '@lucide/svelte';
+	import { typologies } from './typologies';
 	import ViewMode from './ViewMode.svelte';
+	import type { Ligne } from '$core/dto/ginko';
+	import GroupLignes from './GroupLignes.svelte';
 	import SearchBar from '../../velocite/shared/ui/tool-bar/SearchBar.svelte';
 
 	interface Props {
@@ -18,21 +17,8 @@
 	let viewmode: 'grid' | 'list' = $state('grid');
 	let queryInput = $state('');
 
-	interface GroupName {
-		icon: Component;
-		label: string;
-	}
-
-	const typologies: Record<number, GroupName> = {
-		10: { icon: TramFront, label: 'Tramway' },
-		20: { icon: Leaf, label: 'Lianes' },
-		30: { icon: BusFront, label: 'Lignes urbaines' },
-		40: { icon: BusFront, label: 'Lignes complémentaires' },
-		50: { icon: Bus, label: 'Lignes périurbaines' },
-		60: { icon: Bus, label: 'Lignes scolaires' },
-		70: { icon: Bus, label: 'Services à la demande' },
-		80: { icon: Bus, label: 'Autre' }
-	};
+	const getTypologie = (value: number) =>
+		typologies.find((t) => t.value === value) ?? typologies[typologies.length - 1];
 
 	const normalize = (search: string) =>
 		search
@@ -78,8 +64,8 @@
 	<div class="grid gap-8">
 		{#each groups as [typologie, items] (typologie)}
 			<GroupLignes
-				icon={typologies[Number(typologie)].icon}
-				label={typologies[Number(typologie)].label ?? 'Autre'}
+				icon={getTypologie(Number(typologie)).icon}
+				label={getTypologie(Number(typologie)).label}
 				items={items ?? []}
 				{viewmode}
 			/>
