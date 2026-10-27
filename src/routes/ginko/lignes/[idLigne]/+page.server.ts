@@ -23,6 +23,20 @@ export const load: PageServerLoad = async ({ params }) => {
 		idVariantes.map((idVariante) => getDetailsVariante({ idLigne, idVariante }))
 	);
 
-	// Return the ligne and its variantes details
-	return { ligne, variantes };
+	// Remove duplicate variantes (same destination and same stops)
+	const seen = new Set<string>();
+	const uniqueIndexes = ligne.variantes
+		.map((_, i) => i)
+		.filter((i) => {
+			// Check if the destination and stops names are the same
+			const key = `${ligne.variantes[i].destination}|${variantes[i].map((a) => a.nom).join(',')}`;
+			if (seen.has(key)) return false;
+			seen.add(key);
+			return true;
+		});
+
+	return {
+		ligne: { ...ligne, variantes: uniqueIndexes.map((i) => ligne.variantes[i]) },
+		variantes: uniqueIndexes.map((i) => variantes[i])
+	};
 };
