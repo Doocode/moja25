@@ -21,6 +21,10 @@
 	);
 </script>
 
+<svelte:head>
+	<title>Ligne {ligne.numLignePublic} : {ligne.libellePublic}</title>
+</svelte:head>
+
 <Header {ligne} />
 
 <!-- TODO: Display info traffic -->

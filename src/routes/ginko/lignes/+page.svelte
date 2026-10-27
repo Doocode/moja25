@@ -46,6 +46,10 @@
 	);
 </script>
 
+<svelte:head>
+	<title>Ligne de bus et de tram</title>
+</svelte:head>
+
 <main class="container m-auto p-4 transition-all duration-500" class:max-w-lg={viewmode === 'list'}>
 	<header
 		class="mb-4 grid flex-col gap-1 sm:flex sm:flex-row sm:items-center sm:justify-between"
