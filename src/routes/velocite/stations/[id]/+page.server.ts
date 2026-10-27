@@ -8,7 +8,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params }) => {
 	const stationNumber = Number(params.id);
 	if (!Number.isInteger(stationNumber) || stationNumber <= 0) {
-		error(404, 'Station introuvable');
+		throw error(400, "L'id de la station n'est pas valide");
 	}
 
 	const raw = await getStation(stationNumber);

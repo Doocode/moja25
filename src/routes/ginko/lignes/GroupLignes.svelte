@@ -15,10 +15,10 @@
 </script>
 
 <section>
-	<header class="flex items-center gap-2 py-2">
+	<header class="flex items-center gap-2">
 		{#if icon}
 			{@const Icon = icon}
-			<Icon class="size-6" />
+			<Icon class="size-6 text-purple-600 dark:text-purple-400" />
 		{/if}
 		<h2 class="text-lg font-semibold">{label}</h2>
 	</header>

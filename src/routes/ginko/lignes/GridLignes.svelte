@@ -2,6 +2,7 @@
 	import type { Ligne } from '$core/dto/ginko';
 	import BadgeLigne from './BadgeLigne.svelte';
 	import { cn } from '$lib/utils';
+	import { resolve } from '$app/paths';
 
 	interface Props {
 		items?: Ligne[];
@@ -10,18 +11,24 @@
 	let { items }: Props = $props();
 </script>
 
-<ul class="grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-x-2 gap-y-6">
+<ul class="grid grid-cols-[repeat(auto-fill,minmax(9rem,1fr))] gap-2">
 	{#each items ?? [] as ligne (ligne.id)}
-		<li class="flex flex-col items-center gap-1 text-center">
-			<BadgeLigne
-				{ligne}
-				class={cn(
-					'min-w-24 rounded-xl p-4',
-					ligne.numLignePublic.length < 4 ? 'text-5xl' : '',
-					ligne.numLignePublic.length == 4 ? 'h-20 text-3xl' : ''
-				)}
-			/>
-			<span class="text-sm text-balance">{ligne.libellePublic}</span>
+		<li>
+			<a
+				href={resolve('/ginko/lignes/[idLigne]', { idLigne: ligne.id })}
+				class="group flex flex-col items-center gap-2 rounded-xl px-3 py-3 text-center hover:bg-green-300 active:bg-foreground/20 dark:hover:bg-green-800"
+				data-sveltekit-preload-data="tap"
+			>
+				<BadgeLigne
+					{ligne}
+					class={cn(
+						'min-w-24 rounded-xl p-4',
+						ligne.numLignePublic.length < 4 ? 'text-5xl' : '',
+						ligne.numLignePublic.length == 4 ? 'h-20 text-3xl' : ''
+					)}
+				/>
+				<span class="text-sm text-balance">{ligne.libellePublic}</span>
+			</a>
 		</li>
 	{/each}
 </ul>

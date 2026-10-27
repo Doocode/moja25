@@ -48,6 +48,7 @@
 
 <a
 	href={resolve('/velocite/stations/[id]', { id: `${station.number}` })}
+	data-sveltekit-preload-data="tap"
 	class={{
 		'grid grid-cols-[1fr_auto] items-center justify-between gap-4 rounded-md px-4 py-3 duration-75': true,
 		'bg-green-200 hover:bg-green-300 active:bg-green-400 dark:bg-green-900 hover:dark:bg-green-800 active:dark:bg-green-700':
