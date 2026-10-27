@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { typologies } from './typologies';
+	import { getTypologie } from './typologies';
 	import ViewMode from './ViewMode.svelte';
 	import type { Ligne } from '$core/dto/ginko';
 	import GroupLignes from './GroupLignes.svelte';
@@ -16,9 +16,6 @@
 	let lignes = $derived(data.lignes);
 	let viewmode: 'grid' | 'list' = $state('grid');
 	let queryInput = $state('');
-
-	const getTypologie = (value: number) =>
-		typologies.find((t) => t.value === value) ?? typologies[typologies.length - 1];
 
 	const normalize = (search: string) =>
 		search

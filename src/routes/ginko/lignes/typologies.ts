@@ -1,6 +1,11 @@
 import { Bus, BusFront, Leaf, TramFront } from '@lucide/svelte';
 import { type Component } from 'svelte';
 
+// Return the typology corresponding to the given value, or the last typology if not found
+export function getTypologie(value: number) {
+	return typologies.find((t) => t.value === value) ?? typologies[typologies.length - 1];
+}
+
 export interface Typologie {
 	label: string;
 	icon: Component;
