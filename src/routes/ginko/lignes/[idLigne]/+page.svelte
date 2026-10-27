@@ -1,8 +1,9 @@
 <script lang="ts">
 	import Header from './Header.svelte';
+	import ListStop from './ListStop.svelte';
 	import * as Tabs from '$lib/shadcn/ui/tabs';
+	import { ArrowRight } from '@lucide/svelte';
 	import type { Ligne, Arret } from '$core/dto/ginko';
-	import { Accessibility, ArrowRight } from '@lucide/svelte';
 
 	interface Props {
 		data: {
@@ -38,34 +39,17 @@
 				{/each}
 			</Tabs.List>
 
-			{#each ligne.variantes as variante, i (variante.id)}
+			{#each ligne.variantes as variante, ii (variante.id)}
 				<Tabs.Content value={variante.id} class="mt-4">
-					{#if variante.precisionDestination}
-						<p class="mb-3 text-sm text-muted-foreground">{variante.precisionDestination}</p>
-					{/if}
+					<div class="mx-auto grid max-w-75">
+						<p class="mb-1 text-xs tracking-widest text-muted-foreground uppercase">Destination</p>
+						<p class="text-lg font-bold">{variante.destination}</p>
+						{#if variante.precisionDestination}
+							<p class="mb-3 text-sm text-muted-foreground">{variante.precisionDestination}</p>
+						{/if}
+					</div>
 
-					<ol class="relative mx-auto grid max-w-75">
-						{#each data.variantes[i] ?? [] as arret, j (arret.id + j)}
-							<li class="relative flex items-center gap-4 py-2">
-								<span
-									class="relative z-10 size-3 shrink-0 rounded-full border-2 bg-background"
-									style:border-color={`#${ligne.couleurFond}`}
-								></span>
-								{#if j < (data.variantes[i]?.length ?? 0) - 1}
-									<span
-										class="absolute top-1/2 left-1.25 h-full w-0.5"
-										style:background={`#${ligne.couleurFond}`}
-									></span>
-								{/if}
-								<span class="flex-1">{arret.nom}</span>
-								{#if arret.accessibilite > 0}
-									<Accessibility class="size-4 text-muted-foreground" />
-								{/if}
-							</li>
-						{:else}
-							<li class="text-center text-muted-foreground">Aucun arrêt.</li>
-						{/each}
-					</ol>
+					<ListStop stops={data.variantes[ii]} {ligne} />
 				</Tabs.Content>
 			{/each}
 		</Tabs.Root>
