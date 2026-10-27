@@ -8,6 +8,26 @@
 	}
 
 	let { stops, ligne }: Props = $props();
+
+	const transportHubs = [
+		{ nom: 'Gare Viotte' },
+		{ nom: 'Gare de la Mouillière' },
+		{ nom: 'Chamars' },
+		{ nom: 'Chamars Esplanade' },
+		{ nom: 'Temis' },
+		{ nom: 'République' },
+		{ nom: 'Orchamps' },
+		{ nom: 'Micropolis' },
+		{ nom: 'Hauts du Chazal' }
+	];
+
+	function isFirstOrLast(index: number) {
+		return index === 0 || index === (stops?.length ?? 0) - 1;
+	}
+
+	function isTransportHub(arret: Arret) {
+		return transportHubs.some((hub) => hub.nom === arret.nom);
+	}
 </script>
 
 <ol class="relative mx-auto grid max-w-75">
@@ -15,15 +35,15 @@
 		<li
 			class={{
 				'relative flex items-center py-2': true,
-				'gap-2': ii !== 0 && ii !== (stops?.length ?? 0) - 1,
-				'gap-0.5': ii === 0 || ii === (stops?.length ?? 0) - 1
+				'gap-2': !isFirstOrLast(ii) && !isTransportHub(arret),
+				'gap-0.5': isFirstOrLast(ii) || isTransportHub(arret)
 			}}
 		>
 			<span
 				class={{
 					'relative z-1 shrink-0 rounded-full border-3 border-background': true,
-					'-left-2 size-7 rounded-sm': ii === 0 || ii === (stops?.length ?? 0) - 1,
-					'-left-1 size-5 rounded-full': ii !== 0 && ii !== (stops?.length ?? 0) - 1
+					'-left-2 size-7 rounded-sm': isFirstOrLast(ii) || isTransportHub(arret),
+					'-left-1 size-5 rounded-full': !isFirstOrLast(ii) && !isTransportHub(arret)
 				}}
 				style:background={`#${ligne.couleurFond}`}
 			></span>
@@ -36,7 +56,7 @@
 			<div class="grid flex-1">
 				{#if ii === 0}
 					<p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">Départ</p>
-				{:else if ii == (stops?.length ?? 0) - 1}
+				{:else if isFirstOrLast(ii)}
 					<p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">Terminus</p>
 				{/if}
 				<span>{arret.nom}</span>
