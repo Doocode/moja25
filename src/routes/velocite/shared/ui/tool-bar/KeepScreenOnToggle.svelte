@@ -69,7 +69,7 @@
 	variant={lightOn ? 'outline' : 'ghost'}
 	size="icon"
 	class={{
-		'rounded-lg': true,
+		'rounded-lg backdrop-blur-xl': true,
 		'size-9': size === 'md',
 		'size-11.25': size === 'lg'
 	}}

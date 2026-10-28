@@ -40,6 +40,7 @@
 				variant: isNever ? 'ghost' : 'outline',
 				size: 'icon'
 			}),
+			'backdrop-blur-xl',
 			size === 'md' ? 'size-9 rounded-md' : '',
 			size === 'lg' ? 'size-11.25 rounded-lg' : ''
 		)}

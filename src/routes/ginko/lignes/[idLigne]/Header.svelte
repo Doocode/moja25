@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { cn } from 'tailwind-variants';
+	import { Button } from '$shadcn/button';
 	import type { Ligne } from '$core/dto/ginko';
+	import { ExternalLink } from '@lucide/svelte';
 	import BadgeLigne from '../BadgeLigne.svelte';
 	import { getTypologie, type Typologie } from '../typologies';
 
@@ -16,7 +18,7 @@
 </script>
 
 <header
-	class="px-4 py-10 text-center"
+	class="px-4 py-10 text-center sm:pb-18"
 	style:background={`#${ligne.couleurFond}`}
 	style:color={`#${ligne.couleurTexte}`}
 >
@@ -39,5 +41,16 @@
 			{/if}
 			<span>{typologie.label}</span>
 		</p>
+
+		<Button
+			href={`https://www.ginko.voyage/se-deplacer/toutes-les-lignes-ginko?ligne_id=${ligne.id}`}
+			variant="outline"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-foreground"
+		>
+			<span>En savoir plus</span>
+			<ExternalLink />
+		</Button>
 	</div>
 </header>

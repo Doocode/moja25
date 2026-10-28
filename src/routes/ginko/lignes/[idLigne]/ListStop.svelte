@@ -30,18 +30,18 @@
 	}
 </script>
 
-<ol class="relative mx-auto grid max-w-75">
+<ol class="relative mx-auto grid max-w-85">
 	{#each stops ?? [] as arret, ii (arret.id + ii)}
 		<li
 			class={{
-				'relative flex items-center py-2': true,
+				'group relative flex items-center border-b border-muted-foreground/40 py-2': true,
 				'gap-2': !isFirstOrLast(ii) && !isTransportHub(arret),
 				'gap-0.5': isFirstOrLast(ii) || isTransportHub(arret)
 			}}
 		>
 			<span
 				class={{
-					'relative z-1 shrink-0 rounded-full border-3 border-background': true,
+					'relative z-1 shrink-0 rounded-full border-3 border-background group-hover:border-foreground! group-hover:bg-background!': true,
 					'-left-2 size-7 rounded-sm': isFirstOrLast(ii) || isTransportHub(arret),
 					'-left-1 size-5 rounded-full': !isFirstOrLast(ii) && !isTransportHub(arret)
 				}}
@@ -59,7 +59,7 @@
 				{:else if isFirstOrLast(ii)}
 					<p class="text-xs font-bold tracking-widest text-muted-foreground uppercase">Terminus</p>
 				{/if}
-				<span>{arret.nom}</span>
+				<span class="sm:text-base">{arret.nom}</span>
 			</div>
 			{#if arret.accessibilite > 0}
 				<Accessibility

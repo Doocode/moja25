@@ -33,10 +33,12 @@
 	{#if ligne.variantes.length === 0}
 		<p class="text-center text-muted-foreground">Aucune variante disponible pour cette ligne.</p>
 	{:else}
-		<Tabs.Root value={current} onValueChange={(v) => (selected = v)}>
-			<Tabs.List class="h-auto! w-full flex-wrap">
+		<Tabs.Root value={current} onValueChange={(v) => (selected = v)} class="sm:-mt-11.5">
+			<Tabs.List
+				class="sticky top-4 z-10 h-auto! w-full flex-wrap rounded-2xl backdrop-blur-2xl sm:bg-muted/50"
+			>
 				{#each ligne.variantes as variante (variante.id)}
-					<Tabs.Trigger value={variante.id} class="h-auto flex-1 p-4">
+					<Tabs.Trigger value={variante.id} class="h-auto flex-1 rounded-xl p-4">
 						<ArrowRight class="size-5" />
 						{variante.destination}
 					</Tabs.Trigger>
@@ -45,7 +47,7 @@
 
 			{#each ligne.variantes as variante, ii (variante.id)}
 				<Tabs.Content value={variante.id} class="mt-4">
-					<div class="mx-auto grid max-w-75">
+					<div class="mx-auto grid max-w-85">
 						<p class="mb-1 text-xs tracking-widest text-muted-foreground uppercase">Destination</p>
 						<p class="text-lg font-bold">{variante.destination}</p>
 						{#if variante.precisionDestination}
