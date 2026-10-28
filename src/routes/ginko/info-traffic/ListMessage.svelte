@@ -14,7 +14,7 @@
 	{#each messages as message (message.id)}
 		<li>
 			<a
-				href={resolve('/ginko/info-traffic/{message.id}')}
+				href={resolve('/ginko/info-traffic/messages/[id]', { id: String(message.id) })}
 				class="flex flex-col items-start gap-1 rounded-xl border border-input/50 bg-card p-4 hover:bg-secondary"
 			>
 				<Etat etat={message.etat} />
