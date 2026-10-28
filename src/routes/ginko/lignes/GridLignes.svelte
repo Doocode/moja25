@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Ligne } from '$core/dto/ginko';
-	import BadgeLigne from './BadgeLigne.svelte';
 	import { cn } from '$lib/utils';
 	import { resolve } from '$app/paths';
+	import { BadgeLigne } from '$lib/ui/ginko';
+	import type { Ligne } from '$core/dto/ginko';
 
 	interface Props {
 		items?: Ligne[];

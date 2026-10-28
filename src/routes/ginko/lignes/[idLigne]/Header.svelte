@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { cn } from 'tailwind-variants';
 	import { Button } from '$shadcn/button';
+	import { BadgeLigne } from '$lib/ui/ginko';
 	import type { Ligne } from '$core/dto/ginko';
 	import { ExternalLink } from '@lucide/svelte';
-	import BadgeLigne from '../BadgeLigne.svelte';
 	import { getTypologie, type Typologie } from '../typologies';
 
 	interface Props {
