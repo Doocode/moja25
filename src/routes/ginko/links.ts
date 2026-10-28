@@ -25,8 +25,8 @@ const linesPage: GinkoLink = {
 	description: 'Liste des lignes de bus et tram'
 };
 const infoPage: GinkoLink = {
-	href: '/ginko/info-traffic',
-	label: 'Info trafic',
+	href: '/ginko/etat-du-service',
+	label: 'Etat du service',
 	icon: Info,
 	description: 'Informations sur les trajets et les stations'
 };

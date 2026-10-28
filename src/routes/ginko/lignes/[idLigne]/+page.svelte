@@ -27,7 +27,7 @@
 
 <Header {ligne} />
 
-<!-- TODO: Display info traffic -->
+<!-- TODO: Display Etat du service -->
 
 <main class="container m-auto max-w-2xl p-4">
 	{#if ligne.variantes.length === 0}

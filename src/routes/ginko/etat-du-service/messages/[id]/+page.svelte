@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>
-	<title>Info trafic</title>
+	<title>Etat du service</title>
 </svelte:head>
 
 <main
@@ -33,7 +33,7 @@
 	class:max-w-6xl={hasAside}
 >
 	<a
-		href={resolve('/ginko/info-traffic')}
+		href={resolve('/ginko/etat-du-service')}
 		class="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground hover:underline"
 	>
 		<ArrowLeft class="size-4" />
