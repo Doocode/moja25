@@ -1,8 +1,7 @@
 import type { Station } from '$core/dto/jcdecaux';
-import { JCDECAUX_API_KEY } from '$env/static/private';
+import { JCDECAUX_API_KEY, JCDECAUX_CONTRACT } from '$env/static/private';
 
 const BASE_URL = 'https://api.jcdecaux.com/vls/v3';
-const CONTRACT = 'besancon';
 
 // Helper to construct API URL with endpoint and parameters
 function apiUrl(endpoint: string, params: Record<string, string | number | boolean> = {}) {
@@ -30,14 +29,14 @@ async function apiCall<T>(
 }
 
 // Get all stations for a given contract
-export async function getStations(contract: string = CONTRACT): Promise<Station[]> {
+export async function getStations(contract: string = JCDECAUX_CONTRACT): Promise<Station[]> {
 	return apiCall<Station[]>('stations', { contract });
 }
 
 // Get station details by its number
 export async function getStation(
 	stationNumber: number,
-	contract: string = CONTRACT
+	contract: string = JCDECAUX_CONTRACT
 ): Promise<Station> {
 	return apiCall<Station>(`stations/${stationNumber}`, { contract });
 }
