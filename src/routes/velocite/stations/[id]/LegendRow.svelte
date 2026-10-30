@@ -18,7 +18,7 @@
 			class={cn(
 				'flex aspect-square items-center justify-center rounded-[25%] p-2 text-white',
 				className,
-				value <= 0 && 'bg-[#444]!'
+				value <= 0 && 'empty bg-[#444]!'
 			)}
 		>
 			{#if icon}
@@ -27,16 +27,28 @@
 			{/if}
 		</div>
 
-		<p class="text-sm" class:line-through={value <= 0} class:text-muted-foreground={value <= 0}>
+		<p
+			class={{
+				'text-sm': true,
+				'text-muted-foreground line-through': value <= 0
+			}}
+		>
 			{label}
 		</p>
 	</div>
 
-	<span class="font-bold">{value}</span>
+	<span
+		class={{
+			'font-bold': true,
+			'text-muted-foreground line-through': value <= 0
+		}}
+	>
+		{value}
+	</span>
 </div>
 
 <style>
-	.unavailable {
+	.unavailable:not(.empty) {
 		--color1: #e09303;
 		--color2: #ad7101;
 		background: repeating-linear-gradient(
