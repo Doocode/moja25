@@ -1,7 +1,6 @@
 <script>
 	import { Button } from '$lib/shadcn/ui/button';
 	import { resolve } from '$app/paths';
-	import Header from './Header.svelte';
 	import { Ul, Li } from '$lib/ui/page';
 	import { Map, Bike, Globe, SquareArrowOutUpRight } from '@lucide/svelte';
 </script>
@@ -11,8 +10,6 @@
 </svelte:head>
 
 <main>
-	<Header />
-
 	<article class="container m-auto p-4">
 		<p>
 			Découvrez le réseau <strong class="font-bold">Ginko Vélocité</strong>, le service de vélos en
