@@ -72,9 +72,10 @@ export function markerTemplate(
 }
 
 export function compactMarkerTemplate(
-	variantClass: string = 'velocite-map-marker--neutral'
+	variantClass: string = 'velocite-map-marker--neutral',
+	size: number = 25
 ): string {
-	return `<div class="velocite-map-marker-compact ${variantClass}"></div>`;
+	return `<div class="velocite-map-marker-compact ${variantClass}" style="--marker-size:${size}px"></div>`;
 }
 
 export function createUserLocationIcon(leaflet: typeof import('leaflet')): DivIcon {
@@ -112,10 +113,11 @@ export function getStationVariantClass(
 
 export function buildCompactMarkerHtml(
 	station: FormattedStation,
-	selectedFilter: VelociteSortField
+	selectedFilter: VelociteSortField,
+	size?: number
 ): string {
 	const variantClass = getStationVariantClass(station, selectedFilter);
-	return compactMarkerTemplate(variantClass);
+	return compactMarkerTemplate(variantClass, size);
 }
 
 export function buildMarkerHtml(
@@ -145,18 +147,32 @@ export function buildMarkerHtml(
 
 export const COMPACT_MARKER_ZOOM_THRESHOLD = 14.5;
 export const MIN_MARKER_ZOOM = 10;
+export const COMPACT_MARKER_MAX_SIZE = 25;
+export const COMPACT_MARKER_MIN_SIZE = 6;
+
+// Compact marker size shrinks linearly as the zoom goes from the threshold down to the minimum zoom.
+export function getCompactMarkerSize(zoom: number): number {
+	const ratio = Math.min(
+		1,
+		Math.max(0, (zoom - MIN_MARKER_ZOOM) / (COMPACT_MARKER_ZOOM_THRESHOLD - MIN_MARKER_ZOOM))
+	);
+	return Math.round(
+		COMPACT_MARKER_MIN_SIZE + ratio * (COMPACT_MARKER_MAX_SIZE - COMPACT_MARKER_MIN_SIZE)
+	);
+}
 
 // Creates the icon for a station, in compact (low zoom) or full version.
 function createStationIcon(
 	leaflet: typeof import('leaflet'),
 	station: FormattedStation,
 	displayedFilter: VelociteSortField,
-	isCompact: boolean
+	isCompact: boolean,
+	compactSize: number
 ): DivIcon {
 	const html = isCompact
-		? buildCompactMarkerHtml(station, displayedFilter)
+		? buildCompactMarkerHtml(station, displayedFilter, compactSize)
 		: buildMarkerHtml(station, displayedFilter);
-	const size = isCompact ? 30 : 42;
+	const size = isCompact ? compactSize : 42;
 
 	return leaflet.divIcon({
 		html,
@@ -185,13 +201,16 @@ export function renderStationMarkers(
 
 	const isCompact = currentZoom < COMPACT_MARKER_ZOOM_THRESHOLD;
 	// The tooltip offset follows the size of the marker
-	const tooltipOffset: [number, number] = isCompact ? [-2, -17] : [0, -18];
+	const compactSize = getCompactMarkerSize(currentZoom);
+	const tooltipOffset: [number, number] = isCompact
+		? [0, -Math.round(compactSize / 2) - 3]
+		: [0, -18];
 
 	for (const station of stations) {
 		const displayedFilter = getDisplayedFilter(station, selectedFilter, blink);
 		const marker = leaflet
 			.marker([station.position.latitude, station.position.longitude], {
-				icon: createStationIcon(leaflet, station, displayedFilter, isCompact),
+				icon: createStationIcon(leaflet, station, displayedFilter, isCompact, compactSize),
 				keyboard: false
 			})
 			.bindTooltip(station.formattedName, { direction: 'top', offset: tooltipOffset })
@@ -221,6 +240,7 @@ export function blinkStationMarkers(
 	if (currentZoom < MIN_MARKER_ZOOM) return;
 
 	const isCompact = currentZoom < COMPACT_MARKER_ZOOM_THRESHOLD;
+	const compactSize = getCompactMarkerSize(currentZoom);
 
 	for (const station of stations) {
 		if (!getAlertState(station, selectedFilter)) continue;
@@ -229,6 +249,6 @@ export function blinkStationMarkers(
 		if (!marker) continue;
 
 		const displayedFilter = getDisplayedFilter(station, selectedFilter, blink);
-		marker.setIcon(createStationIcon(leaflet, station, displayedFilter, isCompact));
+		marker.setIcon(createStationIcon(leaflet, station, displayedFilter, isCompact, compactSize));
 	}
 }
