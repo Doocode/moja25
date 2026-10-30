@@ -28,7 +28,7 @@
 		},
 		{
 			label: 'Places non-disponibles',
-			className: 'unavailable',
+			className: 'unavailable-stands',
 			count: station.unavailableStands
 		}
 	]);
@@ -59,7 +59,7 @@
 	{#each cells as cell, index (index)}
 		<div
 			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium"
-			class:unavailable={cell.className === 'unavailable'}
+			class:unavailable-stands={cell.className === 'unavailable-stands'}
 			class:mechanical-bikes={cell.className === 'mechanical-bikes'}
 			class:electrical-bikes={cell.className === 'electrical-bikes'}
 			class:available-stands={cell.className === 'available-stands'}
@@ -80,7 +80,7 @@
 	.available-stands {
 		background-color: #c9d1d4;
 	}
-	.unavailable {
+	.unavailable-stands {
 		--color1: #ffca67;
 		--color2: #f09c00;
 		background: repeating-linear-gradient(
@@ -104,7 +104,7 @@
 		.available-stands {
 			background-color: #324146;
 		}
-		.unavailable {
+		.unavailable-stands {
 			--color1: #e09303;
 			--color2: #ad7101;
 		}

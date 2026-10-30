@@ -19,13 +19,18 @@
 <div class={cn('relative z-10 grid max-w-75 gap-1', className)}>
 	<h2 class="mb-2 text-lg font-bold">Légende</h2>
 
-	<LegendRow icon={Bike} label="Vélos mécaniques" value={mechanicalBikes} class="bg-[#bb1985]" />
-	<LegendRow icon={Zap} label="Vélos électriques" value={electricalBikes} class="bg-[#00a4bc]" />
-	<LegendRow icon={SquareParking} label="Places disponibles" value={stands} class="bg-[#444]" />
+	<LegendRow icon={Bike} label="Vélos mécaniques" value={mechanicalBikes} kind="mechanical-bikes" />
+	<LegendRow icon={Zap} label="Vélos électriques" value={electricalBikes} kind="electrical-bikes" />
+	<LegendRow
+		icon={SquareParking}
+		label="Places disponibles"
+		value={stands}
+		kind="available-stands"
+	/>
 	<LegendRow
 		icon={Ban}
 		label="Bornes indisponibles"
 		value={station.unavailableStands}
-		class="unavailable bg-[#e09303]"
+		kind="unavailable-stands"
 	/>
 </div>
