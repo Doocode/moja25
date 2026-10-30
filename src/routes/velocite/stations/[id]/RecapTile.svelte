@@ -14,7 +14,7 @@
 <main
 	class={{
 		'relative flex aspect-3/4 flex-col gap-2 overflow-clip rounded-xl sm:rounded-2xl': true,
-		'text-red-400': count <= 0,
+		'text-red-600 dark:text-red-400': count <= 0,
 		'text-white': count > 0
 	}}
 	class:mechanical-bikes={type === 'mechanical-bikes' && count > 0}

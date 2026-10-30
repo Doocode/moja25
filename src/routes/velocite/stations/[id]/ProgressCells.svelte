@@ -52,13 +52,13 @@
 </script>
 
 <div
-	class="grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-0.5"
+	class="progress-cells grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-0.5"
 	role="img"
 	aria-label="Niveau d'occupation des bornes"
 >
 	{#each cells as cell, index (index)}
 		<div
-			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
+			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium"
 			class:unavailable={cell.className === 'unavailable'}
 			class:mechanical-bikes={cell.className === 'mechanical-bikes'}
 			class:electrical-bikes={cell.className === 'electrical-bikes'}
@@ -72,17 +72,17 @@
 
 <style>
 	.mechanical-bikes {
-		background-color: #bb1985;
+		background-color: #ff65cc;
 	}
 	.electrical-bikes {
-		background-color: #00a4bc;
+		background-color: #00c2e0;
 	}
 	.available-stands {
-		background-color: #444444;
+		background-color: #c9d1d4;
 	}
 	.unavailable {
-		--color1: #e09303;
-		--color2: #ad7101;
+		--color1: #ffca67;
+		--color2: #f09c00;
 		background: repeating-linear-gradient(
 			-45deg,
 			var(--color1),
@@ -92,5 +92,21 @@
 		);
 		background-position: center center;
 		background-attachment: fixed;
+	}
+
+	:root.dark .progress-cells {
+		.mechanical-bikes {
+			background-color: #bb1985;
+		}
+		.electrical-bikes {
+			background-color: #00a4bc;
+		}
+		.available-stands {
+			background-color: #324146;
+		}
+		.unavailable {
+			--color1: #e09303;
+			--color2: #ad7101;
+		}
 	}
 </style>
