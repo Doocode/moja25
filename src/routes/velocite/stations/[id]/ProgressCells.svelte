@@ -3,42 +3,48 @@
 
 	let { station }: { station: FormattedStation } = $props();
 
+	interface Segment {
+		label: string;
+		count: number;
+		className: string;
+	}
+
 	// List of segments representing different types of cells, representing the different types of contents of the station
-	const segments = $derived([
+	const segments: Segment[] = $derived([
 		{
 			label: 'Vélos mécaniques',
-			color: '#bb1985',
+			className: 'mechanical-bikes',
 			count: station.totalStands.availabilities.mechanicalBikes
 		},
 		{
 			label: 'Vélos électriques',
-			color: '#00a4bc',
+			className: 'electrical-bikes',
 			count: station.totalStands.availabilities.electricalBikes
 		},
 		{
 			label: 'Places disponibles',
-			color: '#444444',
+			className: 'available-stands',
 			count: station.totalStands.availabilities.stands
 		},
 		{
 			label: 'Places non-disponibles',
-			color: '#e09303',
+			className: 'unavailable',
 			count: station.unavailableStands
 		}
 	]);
 
 	const cells = $derived.by(() => {
 		const capacity = Math.max(0, station.totalStands.capacity);
-		const result: { label: string; number: number | null; color: string | null }[] = [];
+		const result: { label: string; counter: number | null; className: string }[] = [];
 
 		for (const segment of segments) {
 			for (let i = 1; i <= segment.count && result.length < capacity; i++) {
-				result.push({ label: segment.label, number: i, color: segment.color });
+				result.push({ label: segment.label, counter: i, className: segment.className });
 			}
 		}
 
 		while (result.length < capacity) {
-			result.push({ label: 'Non renseigné', number: null, color: 'red' });
+			result.push({ label: 'Non renseigné', counter: null, className: 'unavailable' });
 		}
 
 		return result;
@@ -53,16 +59,27 @@
 	{#each cells as cell, index (index)}
 		<div
 			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium text-white"
-			class:unavailable={cell.color === '#e09303'}
-			style:background-color={cell.color ?? 'red'}
+			class:unavailable={cell.className === 'unavailable'}
+			class:mechanical-bikes={cell.className === 'mechanical-bikes'}
+			class:electrical-bikes={cell.className === 'electrical-bikes'}
+			class:available-stands={cell.className === 'available-stands'}
 			title={cell.label}
 		>
-			{cell.number ?? ''}
+			{cell.counter ?? ''}
 		</div>
 	{/each}
 </div>
 
 <style>
+	.mechanical-bikes {
+		background-color: #bb1985;
+	}
+	.electrical-bikes {
+		background-color: #00a4bc;
+	}
+	.available-stands {
+		background-color: #444444;
+	}
 	.unavailable {
 		--color1: #e09303;
 		--color2: #ad7101;
