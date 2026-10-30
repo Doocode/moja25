@@ -1,5 +1,5 @@
 import type { Link } from '$lib/ui/header/shared';
-import { Search, BusFront, MapPin, Info } from '@lucide/svelte';
+import { Search, BusFront, Map, Info } from '@lucide/svelte';
 
 export interface GinkoLink extends Link {
 	description?: string;
@@ -8,13 +8,13 @@ export interface GinkoLink extends Link {
 // Items
 const mapsPage: GinkoLink = {
 	href: '/ginko/carte',
-	label: 'Cartes',
-	icon: MapPin,
+	label: 'Plan du réseau',
+	icon: Map,
 	description: 'Emplacement des stations et trajets des lignes'
 };
 const searchPage: GinkoLink = {
 	href: '/ginko/recherche',
-	label: 'Recherche',
+	label: 'Rechercher une station',
 	icon: Search,
 	description: 'Rechercher une station de bus ou de tram'
 };
@@ -25,11 +25,11 @@ const linesPage: GinkoLink = {
 	description: 'Liste des lignes de bus et tram'
 };
 const infoPage: GinkoLink = {
-	href: '/ginko/etat-du-service',
+	href: '/ginko/etat-du-service/messages',
 	label: 'Etat du service',
 	icon: Info,
 	description: 'Informations sur les trajets et les stations'
 };
 
 // Menu links
-export const mainLinks: GinkoLink[] = [mapsPage, searchPage, linesPage, infoPage];
+export const mainLinks: GinkoLink[] = [searchPage, mapsPage, linesPage, infoPage];
