@@ -1,0 +1,87 @@
+.velocite-popup {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	min-width: 200px;
+	padding: 6px 0;
+}
+
+.velocite-popup__title {
+	margin: 0 16px 12px 0;
+	font-size: 1rem;
+	font-weight: 900;
+	line-height: 1.2;
+}
+
+.velocite-popup__row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.velocite-popup__icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+	border-radius: 25%;
+	color: var(--foreground);
+}
+
+.velocite-popup__icon--mechanical {
+	background-color: #ff65cc;
+}
+
+.velocite-popup__icon--electrical {
+	background-color: #00c2e0;
+}
+
+.velocite-popup__icon--stands,
+.velocite-popup__row--empty .velocite-popup__icon {
+	background-color: #c9d1d4;
+}
+
+.velocite-popup__label {
+	flex: 1;
+	font-size: 0.875rem;
+}
+
+.velocite-popup__row--empty .velocite-popup__label,
+.velocite-popup__row--empty .velocite-popup__value {
+	color: #71717a;
+	text-decoration: line-through;
+}
+
+.velocite-popup__value {
+	font-size: 1.4em;
+}
+
+:root.dark {
+	.velocite-popup__icon--mechanical {
+		background-color: #bb1985;
+	}
+
+	.velocite-popup__icon--electrical {
+		background-color: #00a4bc;
+	}
+
+	.velocite-popup__icon--stands,
+	.velocite-popup__row--empty .velocite-popup__icon {
+		background-color: #324146;
+	}
+}
+
+.velocite-popup__link {
+	margin-top: 1rem;
+	padding: 10px 10px;
+	border-radius: 0.5rem;
+	background: var(--primary);
+	color: var(--primary-foreground) !important;
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
+}
+
+.velocite-popup__link:hover {
+	opacity: 0.8;
+}

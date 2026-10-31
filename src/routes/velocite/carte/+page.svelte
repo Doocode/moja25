@@ -5,6 +5,7 @@
 	import { browser } from '$app/environment';
 	import 'leaflet/dist/leaflet.css';
 	import './markers.css';
+	import './popup.css';
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import SortBar from './SortBar.svelte';
 	import SortDrawer from './SortDrawer.svelte';
@@ -234,6 +235,13 @@
 
 <style>
 	:global {
+		.leaflet-fade-anim .leaflet-popup {
+			--transition-duration: 0.05s;
+			-webkit-transition: opacity var(--transition-duration) linear;
+			-moz-transition: opacity var(--transition-duration) linear;
+			transition: opacity var(--transition-duration) linear;
+		}
+		
 		.leaflet-popup-content-wrapper {
 			border-radius: 1rem;
 			font-family:
@@ -250,7 +258,7 @@
 		.leaflet-container a.leaflet-popup-close-button {
 			color: var(--text-foreground);
 			width: 60px;
-			height: 60px;
+			height: 55px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
