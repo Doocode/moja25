@@ -11,14 +11,16 @@
 		headingHref?: string;
 		icon?: Component;
 		class?: string;
+		sticky?: boolean;
 	}
 
-	let { links, heading, headingHref, icon, class: className }: Props = $props();
+	let { links, heading, headingHref, icon, class: className, sticky = false }: Props = $props();
 </script>
 
 <header
 	class={cn(
 		'overflow-auto border-b border-[#00000077] bg-purple-300 whitespace-nowrap dark:border-[#ffffff77] dark:bg-purple-800',
+		sticky ? 'sticky top-0 right-0 left-0 z-50' : '',
 		className
 	)}
 >
@@ -26,7 +28,7 @@
 		<h1 class="min-w-50 text-2xl font-black">
 			<a
 				href={resolve(headingHref ?? '/')}
-				class="flex items-center gap-2 p-4 underline-offset-4 hover:underline sm:py-6"
+				class="flex items-center gap-2 p-4 py-3.5 underline-offset-4 hover:underline"
 			>
 				{#if icon}
 					{@const Icon = icon}
@@ -36,20 +38,29 @@
 			</a>
 		</h1>
 
-		<nav class="flex flex-2 gap-1 pr-4">
+		<nav class="flex flex-2 pr-4">
 			{#each links as { href, label, icon } (icon)}
 				{#if icon !== null}
 					{@const Icon = icon}
 					<a
 						href={resolve(href)}
 						class={{
-							'flex items-center gap-1.5 rounded-lg px-3.25 py-2.5 hover:bg-foreground/25 hover:text-foreground': true,
-							'bg-background text-foreground': isCurrent(href)
+							'px-3.25 duration-100 hover:bg-background/50 hover:text-foreground dark:hover:bg-background/25': true,
+							'bg-linear-to-r from-transparent via-background/50 to-transparent hover:bg-none dark:via-foreground/20':
+								isCurrent(href)
 						}}
 					>
-						<Icon class="size-5" />
-						<span class="text-sm">
-							{label}
+						<span
+							class={{
+								'flex items-center gap-1.5 border-y-5 border-transparent py-4 duration-100 md:py-5.5': true,
+								'border-b-foreground!': isCurrent(href),
+								'opacity-70 hover:opacity-100': !isCurrent(href)
+							}}
+						>
+							<Icon class="size-4.5" />
+							<span class="text-sm">
+								{label}
+							</span>
 						</span>
 					</a>
 				{/if}
