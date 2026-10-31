@@ -100,7 +100,7 @@
 	justify-content: center;
 	padding: 6px;
 	border-radius: 25%;
-	color: #fff;
+	color: var(--foreground);
 }
 
 .velocite-popup__icon--mechanical {
@@ -111,9 +111,9 @@
 	background-color: #00c2e0;
 }
 
-.velocite-popup__icon--stands {
+.velocite-popup__icon--stands,
+.velocite-popup__row--empty .velocite-popup__icon {
 	background-color: #c9d1d4;
-	color: #fff;
 }
 
 .velocite-popup__label {
@@ -121,14 +121,29 @@
 	font-size: 0.875rem;
 }
 
-.velocite-popup__row--empty .velocite-popup__icon {
-	background-color: #c9d1d4;
-}
-
 .velocite-popup__row--empty .velocite-popup__label,
 .velocite-popup__row--empty .velocite-popup__value {
 	color: #71717a;
 	text-decoration: line-through;
+}
+
+.velocite-popup__value {
+	font-size: 1.4em;
+}
+
+:root.dark {
+	.velocite-popup__icon--mechanical {
+		background-color: #bb1985;
+	}
+
+	.velocite-popup__icon--electrical {
+		background-color: #00a4bc;
+	}
+
+	.velocite-popup__icon--stands,
+	.velocite-popup__row--empty .velocite-popup__icon {
+		background-color: #324146;
+	}
 }
 
 .velocite-popup__link {
