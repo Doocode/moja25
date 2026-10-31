@@ -28,7 +28,7 @@
 				<Bike />
 				<span>Rechercher une station</span>
 			</Button>
-			<Button href={resolve('/velocite/map')} variant="secondary">
+			<Button href={resolve('/velocite/carte')} variant="secondary">
 				<Map />
 				<span>Voir le plan des stations</span>
 			</Button>

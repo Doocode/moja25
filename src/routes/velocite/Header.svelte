@@ -4,7 +4,7 @@
 	import DomainHeader from '$lib/ui/header/DomainHeader.svelte';
 
 	const links: Link[] = [
-		{ href: '/velocite/map', label: 'Carte des stations', icon: Map },
+		{ href: '/velocite/carte', label: 'Carte des stations', icon: Map },
 		{ href: '/velocite/recherche', label: 'Rechercher une station', icon: Search }
 	];
 </script>
