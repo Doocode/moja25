@@ -233,7 +233,44 @@
 </main>
 
 <style>
-	/*:global(.leaflet-top.leaflet-left) {
-		top: 160px;
-	}*/
+	:global {
+		.leaflet-popup-content-wrapper {
+			border-radius: 1rem;
+			font-family:
+				'Inter',
+				system-ui,
+				-apple-system,
+				BlinkMacSystemFont,
+				'Segoe UI',
+				Roboto,
+				Oxygen,
+				Ubuntu,
+				sans-serif;
+		}
+		.leaflet-container a.leaflet-popup-close-button {
+			color: var(--text-foreground);
+			width: 60px;
+			height: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+			border-top-right-radius: 1rem;
+			border-bottom-left-radius: 1rem;
+			transition: all 0.15s;
+
+			&:hover {
+				color: var(--destructive);
+				font-size: 40px;
+			}
+		}
+	}
+
+	:root.dark :global {
+		.leaflet-popup-content-wrapper,
+		.leaflet-popup-tip {
+			background: var(--background);
+			color: var(--text-foreground);
+		}
+	}
 </style>
