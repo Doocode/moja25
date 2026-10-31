@@ -51,7 +51,7 @@
 				<Button
 					variant="default"
 					size="icon"
-					href={resolve('/velocite/stations')}
+					href={resolve('/velocite/recherche')}
 					title="Voir la liste de tous les stations"
 					class="rounded-full p-5"
 				>

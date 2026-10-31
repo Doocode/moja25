@@ -24,7 +24,7 @@
 		</Ul>
 
 		<nav class="flex flex-wrap items-start gap-0.5">
-			<Button href={resolve('/velocite/stations')}>
+			<Button href={resolve('/velocite/recherche')}>
 				<Bike />
 				<span>Rechercher une station</span>
 			</Button>

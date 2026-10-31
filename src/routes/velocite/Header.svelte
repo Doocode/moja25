@@ -5,7 +5,7 @@
 
 	const links: Link[] = [
 		{ href: '/velocite/map', label: 'Carte des stations', icon: Map },
-		{ href: '/velocite/stations', label: 'Rechercher une station', icon: Search }
+		{ href: '/velocite/recherche', label: 'Rechercher une station', icon: Search }
 	];
 </script>
 
