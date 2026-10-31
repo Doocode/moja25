@@ -242,6 +242,22 @@
 			transition: opacity var(--transition-duration) linear;
 		}
 
+		:root.dark {
+			.leaflet-container {
+				background: #000;
+			}
+			.leaflet-layer {
+				filter: invert(1) hue-rotate(180deg) brightness(1.25); /* TODO: add brightness control (advanced controls)*/
+				filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+			}
+		}
+
+		.leaflet-popup-content-wrapper,
+		.leaflet-popup-tip {
+			background: var(--background);
+			color: var(--text-foreground);
+		}
+
 		.leaflet-popup-content-wrapper {
 			border-radius: 1rem;
 			font-family:
@@ -271,14 +287,6 @@
 				color: var(--destructive);
 				font-size: 40px;
 			}
-		}
-	}
-
-	:root.dark :global {
-		.leaflet-popup-content-wrapper,
-		.leaflet-popup-tip {
-			background: var(--background);
-			color: var(--text-foreground);
 		}
 	}
 </style>
