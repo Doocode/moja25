@@ -241,7 +241,7 @@
 			-moz-transition: opacity var(--transition-duration) linear;
 			transition: opacity var(--transition-duration) linear;
 		}
-		
+
 		.leaflet-popup-content-wrapper {
 			border-radius: 1rem;
 			font-family:

@@ -5,7 +5,7 @@ import { House, Bike, MapPin, Bolt, Menu, BusFront } from '@lucide/svelte';
 const homePage = { href: '/', label: 'Accueil', icon: House };
 const velocitePage = { href: '/velocite', label: 'Vélocité', icon: Bike };
 const ginkoPage = { href: '/ginko', label: 'Bus & tram', icon: BusFront };
-const mapsPage = { href: '/velocite/map', label: 'Cartes', icon: MapPin };
+const mapsPage = { href: '/velocite/carte', label: 'Cartes', icon: MapPin };
 //const settingsPage = { href: '/settings', label: 'Paramètres', icon: Bolt };
 const menuPage = { href: '/menu', label: 'Menu', icon: Menu };
 
