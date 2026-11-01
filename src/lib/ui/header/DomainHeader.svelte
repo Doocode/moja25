@@ -19,7 +19,7 @@
 
 <header
 	class={cn(
-		'overflow-auto border-b border-[#00000077] bg-purple-300 whitespace-nowrap dark:border-[#ffffff77] dark:bg-purple-800',
+		'hidden overflow-auto border-b border-[#00000077] bg-purple-300 whitespace-nowrap md:flex dark:border-[#ffffff77] dark:bg-purple-800',
 		sticky ? 'sticky top-0 right-0 left-0 z-50' : '',
 		className
 	)}
@@ -39,7 +39,7 @@
 		</h1>
 
 		<nav class="flex flex-2 pr-4">
-			{#each links as { href, label, icon } (icon)}
+			{#each links as { href, label, icon } (href)}
 				{#if icon !== null}
 					{@const Icon = icon}
 					<a
@@ -54,7 +54,7 @@
 							class={{
 								'flex items-center gap-1.5 border-y-5 border-transparent py-4 duration-100 md:py-5.5': true,
 								'border-b-foreground!': isCurrent(href),
-								'opacity-70 hover:opacity-100': !isCurrent(href)
+								'opacity-80 hover:opacity-100': !isCurrent(href)
 							}}
 						>
 							<Icon class="size-4.5" />
