@@ -54,7 +54,7 @@
 <style>
 	.bg-image {
 		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
-		background-image: url('/assets/velocite-root-hero.jpg');
+		background-image: url('/assets/velocite/root-hero.jpg'); /* TODO: Use WEBP image */
 		background-size: cover;
 		background-position: center;
 	}

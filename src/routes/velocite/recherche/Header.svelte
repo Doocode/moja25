@@ -49,7 +49,7 @@
 <style>
 	header::before {
 		--gradient-color: #800657;
-		background: url('/assets/velocite-search.webp');
+		background: url('/assets/velocite/search.webp');
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
