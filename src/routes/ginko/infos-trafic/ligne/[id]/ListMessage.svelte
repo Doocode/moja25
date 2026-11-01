@@ -2,7 +2,7 @@
 	import type { Ligne, Message } from '$core/dto/ginko';
 	import { resolve } from '$app/paths';
 	import { BadgeLigne } from '$lib/ui/ginko';
-	import Etat from './Etat.svelte';
+	import Etat from '../../Etat.svelte';
 
 	interface Props {
 		messages: Message[];
@@ -24,7 +24,7 @@
 	{#each messages as message (message.id)}
 		<li>
 			<a
-				href={resolve('/ginko/etat-du-service/messages/[id]', { id: String(message.id) })}
+				href={resolve('/ginko/infos-trafic/message/[id]', { id: String(message.id) })}
 				class="flex flex-col items-start gap-2 rounded-xl border border-input/50 bg-card p-4 hover:bg-secondary"
 			>
 				<div class="flex flex-wrap items-center gap-1">

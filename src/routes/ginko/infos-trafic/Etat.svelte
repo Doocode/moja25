@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Etat } from '../../enums';
+	import { Etat } from './enums';
 
 	interface Props {
 		etat: number;
