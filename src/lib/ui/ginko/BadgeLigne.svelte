@@ -18,6 +18,17 @@
 	)}
 	style:background={invertColors ? `#${ligne.couleurTexte}` : `#${ligne.couleurFond}`}
 	style:color={invertColors ? `#${ligne.couleurFond}` : `#${ligne.couleurTexte}`}
+	style:--border_color={ligne.couleurFond.toLowerCase() == 'ffffff' ||
+	ligne.couleurFond.toLowerCase() == 'fff'
+		? `#${ligne.couleurTexte}`
+		: `#${ligne.couleurFond}`}
 >
 	{ligne.numLignePublic}
 </div>
+
+<style>
+	div {
+		--border_color: transparent;
+		box-shadow: 0 0 0 2px var(--border_color);
+	}
+</style>
