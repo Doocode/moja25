@@ -21,5 +21,6 @@
 <main class="mx-auto max-w-250 pb-20 sm:pb-10">
 	<Header />
 
+	<!-- TODO: Create legend block -->
 	<EtatLignes {etatLignes} {lignes} />
 </main>

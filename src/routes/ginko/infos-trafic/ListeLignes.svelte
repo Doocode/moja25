@@ -1,12 +1,10 @@
 <script lang="ts">
-	import { BadgeLigne } from '$lib/ui/ginko';
 	import { cn } from '$lib/utils';
-	import type { ItemEtatLigne } from './types';
 	import { EtatLigne } from './enums';
-	import CheckIcon from '@lucide/svelte/icons/check';
-	import InfoIcon from '@lucide/svelte/icons/info';
-	import TriangleAlertIcon from '@lucide/svelte/icons/triangle-alert';
-	import XIcon from '@lucide/svelte/icons/x';
+	import { resolve } from '$app/paths';
+	import { BadgeLigne } from '$lib/ui/ginko';
+	import type { ItemEtatLigne } from './types';
+	import { Check, Info, TriangleAlert, X } from '@lucide/svelte';
 
 	interface Props {
 		lignes: ItemEtatLigne[];
@@ -18,7 +16,11 @@
 
 <div class="flex flex-wrap items-center gap-2 px-4 sm:gap-4 md:gap-6">
 	{#each lignes as ligne (ligne.idLigne)}
-		<div class="relative">
+		<a
+			class="relative"
+			href={resolve('/ginko/infos-trafic/ligne/[id]', { id: ligne.idLigne })}
+			data-sveltekit-preload-data="tap"
+		>
 			<BadgeLigne
 				ligne={{
 					...ligne,
@@ -46,16 +48,16 @@
 					}}
 				>
 					{#if ligne.etat === EtatLigne.Normal}
-						<CheckIcon class="size-4" />
+						<Check class="size-4" />
 					{:else if ligne.etat === EtatLigne.Information}
-						<InfoIcon class="size-4" />
+						<Info class="size-4" />
 					{:else if ligne.etat === EtatLigne.Perturbation_future || ligne.etat === EtatLigne.Perturbation_en_cours}
-						<TriangleAlertIcon class="size-4" />
+						<TriangleAlert class="size-4" />
 					{:else if ligne.etat === EtatLigne.Hors_service || ligne.etat === EtatLigne.Circulation_interrompue}
-						<XIcon class="size-4" />
+						<X class="size-4" />
 					{/if}
 				</div>
 			{/if}
-		</div>
+		</a>
 	{/each}
 </div>
