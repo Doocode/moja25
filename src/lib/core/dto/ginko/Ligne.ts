@@ -18,7 +18,8 @@ export interface Ligne {
 	typologie: number; /*
 	Permet de classer les lignes selon leur typologie. Le numéro permet également de les trier dans un ordre d'importance
 	- 10 "Tramway (T1 / T2)"
-	- 20 "LIANES (L3 à L6)" - 30 "Lignes urbaines (7 à 12 + Ginko Citadelle + PLAN.B)"
+	- 20 "LIANES (L3 à L6)"
+	- 30 "Lignes urbaines (7 à 12 + Ginko Citadelle + PLAN.B)"
 	- 40 "Lignes complémentaires (20 à 24)
 	- 50 "Lignes périurbaines (51 à 87 + Ginko Osselle Plage + Ginko Piscine + Ginko Chailluz)"
 	- 60 "Lignes scolaires (Diabolo)"

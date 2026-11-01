@@ -13,8 +13,8 @@
 
 <Hero />
 
-<main class="mx-auto max-w-6xl px-4 pt-4 pb-22 sm:px-6">
-	<section class="" aria-labelledby="explore-title">
+<main class="mx-auto mt-8 max-w-6xl px-4 pb-22 sm:mt-4 sm:px-6">
+	<section aria-labelledby="explore-title">
 		<div class="mb-6 flex items-center gap-2 sm:mb-8">
 			<BusFront class="size-8 text-sky-700 dark:text-sky-300" />
 			<h2 id="explore-title" class="text-2xl font-black tracking-tight sm:text-3xl">
@@ -32,7 +32,7 @@
 				<li>
 					<a
 						href={resolve(link.href)}
-						class="group flex h-full min-h-52 flex-col rounded-2xl border border-border/70 bg-card p-5 shadow-sm transition duration-200 hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-950/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+						class="group flex h-full min-h-52 flex-col rounded-4xl border-5 border-border/20 bg-card p-5 shadow-sm transition duration-200 hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-950/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
 					>
 						<div class="flex items-start justify-between">
 							{#if link.icon}

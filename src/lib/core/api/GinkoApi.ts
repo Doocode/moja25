@@ -102,10 +102,12 @@ export async function getEtatLignes(): Promise<InfoLigne[]> {
 }
 
 // Récupérer les infos-trafic du réseau Ginko
-export async function getMessages(params: {
-	idLignes?: string[];
-	idVariantes?: string[];
-}): Promise<Message[]> {
+export async function getMessages(
+	params: {
+		idLignes?: string[];
+		idVariantes?: string[];
+	} = {}
+): Promise<Message[]> {
 	return apiCall<Message[]>('TR/getMessages', params);
 }
 
