@@ -1,9 +1,9 @@
 import type {
-	Affluence,
 	Arret,
-	EtatLigne,
+	InfoLigne,
 	Ligne,
 	Message,
+	PrevisionAffluence,
 	TempsLieu,
 	VehiculeDR,
 	VehiculeTR
@@ -97,8 +97,8 @@ export async function getListeTemps(params: {
 }
 
 // Retourne une liste de ligne avec leur état en terme d'infotrafic
-export async function getEtatLignes(): Promise<EtatLigne[]> {
-	return apiCall<EtatLigne[]>('TR/getEtatLignes');
+export async function getEtatLignes(): Promise<InfoLigne[]> {
+	return apiCall<InfoLigne[]>('TR/getEtatLignes');
 }
 
 // Récupérer les infos-trafic du réseau Ginko
@@ -120,6 +120,6 @@ export async function getAffluence(params: {
 	date: string; // Format YYYY-MM-DD
 	idLigne: string;
 	sensAller: boolean;
-}): Promise<Affluence> {
-	return apiCall<Affluence>('Affluence/get.do', params);
+}): Promise<PrevisionAffluence> {
+	return apiCall<PrevisionAffluence>('Affluence/get.do', params);
 }

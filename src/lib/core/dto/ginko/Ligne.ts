@@ -9,9 +9,12 @@ export interface Ligne {
 	id: string;
 	numLignePublic: string; // Numéro de ligne, affichable à l'utilisateur. Par exemple "1".
 	libellePublic: string; // Description de la ligne, affichable à l'utilisateur. Par exemple "Hauts-du-Chazal <> Chalezeule".
-	couleurFond: string;
-	couleurTexte: string;
 	modeTransport: number; // Type de véhicule. Par exemple 0 pour bus, 1 pour tram
+	couleurFond: string; // Couleur d'arrière-plan caractéristique de la ligne (utilisée sur tous les documents et affichages dynamiques). Format HTML, sans le '#'.
+	couleurTexte: string; // Couleur de texte caractéristique de la ligne (utilisée sur tous les documents et affichages dynamiques). En général blanc ou noir. Format HTML, sans le '#'.
+	variantes: Variante[]; // Chaque ligne est composée de plusieurs variantes. La plupart des lignes en contiennent deux: une pour chaque sens de circulation. Toutefois, certaines lignes peuvent en contenir plus, lorsqu'un ou plusieurs arrêts sont desservis seulement à certaines heures de la journée. Attention, si vous avez obtenu cet objet en réponse à la requête DR/getVariantesDesservantArret, seules les variantes de lignes desservant l'arrêt demandé sont présentes dans la liste.
+	periurbain: boolean; // Indique s'il s'agit d'une ligne périurbaine. Les lignes périurbaines relient les villages situés dans le Grand Besançon aux Pôles d'Echange Intermodaux (PEI).
+	scolaire: boolean; // Indique s'il s'agit d'une ligne conçue spécialement pour les transports scolaires (collèges et lycées).
 	typologie: number; /*
 	Permet de classer les lignes selon leur typologie. Le numéro permet également de les trier dans un ordre d'importance
 	- 10 "Tramway (T1 / T2)"
@@ -21,25 +24,5 @@ export interface Ligne {
 	- 60 "Lignes scolaires (Diabolo)"
 	- 70 "Services à la demande (Ginko Proxi, Ginko Proxi TGV, Ginko Hôpital, Ginko Cliniques, Ginko Gare)"
 	- 80 "Autre"
-	*/
-	scolaire: boolean; // Indique s'il s'agit d'une ligne conçue spécialement pour les transports scolaires (collèges et lycées).
-	periurbain: boolean; // Indique s'il s'agit d'une ligne périurbaine. Les lignes périurbaines relient les villages situés dans le Grand Besançon aux Pôles d'Echange Intermodaux (PEI).
-	variantes: Variante[]; // Chaque ligne est composée de plusieurs variantes. La plupart des lignes en contiennent deux: une pour chaque sens de circulation. Toutefois, certaines lignes peuvent en contenir plus, lorsqu'un ou plusieurs arrêts sont desservis seulement à certaines heures de la journée. Attention, si vous avez obtenu cet objet en réponse à la requête DR/getVariantesDesservantArret, seules les variantes de lignes desservant l'arrêt demandé sont présentes dans la liste.
-}
-
-// Etat de la ligne en terme d'info trafic
-export interface EtatLigne {
-	idLigne: string;
-	numLignePublic: string;
-	couleurFond: string;
-	couleurTexte: string;
-	etat: number; /*
-	- 0 "Pas de couleur (pas de picto) - pas d'info sur l'état. Exemple pour les lignes TAD"
-	- 1 "Vert (picto check) - La ligne fonctionne normalement (aucune perturbation en cours ni prévue)"
-	- 2 "Bleu (picto info) - Il y a une information concernant la ligne (nouveauté, évolution)"
-	- 3 "Gris (picto croix) - La ligne ne fonctionne pas en ce moment, selon sa période de fonctionnement"
-	- 4 "Gris (picto attention) - Une perturbation est prévue dans le futur"
-	- 5 "Orange (picto attention) - Une perturbation est en cours"
-	- 6 "Rouge (picto croix) - La circulation de la ligne est interrompue (totalement)"
 	*/
 }
