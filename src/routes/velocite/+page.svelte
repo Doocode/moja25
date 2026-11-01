@@ -2,6 +2,7 @@
 	import Hero from './Hero.svelte';
 	import { resolve } from '$app/paths';
 	import { Ul, Li } from '$lib/ui/page';
+	import TilesBlock from './TilesBlock.svelte';
 	import { Button } from '$lib/shadcn/ui/button';
 	import { Map, Bike, Globe, SquareArrowOutUpRight } from '@lucide/svelte';
 </script>
@@ -12,8 +13,10 @@
 
 <Hero />
 
-<main>
-	<article class="container m-auto p-4">
+<main class="mx-auto max-w-6xl px-4 pt-8 pb-22 sm:px-6 sm:pt-4">
+	<TilesBlock />
+
+	<article class="container m-auto hidden p-4">
 		<p>
 			Découvrez le réseau <strong class="font-bold">Ginko Vélocité</strong>, le service de vélos en
 			libre-service de Besançon.
