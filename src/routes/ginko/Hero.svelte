@@ -5,7 +5,7 @@
 	const messages = [
 		'Tous vos trajets commencent ici.',
 		'Tous les routes mènent à Besançon.',
-		'Accrochez-vous, le voyage commence!'
+		'Accrochez-vous, le voyage commence !'
 		/*'En tram, en bus, en liane ou à vélo ?',
 		'Victor Hugo a été aperçu dans le tram',
 		'Colette se cache à la Gare Viotte'*/
@@ -20,7 +20,7 @@
 		class="relative overflow-clip bg-linear-to-br from-sky-400 via-cyan-400 to-teal-300 p-6 text-black shadow-xl shadow-cyan-900/20 sm:rounded-[2rem] md:p-10 lg:p-12 dark:shadow-cyan-300/20"
 	>
 		<div
-			class="bg-image absolute top-0 right-0 left-0 h-60 bg-background lg:bottom-0 lg:left-auto lg:h-auto lg:w-160 xl:w-200 2xl:w-260"
+			class="bg-image absolute top-0 right-0 left-0 h-60 bg-background lg:bottom-0 lg:left-auto lg:h-auto lg:w-140 xl:w-180 2xl:w-240"
 		></div>
 
 		<div class="relative max-w-xl">
@@ -31,7 +31,7 @@
 				<span>Bus & tram</span>
 			</p>
 
-			<p class="text-3xl leading-tight font-black text-balance sm:text-6xl">
+			<p class="text-3xl leading-none font-black text-balance sm:text-6xl">
 				{currentMessage}
 			</p>
 			<p class="mt-2 max-w-lg text-sm text-balance sm:mt-5 sm:text-lg">

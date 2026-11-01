@@ -9,10 +9,6 @@
 
 <svelte:head>
 	<title>Bus & tram de Besançon</title>
-	<meta
-		name="description"
-		content="Retrouvez les lignes, les stations, le plan et les informations trafic du réseau Ginko à Besançon."
-	/>
 </svelte:head>
 
 <Hero />

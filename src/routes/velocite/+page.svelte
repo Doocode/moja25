@@ -1,13 +1,16 @@
 <script>
-	import { Button } from '$lib/shadcn/ui/button';
+	import Hero from './Hero.svelte';
 	import { resolve } from '$app/paths';
 	import { Ul, Li } from '$lib/ui/page';
+	import { Button } from '$lib/shadcn/ui/button';
 	import { Map, Bike, Globe, SquareArrowOutUpRight } from '@lucide/svelte';
 </script>
 
 <svelte:head>
 	<title>Vélocité</title>
 </svelte:head>
+
+<Hero />
 
 <main>
 	<article class="container m-auto p-4">
