@@ -57,7 +57,7 @@
 	>
 		<h1 class="text-2xl font-bold">Lignes</h1>
 		<div class="flex items-center justify-end gap-1">
-			<SearchBar class="rounded-lg" bind:value={queryInput} />
+			<SearchBar bind:value={queryInput} />
 			<ViewMode bind:viewmode />
 		</div>
 	</header>

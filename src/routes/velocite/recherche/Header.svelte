@@ -36,10 +36,7 @@
 				</p>
 
 				<div class="rounded-lg backdrop-blur-2xl">
-					<SearchBar
-						bind:value={queryInput}
-						class="rounded-lg bg-background/70 dark:bg-background/20"
-					/>
+					<SearchBar bind:value={queryInput} class="bg-background/70 dark:bg-background/20" />
 				</div>
 			</div>
 		</AnimatedGridBg>

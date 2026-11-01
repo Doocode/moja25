@@ -24,7 +24,7 @@
 		{placeholder}
 		bind:value
 		class={cn(
-			'flex w-full rounded-full border border-input bg-transparent py-3 pr-12 pl-12! text-sm shadow-xs transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50',
+			'flex w-full rounded-lg border border-input bg-transparent py-3 pr-12 pl-12! text-sm shadow-xs transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50',
 			value && 'pr-9',
 			className
 		)}
