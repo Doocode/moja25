@@ -10,7 +10,7 @@ const mapsPage: GinkoLink = {
 	href: '/ginko/carte',
 	label: 'Plan du réseau',
 	icon: Map,
-	description: 'Emplacement des stations et trajets des lignes'
+	description: 'Repérer les stations et les trajets des lignes sur une carte interactive'
 };
 const searchPage: GinkoLink = {
 	href: '/ginko/recherche',
@@ -25,10 +25,10 @@ const linesPage: GinkoLink = {
 	description: 'Liste des lignes de bus et tram'
 };
 const infoPage: GinkoLink = {
-	href: '/ginko/etat-du-service/messages',
-	label: 'Etat du service',
+	href: '/ginko/infos-trafic',
+	label: 'Infos trafic',
 	icon: Info,
-	description: 'Informations sur les trajets et les stations'
+	description: 'Suivre les perturbations et les infos du réseau'
 };
 
 // Menu links
