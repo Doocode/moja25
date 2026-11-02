@@ -4,7 +4,7 @@
 	import type { Arret } from '$core/dto/ginko';
 	import ResultCount from './ResultCount.svelte';
 	import SearchBar from '../../velocite/shared/ui/tool-bar/SearchBar.svelte';
-	import { BusFront, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
+	import { BusFront, CircleAlert, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
 
 	interface Props {
 		data: {
@@ -91,6 +91,17 @@
 		</div>
 	{:else}
 		<ResultCount count={results.length} />
+		{#if results.some((arret) => arret.intemperie)}
+			<div
+				class="my-2 grid grid-cols-[1fr_auto] gap-4 rounded-lg bg-red-200 p-4 text-sm text-red-600 dark:bg-red-950 dark:text-red-300"
+			>
+				<CircleAlert class="size-8" />
+				<p>
+					Attention : certaines stations sont impactées par les intempéries. Elles sont marquées par
+					cet indicateur.
+				</p>
+			</div>
+		{/if}
 		<ResultList arrets={results} />
 	{/if}
 </main>

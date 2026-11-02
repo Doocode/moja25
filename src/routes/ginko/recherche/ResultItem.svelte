@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { BusFront, TramFront } from '@lucide/svelte';
+	import { BusFront, CircleAlert, TramFront } from '@lucide/svelte';
 	import type { Arret } from '$core/dto/ginko';
 
 	interface Props {
@@ -31,5 +31,13 @@
 	{:else}
 		<BusFront class="size-5 shrink-0 text-orange-500 dark:text-orange-400" />
 	{/if}
-	<span>{arret.nom}</span>
+
+	<span class="flex-1">{arret.nom}</span>
+
+	{#if arret.intemperie}
+		<CircleAlert
+			class="size-5 shrink-0 text-red-500 dark:text-red-400"
+			title="Impacté par des intempéries"
+		/>
+	{/if}
 </a>
