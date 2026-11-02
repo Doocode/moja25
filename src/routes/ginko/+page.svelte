@@ -3,8 +3,6 @@
 	import { resolve } from '$app/paths';
 	import { mainLinks } from './links';
 	import { BusFront } from '@lucide/svelte';
-
-	const navigationLinks = mainLinks.filter((link) => link.href !== '/ginko/recherche');
 </script>
 
 <svelte:head>
@@ -28,7 +26,7 @@
 		</div>
 
 		<ul class="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
-			{#each navigationLinks as link (link.href)}
+			{#each mainLinks as link (link.href)}
 				<li>
 					<a
 						href={resolve(link.href)}

@@ -1,8 +1,10 @@
 <script lang="ts">
-	import ResultCount from './ResultCount.svelte';
+	import { Button } from '$shadcn/button';
 	import ResultList from './ResultList.svelte';
-	import SearchBar from '../../velocite/shared/ui/tool-bar/SearchBar.svelte';
 	import type { Arret } from '$core/dto/ginko';
+	import ResultCount from './ResultCount.svelte';
+	import SearchBar from '../../velocite/shared/ui/tool-bar/SearchBar.svelte';
+	import { BusFront, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
 
 	interface Props {
 		data: {
@@ -46,18 +48,47 @@
 	<title>Rechercher une station</title>
 </svelte:head>
 
-<main class="container m-auto max-w-lg p-4">
-	<header class="mb-4 flex flex-col gap-4">
-		<h1 class="text-2xl font-bold">Rechercher une station</h1>
-		<SearchBar placeholder="Nom de la station" bind:value={queryInput} />
-	</header>
+<header class="container m-auto flex max-w-lg flex-col gap-4 p-4 pb-8 sm:py-8 md:py-14">
+	<p class="flex items-center gap-2 text-2xl font-medium text-sky-700 dark:text-sky-300">
+		<BusFront class="size-7" />
+		<span>Bus & tram</span>
+	</p>
 
+	<h1 class="text-4xl leading-none font-black text-balance">
+		Rechercher <span class="font-light text-sky-700 dark:text-sky-300">une station</span>
+	</h1>
+</header>
+
+<div class="m-auto max-w-xl px-4">
+	<SearchBar
+		class="md:rounded-full md:py-4"
+		placeholder="Nom de la station"
+		bind:value={queryInput}
+	/>
+</div>
+
+<main class="container m-auto max-w-lg p-4 pt-0">
 	{#if normalize(queryInput).trim() === ''}
-		<p class="text-center text-muted-foreground">
-			Saisissez le nom d'une station de bus ou de tram.
-		</p>
+		<div class="py-10 text-center">
+			<TextCursorInput class="mx-auto mb-4 size-40" stroke-width={1} />
+			<p class="text-center text-sm text-balance text-muted-foreground">
+				Saisissez le nom d'une station de bus ou de tram pour démarrer la recherche.
+			</p>
+		</div>
 	{:else if results.length === 0}
-		<p class="text-center text-muted-foreground">Aucune station ne correspond à la recherche.</p>
+		<div class="py-10 text-center">
+			<CircleDotDashed
+				class="mx-auto mb-4 size-40 text-amber-600 dark:text-amber-400"
+				stroke-width={1}
+			/>
+			<p class="text-center text-sm text-balance">
+				Aucune station ne correspond à votre recherche.
+			</p>
+			<p class="mt-1 mb-4 text-center text-sm text-balance text-muted-foreground">
+				Essayez autre chose ou vérifiez l'orthographe.
+			</p>
+			<Button onclick={() => (queryInput = '')} class="min-w-40">Effacer la saisie</Button>
+		</div>
 	{:else}
 		<ResultCount count={results.length} />
 		<ResultList arrets={results} />
