@@ -3,7 +3,7 @@
 	import { cn } from '$lib/utils';
 
 	interface Props {
-		ligne: Ligne;
+		ligne: Pick<Ligne, 'numLignePublic' | 'couleurFond' | 'couleurTexte'>;
 		class?: string;
 		invertColors?: boolean;
 	}
