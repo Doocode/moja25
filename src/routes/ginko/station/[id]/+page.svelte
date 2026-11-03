@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from './Header.svelte';
+	import NearbyStops from './NearbyStops.svelte';
 	import WaitingTimes from './WaitingTimes.svelte';
 	import type { Arret, Ligne, TempsLieu } from '$core/dto/ginko';
 
@@ -23,4 +24,5 @@
 
 <main class="container m-auto grid max-w-2xl gap-8 p-4">
 	<WaitingTimes temps={data.tempsLieu?.listeTemps ?? []} />
+	<NearbyStops arrets={data.arretsProches} />
 </main>
