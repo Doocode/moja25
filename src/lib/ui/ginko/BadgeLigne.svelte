@@ -29,6 +29,6 @@
 <style>
 	div {
 		--border_color: transparent;
-		box-shadow: 0 0 0 2px var(--border_color);
+		box-shadow: 0 0 0 2px var(--border_color) inset;
 	}
 </style>

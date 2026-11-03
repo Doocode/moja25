@@ -10,7 +10,7 @@
 
 <main
 	class={{
-		'flex items-center justify-center gap-4 rounded-sm px-2 py-1 text-xs uppercase': true,
+		'flex items-center justify-center gap-4 rounded-sm px-2 py-1 text-xs font-bold tracking-widest uppercase': true,
 		'bg-green-300 dark:bg-green-700': etat === Etat.Aucune_perturbation,
 		'bg-blue-300 dark:bg-blue-700': etat === Etat.Information_réseau,
 		'bg-slate-300 dark:bg-slate-700': etat === Etat.Perturbation_future,

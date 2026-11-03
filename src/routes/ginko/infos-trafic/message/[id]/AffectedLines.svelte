@@ -13,7 +13,7 @@
 </script>
 
 <Section title="Lignes concernées" icon={Route}>
-	<ul class="flex flex-wrap gap-2">
+	<ul class="flex flex-wrap gap-1">
 		{#each lignes as ligne (ligne.id)}
 			<li>
 				<a
