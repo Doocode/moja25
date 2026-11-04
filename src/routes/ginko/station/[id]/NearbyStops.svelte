@@ -13,7 +13,7 @@
 	<h2 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		Stations à proximité
 	</h2>
-	<ul class="grid">
+	<ul class="grid gap-0.5">
 		{#each arrets as arret (arret.id)}
 			<NearbyStopItem {arret} />
 		{:else}
