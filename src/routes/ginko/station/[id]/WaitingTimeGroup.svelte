@@ -10,8 +10,8 @@
 	let { group }: Props = $props();
 </script>
 
-<li class="grid gap-2 border-b border-muted-foreground/40 py-3">
-	<div class="flex items-center gap-3">
+<li class="grid gap-2 border-b border-muted-foreground/40 py-3 md:grid-cols-[1fr_250px]">
+	<header class="flex items-center gap-3">
 		<BadgeLigne ligne={group.ligne} class="shrink-0" />
 		<div class="grid min-w-0 flex-1">
 			<span class="truncate font-bold">{group.destination}</span>
@@ -19,11 +19,11 @@
 				<span class="text-xs text-muted-foreground">{group.precisionDestination}</span>
 			{/if}
 		</div>
-	</div>
+	</header>
 
-	<ul class="flex justify-between gap-2">
+	<ul class="flex items-center justify-between gap-2">
 		{#each group.temps as temps, ii (ii)}
-			<WaitingTimeItem {temps} />
+			<WaitingTimeItem {temps} index={ii} />
 		{:else}
 			<li class="text-sm text-muted-foreground">Aucun passage prévu</li>
 		{/each}

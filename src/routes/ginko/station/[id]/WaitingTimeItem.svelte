@@ -4,20 +4,24 @@
 
 	interface Props {
 		temps: TempsAttente;
+		index?: number;
 	}
 
-	let { temps }: Props = $props();
+	let { temps, index = -1 }: Props = $props();
 
 	const ALTERNATE_DELAY_MS = 3000;
 
 	let texts = $derived(getDisplayTexts(temps));
-	let index = $state(0);
-	let text = $derived(texts[index % texts.length]);
+	let textIndex = $state(0);
+	let text = $derived(texts[textIndex % texts.length]);
 
 	$effect(() => {
-		index = 0;
+		textIndex = 0;
 		if (texts.length < 2) return;
-		const timer = setInterval(() => (index = (index + 1) % texts.length), ALTERNATE_DELAY_MS);
+		const timer = setInterval(
+			() => (textIndex = (textIndex + 1) % texts.length),
+			ALTERNATE_DELAY_MS
+		);
 		return () => clearInterval(timer);
 	});
 
@@ -26,12 +30,13 @@
 </script>
 
 <li
-	class="grid min-w-20 gap-0.5 rounded-lg border border-muted-foreground/30 px-3 py-1.5 text-sm"
+	class="grid gap-0.5 text-lg"
 	title={isTheoretical ? 'Horaire théorique : le véhicule n’est pas localisé' : undefined}
 >
 	<span
 		class={{
-			'font-bold': true,
+			'font-light': index > 0,
+			'font-black': index === 0,
 			'text-orange-600 dark:text-orange-400': isMessage,
 			'text-muted-foreground italic': isTheoretical
 		}}
