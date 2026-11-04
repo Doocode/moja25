@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import { Button } from '$shadcn/button';
 	import ResultList from './ResultList.svelte';
 	import type { Arret } from '$core/dto/ginko';
@@ -14,7 +15,8 @@
 
 	let { data }: Props = $props();
 
-	let queryInput = $state('');
+	// Initialize from the "q" URL parameter
+	let queryInput = $state(page.url.searchParams.get('q') ?? '');
 
 	let results = $derived.by(() => {
 		const terms = normalize(queryInput) // Remove diacritics and normalize special characters
