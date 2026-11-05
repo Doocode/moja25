@@ -12,7 +12,3 @@ import RefreshDropdown from './RefreshDropdown.svelte';
 import LocateButton from './LocateButton.svelte';
 import SortButtonGroup from './SortButtonGroup.svelte';
 export { KeepScreenOnToggle, RefreshDropdown, LocateButton, SortButtonGroup };
-
-// Search bar
-import SearchBar from './SearchBar.svelte';
-export { SearchBar };

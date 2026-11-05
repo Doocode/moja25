@@ -1,7 +1,7 @@
 <script lang="ts">
+	import SearchBar from '$lib/ui/SearchBar.svelte';
 	import AnimatedGridBg from '$lib/ui/AnimatedGridBg.svelte';
 	import { DatabaseSearch, TextSearch, Search } from '@lucide/svelte';
-	import { SearchBar } from '../shared/ui/tool-bar';
 
 	interface Props {
 		queryInput?: string;

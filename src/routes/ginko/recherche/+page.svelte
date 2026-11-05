@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button } from '$shadcn/button';
-	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
 	import ResultList from './ResultList.svelte';
 	import type { Arret } from '$core/dto/ginko';
 	import ResultCount from './ResultCount.svelte';
-	import SearchBar from '../../velocite/shared/ui/tool-bar/SearchBar.svelte';
+	import SearchBar from '$lib/ui/SearchBar.svelte';
+	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
 	import { BusFront, CircleAlert, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
 
 	interface Props {
