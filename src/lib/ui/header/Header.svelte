@@ -22,8 +22,14 @@
 	}}
 >
 	<div class="container mx-auto flex items-center justify-between gap-4 p-2 pl-4">
-		<h1 class="flex-1 text-2xl font-bold">
-			<a href={resolve('/')} class="hover:text-primary hover:underline">Moja25</a>
+		<h1 class="flex-1 text-2xl font-black">
+			<a
+				href={resolve('/')}
+				class="whitespace-nowrap underline-offset-3 hover:text-primary hover:underline"
+			>
+				Terminus
+				<span class="font-light text-primary">Besançon</span>
+			</a>
 		</h1>
 
 		<TopNavBar />

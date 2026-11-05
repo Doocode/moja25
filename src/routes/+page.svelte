@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Moja Besançon</title>
+	<title>Terminus Besançon</title>
 </svelte:head>
 
 <h1>Accueil</h1>
