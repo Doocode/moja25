@@ -23,7 +23,12 @@
 		VelociteSortField.AVAILABLE_STANDS
 	];
 
-	const QUICK_FILTERS_COMPACT = [VelociteSortField.TOTAL_BIKES, VelociteSortField.AVAILABLE_STANDS];
+	const QUICK_FILTERS_COMPACT = [
+		VelociteSortField.TOTAL_BIKES,
+		VelociteSortField.MECHANICAL_BIKES,
+		VelociteSortField.ELECTRICAL_BIKES,
+		VelociteSortField.AVAILABLE_STANDS
+	];
 
 	function openDrawer() {
 		drawerOpen = true;
@@ -39,11 +44,11 @@
 			{@const { icon: Icon, shortLabel, label } = FIELD_CONFIG[field]}
 			<Button
 				variant={isActive ? 'default' : 'outline'}
-				class="size-14 rounded-lg"
+				class="size-12 rounded-lg"
 				onclick={() => onSelectSort(field)}
 				title={label}
 			>
-				<Icon class="size-7" />
+				<Icon class="size-6" />
 				<span class="sr-only">{shortLabel ?? label}</span>
 			</Button>
 		{/each}
@@ -59,11 +64,11 @@
 
 	<Button
 		variant={drawerOpen ? 'default' : 'outline'}
-		class="size-14 rounded-lg"
+		class="size-12 rounded-lg"
 		onclick={openDrawer}
 		title="Plus d'options de tri des stations Vélocité"
 	>
-		<EllipsisVertical class="size-7" />
+		<EllipsisVertical class="size-6" />
 		<span class="sr-only">Plus d'options de tri des stations Vélocité</span>
 	</Button>
 </div>
