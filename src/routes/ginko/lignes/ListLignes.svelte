@@ -15,7 +15,7 @@
 		<li>
 			<a
 				href={resolve('/ginko/lignes/[idLigne]', { idLigne: ligne.id })}
-				class="group flex items-center gap-3 rounded-lg py-1.5 transition-[padding] hover:bg-green-300 hover:px-1.5 dark:hover:bg-green-800"
+				class="group flex items-center gap-3 rounded-lg py-1.5 transition-[padding] hover:bg-secondary hover:px-1.5"
 				data-sveltekit-preload-data="tap"
 			>
 				<BadgeLigne {ligne} />
