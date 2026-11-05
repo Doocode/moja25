@@ -2,7 +2,7 @@
 	import { VelociteSortField } from '$lib/core/enum/VelociteSortField';
 	import { FIELD_CONFIG } from '../shared/core/sort-config';
 	import { EllipsisVertical } from '@lucide/svelte';
-	import { Button } from '$shadcn/button';
+	import SortButton from './SortButton.svelte';
 
 	interface Props {
 		selectedSort: VelociteSortField;
@@ -42,15 +42,13 @@
 		{#each filters as field (FIELD_CONFIG[field].label)}
 			{@const isActive = selectedSort === field}
 			{@const { icon: Icon, shortLabel, label } = FIELD_CONFIG[field]}
-			<Button
-				variant={isActive ? 'default' : 'outline'}
-				class="size-12 rounded-lg"
-				onclick={() => onSelectSort(field)}
+			<SortButton
+				icon={Icon}
+				text={shortLabel ?? label}
 				title={label}
-			>
-				<Icon class="size-6" />
-				<span class="sr-only">{shortLabel ?? label}</span>
-			</Button>
+				selected={isActive}
+				onclick={() => onSelectSort(field)}
+			/>
 		{/each}
 	{/snippet}
 
@@ -62,13 +60,11 @@
 		{@render listFilters(QUICK_FILTERS_LARGE)}
 	</div>
 
-	<Button
-		variant={drawerOpen ? 'default' : 'outline'}
-		class="size-12 rounded-lg"
-		onclick={openDrawer}
+	<SortButton
+		selected={drawerOpen}
+		icon={EllipsisVertical}
+		text="Plus d'options de tri des stations Vélocité"
 		title="Plus d'options de tri des stations Vélocité"
-	>
-		<EllipsisVertical class="size-6" />
-		<span class="sr-only">Plus d'options de tri des stations Vélocité</span>
-	</Button>
+		onclick={openDrawer}
+	/>
 </div>
