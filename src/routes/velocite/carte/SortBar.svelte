@@ -6,7 +6,7 @@
 
 	interface Props {
 		selectedSort: VelociteSortField;
-		onSelectSort: (filter: VelociteSortField) => void;
+		onSelectSort: (option: VelociteSortField) => void;
 		drawerOpen?: boolean;
 	}
 
@@ -16,19 +16,14 @@
 		onSelectSort
 	}: Props = $props();
 
-	const QUICK_FILTERS_LARGE = [
+	const QUICK_SORT_LARGE = [
 		VelociteSortField.TOTAL_BIKES,
 		VelociteSortField.MECHANICAL_BIKES,
 		VelociteSortField.ELECTRICAL_BIKES,
 		VelociteSortField.AVAILABLE_STANDS
 	];
 
-	const QUICK_FILTERS_COMPACT = [
-		VelociteSortField.TOTAL_BIKES,
-		VelociteSortField.MECHANICAL_BIKES,
-		VelociteSortField.ELECTRICAL_BIKES,
-		VelociteSortField.AVAILABLE_STANDS
-	];
+	const QUICK_SORT_COMPACT = [VelociteSortField.TOTAL_BIKES, VelociteSortField.AVAILABLE_STANDS];
 
 	function openDrawer() {
 		drawerOpen = true;
@@ -38,8 +33,9 @@
 <div
 	class="fixed bottom-20 left-[50%] z-20 flex -translate-x-1/2 justify-center gap-1 rounded-2xl border bg-background/20 p-2 shadow-xl backdrop-blur transition-[bottom] md:bottom-4 dark:bg-background/80"
 >
-	{#snippet listFilters(filters: VelociteSortField[])}
-		{#each filters as field (FIELD_CONFIG[field].label)}
+	<!-- Render a list of SortButton -->
+	{#snippet listOptions(options: VelociteSortField[])}
+		{#each options as field (FIELD_CONFIG[field].label)}
 			{@const isActive = selectedSort === field}
 			{@const { icon: Icon, shortLabel, label } = FIELD_CONFIG[field]}
 			<SortButton
@@ -52,14 +48,33 @@
 		{/each}
 	{/snippet}
 
+	<!-- Render the last option if it's not included in the quick sort lists -->
+	{#snippet lastOptionFrom(options: VelociteSortField[])}
+		{#if !options.includes(selectedSort)}
+			{@const { icon: Icon, shortLabel, label } = FIELD_CONFIG[selectedSort]}
+			<SortButton
+				icon={Icon}
+				text={shortLabel ?? label}
+				title={label}
+				selected
+				onclick={() => onSelectSort(selectedSort)}
+			/>
+		{/if}
+	{/snippet}
+
+	<!-- Compact variant: with less buttons -->
 	<div class="flex justify-center gap-1 sm:hidden">
-		{@render listFilters(QUICK_FILTERS_COMPACT)}
+		{@render listOptions(QUICK_SORT_COMPACT)}
+		{@render lastOptionFrom(QUICK_SORT_COMPACT)}
 	</div>
 
+	<!-- Large variant: with more buttons -->
 	<div class="hidden justify-center gap-1 sm:flex">
-		{@render listFilters(QUICK_FILTERS_LARGE)}
+		{@render listOptions(QUICK_SORT_LARGE)}
+		{@render lastOptionFrom(QUICK_SORT_LARGE)}
 	</div>
 
+	<!-- Button to open the sorting drawer -->
 	<SortButton
 		selected={drawerOpen}
 		icon={EllipsisVertical}
