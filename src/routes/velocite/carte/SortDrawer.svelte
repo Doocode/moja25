@@ -38,7 +38,7 @@
 					/>
 				</SortSection>
 
-				<div class="grid gap-4 lg:grid-cols-2">
+				<div class="grid gap-6 lg:grid-cols-2">
 					<SortSection title="Caractéristiques">
 						<ListSortField
 							fields={numberFilters}

@@ -2,13 +2,14 @@
 	import { browser } from '$app/environment';
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
+	import { Button } from '$shadcn/button';
 	import { ArrowLeft } from '@lucide/svelte';
 	import AnimatedGridBg from '$lib/ui/AnimatedGridBg.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
-	import { KeepScreenOnToggle, RefreshDropdown } from '../../shared/ui/tool-bar';
+	import { RefreshDropdown } from '../../shared/ui/tool-bar';
+	import KeepScreenAwake from '$lib/ui/KeepScreenAwake.svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
-	import { Button } from '$shadcn/button';
+	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 
 	interface Props {
 		station: FormattedStation;
@@ -62,7 +63,7 @@
 				<div class="flex max-w-40 justify-end gap-2">
 					<!-- TODO: Actions (add to bookmarks, share, open in map) -->
 					{#if wakeLockSupported}
-						<KeepScreenOnToggle size="lg" />
+						<KeepScreenAwake size="lg" localStorageKey={LocalStorageKey.VELOCITE_KEEP_SCREEN_ON} />
 					{/if}
 
 					<RefreshDropdown size="lg" bind:interval={refreshInterval} />
