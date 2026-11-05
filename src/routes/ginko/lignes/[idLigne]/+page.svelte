@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from './Header.svelte';
+	import * as Tabs from '$shadcn/tabs';
 	import ListStop from './ListStop.svelte';
-	import * as Tabs from '$lib/shadcn/ui/tabs';
 	import { ArrowRight } from '@lucide/svelte';
 	import type { Ligne, Arret } from '$core/dto/ginko';
 

@@ -7,7 +7,7 @@ import {
 	Footprints,
 	Hash,
 	Layers,
-	SquareParking,
+	SquareLetterP,
 	Star,
 	Wifi,
 	Zap
@@ -31,7 +31,7 @@ export const FIELD_CONFIG: Record<VelociteSortField, SortFieldConfig> = {
 	[VelociteSortField.AVAILABLE_STANDS]: {
 		label: 'Places disponibles',
 		shortLabel: 'Places',
-		icon: SquareParking
+		icon: SquareLetterP
 	},
 	[VelociteSortField.CAPACITY]: { label: 'Capacité', icon: Layers },
 	[VelociteSortField.NUMBER]: { label: 'Numéro', icon: Hash },

@@ -9,7 +9,7 @@
 	let { arrets }: Props = $props();
 </script>
 
-<section>
+<section class="mx-auto max-w-100">
 	<h2 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		Stations à proximité
 	</h2>

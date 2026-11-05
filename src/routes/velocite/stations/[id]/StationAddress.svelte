@@ -2,7 +2,7 @@
 	import { Copy, CopyCheck, Locate, MapPin } from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { cn } from '$lib/utils.js';
-	import { Button } from '$lib/shadcn/ui/button';
+	import { Button } from '$shadcn/button';
 
 	import GoogleLogo from '$assets/logo/google-maps.png';
 	import BingLogo from '$assets/logo/bing-maps.png';

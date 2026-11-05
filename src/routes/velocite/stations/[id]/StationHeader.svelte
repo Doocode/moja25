@@ -8,7 +8,7 @@
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 	import { KeepScreenOnToggle, RefreshDropdown } from '../../shared/ui/tool-bar';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
-	import { Button } from '$lib/shadcn/ui/button';
+	import { Button } from '$shadcn/button';
 
 	interface Props {
 		station: FormattedStation;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$lib/shadcn/ui/button';
+	import { Button } from '$shadcn/button';
 	import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 	import { onMount } from 'svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
