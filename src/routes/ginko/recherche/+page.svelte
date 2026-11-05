@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { Button } from '$shadcn/button';
+	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
 	import ResultList from './ResultList.svelte';
 	import type { Arret } from '$core/dto/ginko';
 	import ResultCount from './ResultCount.svelte';
@@ -31,7 +32,12 @@
 				const haystack = normalize(a.nom);
 				return terms.every((t) => haystack.includes(t)); // Match all search terms
 			})
-			.sort((a, b) => a.nom.localeCompare(b.nom, 'fr', { numeric: true }));
+			.sort(
+				(a, b) =>
+					a.nom.localeCompare(b.nom, 'fr', { numeric: true }) ||
+					// If station name is the same: put trams first
+					Number(kindOfStop(b) === KindOfStop.Tram) - Number(kindOfStop(a) === KindOfStop.Tram)
+			);
 	});
 
 	// Transform [à, é, è, etc.] to [a, e, e, etc.]
