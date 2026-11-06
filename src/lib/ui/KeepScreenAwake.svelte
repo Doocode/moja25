@@ -12,6 +12,7 @@
 
 	let { enabled = $bindable(false), size = 'md', localStorageKey = undefined }: Props = $props();
 
+	let supported = $derived('wakeLock' in navigator);
 	let wakeLock: WakeLockSentinel | null = $state(null);
 	const iconSize = $derived(size === 'md' ? 'size-5' : 'size-6');
 
@@ -29,12 +30,14 @@
 	}
 
 	async function requestWakeLock() {
+		if (!supported) {
+			console.error('Wake Lock not supported');
+			return;
+		}
+
 		try {
 			// Enable the wake lock
 			wakeLock = await navigator.wakeLock.request('screen');
-			wakeLock.addEventListener('release', () => {
-				console.log('Wake Lock désactivé');
-			});
 			if (localStorageKey) {
 				LocalStorageHelper.setValue(localStorageKey, 'true');
 			}
@@ -70,20 +73,22 @@
 	});
 </script>
 
-<Button
-	title="Garder l'écran allumé"
-	variant={enabled ? 'outline' : 'ghost'}
-	size="icon"
-	class={{
-		'rounded-lg backdrop-blur-xl': true,
-		'size-9': size === 'md',
-		'size-11.25': size === 'lg'
-	}}
-	onclick={toggle}
->
-	{#if enabled}
-		<Lightbulb class={iconSize} />
-	{:else}
-		<LightbulbOff class={iconSize} />
-	{/if}
-</Button>
+{#if supported}
+	<Button
+		title="Garder l'écran allumé"
+		variant={enabled ? 'outline' : 'ghost'}
+		size="icon"
+		class={{
+			'rounded-lg backdrop-blur-xl': true,
+			'size-9': size === 'md',
+			'size-11.25': size === 'lg'
+		}}
+		onclick={toggle}
+	>
+		{#if enabled}
+			<Lightbulb class={iconSize} />
+		{:else}
+			<LightbulbOff class={iconSize} />
+		{/if}
+	</Button>
+{/if}

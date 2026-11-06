@@ -14,8 +14,8 @@
 	let texts = $derived(getDisplayTexts(temps));
 	let textIndex = $state(0);
 	let text = $derived(texts[textIndex % texts.length]);
-	let lessThan_10min = $derived(temps.tempsEnSeconde <= 10 * 60 && temps.tempsEnSeconde > 1 * 60);
-	let lessThan_1min = $derived(temps.tempsEnSeconde <= 1 * 60);
+	let lessThan_10min = $derived(temps.tempsEnSeconde <= 10 * 60 && temps.tempsEnSeconde > 2 * 60);
+	let lessThan_2min = $derived(temps.tempsEnSeconde <= 2 * 60);
 
 	$effect(() => {
 		textIndex = 0;
@@ -39,12 +39,12 @@
 		class={{
 			'font-light': index > 0,
 			'font-black': index === 0,
-			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_1min,
+			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_2min,
 			'text-muted-foreground italic': isTheoretical,
 			'less-than-10min': lessThan_10min,
-			'less-than-1min': lessThan_1min && !isMessage,
+			'less-than-2min': lessThan_2min && !isMessage,
 			'text-sky-600 dark:text-sky-400': lessThan_10min && !isMessage,
-			'text-red-600 dark:text-red-400': lessThan_1min && !isMessage
+			'text-red-600 dark:text-red-400': lessThan_2min && !isMessage
 		}}
 	>
 		{#if !text}
@@ -72,8 +72,8 @@
 		100% {
 			opacity: 0;
 		}
-		30%,
-		70% {
+		10%,
+		90% {
 			opacity: 1;
 		}
 	}
@@ -87,9 +87,9 @@
 		}
 	}
 	.less-than-10min {
-		animation: blink 2s infinite;
+		animation: blink 4s infinite;
 	}
-	.less-than-1min {
+	.less-than-2min {
 		animation: quick_blink 0.75s infinite;
 	}
 </style>
