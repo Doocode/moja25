@@ -7,11 +7,10 @@
 
 	interface Props {
 		group: WaitingTimeGroup;
+		largeFontSize?: boolean;
 	}
 
-	let { group }: Props = $props();
-
-	let largeFontSize = $state(false);
+	let { group, largeFontSize = $bindable(false) }: Props = $props();
 
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;
@@ -35,7 +34,7 @@
 			onclick={toggleFontSize}
 			size="icon"
 			variant="ghost"
-			class="md:_static absolute top-2 right-2 my-auto rounded-full text-muted-foreground hover:bg-primary hover:text-primary-foreground md:top-0 md:right-0 md:bottom-0 dark:hover:bg-primary dark:hover:text-primary-foreground"
+			class="absolute top-2 right-2 my-auto rounded-full text-muted-foreground hover:bg-primary hover:text-primary-foreground md:top-0 md:right-0 md:bottom-0 dark:hover:bg-primary dark:hover:text-primary-foreground"
 			title={largeFontSize
 				? "Désactiver l'affichage en grande police"
 				: "Activer l'affichage en grande police"}

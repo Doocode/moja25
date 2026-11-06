@@ -52,7 +52,7 @@
 			Pas de temps
 		{:else if isTheoretical}
 			Théorique <span class="text-xs font-normal">({text})</span>
-		{:else if temps.typeDeTemps === TypeDeTemps.Duree && large}
+		{:else if large && [TypeDeTemps.Duree, TypeDeTemps.Horaire].includes(temps.typeDeTemps)}
 			{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
 			{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
 			{#if tempsEnMinute <= 99}

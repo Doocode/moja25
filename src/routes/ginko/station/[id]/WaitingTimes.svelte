@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Button } from '$shadcn/button';
+	import { AArrowUp } from '@lucide/svelte';
 	import { groupWaitingTimes } from './waitingTimes';
 	import type { TempsAttente } from '$core/dto/ginko';
 	import WaitingTimeCard from './WaitingTimeCard.svelte';
@@ -12,6 +14,12 @@
 	let { temps }: Props = $props();
 
 	let groups = $derived(groupWaitingTimes(temps));
+
+	let largeFontSize = $state(false);
+
+	function toggleFontSize() {
+		largeFontSize = !largeFontSize;
+	}
 </script>
 
 <section>
@@ -21,11 +29,24 @@
 
 	<nav class="mb-4">
 		<KeepScreenAwake localStorageKey={LocalStorageKey.GINKO_KEEP_SCREEN_AWAKE} />
+
+		{#if groups.length > 0}
+			<Button
+				onclick={toggleFontSize}
+				size="icon"
+				variant={largeFontSize ? 'outline' : 'ghost'}
+				title={largeFontSize
+					? "Désactiver l'affichage en grande police"
+					: "Activer l'affichage en grande police"}
+			>
+				<AArrowUp class="size-5" />
+			</Button>
+		{/if}
 	</nav>
 
 	<ul class="grid gap-1">
 		{#each groups as group (group.key)}
-			<WaitingTimeCard {group} />
+			<WaitingTimeCard {group} {largeFontSize} />
 		{:else}
 			<li class="text-center text-muted-foreground">Aucun passage prévu prochainement.</li>
 		{/each}

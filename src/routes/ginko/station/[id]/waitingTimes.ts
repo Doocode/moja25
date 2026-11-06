@@ -1,5 +1,12 @@
 import type { TempsAttente } from '$core/dto/ginko';
 
+// Time types (typeDeTemps field)
+export const TypeDeTemps = {
+	Duree: 0, // e.g. '2 min'
+	Horaire: 1, // e.g. '17:30'
+	Texte: 2 // e.g. 'Déviation', 'Bus complet'
+} as const;
+
 export interface WaitingTimeGroup {
 	key: string;
 	ligne: Pick<TempsAttente, 'numLignePublic' | 'couleurFond' | 'couleurTexte'>;
@@ -35,13 +42,6 @@ export function groupWaitingTimes(list: TempsAttente[]): WaitingTimeGroup[] {
 
 	return [...groups.values()];
 }
-
-// Time types (typeDeTemps field)
-export const TypeDeTemps = {
-	Duree: 0, // e.g. '2 min'
-	Horaire: 1, // e.g. '17:30'
-	Texte: 2 // e.g. 'Déviation', 'Bus complet'
-} as const;
 
 // The *HTML fields contain <span> formatting tags: only the text is kept
 export function htmlToText(html: string): string {
