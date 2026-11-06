@@ -39,7 +39,7 @@
 	<span
 		class={{
 			'font-light': index > 0,
-			'font-black': index === 0,
+			'font-bold': index === 0,
 			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_2min,
 			'text-muted-foreground italic': isTheoretical,
 			'less-than-10min': lessThan_10min,

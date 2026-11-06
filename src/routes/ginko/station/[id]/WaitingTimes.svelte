@@ -15,7 +15,7 @@
 
 	let groups = $derived(groupWaitingTimes(temps));
 
-	let largeFontSize = $state(false);
+	let largeFontSize = $derived(groups.length < 4);
 
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;

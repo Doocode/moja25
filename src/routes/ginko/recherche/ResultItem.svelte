@@ -16,9 +16,9 @@
 <a
 	href={resolve('/ginko/station/[id]', { id: arret.id })}
 	class={{
-		'flex items-center gap-3 rounded-lg px-4 py-3 transition-colors hover:bg-accent': true,
-		'bg-sky-500/20 hover:bg-sky-500/30': kind === KindOfStop.Tram,
-		'bg-orange-500/20 hover:bg-orange-500/30': kind === KindOfStop.Bus
+		'flex items-center gap-3 rounded-lg bg-slate-200 px-4 py-3 transition-colors dark:bg-slate-800': true,
+		'hover:bg-sky-500/30!': kind === KindOfStop.Tram,
+		'hover:bg-orange-500/30!': kind === KindOfStop.Bus
 	}}
 >
 	{#if kind === KindOfStop.Tram}
