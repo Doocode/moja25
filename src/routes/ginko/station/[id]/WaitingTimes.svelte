@@ -1,7 +1,9 @@
 <script lang="ts">
-	import WaitingTimeCard from './WaitingTimeCard.svelte';
 	import { groupWaitingTimes } from './waitingTimes';
 	import type { TempsAttente } from '$core/dto/ginko';
+	import WaitingTimeCard from './WaitingTimeCard.svelte';
+	import KeepScreenAwake from '$lib/ui/KeepScreenAwake.svelte';
+	import { LocalStorageKey } from '$lib/core/helper/local_storage';
 
 	interface Props {
 		temps: TempsAttente[];
@@ -13,9 +15,13 @@
 </script>
 
 <section>
-	<h2 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
+	<h2 class="mb-1 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		Prochains passages
 	</h2>
+
+	<nav class="mb-4">
+		<KeepScreenAwake localStorageKey={LocalStorageKey.GINKO_KEEP_SCREEN_AWAKE} />
+	</nav>
 
 	<ul class="grid gap-1">
 		{#each groups as group (group.key)}

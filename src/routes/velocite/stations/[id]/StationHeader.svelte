@@ -63,7 +63,10 @@
 				<div class="flex max-w-40 justify-end gap-2">
 					<!-- TODO: Actions (add to bookmarks, share, open in map) -->
 					{#if wakeLockSupported}
-						<KeepScreenAwake size="lg" localStorageKey={LocalStorageKey.VELOCITE_KEEP_SCREEN_ON} />
+						<KeepScreenAwake
+							size="lg"
+							localStorageKey={LocalStorageKey.VELOCITE_KEEP_SCREEN_AWAKE}
+						/>
 					{/if}
 
 					<RefreshDropdown size="lg" bind:interval={refreshInterval} />
