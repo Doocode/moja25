@@ -5,9 +5,10 @@
 	interface Props {
 		temps: TempsAttente;
 		index?: number;
+		large?: boolean;
 	}
 
-	let { temps, index = -1 }: Props = $props();
+	let { temps, index = -1, large = false }: Props = $props();
 
 	const ALTERNATE_DELAY_MS = 3000;
 
@@ -51,6 +52,20 @@
 			Pas de temps
 		{:else if isTheoretical}
 			Théorique <span class="text-xs font-normal">({text})</span>
+		{:else if temps.typeDeTemps === TypeDeTemps.Duree && large}
+			{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
+			{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
+			{#if tempsEnMinute <= 99}
+				<div class="flex flex-col">
+					<span class="text-5xl">{tempsEnMinute}</span>
+					<span class="text-xs">min</span>
+				</div>
+			{:else}
+				<div class="flex flex-col">
+					<span class="text-5xl">{tempsEnHeure}</span>
+					<span class="text-xs">heure</span>
+				</div>
+			{/if}
 		{:else}
 			{text}
 		{/if}
