@@ -1,5 +1,5 @@
 <script lang="ts">
-	import WaitingTimeGroup from './WaitingTimeGroup.svelte';
+	import WaitingTimeCard from './WaitingTimeCard.svelte';
 	import { groupWaitingTimes } from './waitingTimes';
 	import type { TempsAttente } from '$core/dto/ginko';
 
@@ -16,9 +16,10 @@
 	<h2 class="mb-3 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 		Prochains passages
 	</h2>
-	<ul class="grid">
+
+	<ul class="grid gap-1">
 		{#each groups as group (group.key)}
-			<WaitingTimeGroup {group} />
+			<WaitingTimeCard {group} />
 		{:else}
 			<li class="text-center text-muted-foreground">Aucun passage prévu prochainement.</li>
 		{/each}
