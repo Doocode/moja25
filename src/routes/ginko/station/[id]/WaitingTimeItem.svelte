@@ -14,6 +14,8 @@
 	let texts = $derived(getDisplayTexts(temps));
 	let textIndex = $state(0);
 	let text = $derived(texts[textIndex % texts.length]);
+	let lessThan_10min = $derived(temps.tempsEnSeconde <= 10 * 60 && temps.tempsEnSeconde > 1 * 60);
+	let lessThan_1min = $derived(temps.tempsEnSeconde <= 1 * 60);
 
 	$effect(() => {
 		textIndex = 0;
@@ -37,8 +39,12 @@
 		class={{
 			'font-light': index > 0,
 			'font-black': index === 0,
-			'text-orange-600 dark:text-orange-400': isMessage,
-			'text-muted-foreground italic': isTheoretical
+			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_1min,
+			'text-muted-foreground italic': isTheoretical,
+			'less-than-10min': lessThan_10min,
+			'less-than-1min': lessThan_1min && !isMessage,
+			'text-sky-600 dark:text-sky-400': lessThan_10min && !isMessage,
+			'text-red-600 dark:text-red-400': lessThan_1min && !isMessage
 		}}
 	>
 		{#if !text}
@@ -59,3 +65,31 @@
 		{/if}
 	</div>
 </li>
+
+<style>
+	@keyframes blink {
+		0%,
+		100% {
+			opacity: 0;
+		}
+		30%,
+		70% {
+			opacity: 1;
+		}
+	}
+	@keyframes quick_blink {
+		0%,
+		100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0;
+		}
+	}
+	.less-than-10min {
+		animation: blink 2s infinite;
+	}
+	.less-than-1min {
+		animation: quick_blink 0.75s infinite;
+	}
+</style>

@@ -24,7 +24,7 @@
 
 <Header arret={data.arret} lignes={data.lignes} />
 
-<Tabs.Root value="times" class="container mx-auto -mt-10 max-w-2xl gap-0 p-4">
+<Tabs.Root value="times" class="container mx-auto -mt-10 max-w-2xl gap-0 p-4 pb-22">
 	<TabBar />
 
 	<Tabs.Content value="times" class="mt-6">
