@@ -91,7 +91,6 @@
 			var(--color2) 20px
 		);
 		background-position: center center;
-		background-attachment: fixed;
 	}
 
 	:root.dark .progress-cells {

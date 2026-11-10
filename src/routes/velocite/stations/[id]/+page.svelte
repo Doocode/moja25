@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
 	import ProgressCells from './ProgressCells.svelte';
-	import UnavailableStandsMsg from './UnavailableStandsMsg.svelte';
+	import Ratio from './Ratio.svelte';
 
 	interface Props {
 		data: { station: FormattedStation };
@@ -68,16 +68,9 @@
 		<ProgressCells {station} />
 	</div>
 	<Indicators {station} class="mt-6 mb-3 sm:my-10" />
-	<div
-		class={{
-			'grid items-start gap-1': true,
-			'sm:grid-cols-[300px_auto] sm:gap-8': station.unavailableStands > 0
-		}}
-	>
-		<StationAvailabilities {station} class="mt-2 mb-3" />
-		{#if station.unavailableStands > 0}
-			<UnavailableStandsMsg />
-		{/if}
+	<div class="mt-2 mb-6 grid items-center gap-1 sm:grid-cols-[300px_auto] sm:gap-8">
+		<StationAvailabilities {station} />
+		<Ratio {station} />
 	</div>
 	<StationAddress {station} />
 </main>

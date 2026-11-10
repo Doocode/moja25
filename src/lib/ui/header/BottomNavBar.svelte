@@ -5,7 +5,7 @@
 </script>
 
 <nav
-	class="bottom-navbar fixed inset-[auto_0_0] z-10 m-auto grid bg-card md:hidden"
+	class="bottom-navbar fixed inset-[auto_0_0] z-100 m-auto grid bg-card md:hidden"
 	class:grid-cols-3={bottomBarLinks.length === 3}
 	class:grid-cols-4={bottomBarLinks.length === 4}
 	class:grid-cols-5={bottomBarLinks.length === 5}

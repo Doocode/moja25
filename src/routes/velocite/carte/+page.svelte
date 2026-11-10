@@ -248,7 +248,7 @@
 			}
 			.leaflet-layer {
 				filter: invert(1) hue-rotate(180deg) brightness(1.25); /* TODO: add brightness control (advanced controls)*/
-				filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+				/*filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);*/
 			}
 		}
 

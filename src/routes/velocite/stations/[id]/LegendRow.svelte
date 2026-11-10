@@ -41,7 +41,7 @@
 
 	<span
 		class={{
-			'font-bold': true,
+			'text-lg font-bold': true,
 			'text-muted-foreground line-through': value <= 0
 		}}
 	>
@@ -71,7 +71,6 @@
 			var(--color2) 20px
 		);
 		background-position: center center;
-		background-attachment: fixed;
 	}
 
 	:root.dark .legend-row {
