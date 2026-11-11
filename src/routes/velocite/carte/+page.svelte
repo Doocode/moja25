@@ -221,6 +221,11 @@
 	});
 
 	$effect(() => {
+		if (!browser) return;
+		LocalStorageHelper.setValue(LocalStorageKey.VELOCITE_SORT_FIELD, selectedSort);
+	});
+
+	$effect(() => {
 		void selectedSort;
 		void stations;
 		updateMarkers();
