@@ -6,6 +6,9 @@ import { countFilters, numberFilters, statusFilters } from './filters';
 import { getAlertState, getDisplayedFilter } from './alternation';
 import { buildStationPopup } from './popup';
 import type { DivIcon, LayerGroup, Marker } from 'leaflet';
+import { goto } from '$app/navigation';
+
+const enableMarkerPopup = false; // TODO: Bind to localStorage
 
 type CountFilter = (typeof countFilters)[number];
 type NumberFilter = (typeof numberFilters)[number];
@@ -214,12 +217,18 @@ export function renderStationMarkers(
 				icon: createStationIcon(leaflet, station, displayedFilter, isCompact, compactSize),
 				keyboard: false
 			})
-			.bindTooltip(station.formattedName, { direction: 'top', offset: tooltipOffset })
-			.bindPopup(
+			.bindTooltip(station.formattedName, { direction: 'top', offset: tooltipOffset });
+
+		if (enableMarkerPopup) {
+			marker.bindPopup(
 				buildStationPopup(station, resolve('/velocite/stations/[id]', { id: `${station.number}` })),
 				{ closeButton: true, minWidth: 220 }
 			);
-
+		} else {
+			marker.on('click', () => {
+				goto(resolve('/velocite/stations/[id]', { id: `${station.number}` }));
+			});
+		}
 		marker.addTo(markersLayer);
 		markers.set(station.number, marker);
 	}
