@@ -21,7 +21,7 @@
 		}}
 	>
 		<span class="text-6xl font-bold">{count}</span>
-		<span class="text-xs">{label}</span>
+		<span class="text-xs tracking-wider">{label}</span>
 	</p>
 {/snippet}
 

@@ -1,16 +1,17 @@
 <script lang="ts">
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import RecapSection from './RecapSection.svelte';
-	import StationHeader from './StationHeader.svelte';
-	import StationAvailabilities from './StationAvailabilities.svelte';
-	import Indicators from './Indicators.svelte';
-	import StationAddress from './StationAddress.svelte';
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
-	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import StationAvailabilities from './StationAvailabilities.svelte';
+	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import StationAddress from './StationAddress.svelte';
+	import ProgressCells from './ProgressCells.svelte';
+	import StationHeader from './StationHeader.svelte';
+	import RecapSection from './RecapSection.svelte';
 	import ProgressBar from './ProgressBar.svelte';
+	import Indicators from './Indicators.svelte';
+	import { browser } from '$app/environment';
 	import Ratio from './Ratio.svelte';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		data: { station: FormattedStation };
@@ -67,11 +68,15 @@
 		<RecapSection {station} class="mb-4" />
 		<ProgressBar {station} />
 	</div>
+
 	<Indicators {station} class="mt-6 mb-3 sm:my-10" />
-	<div class="mt-2 mb-6 grid items-center gap-1 sm:grid-cols-[300px_auto] sm:gap-8">
-		<StationAvailabilities {station} />
+
+	<div class="mt-2 mb-6 grid items-center gap-1 sm:grid-cols-[auto_300px] sm:gap-x-6">
 		<Ratio {station} />
+		<ProgressCells {station} />
+		<StationAvailabilities {station} class="sm:col-start-2 sm:row-start-1 sm:row-end-3" />
 	</div>
+
 	<StationAddress {station} />
 </main>
 

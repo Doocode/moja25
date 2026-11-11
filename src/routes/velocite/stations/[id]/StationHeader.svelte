@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import { Button } from '$shadcn/button';
 	import { ArrowLeft } from '@lucide/svelte';
+	import { afterNavigate, goto } from '$app/navigation';
 	import AnimatedGridBg from '$lib/ui/AnimatedGridBg.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { RefreshDropdown } from '../../shared/ui/tool-bar';
@@ -39,6 +40,23 @@
 		// Check if we can use the Wake Lock API
 		wakeLockSupported = 'wakeLock' in navigator;
 	});
+
+	const fallbackHref = resolve('/velocite/carte');
+	let canGoBack = $state(false);
+
+	// `from` is null when this page is the first one of the session
+	afterNavigate(({ from }) => {
+		canGoBack = from !== null;
+	});
+
+	function goBack(event: MouseEvent) {
+		event.preventDefault();
+		if (canGoBack) {
+			history.back();
+		} else {
+			goto(fallbackHref);
+		}
+	}
 </script>
 
 <AnimatedGridBg
@@ -52,9 +70,10 @@
 				<Button
 					variant="default"
 					size="icon"
-					href={resolve('/velocite/recherche')}
+					href={fallbackHref}
 					title="Voir la liste de tous les stations"
 					class="rounded-full p-5"
+					onclick={goBack}
 				>
 					<ArrowLeft class="size-6" />
 					<span class="sr-only">Liste des stations</span>
@@ -75,9 +94,7 @@
 
 			<div class="flex flex-wrap p-4">
 				<div class="grid place-content-end justify-start sm:w-75 md:h-40">
-					<h1
-						class="text-3xl leading-tight font-bold text-balance sm:text-4xl md:text-5xl md:font-light"
-					>
+					<h1 class="text-3xl leading-tight font-bold text-balance sm:text-4xl md:text-5xl">
 						{station.formattedName}
 					</h1>
 					{#if station.address !== null && station.address !== ''}

@@ -20,8 +20,8 @@
 	let drawerUnavailableStands = $state(false);
 </script>
 
-<div class={cn('relative z-10 grid max-w-75 gap-1', className)}>
-	<h2 class="mb-2 text-lg font-bold">Légende</h2>
+<div class={cn('relative z-10 grid max-w-75 gap-0.75', className)}>
+	<h2 class="mt-4 mb-0.5 sm:mt-0 text-lg font-bold sm:sr-only">Légende</h2>
 
 	<LegendRow icon={Bike} label="Vélos mécaniques" value={mechanicalBikes} kind="mechanical-bikes" />
 	<LegendRow icon={Zap} label="Vélos électriques" value={electricalBikes} kind="electrical-bikes" />
