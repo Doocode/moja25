@@ -1,57 +1,57 @@
-# Features
+# Fonctionnalités
 
-At present, only the integration with Ginko Vélocité is fully implemented. The following features are available:
+Pour l’instant seul l’intégration de Ginko Vélocité est complète. Voici la liste des fonctionnalités disponibles :
 
-## 🗺️ Vélocité Station Map
+## 🗺️ Carte des stations
 
-[![Map view of Vélocité stations](./images/velocite-map.png)](./images/velocite-map.png)
+[![Page de la carte des stations Vélocité](./images/velocite-map.png)](./images/velocite-map.png)
 
-- Display of Vélocité **station locations**.
-- Ability to **display the user's GPS position** on the map.
-- Ability to **sort Vélocité stations using color-coded markers**:
-  - **Sort by the number of available bikes or docking points**: from red to green through orange.
-  - **Sort by station equipment or status**: credit card payment availability, station open status, or connectivity status.
-- Display of a quick station summary in a mini popup.
-- **Dark mode support** (dark map).
+- Affichage des **emplacements des stations Vélocité**.
+- Possibilité d'**afficher sa propre position GPS sur la carte**.
+- **Tri des stations Vélocité** via une représentation des stations par des pastilles colorées :
+  - **Trier par le nombre de vélos disponibles ou de points d'ancrage** : du rouge au vert en passant par l'orange.
+  - **Trier par l'équipement ou le statut de la station** : disponibilité du paiement par carte bancaire, statut d'ouverture de la station ou statut de connectivité.
+- Affichage d'un récapitulatif de la station dans une mini-popup.
+- **Prise en charge du mode sombre** avec une carte sombre.
 
-## 🔍 Vélocité Station Search
+## 🔍 Recherche de stations Vélocité
 
-[![Searching Vélocité stations](./images/velocite-search.png)](./images/velocite-search.png)
+[![Recherche des stations Vélocité](./images/velocite-search.png)](./images/velocite-search.png)
 
-- Stations can be sorted using 12 sorting options (number of bikes/docks, station open/online status, etc.).
-- Highlighting of key information for the first station displayed in the search results (address and summary).
-- Real-time results updates.
+- Tri des stations possible via 12 options de tri (quantité de vélos/places, station ouverte/en ligne, etc.)
+- Mise en avant des informations clés de la 1ère station affichée dans les résultats de recherche.
+- Mise à jour des données en temps réel (nb de vélos, places, etc.).
 
-## 📄 Vélocité Station Details
+## 📄 Détails d'une station Vélocité
 
 [![Vélocité station details](./images/velocite-station.png)](./images/velocite-station.png)
 
-- **Emphasis on useful station information** (number of available bikes and free docking points).
-- **Graphical representation of station occupancy** using a segmented and color-coded progress bar (or grid).
-- **Option to keep the screen awake** (prevent automatic sleep mode).
+- **Mise en évidence des infos pertinentes de la station** (nombre de vélos disponibles et bornes libres).
+- **Représentation graphique de l'occupation de la station** à l'aide d'une barre de progression segmentée et colorée (ou d'une grille).
+- **Option de maintien de l'écran allumé** (pour empêcher la mise en veille automatique du système).
 
-## Ginko Mobilités features
+## Intégration de Ginko Mobilités
 
-[![Ginko Mobilités features](./images/ginko-lines_details.png)](./images/ginko-lines_details.png)
+[![Fonctionnalités de Ginko Mobilités](./images/ginko-lines_details.png)](./images/ginko-lines_details.png)
 
-Features related to the Ginko public transport network (the Greater Besançon transit network) are currently being implemented. Eventually, users will be able to:
+Les fonctionnalités liées au réseau de transport en commun Ginko (le réseau de transport du Grand Besançon) sont actuellement en cours d'implémentation. À terme, il sera possible de :
 
-- Find a network route and identify the stations served by that route.
-- View the Ginko network map on an interactive map.
-- Monitor traffic and service disruptions.
-- Search for a bus or tram stop.
-- View waiting times for upcoming bus and tram arrivals.
-- Hear waiting times announced through text-to-speech, inspired by the Paris Metro system.
+- Retrouver une ligne du réseau et repérer les stations desservies par cette ligne ;
+- Consulter le plan des lignes du réseau Ginko sur une carte interactive ;
+- Suivre le trafic et les perturbations du service ;
+- Rechercher un arrêt de bus ou de tram avec des filtres ;
+- Consulter les temps d'attente pour les prochains passages de bus et de tram ;
+- Annonce des temps d'attente via la synthèse vocale, inspirée du système du métro parisien ([Ecran PANAM/SIEL](https://youtu.be/M3j0xNkYBy0?si=6MJ926puqFzxaYgx&t=5)) ;
 
-## Major Features to Be Implemented
+## Fonctionnalités majeures à mettre en œuvre
 
-[![Mobile app prototype of Terminus](./images/mobile_app.png)](./images/mobile_app.png)
+[![Prototype de l'application mobile de Terminus](./images/mobile_app.png)](./images/mobile_app.png)
 
-- Implementation of PWA (Progressive Web App) functionality.
-- User account creation system.
-- Synchronization of favorite stations across multiple devices.
-- Create and deploy a native mobile application.
-- Route planning and journey simulation tool.
-- Integration of the Mobigo network (regional trains and coaches).
-- Integration of the SNCF network (stations and stops in the Greater Besançon area).
-- Potential integration with Citiz and FlixBus.
+- Implémentation des mécanismes PWA (Progressive Web App) ;
+- Création et déploiement d'une application mobile native ;
+- Mise en place d'un système de compte utilisateur ;
+- Synchronisation des stations favorites sur plusieurs appareils ;
+- Outil de planification d'itinéraire et de simulation de trajet ;
+- Intégration du réseau Mobigo (TER & cars) ;
+- Intégration du réseau SNCF (gares et haltes ferroviaires dans le Grand Besançon) ;
+- Intégration potentielle avec Citiz et FlixBus ;
