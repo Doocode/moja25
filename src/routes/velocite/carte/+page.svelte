@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
-	import 'leaflet/dist/leaflet.css';
-	import './markers.css';
 	import './popup.css';
-	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
+	import './markers.css';
+	import { onMount } from 'svelte';
+	import 'leaflet/dist/leaflet.css';
 	import SortBar from './SortBar.svelte';
+	import { browser } from '$app/environment';
 	import SortDrawer from './SortDrawer.svelte';
+	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
 
 	interface Props {
 		data: {
@@ -122,6 +122,15 @@
 	}
 
 	onMount(() => {
+		// LOCAL STORAGE
+		// - Selected sort field
+		const storedSortField = LocalStorageHelper.getValue(LocalStorageKey.VELOCITE_SORT_FIELD, '');
+		const validSortField = Object.values(VelociteSortField).find(
+			(field) => field === storedSortField
+		);
+		if (validSortField) selectedSort = validSortField;
+
+		// - Refresh interval
 		const storedInterval = Number(
 			LocalStorageHelper.getValue(
 				LocalStorageKey.VELOCITE_REFRESH_INTERVAL,
@@ -130,6 +139,8 @@
 		);
 		if (refreshIntervals.includes(storedInterval)) refreshInterval = storedInterval;
 
+		// GPS LOCATION
+		// - User location permission status
 		if (browser && 'permissions' in navigator) {
 			void navigator.permissions
 				?.query({ name: 'geolocation' })
@@ -146,6 +157,8 @@
 
 		let destroyed = false;
 
+		// LEAFLET
+		// - Initialize the Leaflet map and markers layer
 		void (async () => {
 			if (!mapElement || destroyed) return;
 
@@ -258,8 +271,13 @@
 			color: var(--text-foreground);
 		}
 
-		.leaflet-popup-content-wrapper {
-			border-radius: 1rem;
+		.leaflet-tooltip {
+			border-radius: 0.5rem;
+			padding-inline: 0.65rem;
+			border: none;
+		}
+
+		.leaflet-pane {
 			font-family:
 				'Inter',
 				system-ui,
@@ -270,6 +288,10 @@
 				Oxygen,
 				Ubuntu,
 				sans-serif;
+		}
+
+		.leaflet-popup-content-wrapper {
+			border-radius: 1rem;
 		}
 		.leaflet-container a.leaflet-popup-close-button {
 			color: var(--text-foreground);
