@@ -2,14 +2,16 @@
 	import { getDisplayTexts, TypeDeTemps } from './waitingTimes';
 	import LargeTimeDisplay from './LargeTimeDisplay.svelte';
 	import type { TempsAttente } from '$core/dto/ginko';
+	import { Button } from '$shadcn/button';
 
 	interface Props {
 		temps: TempsAttente;
 		index?: number;
 		large?: boolean;
+		onclick?: () => void;
 	}
 
-	let { temps, index = -1, large = false }: Props = $props();
+	let { temps, index = -1, large = false, onclick = () => {} }: Props = $props();
 
 	const ALTERNATE_DELAY_MS = 3000;
 
@@ -33,9 +35,11 @@
 	let isTheoretical = $derived(!temps.fiable && !isMessage);
 </script>
 
-<li
-	class="grid gap-0.5 text-lg"
+<Button
+	variant="ghost"
+	class="grid h-auto gap-0.5 py-1 text-lg hover:bg-slate-400/50 dark:hover:bg-slate-600"
 	title={isTheoretical ? 'Horaire théorique : le véhicule n’est pas localisé' : undefined}
+	{onclick}
 >
 	<span
 		class={{
@@ -75,7 +79,7 @@
 			<span>{temps.quai}</span>
 		{/if}
 	</div>
-</li>
+</Button>
 
 <style>
 	@keyframes blink {
