@@ -236,11 +236,16 @@
 	<title>Plan des station Vélocité</title>
 </svelte:head>
 
-<main class="relative mx-auto flex min-h-[calc(100dvh-78px)] flex-col">
-	<div bind:this={mapElement} class="z-0 h-[calc(100dvh-78px)] w-full overflow-hidden"></div>
+<main
+	class="relative mx-auto flex min-h-[calc(100dvh-113px)] flex-col sm:min-h-[calc(100dvh-137px)]"
+>
+	<div
+		bind:this={mapElement}
+		class="z-0 h-[calc(100dvh-113px)] w-full overflow-hidden sm:h-[calc(100dvh-137px)]"
+	></div>
 
 	<div
-		class="fixed top-17 right-2 z-20 flex flex-col gap-1 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur md:top-19 lg:top-21 dark:bg-background/80"
+		class="fixed top-17 right-2 z-20 flex flex-col gap-1 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur sm:top-17 dark:bg-background/80"
 	>
 		<RefreshDropdown bind:interval={refreshInterval} />
 		<LocateButton {permissionDenied} {hasLocation} loading={isLocating} onclick={locateUser} />
@@ -265,8 +270,8 @@
 				background: #000;
 			}
 			.leaflet-layer {
-				filter: invert(1) hue-rotate(180deg) brightness(1.25); /* TODO: add brightness control (advanced controls)*/
-				/*filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);*/
+				/*filter: invert(1) hue-rotate(180deg) brightness(1.25);*/ /* TODO: add brightness control (advanced controls)*/
+				filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
 			}
 		}
 

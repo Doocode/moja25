@@ -10,17 +10,28 @@
 	align-items: center;
 	justify-content: center;
 	border-radius: 999px;
-	border: 3px solid rgb(255 255 255 / 0.95);
-	font-size: 0.95rem;
+	border: 1px solid #000;
+	font-size: 1.1rem;
 	font-weight: 700;
 	line-height: 1;
-	box-shadow: 0 0 0 rgb(0 0 0 / 0.25);
+	box-shadow:
+		0 0 3px #00000033,
+		0 5px 15px #00000055,
+		0 -1px 5px #00000077 inset,
+		0 2px 5px #ffffff77 inset;
+	text-shadow:
+		0 1px 0 #000,
+		0 -1px 0 #000,
+		1px 0 0 #000,
+		-1px 0 0 #000,
+		0 0 2px #000,
+		0 0 7px #000;
 	cursor: pointer;
-	transition: box-shadow 0.1s;
+	transition: border-width 0.075s;
 }
 
 .velocite-map-marker:hover {
-	box-shadow: 0 6px 16px rgb(0 0 0 / 0.25);
+	border-width: 3px;
 }
 
 .velocite-map-marker-compact {
@@ -35,37 +46,33 @@
 
 .velocite-map-marker--danger,
 .velocite-map-marker-compact.velocite-map-marker--danger {
-	background: #d32f2f;
+	background: linear-gradient(to bottom, #ac0505, #e53935, #f36a61);
 	color: #fff;
 }
 
 .velocite-map-marker--warning,
 .velocite-map-marker-compact.velocite-map-marker--warning {
-	background: #ff9800;
+	background: linear-gradient(to bottom, #ce6701, #ff9800, #ffcc81);
 	color: #fff;
 }
 
 .velocite-map-marker--success,
-.velocite-map-marker-compact.velocite-map-marker--success {
-	background: #4caf50;
+.velocite-map-marker-compact.velocite-map-marker--success,
+.velocite-map-marker--status-on,
+.velocite-map-marker-compact.velocite-map-marker--status-on {
+	background: linear-gradient(to bottom, #286e29, #4caf50, #5ac75e);
 	color: #fff;
 }
 
 .velocite-map-marker--neutral,
 .velocite-map-marker-compact.velocite-map-marker--neutral {
-	background: #475569;
-	color: #fff;
-}
-
-.velocite-map-marker--status-on,
-.velocite-map-marker-compact.velocite-map-marker--status-on {
-	background: #4caf50;
+	background: linear-gradient(to bottom, #003f97, #1f7cff, #1f7cff);
 	color: #fff;
 }
 
 .velocite-map-marker--status-off,
 .velocite-map-marker-compact.velocite-map-marker--status-off {
-	background: #757575;
+	background: linear-gradient(to bottom, #545577, #62749b, #bdbdbd);
 	color: #fff;
 }
 
@@ -133,5 +140,11 @@
 	100% {
 		transform: scale(2.8);
 		opacity: 0;
+	}
+}
+
+:root.dark {
+	.velocite-map-marker {
+		border-color: #fff;
 	}
 }
