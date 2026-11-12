@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getDisplayTexts, TypeDeTemps } from './waitingTimes';
+	import LargeTimeDisplay from './LargeTimeDisplay.svelte';
 	import type { TempsAttente } from '$core/dto/ginko';
 
 	interface Props {
@@ -51,20 +52,15 @@
 		{#if !text}
 			Pas de temps
 		{:else if isTheoretical}
-			Théorique <span class="text-xs font-normal">({text})</span>
+			<span class="text-xs font-normal">({text})</span>
 		{:else if large && [TypeDeTemps.Duree, TypeDeTemps.Horaire].includes(temps.typeDeTemps)}
+			<!-- TODO: Add support for alternance & text (from TempsAttente.temps)-->
 			{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
 			{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
 			{#if tempsEnMinute <= 99}
-				<div class="flex flex-col">
-					<span class="text-5xl">{tempsEnMinute}</span>
-					<span class="text-xs">min</span>
-				</div>
+				<LargeTimeDisplay time={tempsEnMinute} label="min" />
 			{:else}
-				<div class="flex flex-col">
-					<span class="text-5xl">{tempsEnHeure}</span>
-					<span class="text-xs">heure</span>
-				</div>
+				<LargeTimeDisplay time={tempsEnHeure} label={tempsEnHeure > 1 ? 'heures' : 'heure'} />
 			{/if}
 		{:else}
 			{text}
