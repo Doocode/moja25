@@ -70,8 +70,8 @@
 		}
 	}
 	.segment-unavailable {
-		--color1: #ffca67;
-		--color2: #f09c00;
+		--color1: #ffb327;
+		--color2: #c45800;
 		background: repeating-linear-gradient(
 			-45deg,
 			var(--color1),
@@ -82,8 +82,8 @@
 		background-position: center center;
 	}
 
-	:root .segment-unavailable {
+	:root.dark .segment-unavailable {
 		--color1: #e09303;
-		--color2: #ad7101;
+		--color2: #885800;
 	}
 </style>
