@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/state';
+	import { X } from '@lucide/svelte';
 	import Header from './Header.svelte';
+	import { Button } from '$shadcn/button';
+	import { scale } from 'svelte/transition';
 	import { browser } from '$app/environment';
 	import CountItems from './CountItems.svelte';
+	import ListStations from './ListStations.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { sortStations } from '$lib/core/helper/velocite/sort';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
@@ -10,10 +15,6 @@
 	import { SortButtonGroup, RefreshDropdown, SortForm } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
 	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
-	import ListStations from './ListStations.svelte';
-	import { Button } from '$shadcn/button';
-	import { X } from '@lucide/svelte';
-	import { scale } from 'svelte/transition';
 
 	interface Props {
 		data: {
@@ -24,7 +25,7 @@
 	let { data }: Props = $props();
 
 	let stations = $derived<FormattedStation[]>(data.stations);
-	let queryInput = $state('');
+	let queryInput = $state(page.url.searchParams.get('q') ?? '');
 	let sortField = $state(VelociteSortField.TOTAL_BIKES);
 	let sortAscending = $state(true);
 	let refreshInterval = $state(defaultRefreshInterval);
@@ -93,7 +94,7 @@
 </script>
 
 <svelte:head>
-	<title>Liste des stations Vélocité</title>
+	<title>[Vélocité] Rechercher une station</title>
 </svelte:head>
 
 <Header bind:queryInput />

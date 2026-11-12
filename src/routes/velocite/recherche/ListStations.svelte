@@ -1,11 +1,11 @@
 <script lang="ts">
-	import EmptyResult from './EmptyResult.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import StationRow from '../shared/ui/list-station/StationRow.svelte';
-	import type { VelociteSortField } from '$lib/core/enum/VelociteSortField';
 	import { cn } from '$lib/utils';
 	import { Button } from '$shadcn/button';
+	import EmptyResult from './EmptyResult.svelte';
+	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { CircleChevronDown, CircleChevronUp } from '@lucide/svelte';
+	import StationRow from '../shared/ui/list-station/StationRow.svelte';
+	import type { VelociteSortField } from '$lib/core/enum/VelociteSortField';
 
 	interface Props {
 		stations: FormattedStation[];
@@ -16,9 +16,9 @@
 
 	let { stations, sortField, queryInput = $bindable(''), class: className = '' }: Props = $props();
 
-	const LIMIT_PER_PAGE = 10;
+	const LIMIT_PER_PAGE = 15;
 	let limitEnabled = $state(true);
-	let currentLimit = $state(LIMIT_PER_PAGE);
+	let currentLimit = $state(20);
 	let nextIncreaseLimit = $derived(Math.min(currentLimit + LIMIT_PER_PAGE, stations.length));
 
 	function increaseLimit() {

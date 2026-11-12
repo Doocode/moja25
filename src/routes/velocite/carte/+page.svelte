@@ -233,7 +233,7 @@
 </script>
 
 <svelte:head>
-	<title>Plan des station Vélocité</title>
+	<title>[Vélocité] Carte interactive</title>
 </svelte:head>
 
 <main

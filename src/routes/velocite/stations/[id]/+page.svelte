@@ -56,7 +56,7 @@
 </script>
 
 <svelte:head>
-	<title>{station.formattedName} - Vélocité</title>
+	<title>[Vélocité] {station.formattedName}</title>
 </svelte:head>
 
 <StationHeader {station} bind:refreshInterval />
