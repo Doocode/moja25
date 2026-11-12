@@ -12,23 +12,31 @@
 </script>
 
 <main class="progress_bar grid gap-1">
-	<div class="flex h-3 overflow-clip rounded-full">
-		<div
-			class="bar segment-mechanical bg-[#ff65cc] dark:bg-[#bb1985]"
-			style:width="{(mechanicalBikes / capacity) * 100}%"
-		></div>
-		<div
-			class="bar segment-electrical bg-[#00c2e0] dark:bg-[#00a4bc]"
-			style:width="{(electricalBikes / capacity) * 100}%"
-		></div>
-		<div
-			class="bar segment-available bg-[#c9d1d4] dark:bg-[#324f58]"
-			style:width="{(availableStands / capacity) * 100}%"
-		></div>
-		<div
-			class="bar segment-unavailable bg-amber-500"
-			style:width="{(unavailableStands / capacity) * 100}%"
-		></div>
+	<div class="flex h-3 gap-0.5 overflow-clip rounded-full">
+		{#if mechanicalBikes > 0}
+			<div
+				class="bar segment-mechanical rounded-[4px] bg-[#ff65cc] dark:bg-[#bb1985]"
+				style:width="{(mechanicalBikes / capacity) * 100}%"
+			></div>
+		{/if}
+		{#if electricalBikes > 0}
+			<div
+				class="bar segment-electrical rounded-[4px] bg-[#00c2e0] dark:bg-[#00a4bc]"
+				style:width="{(electricalBikes / capacity) * 100}%"
+			></div>
+		{/if}
+		{#if availableStands > 0}
+			<div
+				class="bar segment-available rounded-[4px] bg-[#c9d1d4] dark:bg-[#324f58]"
+				style:width="{(availableStands / capacity) * 100}%"
+			></div>
+		{/if}
+		{#if unavailableStands > 0}
+			<div
+				class="bar segment-unavailable rounded-[4px] bg-amber-500"
+				style:width="{(unavailableStands / capacity) * 100}%"
+			></div>
+		{/if}
 	</div>
 
 	<div class="legend-text flex justify-between gap-4 text-xs text-muted-foreground">
