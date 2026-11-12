@@ -51,23 +51,26 @@
 	});
 </script>
 
-<div
-	class="progress-cells grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-0.5"
-	role="img"
-	aria-label="Niveau d'occupation des bornes"
->
-	{#each cells as cell, index (index)}
-		<div
-			class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium"
-			class:unavailable-stands={cell.className === 'unavailable-stands'}
-			class:mechanical-bikes={cell.className === 'mechanical-bikes'}
-			class:electrical-bikes={cell.className === 'electrical-bikes'}
-			class:available-stands={cell.className === 'available-stands'}
-			title={cell.label}
-		>
-			{cell.counter ?? ''}
-		</div>
-	{/each}
+<div class="grid">
+	<h2 class="mt-2 mb-0.5 text-lg font-bold">Composition de la station</h2>
+	<div
+		class="progress-cells grid grid-cols-[repeat(auto-fit,minmax(2rem,1fr))] gap-0.5"
+		role="img"
+		aria-label="Niveau d'occupation des bornes"
+	>
+		{#each cells as cell, index (index)}
+			<div
+				class="flex aspect-square min-h-8 cursor-default items-center justify-center rounded-sm text-sm font-medium"
+				class:unavailable-stands={cell.className === 'unavailable-stands'}
+				class:mechanical-bikes={cell.className === 'mechanical-bikes'}
+				class:electrical-bikes={cell.className === 'electrical-bikes'}
+				class:available-stands={cell.className === 'available-stands'}
+				title={cell.label}
+			>
+				{cell.counter ?? ''}
+			</div>
+		{/each}
+	</div>
 </div>
 
 <style>

@@ -25,7 +25,7 @@
 	</p>
 {/snippet}
 
-<main class={cn('flex items-center justify-center gap-4 p-4', className)}>
+<main class={cn('flex items-center justify-center gap-4', className)}>
 	{@render item(countBikes, 'Vélos')}
 	<span class="mb-4 text-5xl">/</span>
 	{@render item(countCapacity, 'Bornes')}

@@ -79,11 +79,8 @@
 	}
 </script>
 
-<div title="Localisation" class={cn(className)}>
-	<header class="mb-2 flex items-center gap-2">
-		<Locate class="size-4.5 shrink-0" />
-		<h3 class="text-base font-semibold">Localisation</h3>
-	</header>
+<div title="Emplacement" class={cn(className)}>
+	<h2 class="mt-2 mb-0.5 text-lg font-bold">Emplacement</h2>
 
 	<Button
 		class="h-auto w-full gap-2 rounded-xl px-4 py-2"
@@ -104,7 +101,9 @@
 
 	<div class="mt-4 grid">
 		<p class="font-semibold">Voir sur une carte</p>
-		<nav class="-mx-4 mt-2 flex w-[calc(100%+2rem)] gap-2 overflow-auto px-4">
+		<nav
+			class="-mx-4 mt-2 flex w-[calc(100%+2rem)] gap-4 overflow-auto px-4 md:flex-wrap md:gap-x-8"
+		>
 			{#each apps as app (app.name)}
 				<a href={app.url} target="_blank" class="group flex flex-col items-center gap-1 rounded-md">
 					<img src={app.logo} alt={'Logo de ' + app.name} class="size-20 shrink-0 rounded-[25%]" />

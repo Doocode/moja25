@@ -33,7 +33,7 @@
 		{/if}
 		{#if unavailableStands > 0}
 			<div
-				class="bar segment-unavailable rounded-[4px] bg-amber-500"
+				class="bar segment-unavailable relative rounded-[4px] bg-amber-500"
 				style:width="{(unavailableStands / capacity) * 100}%"
 			></div>
 		{/if}
@@ -80,6 +80,17 @@
 			var(--color2) 20px
 		);
 		background-position: center center;
+
+		&::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(to bottom, #ffffffcc, #00000055);
+			pointer-events: none;
+			mix-blend-mode: overlay;
+		}
 	}
 
 	:root.dark .segment-unavailable {

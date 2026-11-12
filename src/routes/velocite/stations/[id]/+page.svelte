@@ -69,15 +69,18 @@
 		<ProgressBar {station} />
 	</div>
 
-	<Indicators {station} class="mt-6 mb-3 sm:my-10" />
+	<div class="mt-4 grid items-start gap-12 sm:mt-10 md:grid-cols-[300px_auto]">
+		<div class="grid items-center gap-4">
+			<Ratio {station} class="pb-2" />
+			<ProgressCells {station} />
+			<StationAvailabilities {station} />
+		</div>
 
-	<div class="mt-2 mb-6 grid items-center gap-1 sm:grid-cols-[auto_300px] sm:gap-x-6">
-		<Ratio {station} />
-		<ProgressCells {station} />
-		<StationAvailabilities {station} class="sm:col-start-2 sm:row-start-1 sm:row-end-3" />
+		<div class="grid gap-8">
+			<Indicators {station} />
+			<StationAddress {station} />
+		</div>
 	</div>
-
-	<StationAddress {station} />
 </main>
 
 <style>
