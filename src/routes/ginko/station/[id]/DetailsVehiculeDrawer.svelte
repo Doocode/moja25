@@ -3,6 +3,7 @@
 	import * as Drawer from '$shadcn/drawer';
 	import type { VehiculeDR } from '$core/dto/ginko';
 	import DetailsVehicule from './DetailsVehicule.svelte';
+	import { cacheVehicule, getCachedVehicule } from './vehiculeCache';
 
 	interface Props {
 		open: boolean;
@@ -31,6 +32,14 @@
 			return;
 		}
 
+		// Get cached vehicle if available
+		const cached = getCachedVehicule(num);
+		if (cached) {
+			vehicule = cached;
+			return;
+		}
+
+		// Fetch vehicle details from the API if not cached
 		const controller = new AbortController();
 		const url = `/api/ginko/detailsVehiculeDR/${encodeURIComponent(num)}`;
 		loading = true;
@@ -40,7 +49,11 @@
 				const response = await fetch(url, { signal: controller.signal });
 				if (!response.ok) throw new Error(`Erreur HTTP ${response.status}`);
 				const data: VehiculeDR = await response.json();
-				if (!controller.signal.aborted) vehicule = data;
+				if (!controller.signal.aborted) {
+					// Save the fetched vehicle details to the cache
+					cacheVehicule(num, data);
+					vehicule = data;
+				}
 			} catch (error) {
 				if (!controller.signal.aborted) {
 					console.error('Impossible de charger les détails du véhicule', error);
@@ -56,6 +69,7 @@
 	});
 </script>
 
+<!-- TODO: Fix navbar overlap with the drawer content -->
 <Drawer.Root bind:open>
 	<Drawer.Content class="pb-safe mx-auto max-w-150">
 		<Drawer.Header>
