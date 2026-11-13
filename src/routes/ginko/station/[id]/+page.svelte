@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.arret.nom} - Station</title>
+	<title>[Bus & tram] {data.arret.nom}</title>
 </svelte:head>
 
 <Header arret={data.arret} lignes={data.lignes} />
