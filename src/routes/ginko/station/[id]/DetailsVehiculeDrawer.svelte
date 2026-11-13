@@ -20,12 +20,12 @@
 		void attempt; // Trigger Svelte reactivity when attempt changes
 		if (!open) return;
 
-        // Reset state
+		// Reset state
 		vehicule = null;
 		errorMessage = '';
 		loading = false;
 
-        // Validate number of the vehicle
+		// Validate number of the vehicle
 		if (!num || num.length === 0) {
 			errorMessage = 'Les informations du véhicule ne sont pas disponibles pour ce passage.';
 			return;

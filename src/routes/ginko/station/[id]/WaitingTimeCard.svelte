@@ -4,6 +4,7 @@
 	import type { WaitingTimeGroup } from './waitingTimes';
 	import { Button } from '$shadcn/button';
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
+	import DetailsVehiculeDrawer from './DetailsVehiculeDrawer.svelte';
 
 	interface Props {
 		group: WaitingTimeGroup;
@@ -11,6 +12,8 @@
 	}
 
 	let { group, largeFontSize = $bindable(false) }: Props = $props();
+	let drawerOpen = $state(false);
+	let numVehicule = $state('');
 
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;
@@ -49,9 +52,19 @@
 
 	<ul class="grid grid-cols-3 items-center gap-2 text-center">
 		{#each group.temps as temps, ii (ii)}
-			<WaitingTimeItem {temps} index={ii} large={largeFontSize} />
+			<WaitingTimeItem
+				{temps}
+				index={ii}
+				large={largeFontSize}
+				onclick={() => {
+					numVehicule = temps.numVehicule;
+					drawerOpen = true;
+				}}
+			/>
 		{:else}
-			<li class="text-sm text-muted-foreground">Aucun passage prévu</li>
+			<li class="text-sm text-muted-foreground col-span-3">Aucun passage prévu</li>
 		{/each}
 	</ul>
+
+	<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} />
 </li>
