@@ -2,7 +2,7 @@ import { getArrets } from '$core/api/GinkoApi';
 import type { Arret } from '$core/dto/ginko';
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { isAuthorized } from '../../helper';
+import { isAuthorized } from '$core/helper/api';
 
 export const GET: RequestHandler = async ({ request, url }) => {
 	if (!isAuthorized(request, url.origin)) {

@@ -70,7 +70,7 @@ export async function getDetailsArret(params: { id: string }): Promise<Arret> {
 }
 
 // Récupérer les détails d'un véhicule
-export async function getDetailsVehicule_DR(params: { num: number }): Promise<VehiculeDR> {
+export async function getDetailsVehicule_DR(params: { num: string }): Promise<VehiculeDR> {
 	return apiCall<VehiculeDR>('DR/getDetailsVehicule', params);
 }
 
