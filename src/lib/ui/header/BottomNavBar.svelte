@@ -5,7 +5,7 @@
 </script>
 
 <nav
-	class="bottom-navbar fixed inset-[auto_0_0] z-100 m-auto grid bg-card md:hidden"
+	class="bottom-navbar fixed inset-[auto_0_0] z-100 m-auto grid border-t border-[#00000055] bg-card md:hidden dark:border-[#ffffff33]"
 	class:grid-cols-3={bottomBarLinks.length === 3}
 	class:grid-cols-4={bottomBarLinks.length === 4}
 	class:grid-cols-5={bottomBarLinks.length === 5}
@@ -29,8 +29,6 @@
 
 <style>
 	nav {
-		box-shadow:
-			0 0 0 1px #00000022,
-			0 0 15px #00000022;
+		box-shadow: 0 0 15px #00000033;
 	}
 </style>

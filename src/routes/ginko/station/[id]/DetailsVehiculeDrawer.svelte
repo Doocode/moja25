@@ -69,9 +69,8 @@
 	});
 </script>
 
-<!-- TODO: Fix navbar overlap with the drawer content -->
 <Drawer.Root bind:open>
-	<Drawer.Content class="pb-safe mx-auto max-w-150">
+	<Drawer.Content class="mx-auto max-w-150 pb-14 md:pb-0">
 		<Drawer.Header>
 			<Drawer.Title class="font-bold">Détails du véhicule</Drawer.Title>
 		</Drawer.Header>
