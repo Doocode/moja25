@@ -91,7 +91,7 @@
 		<FeatureBubble
 			icon={Usb}
 			title="Prises USB"
-			value={vehicule.prisesUSB ? 'Présentes' : 'Absentes'}
+			value={vehicule.prisesUSB ? 'Disponibles' : 'Inexistantes'}
 			available={vehicule.prisesUSB}
 		/>
 	</dl>
@@ -99,14 +99,14 @@
 	<dl class="grid gap-3 sm:grid-cols-2">
 		<FeatureRow
 			icon={Monitor}
-			title="Affichage dynamique"
-			value={vehicule.affichageDynamique ? 'Présents' : 'Non équipé'}
+			title="Affichages dynamiques"
+			value={vehicule.affichageDynamique ? 'Intégrés' : 'Non équipé'}
 			available={vehicule.affichageDynamique}
 		/>
 		<FeatureRow
 			icon={Volume2}
 			title="Annonces sonores"
-			value={vehicule.annoncesSonores ? 'Activées' : 'Non disponibles'}
+			value={vehicule.annoncesSonores ? 'Activées' : 'Non disponible'}
 			available={vehicule.annoncesSonores}
 		/>
 	</dl>

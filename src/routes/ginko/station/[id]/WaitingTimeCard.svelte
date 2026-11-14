@@ -32,10 +32,10 @@
 <li
 	class="relative grid gap-2 rounded-xl border-b border-slate-400/80 bg-slate-200 p-3 pb-2 md:static md:grid-cols-[1fr_250px] md:pb-3 dark:border-slate-600 dark:bg-slate-800"
 >
-	<header class="flex items-center gap-3 md:relative">
-		<BadgeLigne ligne={group.ligne} class="shrink-0 md:px-2.5 md:py-1.75" />
+	<header class="flex items-stretch gap-3 md:relative md:items-center">
+		<BadgeLigne ligne={group.ligne} class="shrink-0 py-1.5 md:px-2.5 md:py-1.75" />
 
-		<div class="grid min-w-0 flex-1">
+		<div class="grid min-w-0 flex-1 items-center">
 			<span class="truncate font-bold">{group.destination}</span>
 			{#if group.precisionDestination}
 				<span class="text-xs text-muted-foreground">{group.precisionDestination}</span>

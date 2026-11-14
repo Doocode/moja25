@@ -54,7 +54,7 @@
 <style>
 	.bg-image {
 		mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
-		background-image: url('/assets/ginko-root-hero.webp');
+		background-image: url('/assets/ginko/hero/alstom_citadis_battant.png');
 		background-size: cover;
 		background-position: center;
 	}
