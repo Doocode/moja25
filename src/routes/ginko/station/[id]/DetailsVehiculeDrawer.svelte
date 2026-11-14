@@ -2,7 +2,7 @@
 	import { Button } from '$shadcn/button';
 	import * as Drawer from '$shadcn/drawer';
 	import type { VehiculeDR } from '$core/dto/ginko';
-	import DetailsVehicule from './DetailsVehicule.svelte';
+	import DetailsVehicule from './vehicule/DetailsVehicule.svelte';
 	import { cacheVehicule, getCachedVehicule } from './vehiculeCache';
 
 	interface Props {
