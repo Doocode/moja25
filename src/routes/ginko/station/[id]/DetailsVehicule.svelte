@@ -12,6 +12,7 @@
 		Volume2,
 		Zap
 	} from '@lucide/svelte';
+	import { FeatureBubble, FeatureRow } from './vehicule';
 
 	interface Props {
 		vehicule: VehiculeDR;
@@ -59,37 +60,44 @@
 			{/if}
 		</dd>
 	</div>
-	<div class="flex items-center gap-3">
-		<Accessibility class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-		<dt class="flex-1">Accessibilité PMR</dt>
-		<dd class="text-right">
-			{#if accessibilite === 1}
-				Accessible
-			{:else if accessibilite === 2}
-				Non accessible
-			{:else}
-				Information indisponible
-			{/if}
-		</dd>
-	</div>
-	<div class="flex items-center gap-3">
-		<Snowflake class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-		<dt class="flex-1">Climatisation</dt>
-		<dd>{vehicule.climatisation ? 'Oui' : 'Non'}</dd>
-	</div>
-	<div class="flex items-center gap-3">
-		<Usb class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-		<dt class="flex-1">Prises USB</dt>
-		<dd>{vehicule.prisesUSB ? 'Oui' : 'Non'}</dd>
-	</div>
-	<div class="flex items-center gap-3">
-		<Monitor class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-		<dt class="flex-1">Affichage des prochaines stations</dt>
-		<dd>{vehicule.affichageDynamique ? 'Oui' : 'Non'}</dd>
-	</div>
-	<div class="flex items-center gap-3">
-		<Volume2 class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-		<dt class="flex-1">Annonces sonores</dt>
-		<dd>{vehicule.annoncesSonores ? 'Oui' : 'Non'}</dd>
-	</div>
+</dl>
+
+<dl class="my-8 grid grid-cols-3 items-start gap-2">
+	<FeatureBubble
+		icon={Accessibility}
+		title="Accès pour PMR"
+		value={accessibilite === 1
+			? 'Accessible'
+			: accessibilite === 2
+				? 'Non accessible'
+				: 'Information indisponible'}
+		available={accessibilite === 1 ? true : accessibilite === 2 ? false : null}
+	/>
+	<FeatureBubble
+		icon={Snowflake}
+		title="Présence de clim"
+		value={vehicule.climatisation ? 'Oui' : 'Non'}
+		available={vehicule.climatisation}
+	/>
+	<FeatureBubble
+		icon={Usb}
+		title="Prises USB"
+		value={vehicule.prisesUSB ? 'Oui' : 'Non'}
+		available={vehicule.prisesUSB}
+	/>
+</dl>
+
+<dl class="grid gap-3">
+	<FeatureRow
+		icon={Monitor}
+		title="Affichage des prochaines stations"
+		value={vehicule.affichageDynamique ? 'Oui' : 'Non'}
+		available={vehicule.affichageDynamique}
+	/>
+	<FeatureRow
+		icon={Volume2}
+		title="Annonces sonores"
+		value={vehicule.annoncesSonores ? 'Oui' : 'Non'}
+		available={vehicule.annoncesSonores}
+	/>
 </dl>
