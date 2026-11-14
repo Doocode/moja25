@@ -46,7 +46,6 @@
 			'font-light': index > 0,
 			'font-bold': index === 0,
 			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_2min,
-			'text-muted-foreground italic': isTheoretical,
 			'less-than-10min': lessThan_10min,
 			'less-than-2min': lessThan_2min && !isMessage,
 			'text-sky-600 dark:text-sky-400': lessThan_10min && !isMessage,
@@ -55,8 +54,6 @@
 	>
 		{#if !text}
 			Pas de temps
-		{:else if isTheoretical}
-			<span class="text-xs font-normal">({text})</span>
 		{:else if large && [TypeDeTemps.Duree, TypeDeTemps.Horaire].includes(temps.typeDeTemps)}
 			<!-- TODO: Add support for alternance & text (from TempsAttente.temps)-->
 			{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}

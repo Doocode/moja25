@@ -50,7 +50,7 @@
 		</Button>
 	</header>
 
-	<ul class="grid grid-cols-3 items-center gap-2 text-center">
+	<ul class="grid grid-cols-3 items-start gap-2 text-center">
 		{#each group.temps as temps, ii (ii)}
 			<WaitingTimeItem
 				{temps}
