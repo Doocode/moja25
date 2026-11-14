@@ -15,6 +15,15 @@
 	let drawerOpen = $state(false);
 	let numVehicule = $state('');
 
+	let listePassages = $derived.by(() => {
+		const listePassageTemps = group.temps.map((t) => t.temps);
+		const uniqueTemps = new Set(listePassageTemps);
+		if (uniqueTemps.size === 1) {
+			return [group.temps[0]];
+		}
+		return group.temps;
+	});
+
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;
 	}
@@ -50,8 +59,16 @@
 		</Button>
 	</header>
 
-	<ul class="grid grid-cols-3 items-start gap-2 text-center">
-		{#each group.temps as temps, ii (ii)}
+	<ul
+		class={{
+			'grid items-start gap-2 text-center': true,
+			'grid-cols-2': listePassages.length == 2,
+			'grid-cols-3': listePassages.length == 3,
+			'grid-cols-4': listePassages.length == 4,
+			'grid-cols-5': listePassages.length == 5
+		}}
+	>
+		{#each listePassages as temps, ii (ii)}
 			<WaitingTimeItem
 				{temps}
 				index={ii}

@@ -45,8 +45,8 @@
 		class={{
 			'font-light': index > 0,
 			'font-bold': index === 0,
-			'text-orange-600 dark:text-orange-400': isMessage && !lessThan_2min,
-			'less-than-10min': lessThan_10min,
+			'text-orange-600 dark:text-orange-400': isMessage,
+			'less-than-10min': lessThan_10min && !isMessage,
 			'less-than-2min': lessThan_2min && !isMessage,
 			'text-sky-600 dark:text-sky-400': lessThan_10min && !isMessage,
 			'text-red-600 dark:text-red-400': lessThan_2min && !isMessage
