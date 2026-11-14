@@ -49,9 +49,18 @@ export function sortStations(
 }
 
 export function getUnavailableStands(station: FormattedStation | Station): number {
-	return (
-		station.totalStands.capacity -
-		station.totalStands.availabilities.bikes -
-		station.totalStands.availabilities.stands
-	);
+	const { bikes, stands, mechanicalBikes, electricalBikes } = station.mainStands.availabilities;
+	const { capacity } = station.totalStands;
+	const sumBikes = mechanicalBikes + electricalBikes;
+
+	// If some bikes are not available
+	if (bikes != sumBikes) {
+		if (bikes > sumBikes) {
+			return bikes - sumBikes;
+		} else {
+			return sumBikes - stands;
+		}
+	}
+
+	return capacity - bikes - stands;
 }
