@@ -15,6 +15,7 @@
 		Zap
 	} from '@lucide/svelte';
 	import { FeatureBubble, FeatureRow, nomRamesTramway, pageNomRames } from '.';
+	import Illustration from './Illustration.svelte';
 
 	interface Props {
 		vehicule: VehiculeDR;
@@ -31,6 +32,7 @@
 </script>
 
 <div class="grid">
+	<Illustration {vehicule} />
 	<dl class="grid gap-3">
 		<div class="flex items-center gap-3">
 			<Hash class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />

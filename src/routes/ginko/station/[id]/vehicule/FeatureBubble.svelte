@@ -17,7 +17,8 @@
 			class={{
 				'relative flex size-16 items-center justify-center rounded-full': true,
 				'bg-sky-200 text-sky-700 dark:bg-sky-900 dark:text-sky-100': available !== false,
-				'bg-slate-200 text-red-500 dark:bg-slate-700 dark:text-red-400': available === false
+				'border-3 border-dashed border-red-500 text-red-500 dark:border-red-400 dark:text-red-400':
+					available === false
 			}}
 			aria-hidden="true"
 		>
@@ -28,8 +29,8 @@
 	<dd
 		class={{
 			'text-sm font-semibold': true,
-			'text-green-700 dark:text-green-400': available === true,
-			'text-red-700 dark:text-red-400': available === false,
+			'text-green-600 dark:text-green-400': available === true,
+			'text-red-600 dark:text-red-400': available === false,
 			'text-muted-foreground': available === null
 		}}
 	>
