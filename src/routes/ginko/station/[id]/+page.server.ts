@@ -8,7 +8,9 @@ import {
 	getVariantesDesservantArret
 } from '$core/api/GinkoApi';
 
-export const load: PageServerLoad = async ({ params }) => {
+const NB_TEMPS = 3;
+
+export const load: PageServerLoad = async ({ params, url }) => {
 	const id: string = params.id;
 	if (!id || !/^[\w-]+$/.test(id)) {
 		throw error(400, "L'id de la station n'est pas valide");
@@ -19,10 +21,12 @@ export const load: PageServerLoad = async ({ params }) => {
 		throw error(404, 'Station non trouvée');
 	}
 
+	const nom = url.searchParams.get('nom')?.trim();
+
 	const [lignes, arretsProches, tempsLieu] = await Promise.all([
 		getVariantesDesservantArret({ idArret: id }),
 		getArretsProches({ latitude: arret.latitude, longitude: arret.longitude }),
-		getTempsLieu({ /*idArret: id,*/ nom: arret.nom, nb: 3 })
+		getTempsLieu(nom ? { nom, nb: NB_TEMPS } : { idArret: id, nb: NB_TEMPS })
 	]);
 
 	return {
