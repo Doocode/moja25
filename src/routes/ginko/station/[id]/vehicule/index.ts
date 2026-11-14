@@ -1,7 +1,9 @@
 import FeatureBubble from './FeatureBubble.svelte';
 import FeatureRow from './FeatureRow.svelte';
+import DetailRow from './DetailRow.svelte';
+import Illustration from './Illustration.svelte';
 
-export { FeatureBubble, FeatureRow };
+export { DetailRow, FeatureBubble, FeatureRow, Illustration };
 
 export interface NomRameTramway {
 	name: string;

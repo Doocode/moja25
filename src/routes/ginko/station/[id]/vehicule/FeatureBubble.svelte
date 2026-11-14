@@ -29,8 +29,8 @@
 	<dd
 		class={{
 			'text-sm font-semibold': true,
-			'text-green-600 dark:text-green-400': available === true,
-			'text-red-600 dark:text-red-400': available === false,
+			'text-green-700 dark:text-green-300': available === true,
+			'text-red-700 dark:text-red-300': available === false,
 			'text-muted-foreground': available === null
 		}}
 	>

@@ -10,9 +10,9 @@
 </script>
 
 {#if vehicule.typeVehicule === 'Bus articulé'}
-	<BusArticule class="m-auto mb-4 w-full max-w-100" />
+	<BusArticule class="m-auto mb-4 h-auto w-full max-w-100" />
 {:else if vehicule.typeVehicule === 'Bus standard'}
-	<BusStandard class="m-auto mb-4 w-full max-w-100" />
+	<BusStandard class="m-auto mb-4 h-auto w-full max-w-100" />
 {:else if vehicule.typeVehicule === 'Bus moyenne capacité'}
-	<BusMoyenneCapacite class="m-auto mb-4 w-full max-w-100" />
+	<BusMoyenneCapacite class="m-auto mb-4 h-auto w-full max-w-100" />
 {/if}

@@ -4,7 +4,6 @@
 		Accessibility,
 		BusFront,
 		CircleUser,
-		ExternalLink,
 		Fuel,
 		Hash,
 		Monitor,
@@ -14,8 +13,14 @@
 		Volume2,
 		Zap
 	} from '@lucide/svelte';
-	import { FeatureBubble, FeatureRow, nomRamesTramway, pageNomRames } from '.';
-	import Illustration from './Illustration.svelte';
+	import {
+		DetailRow,
+		FeatureBubble,
+		FeatureRow,
+		Illustration,
+		nomRamesTramway,
+		pageNomRames
+	} from '.';
 
 	interface Props {
 		vehicule: VehiculeDR;
@@ -29,67 +34,41 @@
 		['Tramway 22 mètres', 'Tramway 33 mètres'].includes(vehicule.typeVehicule)
 	);
 	const nomRame = $derived(nomRamesTramway.find((rame) => String(rame.num) === vehicule.num));
+	const nomEnergie = $derived(
+		energie === 1
+			? 'Gazole'
+			: energie === 2
+				? 'Gaz naturel'
+				: energie === 3
+					? 'Hybride électrique et gaz'
+					: energie === 4
+						? 'Électrique'
+						: 'Information indisponible'
+	);
 </script>
 
 <div class="grid">
 	<Illustration {vehicule} />
-	<dl class="grid gap-3">
-		<div class="flex items-center gap-3">
-			<Hash class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-			<dt class="flex-1">Numéro de véhicule</dt>
-			<dd class="text-right">{vehicule.num || 'Information indisponible'}</dd>
-		</div>
-		<div class="flex items-center gap-3">
-			{#if isTramway}
-				<TramFront class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-			{:else}
-				<BusFront class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-			{/if}
-			<dt class="flex-1">Type de véhicule</dt>
-			<dd class="text-right">{vehicule.typeVehicule || 'Information indisponible'}</dd>
-		</div>
+	<dl class="grid gap-3 sm:grid-cols-2">
+		<DetailRow
+			icon={Hash}
+			title="Numéro de véhicule"
+			value={vehicule.num || 'Information indisponible'}
+		/>
+		<DetailRow
+			icon={isTramway ? TramFront : BusFront}
+			title="Type de véhicule"
+			value={vehicule.typeVehicule || 'Information indisponible'}
+		/>
 		{#if isTramway && nomRame}
-			<div class="flex items-center gap-3">
-				<CircleUser class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-				<dt class="flex-1">Nom de la rame</dt>
-				<dd class="text-right">
-					{#if nomRame.anchor}
-						<a
-							href={`${pageNomRames}#${nomRame.anchor}`}
-							target="_blank"
-							rel="noreferrer"
-							class="font-medium text-sky-700 underline underline-offset-4 hover:text-sky-900 dark:text-sky-300 dark:hover:text-sky-100"
-						>
-							{nomRame.name}
-							<ExternalLink class="inline size-3.5" aria-label="(nouvelle fenêtre)" />
-						</a>
-					{:else}
-						{nomRame.name}
-					{/if}
-				</dd>
-			</div>
+			<DetailRow
+				icon={CircleUser}
+				title="Nom de la rame"
+				value={nomRame.name}
+				href={nomRame.anchor ? `${pageNomRames}#${nomRame.anchor}` : undefined}
+			/>
 		{/if}
-		<div class="flex items-center gap-3">
-			{#if vehicule.energie === 4}
-				<Zap class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-			{:else}
-				<Fuel class="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
-			{/if}
-			<dt class="flex-1">Énergie</dt>
-			<dd class="text-right">
-				{#if energie === 1}
-					Gazole
-				{:else if energie === 2}
-					Gaz naturel
-				{:else if energie === 3}
-					Hybride électrique et gaz
-				{:else if energie === 4}
-					Électrique
-				{:else}
-					Information indisponible
-				{/if}
-			</dd>
-		</div>
+		<DetailRow icon={energie === 4 ? Zap : Fuel} title="Énergie" value={nomEnergie} />
 	</dl>
 
 	<dl class="my-8 grid grid-cols-3 items-start gap-2">
@@ -112,22 +91,22 @@
 		<FeatureBubble
 			icon={Usb}
 			title="Prises USB"
-			value={vehicule.prisesUSB ? 'Oui' : 'Non'}
+			value={vehicule.prisesUSB ? 'Présentes' : 'Absentes'}
 			available={vehicule.prisesUSB}
 		/>
 	</dl>
 
-	<dl class="grid gap-3">
+	<dl class="grid gap-3 sm:grid-cols-2">
 		<FeatureRow
 			icon={Monitor}
-			title="Ecran d'affichage"
-			value={vehicule.affichageDynamique ? 'Oui' : 'Non'}
+			title="Affichage dynamique"
+			value={vehicule.affichageDynamique ? 'Présents' : 'Non équipé'}
 			available={vehicule.affichageDynamique}
 		/>
 		<FeatureRow
 			icon={Volume2}
 			title="Annonces sonores"
-			value={vehicule.annoncesSonores ? 'Oui' : 'Non'}
+			value={vehicule.annoncesSonores ? 'Activées' : 'Non disponibles'}
 			available={vehicule.annoncesSonores}
 		/>
 	</dl>
