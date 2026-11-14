@@ -18,12 +18,12 @@
 </script>
 
 <Drawer.Root bind:open>
-	<Drawer.Content class="pb-safe mx-auto max-w-150">
+	<Drawer.Content class="pb-safe mx-auto max-w-150 pb-18 md:pb-10">
 		<Drawer.Header>
 			<Drawer.Title>Trier les stations Vélocité</Drawer.Title>
 		</Drawer.Header>
 
-		<div class="overflow-y-auto pb-8">
+		<div class="overflow-y-auto pb-2">
 			<div class="mx-auto w-full max-w-125">
 				<SortSection title="Trier par nombre" class="mb-6 grid gap-4">
 					<GridSortField
@@ -31,23 +31,25 @@
 						sortField={selectedSort}
 						onSelect={onSelectSort}
 					/>
-					<ListSortField
-						fields={countFilters.slice(3)}
-						sortField={selectedSort}
-						onSelect={onSelectSort}
-					/>
 				</SortSection>
 
 				<div class="grid gap-6 lg:grid-cols-2">
-					<SortSection title="Caractéristiques">
+					<div class="grid gap-6">
 						<ListSortField
-							fields={numberFilters}
+							fields={countFilters.slice(3)}
 							sortField={selectedSort}
 							onSelect={onSelectSort}
 						/>
-					</SortSection>
+						<SortSection title="Caractéristiques">
+							<ListSortField
+								fields={numberFilters}
+								sortField={selectedSort}
+								onSelect={onSelectSort}
+							/>
+						</SortSection>
+					</div>
 
-					<SortSection title="État de la station">
+					<SortSection title="État de la station" class="lg:pt-6">
 						<ListSortField
 							fields={statusFilters}
 							sortField={selectedSort}
