@@ -2,7 +2,8 @@
 	import { page } from '$app/state';
 	import { Button } from '$shadcn/button';
 	import ResultList from './ResultList.svelte';
-	import type { Arret } from '$core/dto/ginko';
+	import type { FormattedArret } from '$core/dto/ginko';
+	import ChildrenDrawer from './ChildrenDrawer.svelte';
 	import ResultCount from './ResultCount.svelte';
 	import SearchBar from '$lib/ui/SearchBar.svelte';
 	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
@@ -10,7 +11,7 @@
 
 	interface Props {
 		data: {
-			arrets: Arret[];
+			arrets: FormattedArret[];
 		};
 	}
 
@@ -18,6 +19,13 @@
 
 	// Initialize from the "q" URL parameter
 	let queryInput = $state(page.url.searchParams.get('q') ?? '');
+	let selectedArret = $state<FormattedArret | null>(null);
+	let drawerOpen = $state(false);
+
+	function showChildren(arret: FormattedArret) {
+		selectedArret = arret;
+		drawerOpen = true;
+	}
 
 	let results = $derived.by(() => {
 		const terms = normalize(queryInput) // Remove diacritics and normalize special characters
@@ -110,6 +118,8 @@
 				</p>
 			</div>
 		{/if}
-		<ResultList arrets={results} />
+		<ResultList arrets={results} onchildren={showChildren} />
 	{/if}
 </main>
+
+<ChildrenDrawer bind:open={drawerOpen} arret={selectedArret} />
