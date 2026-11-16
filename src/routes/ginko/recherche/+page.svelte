@@ -4,6 +4,7 @@
 	import ResultList from './ResultList.svelte';
 	import type { FormattedArret } from '$core/dto/ginko';
 	import ChildrenDrawer from './ChildrenDrawer.svelte';
+	import GroupContent from './GroupContent.svelte';
 	import ResultCount from './ResultCount.svelte';
 	import SearchBar from '$lib/ui/SearchBar.svelte';
 	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
@@ -118,7 +119,11 @@
 				</p>
 			</div>
 		{/if}
-		<ResultList arrets={results} onchildren={showChildren} />
+		{#if results.length === 1 && results[0].children?.length}
+			<GroupContent arret={results[0]} />
+		{:else}
+			<ResultList arrets={results} onchildren={showChildren} />
+		{/if}
 	{/if}
 </main>
 

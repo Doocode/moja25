@@ -1,8 +1,7 @@
 <script lang="ts">
 	import * as Drawer from '$shadcn/drawer';
 	import type { FormattedArret } from '$core/dto/ginko';
-	import ResultItem from './ResultItem.svelte';
-	import ResultList from './ResultList.svelte';
+	import GroupContent from './GroupContent.svelte';
 
 	interface Props {
 		open: boolean;
@@ -18,11 +17,9 @@
 			<Drawer.Title class="font-bold">{arret?.nom}</Drawer.Title>
 		</Drawer.Header>
 
-		{#if arret?.children}
+		{#if arret?.children?.length}
 			<div class="overflow-y-auto px-4 pb-4 md:px-10">
-				<ResultItem {arret} recommended />
-
-				<ResultList arrets={arret.children} class="mt-4" />
+				<GroupContent {arret} />
 			</div>
 		{/if}
 	</Drawer.Content>
