@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { Copy, CopyCheck, Locate, MapPin } from '@lucide/svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { cn } from '$lib/utils.js';
-	import { Button } from '$shadcn/button';
 
 	import GoogleLogo from '$assets/logo/google-maps.png';
 	import BingLogo from '$assets/logo/bing-maps.png';
@@ -56,54 +54,15 @@
 			logo: WazeLogo
 		}
 	]);
-
-	let timeoutId: ReturnType<typeof setTimeout> | null = $state(null);
-
-	function copyAddress() {
-		// Clear previous timeout
-		if (timeoutId) {
-			clearTimeout(timeoutId);
-		}
-
-		// Copy address
-		copyToClipboard(station.address);
-
-		// Set new timeout
-		timeoutId = setTimeout(() => {
-			timeoutId = null;
-		}, 2000);
-	}
-
-	function copyToClipboard(value: string) {
-		navigator.clipboard.writeText(value);
-	}
 </script>
 
 <div title="Emplacement" class={cn(className)}>
 	<h2 class="mt-2 mb-0.5 text-lg font-bold">Emplacement</h2>
-
-	<Button
-		class="h-auto w-full gap-2 rounded-xl px-4 py-2"
-		variant={timeoutId ? 'outline' : 'secondary'}
-		onclick={copyAddress}
-	>
-		<MapPin class="size-5 shrink-0" />
-		<div class="flex flex-1 flex-col items-center justify-center text-center text-sm">
-			<p class="font-semibold">Adresse</p>
-			<p class="text-muted-foreground">{station.address}</p>
-		</div>
-		{#if timeoutId}
-			<CopyCheck class="size-5 shrink-0 text-green-600 dark:text-green-400" stokeWidth={3} />
-		{:else}
-			<Copy class="size-5 shrink-0" />
-		{/if}
-	</Button>
+	<p class="text-sm text-muted-foreground">{station.address}</p>
 
 	<div class="mt-4 grid">
 		<p class="font-semibold">Voir sur une carte</p>
-		<nav
-			class="-mx-4 mt-2 flex w-[calc(100%+2rem)] gap-4 overflow-auto px-4 md:flex-wrap md:gap-x-8"
-		>
+		<nav class="mt-2 flex gap-4 overflow-auto px-4 md:flex-wrap md:gap-x-8">
 			{#each apps as app (app.name)}
 				<a href={app.url} target="_blank" class="group flex flex-col items-center gap-1 rounded-md">
 					<img src={app.logo} alt={'Logo de ' + app.name} class="size-20 shrink-0 rounded-[25%]" />

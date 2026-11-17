@@ -79,7 +79,7 @@
 					<span class="sr-only">Liste des stations</span>
 				</Button>
 
-				<div class="flex max-w-40 justify-end gap-2">
+				<div class="flex max-w-40 justify-end gap-2 lg:flex-col xl:flex-row">
 					<!-- TODO: Actions (add to bookmarks, share, open in map) -->
 					{#if wakeLockSupported}
 						<KeepScreenAwake
@@ -93,12 +93,12 @@
 			</div>
 
 			<div class="flex flex-wrap p-4">
-				<div class="grid place-content-end justify-start sm:w-75 md:h-40">
+				<div class="grid place-content-end justify-start sm:w-75 lg:h-24 xl:h-40">
 					<h1 class="text-3xl leading-none font-black text-balance sm:text-4xl md:text-5xl">
 						{station.formattedName}
 					</h1>
 					{#if station.address !== null && station.address !== ''}
-						<p class="mt-1 text-xs text-balance">{station.address}</p>
+						<p class="mt-1 hidden text-xs text-balance lg:inline">{station.address}</p>
 					{/if}
 				</div>
 			</div>

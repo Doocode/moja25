@@ -63,9 +63,9 @@
 
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18">
 	<div
-		class="recap relative m-auto grid max-w-130 border-[#000000cc] lg:-mt-65 lg:mr-0 lg:max-w-138 lg:rounded-4xl lg:border-t lg:bg-background lg:p-4 lg:pb-0 xl:mx-auto dark:lg:border-[#ffffffaa]"
+		class="recap relative grid max-w-130 border-[#000000cc] sm:m-auto lg:-mt-65 lg:mr-0 lg:max-w-138 lg:rounded-t-4xl lg:border-t lg:bg-background lg:p-4 lg:pb-0 xl:mx-auto dark:lg:border-[#ffffffaa]"
 	>
-		<RecapSection {station} class="mb-4" />
+		<RecapSection {station} class="mb-0.5 md:mb-4" />
 		<ProgressBar {station} />
 	</div>
 
@@ -84,33 +84,35 @@
 </main>
 
 <style>
-	.recap {
-		--corner-size: 30px;
-		&::before,
-		&::after {
-			content: '';
-			position: absolute;
-			background: var(--background);
-			width: var(--corner-size);
-			height: var(--corner-size);
-			top: 213px;
-		}
+	@media (width >= 64rem /* 1024px */) {
+		.recap {
+			--corner-size: 30px;
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				background: var(--background);
+				width: var(--corner-size);
+				height: var(--corner-size);
+				top: 213px;
+			}
 
-		&::before {
-			left: calc(-1 * var(--corner-size));
-			mask-image: radial-gradient(
-				circle var(--corner-size) at top left,
-				transparent var(--corner-size),
-				black calc(var(--corner-size) + 0.5px)
-			);
-		}
-		&::after {
-			right: calc(-1 * var(--corner-size));
-			mask-image: radial-gradient(
-				circle var(--corner-size) at top right,
-				transparent var(--corner-size),
-				black calc(var(--corner-size) + 0.5px)
-			);
+			&::before {
+				left: calc(-1 * var(--corner-size));
+				mask-image: radial-gradient(
+					circle var(--corner-size) at top left,
+					transparent var(--corner-size),
+					black calc(var(--corner-size) + 0.5px)
+				);
+			}
+			&::after {
+				right: calc(-1 * var(--corner-size));
+				mask-image: radial-gradient(
+					circle var(--corner-size) at top right,
+					transparent var(--corner-size),
+					black calc(var(--corner-size) + 0.5px)
+				);
+			}
 		}
 	}
 </style>
