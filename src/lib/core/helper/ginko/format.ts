@@ -1,8 +1,22 @@
 import type { Arret, FormattedArret } from '$core/dto/ginko';
 import { KindOfStop, kindOfStop } from './stops';
 
-export function formatArrets(arrets: Arret[]): FormattedArret[] {
-	const groups = new Map<string, Arret[]>();
+export function splitNomArret(nom: string): FormattedArret['nomDecoupe'] {
+	const separator = nom.indexOf(' - ');
+	if (separator === -1) return undefined;
+
+	const ville = nom.slice(0, separator).trim();
+	const station = nom.slice(separator + 3).trim();
+	return ville && station ? { ville, station } : undefined;
+}
+
+export function formatArret(arret: Arret): FormattedArret {
+	const nomDecoupe = splitNomArret(arret.nom);
+	return nomDecoupe ? { ...arret, nomDecoupe } : { ...arret };
+}
+
+export function groupArrets(arrets: FormattedArret[]): FormattedArret[] {
+	const groups = new Map<string, FormattedArret[]>();
 
 	// Group arrets by their name to aggregate children under the same stop name
 	for (const arret of arrets) {

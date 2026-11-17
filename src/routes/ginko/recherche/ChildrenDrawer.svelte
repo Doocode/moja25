@@ -2,6 +2,7 @@
 	import * as Drawer from '$shadcn/drawer';
 	import type { FormattedArret } from '$core/dto/ginko';
 	import GroupContent from './GroupContent.svelte';
+	import StopName from './StopName.svelte';
 
 	interface Props {
 		open: boolean;
@@ -14,7 +15,9 @@
 <Drawer.Root bind:open>
 	<Drawer.Content class="mx-auto max-w-150 pb-18 md:pb-6">
 		<Drawer.Header>
-			<Drawer.Title class="font-bold">{arret?.nom}</Drawer.Title>
+			<Drawer.Title class="text-lg font-bold">
+				{#if arret}<StopName {arret} />{/if}
+			</Drawer.Title>
 		</Drawer.Header>
 
 		{#if arret?.children?.length}

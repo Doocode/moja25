@@ -8,7 +8,8 @@ export interface Arret {
 }
 
 export interface FormattedArret extends Arret {
+	nomDecoupe?: { ville: string; station: string };
 	childrenIds?: string[];
 	hasParent?: boolean;
-	children?: Arret[];
+	children?: FormattedArret[];
 }
