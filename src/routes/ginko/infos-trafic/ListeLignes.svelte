@@ -13,7 +13,7 @@
 	let { lignes, size = 'sm' }: Props = $props();
 </script>
 
-<div class="flex flex-wrap items-center gap-2 px-4 sm:gap-4 md:gap-6">
+<div class="flex flex-wrap items-center gap-2 sm:gap-4 md:gap-6">
 	{#each lignes as ligne (ligne.idLigne)}
 		<a
 			class="relative"
@@ -29,7 +29,7 @@
 					periurbain: false
 				}}
 				class={cn(
-					size === 'lg' && 'w-22 rounded-lg py-3 text-5xl',
+					size === 'lg' && 'rounded-lg px-5 py-3 text-5xl',
 					size === 'md' && 'min-w-13 rounded-md px-3 text-3xl'
 				)}
 			/>

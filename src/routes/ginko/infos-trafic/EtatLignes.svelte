@@ -40,7 +40,6 @@
 		icon?: Component;
 		title: string;
 		items: ItemEtatLigne[];
-		open?: boolean;
 		size?: 'sm' | 'md' | 'lg';
 	}
 
@@ -50,19 +49,16 @@
 				title: 'Tram & Lianes',
 				icon: TramFront,
 				items: [...getItemsByTypologie(10), ...getItemsByTypologie(20)],
-				open: true,
 				size: 'lg'
 			},
 			{
 				title: 'Lignes urbaines',
 				items: getItemsByTypologie(30),
-				open: true,
 				size: 'md'
 			},
 			{
 				title: 'Lignes complémentaires',
-				items: getItemsByTypologie(40),
-				open: true
+				items: getItemsByTypologie(40)
 			},
 			{
 				title: 'Lignes périurbaines',
@@ -84,10 +80,10 @@
 	});
 </script>
 
-<div class="grid gap-8">
+<div class="grid gap-8 px-3 sm:px-4">
 	{#each groups as group (group.title)}
 		{#if group.items.length > 0}
-			<SectionGroup title={group.title} icon={group.icon} open={group.open}>
+			<SectionGroup title={group.title} icon={group.icon}>
 				<ListeLignes lignes={group.items} size={group.size} />
 			</SectionGroup>
 		{/if}
