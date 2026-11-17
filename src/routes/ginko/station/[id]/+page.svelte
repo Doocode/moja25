@@ -3,7 +3,7 @@
 	import * as Tabs from '$shadcn/tabs';
 	import TabBar from './TabBar.svelte';
 	import NearbyStops from './NearbyStops.svelte';
-	import WaitingTimes from './WaitingTimes.svelte';
+	import WaitingTimes from './time/WaitingTimes.svelte';
 	import type { Arret, Ligne, TempsLieu } from '$core/dto/ginko';
 
 	interface Props {

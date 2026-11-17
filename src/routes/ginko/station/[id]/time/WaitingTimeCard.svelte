@@ -1,10 +1,10 @@
 <script lang="ts">
-	import WaitingTimeItem from './WaitingTimeItem.svelte';
-	import { BadgeLigne } from '$lib/ui/ginko';
-	import type { WaitingTimeGroup } from './waitingTimes';
 	import { Button } from '$shadcn/button';
+	import { BadgeLigne } from '$lib/ui/ginko';
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
-	import DetailsVehiculeDrawer from './DetailsVehiculeDrawer.svelte';
+	import type { WaitingTimeGroup } from './waitingTimes';
+	import WaitingTimeItem from './WaitingTimeItem.svelte';
+	import DetailsVehiculeDrawer from '../DetailsVehiculeDrawer.svelte';
 
 	interface Props {
 		group: WaitingTimeGroup;
