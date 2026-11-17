@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getDisplayTexts, TypeDeTemps } from './waitingTimes';
-	import LargeTimeDisplay from './LargeTimeDisplay.svelte';
+	import LargeTime from './LargeTime.svelte';
 	import LargeMessage from './LargeMessage.svelte';
 	import type { TempsAttente } from '$core/dto/ginko';
 	import { Button } from '$shadcn/button';
@@ -56,15 +56,9 @@
 		{#if large}
 			<!-- TODO: Add support for alternance & text (from TempsAttente.temps)-->
 			{#if isMessage}
-				<LargeMessage tempsAttente={temps} />
+				<LargeMessage {temps} />
 			{:else}
-				{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
-				{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
-				{#if tempsEnMinute <= 99}
-					<LargeTimeDisplay time={tempsEnMinute} label="min" />
-				{:else}
-					<LargeTimeDisplay time={tempsEnHeure} label={tempsEnHeure > 1 ? 'heures' : 'heure'} />
-				{/if}
+				<LargeTime {temps} />
 			{/if}
 		{:else if !text}
 			Pas de temps
@@ -103,9 +97,9 @@
 			opacity: 0;
 		}
 	}
-	.less-than-10min {
+	/*.less-than-10min {
 		animation: blink 4s infinite;
-	}
+	}*/
 	.less-than-2min {
 		animation: quick_blink 0.75s infinite;
 	}
