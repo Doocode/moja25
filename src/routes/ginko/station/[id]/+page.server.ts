@@ -1,10 +1,11 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { FormattedArret, TempsLieu } from '$core/dto/ginko';
-import { formatArret } from '$core/helper/ginko/format';
+import { formatArret, groupArrets } from '$core/helper/ginko/format';
 import { getArretsProches, getDetailsArret, getTempsLieu } from '$core/api/GinkoApi';
 
 const NB_TEMPS = 3;
+const GROUP_STATIONS = true;
 
 export const load: PageServerLoad = async ({ params, url }) => {
 	// Validate id
@@ -28,9 +29,13 @@ export const load: PageServerLoad = async ({ params, url }) => {
 		getTempsLieu(nom ? { nom, nb: NB_TEMPS } : { idArret: id, nb: NB_TEMPS })
 	]);
 
-	const arretsProches = (arretsProchesRaw ?? [])
+	let arretsProches = (arretsProchesRaw ?? [])
 		.map(formatArret) // Split name into parts
 		.filter((a) => a.id !== id); // Exclude the current stop from nearby stops
+
+	if (GROUP_STATIONS) {
+		arretsProches = groupArrets(arretsProches);
+	}
 
 	return {
 		arret,
