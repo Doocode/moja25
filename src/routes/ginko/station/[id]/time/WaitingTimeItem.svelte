@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getDisplayTexts, TypeDeTemps } from './waitingTimes';
 	import LargeTimeDisplay from './LargeTimeDisplay.svelte';
+	import LargeMessage from './LargeMessage.svelte';
 	import type { TempsAttente } from '$core/dto/ginko';
 	import { Button } from '$shadcn/button';
 
@@ -52,17 +53,21 @@
 			'text-red-600 dark:text-red-400': lessThan_2min && !isMessage
 		}}
 	>
-		{#if !text}
-			Pas de temps
-		{:else if large && [TypeDeTemps.Duree, TypeDeTemps.Horaire].includes(temps.typeDeTemps)}
+		{#if large}
 			<!-- TODO: Add support for alternance & text (from TempsAttente.temps)-->
-			{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
-			{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
-			{#if tempsEnMinute <= 99}
-				<LargeTimeDisplay time={tempsEnMinute} label="min" />
+			{#if isMessage}
+				<LargeMessage tempsAttente={temps} />
 			{:else}
-				<LargeTimeDisplay time={tempsEnHeure} label={tempsEnHeure > 1 ? 'heures' : 'heure'} />
+				{@const tempsEnMinute = Math.round(temps.tempsEnSeconde / 60)}
+				{@const tempsEnHeure = Math.round(tempsEnMinute / 60)}
+				{#if tempsEnMinute <= 99}
+					<LargeTimeDisplay time={tempsEnMinute} label="min" />
+				{:else}
+					<LargeTimeDisplay time={tempsEnHeure} label={tempsEnHeure > 1 ? 'heures' : 'heure'} />
+				{/if}
 			{/if}
+		{:else if !text}
+			Pas de temps
 		{:else}
 			{text}
 		{/if}
