@@ -4,12 +4,11 @@
 	import TabBar from './TabBar.svelte';
 	import NearbyStops from './NearbyStops.svelte';
 	import WaitingTimes from './time/WaitingTimes.svelte';
-	import type { Arret, Ligne, TempsLieu } from '$core/dto/ginko';
+	import type { Arret, TempsLieu } from '$core/dto/ginko';
 
 	interface Props {
 		data: {
 			arret: Arret;
-			lignes: Ligne[];
 			arretsProches: Arret[];
 			tempsLieu: TempsLieu | null;
 		};
@@ -22,7 +21,7 @@
 	<title>[Bus & tram] {data.arret.nom}</title>
 </svelte:head>
 
-<Header arret={data.arret} lignes={data.lignes} />
+<Header arret={data.arret} />
 
 <Tabs.Root value="times" class="container mx-auto -mt-10 max-w-2xl gap-0 p-4 pb-22">
 	<TabBar />

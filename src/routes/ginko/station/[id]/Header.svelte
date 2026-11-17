@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { BadgeLigne } from '$lib/ui/ginko';
-	import type { Arret, Ligne } from '$core/dto/ginko';
+	import type { Arret } from '$core/dto/ginko';
 
 	interface Props {
 		arret: Arret;
-		lignes: Ligne[];
 	}
 
-	let { arret, lignes }: Props = $props();
+	let { arret }: Props = $props();
 </script>
 
 <header
@@ -15,10 +13,5 @@
 >
 	<div class="container m-auto grid justify-items-center gap-3">
 		<h1 class="text-2xl font-black md:text-4xl">{arret.nom}</h1>
-		<ul class="flex flex-wrap justify-center gap-1">
-			{#each lignes as ligne (ligne.id)}
-				<li><BadgeLigne {ligne} /></li>
-			{/each}
-		</ul>
 	</div>
 </header>
