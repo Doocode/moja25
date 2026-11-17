@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Header from './Header.svelte';
 	import * as Tabs from '$shadcn/tabs';
-	import TabBar from './TabBar.svelte';
+	import TabBar from './tabs/TabBar.svelte';
 	import NearbyStops from './NearbyStops.svelte';
 	import WaitingTimes from './time/WaitingTimes.svelte';
 	import type { Arret, TempsLieu } from '$core/dto/ginko';
@@ -23,7 +23,7 @@
 
 <Header arret={data.arret} />
 
-<Tabs.Root value="times" class="container mx-auto -mt-10 max-w-2xl gap-0 p-4 pb-22">
+<Tabs.Root value="times" class="container mx-auto max-w-2xl gap-0 px-4 pb-22">
 	<TabBar />
 
 	<Tabs.Content value="times" class="mt-6">

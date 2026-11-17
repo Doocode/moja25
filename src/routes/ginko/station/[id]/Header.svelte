@@ -9,7 +9,7 @@
 </script>
 
 <header
-	class="bg-linear-to-r from-cyan-300 to-blue-200 px-4 pt-10 pb-16 text-center dark:from-cyan-800 dark:to-blue-800"
+	class="bg-linear-to-b from-cyan-300 to-transparent px-4 py-8 text-center dark:from-cyan-800"
 >
 	<div class="container m-auto grid justify-items-center gap-3">
 		<h1 class="text-2xl font-black md:text-4xl">
