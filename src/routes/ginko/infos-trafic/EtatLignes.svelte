@@ -3,7 +3,7 @@
 	import ListeLignes from './ListeLignes.svelte';
 	import SectionGroup from './SectionGroup.svelte';
 	import type { ItemEtatLigne } from './types';
-	import { TramFront } from '@lucide/svelte';
+	import { TramFront, Leaf, BusFront } from '@lucide/svelte';
 	import type { Component } from 'svelte';
 
 	interface Props {
@@ -43,21 +43,44 @@
 		size?: 'sm' | 'md' | 'lg';
 	}
 
+	const tramLignes = $derived.by(() => getItemsByTypologie(10));
+	const lianesLignes = $derived.by(() => getItemsByTypologie(20));
+	const groupMajorLines = $derived.by(() => tramLignes.length < 3);
+	const majorLines = $derived.by(() => {
+		if (groupMajorLines) {
+			return [
+				{
+					title: 'Tram & Lianes',
+					icon: TramFront,
+					items: [...tramLignes, ...lianesLignes],
+					size: 'lg'
+				}
+			];
+		} else {
+			return [
+				{
+					title: 'Tram',
+					icon: TramFront,
+					items: [...tramLignes],
+					size: 'lg'
+				},
+				{
+					title: 'Lianes',
+					icon: Leaf,
+					items: [...lianesLignes],
+					size: 'lg'
+				}
+			];
+		}
+	});
+
 	const groups: Groups[] = $derived.by(() => {
 		return [
-			{
-				title: 'Tram & Lianes',
-				icon: TramFront,
-				items: [...getItemsByTypologie(10), ...getItemsByTypologie(20)],
-				size: 'lg'
-			},
-			{
-				title: 'Lignes urbaines',
-				items: getItemsByTypologie(30),
-				size: 'md'
-			},
+			...majorLines,
 			{
 				title: 'Lignes complémentaires',
+				icon: BusFront,
+				size: 'md',
 				items: getItemsByTypologie(40)
 			},
 			{

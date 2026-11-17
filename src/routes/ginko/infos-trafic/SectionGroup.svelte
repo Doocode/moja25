@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Component, Snippet } from 'svelte';
-	import { BusFront } from '@lucide/svelte';
+	import { Bus } from '@lucide/svelte';
 
 	interface Props {
 		icon?: Component;
@@ -8,7 +8,7 @@
 		children?: Snippet;
 	}
 
-	let { icon = BusFront, title, children }: Props = $props();
+	let { icon = Bus, title, children }: Props = $props();
 </script>
 
 <section class="grid">
