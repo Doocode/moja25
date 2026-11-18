@@ -4,16 +4,14 @@
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
 	import type { WaitingTimeGroup } from './waitingTimes';
 	import WaitingTimeItem from './WaitingTimeItem.svelte';
-	import DetailsVehiculeDrawer from '../DetailsVehiculeDrawer.svelte';
 
 	interface Props {
 		group: WaitingTimeGroup;
 		largeFontSize?: boolean;
+		onPassageClick?: (numVehicule: string) => void;
 	}
 
-	let { group, largeFontSize = $bindable(false) }: Props = $props();
-	let drawerOpen = $state(false);
-	let numVehicule = $state('');
+	let { group, largeFontSize = $bindable(false), onPassageClick }: Props = $props();
 
 	let listePassages = $derived.by(() => {
 		const listePassageTemps = group.temps.map((t) => t.temps);
@@ -73,15 +71,10 @@
 				{temps}
 				index={ii}
 				large={largeFontSize}
-				onclick={() => {
-					numVehicule = temps.numVehicule;
-					drawerOpen = true;
-				}}
+				onclick={() => onPassageClick?.(temps)}
 			/>
 		{:else}
 			<li class="text-sm text-muted-foreground col-span-3">Aucun passage prévu</li>
 		{/each}
 	</ul>
-
-	<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} />
 </li>

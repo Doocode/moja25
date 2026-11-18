@@ -6,6 +6,7 @@
 	import WaitingTimeCard from './WaitingTimeCard.svelte';
 	import KeepScreenAwake from '$lib/ui/KeepScreenAwake.svelte';
 	import { LocalStorageKey } from '$lib/core/helper/local_storage';
+	import DetailsVehiculeDrawer from '../DetailsVehiculeDrawer.svelte';
 
 	interface Props {
 		temps: TempsAttente[];
@@ -16,9 +17,16 @@
 	let groups = $derived(groupWaitingTimes(temps));
 
 	let largeFontSize = $derived(groups.length < 4);
+	let drawerOpen = $state(false);
+	let numVehicule = $state('');
 
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;
+	}
+
+	function onPassageClick(temps: TempsAttente) {
+		drawerOpen = true;
+		numVehicule = temps.numVehicule;
 	}
 </script>
 
@@ -46,9 +54,11 @@
 
 	<ul class="grid gap-1">
 		{#each groups as group (group.key)}
-			<WaitingTimeCard {group} {largeFontSize} />
+			<WaitingTimeCard {group} {largeFontSize} {onPassageClick} />
 		{:else}
 			<li class="text-center text-muted-foreground">Aucun passage prévu prochainement.</li>
 		{/each}
 	</ul>
 </section>
+
+<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} />
