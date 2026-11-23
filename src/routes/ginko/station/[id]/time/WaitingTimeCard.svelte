@@ -3,12 +3,13 @@
 	import { BadgeLigne } from '$lib/ui/ginko';
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
 	import type { WaitingTimeGroup } from './waitingTimes';
+	import type { TempsAttente } from '$core/dto/ginko';
 	import WaitingTimeItem from './WaitingTimeItem.svelte';
 
 	interface Props {
 		group: WaitingTimeGroup;
 		largeFontSize?: boolean;
-		onPassageClick?: (numVehicule: string) => void;
+		onPassageClick?: (temps: TempsAttente) => void;
 	}
 
 	let { group, largeFontSize = $bindable(false), onPassageClick }: Props = $props();

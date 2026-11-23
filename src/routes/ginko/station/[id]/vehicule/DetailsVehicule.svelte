@@ -24,9 +24,10 @@
 
 	interface Props {
 		vehicule: VehiculeDR;
+		extendedIllustration?: boolean;
 	}
 
-	let { vehicule }: Props = $props();
+	let { vehicule, extendedIllustration = false }: Props = $props();
 
 	const energie = $derived(vehicule.energie);
 	const accessibilite = $derived(vehicule.accessiblite);
@@ -47,8 +48,8 @@
 	);
 </script>
 
-<div class="grid">
-	<Illustration {vehicule} />
+<div class="grid min-w-0">
+	<Illustration {vehicule} {extendedIllustration} />
 	<dl class="grid gap-3 sm:grid-cols-2">
 		<DetailRow
 			icon={Hash}

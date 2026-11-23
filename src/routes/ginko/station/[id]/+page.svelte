@@ -23,10 +23,10 @@
 
 <Header arret={data.arret} />
 
-<Tabs.Root value="times" class="container mx-auto max-w-2xl gap-0 px-4 pb-22">
+<Tabs.Root value="times" class="container mx-auto max-w-7xl gap-0 px-4 pb-22">
 	<TabBar />
 
-	<Tabs.Content value="times" class="mt-6">
+	<Tabs.Content value="times" class="mt-6 grid">
 		<WaitingTimes temps={data.tempsLieu?.listeTemps ?? []} />
 	</Tabs.Content>
 	<Tabs.Content value="nearby" class="mt-6">

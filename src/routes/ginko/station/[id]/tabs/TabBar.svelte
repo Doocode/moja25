@@ -4,7 +4,7 @@
 	import TabButton from './TabButton.svelte';
 
 	interface Props {
-		velocite: boolean;
+		velocite?: boolean;
 	}
 	let { velocite = false }: Props = $props();
 </script>
