@@ -1,5 +1,5 @@
 import type { Link } from '$lib/ui/header/shared';
-import { Search, BusFront, Map, Info } from '@lucide/svelte';
+import { Search, BusFront, Map, Info, TriangleAlert } from '@lucide/svelte';
 
 export interface GinkoLink extends Link {
 	description?: string;
@@ -24,15 +24,26 @@ const linesPage: GinkoLink = {
 	icon: BusFront,
 	description: 'Liste des lignes de bus et tram'
 };
-const infoPage: GinkoLink = {
+const infoTraficPage: GinkoLink = {
 	href: '/ginko/infos-trafic',
 	label: 'Infos trafic',
-	icon: Info,
+	icon: TriangleAlert,
 	description: 'Suivre les perturbations et les infos du réseau'
+};
+const aboutPage: GinkoLink = {
+	href: '/ginko/a-propos',
+	label: 'À propos',
+	icon: Info
 };
 
 // Header links
-export const headerLinks: GinkoLink[] = [searchPage, mapsPage, linesPage, infoPage];
+export const headerLinks: GinkoLink[] = [
+	searchPage,
+	mapsPage,
+	linesPage,
+	infoTraficPage,
+	aboutPage
+];
 
 // Home page links
-export const mainLinks: GinkoLink[] = [mapsPage, linesPage, searchPage, infoPage];
+export const mainLinks: GinkoLink[] = [mapsPage, linesPage, searchPage, infoTraficPage];
