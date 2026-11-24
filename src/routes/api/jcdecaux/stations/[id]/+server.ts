@@ -2,7 +2,7 @@ import { getStation } from '$core/api/JCDecauxApi';
 import type { FormattedStation, Station } from '$core/dto/jcdecaux';
 import { formatStationName } from '#lib/core/helper/velocite/format.ts';
 import { getUnavailableStands } from '#lib/core/helper/velocite/sort.ts';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { isAuthorized } from '$core/helper/api';
 
@@ -28,5 +28,5 @@ export const GET: RequestHandler = async ({ request, url, params }) => {
 		unavailableStands: getUnavailableStands(station)
 	};
 
-	return json(formattedStation);
+	return Response.json(formattedStation);
 };

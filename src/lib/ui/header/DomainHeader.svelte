@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { cn } from '#lib/utils.ts';
-	import type { Link } from './shared';
-	import { resolve } from '$app/paths';
+	import { isCurrent, resolveLink, type Link, type StaticRouteId } from './shared';
 	import type { Component } from 'svelte';
-	import { isCurrent } from '#lib/ui/header/shared.ts';
 
 	interface Props {
 		links: Link[];
 		heading: string;
-		headingHref?: string;
+		headingHref?: StaticRouteId;
 		icon?: Component;
 		class?: string;
 		sticky?: boolean;
@@ -27,7 +25,7 @@
 	<div class="container m-auto flex items-center gap-4">
 		<h1 class="min-w-50 text-2xl font-black">
 			<a
-				href={resolve(headingHref ?? '/')}
+				href={resolveLink(headingHref ?? '/')}
 				class="flex items-center gap-2 p-4 py-3.5 underline-offset-4 hover:underline"
 			>
 				{#if icon}
@@ -43,7 +41,7 @@
 				{#if icon !== null}
 					{@const Icon = icon}
 					<a
-						href={resolve(href)}
+						href={resolveLink(href)}
 						class={{
 							'px-3.25 duration-100 hover:bg-background/50 hover:text-foreground dark:hover:bg-background/25': true,
 							'bg-linear-to-r from-transparent via-background/50 to-transparent hover:bg-none dark:via-foreground/20':

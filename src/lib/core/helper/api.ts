@@ -14,8 +14,7 @@ export function isAuthorized(request: Request, serverOrigin: string): boolean {
 	// Application externe autorisée via clé API
 	const apiKey = request.headers.get('X-API-Key');
 	if (apiKey) {
-		const allowedKeys = (INTERNAL_API_KEYS ?? '')
-			.split(',')
+		const allowedKeys = INTERNAL_API_KEYS.split(',')
 			.map((k) => k.trim())
 			.filter(Boolean);
 

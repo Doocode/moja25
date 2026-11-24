@@ -40,7 +40,7 @@
 	</a>
 
 	<a
-		href={resolve('/ginko/lignes/[id]', { id: idLigne })}
+		href={resolve('/ginko/lignes/[idLigne]', { idLigne })}
 		class="inline-flex items-center gap-2 px-4 py-4 text-sm text-muted-foreground hover:text-foreground hover:underline"
 	>
 		Details de la ligne

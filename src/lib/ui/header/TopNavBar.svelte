@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { topBarLinks } from './links';
-	import { isCurrent } from './shared';
+	import { isCurrent, resolveLink } from './shared';
 </script>
 
 <nav class="hidden flex-2 justify-center gap-1 md:flex">
@@ -9,7 +8,7 @@
 		{#if icon !== null}
 			{@const Icon = icon}
 			<a
-				href={resolve(href)}
+				href={resolveLink(href)}
 				class={{
 					'flex items-center gap-1 rounded-lg px-3.25 py-2.5 hover:bg-foreground/25 hover:text-foreground': true,
 					'bg-primary text-primary-foreground': isCurrent(href)

@@ -1,6 +1,6 @@
 import { getLignes } from '$core/api/GinkoApi';
 import type { Ligne } from '$core/dto/ginko';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { isAuthorized } from '$core/helper/api';
 
@@ -10,5 +10,5 @@ export const GET: RequestHandler = async ({ request, url }) => {
 	}
 
 	const lignes: Ligne[] = await getLignes();
-	return json(lignes);
+	return Response.json(lignes);
 };

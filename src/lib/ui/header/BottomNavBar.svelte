@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
-	import { isCurrent } from './shared';
+	import { isCurrent, resolveLink } from './shared';
 	import { bottomBarLinks } from './links';
 </script>
 
@@ -14,7 +13,7 @@
 		{#if icon !== null}
 			{@const Icon = icon}
 			<a
-				href={resolve(href as Parameters<typeof resolve>[0])}
+				href={resolveLink(href)}
 				class="grid flex-1 place-items-center items-center justify-center gap-1 border-b-3 px-1 py-3 text-center text-inherit focus-within:inset-ring-4 focus-within:inset-ring-primary/70 hover:bg-primary/20 focus:outline-0 dark:border-neutral-800"
 				class:border-b-primary!={isCurrent(href)}
 			>
