@@ -6,8 +6,8 @@
 	import ChildrenDrawer from './ChildrenDrawer.svelte';
 	import GroupContent from './GroupContent.svelte';
 	import ResultCount from './ResultCount.svelte';
-	import SearchBar from '$lib/ui/SearchBar.svelte';
-	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
+	import SearchBar from '#lib/ui/SearchBar.svelte';
+	import { KindOfStop, kindOfStop } from '#lib/core/helper/ginko/stops.ts';
 	import { BusFront, CircleAlert, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
 
 	interface Props {

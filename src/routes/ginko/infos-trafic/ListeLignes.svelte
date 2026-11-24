@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 	import { resolve } from '$app/paths';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import type { ItemEtatLigne } from './types';
 	import EtatVoyant from './EtatVoyant.svelte';
 

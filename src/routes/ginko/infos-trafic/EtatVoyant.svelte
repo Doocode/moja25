@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 	import { EtatLigne } from './enums';
 	import { Check, Info, TriangleAlert, X } from '@lucide/svelte';
 

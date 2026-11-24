@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Ligne } from '$core/dto/ginko';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 
 	interface Props {
 		ligne: Pick<Ligne, 'numLignePublic' | 'couleurFond' | 'couleurTexte'>;

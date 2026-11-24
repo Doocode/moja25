@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Link } from '$lib/ui/header/shared';
+	import type { Link } from '#lib/ui/header/shared.ts';
 	import { Search, Map, Bike } from '@lucide/svelte';
-	import DomainHeader from '$lib/ui/header/DomainHeader.svelte';
+	import DomainHeader from '#lib/ui/header/DomainHeader.svelte';
 
 	const links: Link[] = [
 		{ href: '/velocite/carte', label: 'Carte des stations', icon: Map },

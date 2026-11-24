@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$shadcn/button';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
 	import type { WaitingTimeGroup } from './waitingTimes';
 	import type { TempsAttente } from '$core/dto/ginko';

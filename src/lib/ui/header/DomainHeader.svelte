@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 	import type { Link } from './shared';
 	import { resolve } from '$app/paths';
 	import type { Component } from 'svelte';
-	import { isCurrent } from '$lib/ui/header/shared';
+	import { isCurrent } from '#lib/ui/header/shared.ts';
 
 	interface Props {
 		links: Link[];

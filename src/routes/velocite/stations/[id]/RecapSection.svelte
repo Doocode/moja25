@@ -3,7 +3,7 @@
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import RecapCompactTile from './RecapCompactTile.svelte';
 	import RecapTile from './RecapTile.svelte';
-	import { cn } from '$lib/utils.js';
+	import { cn } from '#lib/utils.js';
 
 	interface Props {
 		station: FormattedStation;

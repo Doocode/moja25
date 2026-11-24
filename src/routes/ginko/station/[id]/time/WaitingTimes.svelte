@@ -4,8 +4,8 @@
 	import { groupWaitingTimes } from './waitingTimes';
 	import type { TempsAttente } from '$core/dto/ginko';
 	import WaitingTimeCard from './WaitingTimeCard.svelte';
-	import KeepScreenAwake from '$lib/ui/KeepScreenAwake.svelte';
-	import { LocalStorageKey } from '$lib/core/helper/local_storage';
+	import KeepScreenAwake from '#lib/ui/KeepScreenAwake.svelte';
+	import { LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
 	import VehiculeGetter from '../vehicule/VehiculeGetter.svelte';
 	import DetailsVehiculeDrawer from '../DetailsVehiculeDrawer.svelte';
 	import { fade } from 'svelte/transition';

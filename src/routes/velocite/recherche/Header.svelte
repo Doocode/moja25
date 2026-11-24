@@ -1,6 +1,6 @@
 <script lang="ts">
-	import SearchBar from '$lib/ui/SearchBar.svelte';
-	import AnimatedGridBg from '$lib/ui/AnimatedGridBg.svelte';
+	import SearchBar from '#lib/ui/SearchBar.svelte';
+	import AnimatedGridBg from '#lib/ui/AnimatedGridBg.svelte';
 	import { DatabaseSearch, TextSearch, Search } from '@lucide/svelte';
 
 	interface Props {

@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { Button } from '$shadcn/button';
 	import { ArrowLeft } from '@lucide/svelte';
 	import { afterNavigate, goto } from '$app/navigation';
-	import AnimatedGridBg from '$lib/ui/AnimatedGridBg.svelte';
+	import AnimatedGridBg from '#lib/ui/AnimatedGridBg.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { RefreshDropdown } from '../../shared/ui/tool-bar';
-	import KeepScreenAwake from '$lib/ui/KeepScreenAwake.svelte';
-	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import KeepScreenAwake from '#lib/ui/KeepScreenAwake.svelte';
+	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 
 	interface Props {
@@ -41,11 +41,13 @@
 		wakeLockSupported = 'wakeLock' in navigator;
 	});
 
-	const fallbackHref = resolve('/velocite/carte');
+	const fallbackHref = resolve('velocite/carte');
 	let canGoBack = $state(false);
 
 	// `from` is null when this page is the first one of the session
-	afterNavigate(({ from }) => {
+	afterNavigate(({ from, shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		canGoBack = from !== null;
 	});
 

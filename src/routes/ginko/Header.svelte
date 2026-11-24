@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { headerLinks } from './links';
 	import { BusFront } from '@lucide/svelte';
-	import DomainHeader from '$lib/ui/header/DomainHeader.svelte';
+	import DomainHeader from '#lib/ui/header/DomainHeader.svelte';
 </script>
 
 <DomainHeader

@@ -8,7 +8,7 @@ import type {
 	VehiculeDR,
 	VehiculeTR
 } from '$core/dto/ginko';
-import { GINKO_API_KEY } from '$env/static/private';
+import { GINKO_API_KEY } from '$app/env/private';
 
 // Helper to construct API URL with method and parameters
 function apiUrl(method: string, params: Record<string, any> = {}) {

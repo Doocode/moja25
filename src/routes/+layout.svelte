@@ -2,9 +2,9 @@
 	import './layout.css';
 	import './fonts.css';
 	import { ModeWatcher } from 'mode-watcher';
-	import favicon from '$lib/assets/favicon.svg';
-	import Header from '$lib/ui/header/Header.svelte';
-	import BottomNavBar from '$lib/ui/header/BottomNavBar.svelte';
+	import favicon from '#lib/assets/favicon.svg';
+	import Header from '#lib/ui/header/Header.svelte';
+	import BottomNavBar from '#lib/ui/header/BottomNavBar.svelte';
 
 	let { children } = $props();
 </script>

@@ -5,16 +5,16 @@
 	import Header from './Header.svelte';
 	import { Button } from '$shadcn/button';
 	import { scale } from 'svelte/transition';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import CountItems from './CountItems.svelte';
 	import ListStations from './ListStations.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { sortStations } from '$lib/core/helper/velocite/sort';
+	import { sortStations } from '#lib/core/helper/velocite/sort.ts';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { filterStations } from '$lib/core/helper/velocite/filter';
+	import { filterStations } from '#lib/core/helper/velocite/filter.ts';
 	import { SortButtonGroup, RefreshDropdown, SortForm } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
 
 	interface Props {
 		data: {
@@ -113,10 +113,9 @@
 					variant="secondary"
 					class="absolute top-3 right-3"
 					size="icon"
-					onclick={() => (displaySortingPane = false)}
+					onclick={() => (displaySortingPane = false)}><X class="size-5" /></Button
 				>
-					<X class="size-5" />
-				</Button>
+
 				<SortForm bind:sortField />
 			</div>
 		</div>
@@ -131,6 +130,7 @@
 
 			<div class="flex gap-1">
 				<SortButtonGroup bind:sortField bind:sortAscending {onTriggerDrawer} />
+
 				<RefreshDropdown bind:interval={refreshInterval} />
 			</div>
 		</div>

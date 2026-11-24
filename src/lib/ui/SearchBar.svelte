@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Search, X } from '@lucide/svelte';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 
 	interface Props {
 		class?: string;

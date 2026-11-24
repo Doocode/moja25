@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormattedStation } from '$lib/core/dto/jcdecaux';
+	import type { FormattedStation } from '#lib/core/dto/jcdecaux/index.ts';
 	import { Ban, Bike, SquareParking, WifiOff, Zap } from '@lucide/svelte';
 	import { type Component } from 'svelte';
 	import { MEDIUM_LEVEL_THRESHOLD } from '../../core/sort-config';

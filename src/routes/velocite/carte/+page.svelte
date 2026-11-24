@@ -4,24 +4,22 @@
 	import { onMount } from 'svelte';
 	import 'leaflet/dist/leaflet.css';
 	import SortBar from './SortBar.svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import SortDrawer from './SortDrawer.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import { VelociteSortField } from '$core/enum/VelociteSortField';
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+
 	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
 
 	interface Props {
-		data: {
-			stations: FormattedStation[];
-		};
+		data: { stations: FormattedStation[] };
 	}
 
 	let { data }: Props = $props();
-
 	let fetchedStations = $state<FormattedStation[] | null>(null);
 	let stations = $derived<FormattedStation[]>(fetchedStations ?? data.stations);
 	let selectedSort = $state<VelociteSortField>(VelociteSortField.TOTAL_BIKES);
@@ -248,6 +246,7 @@
 		class="fixed top-17 right-2 z-20 flex flex-col gap-1 rounded-xl border bg-background/20 p-2 shadow-xl backdrop-blur sm:top-17 dark:bg-background/80"
 	>
 		<RefreshDropdown bind:interval={refreshInterval} />
+
 		<LocateButton {permissionDenied} {hasLocation} loading={isLocating} onclick={locateUser} />
 	</div>
 

@@ -3,7 +3,7 @@
 	import { getTypologie } from './typologies';
 	import type { Ligne } from '$core/dto/ginko';
 	import GroupLignes from './GroupLignes.svelte';
-	import SearchBar from '$lib/ui/SearchBar.svelte';
+	import SearchBar from '#lib/ui/SearchBar.svelte';
 
 	interface Props {
 		data: {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Locate, LocateFixed, LocateOff, LoaderCircle } from '@lucide/svelte';
 	import { buttonVariants } from '$shadcn/button';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 
 	interface Props {
 		permissionDenied?: boolean;

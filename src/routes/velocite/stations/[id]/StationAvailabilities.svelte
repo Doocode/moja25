@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
+	import { cn } from '#lib/utils.js';
 	import { Button } from '$shadcn/button';
 	import LegendRow from './LegendRow.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { Restyle } from '$lib/ui/page';
+	import { Restyle } from '#lib/ui/page/index.ts';
 
 	interface Props {
 		children: Snippet;

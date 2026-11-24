@@ -1,4 +1,4 @@
-import type { Link } from '$lib/ui/header/shared';
+import type { Link } from '#lib/ui/header/shared.ts';
 import { Search, BusFront, Map, Info, TriangleAlert } from '@lucide/svelte';
 
 export interface GinkoLink extends Link {

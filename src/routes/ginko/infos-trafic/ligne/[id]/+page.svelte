@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Ligne, Message } from '$core/dto/ginko';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import ListMessage from './ListMessage.svelte';
 	import NavBar from './NavBar.svelte';
 
