@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Database } from '@lucide/svelte';
 	import BigLink from './BigLink.svelte';
-	import { Li, Ul } from '$lib/ui/page';
+	import { Li, Ul } from '#lib/ui/page/index.ts';
 </script>
 
 <svelte:head>

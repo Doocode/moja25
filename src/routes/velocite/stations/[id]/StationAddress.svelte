@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { cn } from '$lib/utils.js';
+	import { cn } from '#lib/utils.js';
 
 	import GoogleLogo from '$assets/logo/google-maps.png';
 	import BingLogo from '$assets/logo/bing-maps.png';

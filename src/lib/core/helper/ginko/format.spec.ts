@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { Arret } from '$lib/core/dto/ginko';
+import type { Arret } from '#lib/core/dto/ginko/index.ts';
 import { formatArret, groupArrets, splitNomArret } from './format';
 
 function makeArret(name: string, id: string = crypto.randomUUID()): Arret {

@@ -2,7 +2,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { type ClassValue } from 'clsx';
 	import type { Snippet } from 'svelte';
-	import { cn } from '$lib/utils.js';
+	import { cn } from '#lib/utils.js';
 
 	interface Props extends Omit<HTMLAttributes<HTMLElement>, 'class'> {
 		class?: ClassValue;

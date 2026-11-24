@@ -1,7 +1,7 @@
 import { getStations } from '$core/api/JCDecauxApi';
 import type { FormattedStation, Station } from '$core/dto/jcdecaux';
-import { formatStationName } from '$lib/core/helper/velocite/format';
-import { getUnavailableStands } from '$lib/core/helper/velocite/sort';
+import { formatStationName } from '#lib/core/helper/velocite/format.ts';
+import { getUnavailableStands } from '#lib/core/helper/velocite/sort.ts';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

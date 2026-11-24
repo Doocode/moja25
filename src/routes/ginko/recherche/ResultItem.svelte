@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import type { FormattedArret } from '$core/dto/ginko';
 	import { BusFront, CircleAlert, FolderOpen, TramFront } from '@lucide/svelte';
-	import { KindOfStop, kindOfStop } from '$lib/core/helper/ginko/stops';
+	import { KindOfStop, kindOfStop } from '#lib/core/helper/ginko/stops.ts';
 	import StopName from './StopName.svelte';
 
 	interface Props {

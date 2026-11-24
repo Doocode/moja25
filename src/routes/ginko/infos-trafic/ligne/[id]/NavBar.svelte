@@ -9,11 +9,13 @@
 
 	let { idLigne }: Props = $props();
 
-	const fallbackHref = resolve('/ginko/infos-trafic');
+	const fallbackHref = resolve('ginko/infos-trafic');
 	let canGoBack = $state(false);
 
 	// `from` is null when this page is the first one of the session
-	afterNavigate(({ from }) => {
+	afterNavigate(({ from, shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		canGoBack = from !== null;
 	});
 
@@ -38,7 +40,7 @@
 	</a>
 
 	<a
-		href={resolve('/ginko/lignes/[id]', { id: idLigne })}
+		href={resolve('/ginko/lignes/[idLigne]', { idLigne })}
 		class="inline-flex items-center gap-2 px-4 py-4 text-sm text-muted-foreground hover:text-foreground hover:underline"
 	>
 		Details de la ligne

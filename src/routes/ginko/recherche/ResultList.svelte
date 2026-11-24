@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ResultItem from './ResultItem.svelte';
 	import type { FormattedArret } from '$core/dto/ginko';
-	import { cn } from '$lib/utils';
+	import { cn } from '#lib/utils.ts';
 
 	interface Props {
 		class?: string;

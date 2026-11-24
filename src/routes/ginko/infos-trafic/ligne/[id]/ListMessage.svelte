@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Ligne, Message } from '$core/dto/ginko';
 	import { resolve } from '$app/paths';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import Etat from '../../Etat.svelte';
 	import { Etat as EtatEnum } from '../../enums';
 

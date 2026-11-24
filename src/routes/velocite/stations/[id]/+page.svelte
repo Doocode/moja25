@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '$lib/core/helper/local_storage';
+	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
 	import StationAvailabilities from './StationAvailabilities.svelte';
 	import type { FormattedStation } from '$core/dto/jcdecaux';
 	import StationAddress from './StationAddress.svelte';
@@ -9,7 +9,7 @@
 	import RecapSection from './RecapSection.svelte';
 	import ProgressBar from './ProgressBar.svelte';
 	import Indicators from './Indicators.svelte';
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import Ratio from './Ratio.svelte';
 	import { onMount } from 'svelte';
 
@@ -55,10 +55,7 @@
 	}
 </script>
 
-<svelte:head>
-	<title>[Vélocité] {station.formattedName}</title>
-</svelte:head>
-
+<svelte:head><title>[Vélocité] {station.formattedName}</title></svelte:head>
 <StationHeader {station} bind:refreshInterval />
 
 <main class="mb:pb-0 m-auto max-w-4xl p-4 pb-18">

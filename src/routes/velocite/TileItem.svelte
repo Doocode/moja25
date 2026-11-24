@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import type { Path } from '$app/types';
 	import type { Component } from 'svelte';
 
 	interface Props {
 		icon: Component;
 		title: string;
 		description: string;
-		href: string;
+		href: Path;
 		lightImg: string;
 		darkImg: string;
 		bgSize?: 'cover' | 'contain';

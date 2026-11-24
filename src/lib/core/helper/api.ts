@@ -1,4 +1,4 @@
-import { env } from '$env/dynamic/private';
+import { INTERNAL_API_KEYS } from '$app/env/private';
 
 export function isAuthorized(request: Request, serverOrigin: string): boolean {
 	// Requête same-origin depuis le navigateur
@@ -14,10 +14,10 @@ export function isAuthorized(request: Request, serverOrigin: string): boolean {
 	// Application externe autorisée via clé API
 	const apiKey = request.headers.get('X-API-Key');
 	if (apiKey) {
-		const allowedKeys = (env.INTERNAL_API_KEYS ?? '')
-			.split(',')
+		const allowedKeys = INTERNAL_API_KEYS.split(',')
 			.map((k) => k.trim())
 			.filter(Boolean);
+
 		return allowedKeys.includes(apiKey);
 	}
 

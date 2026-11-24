@@ -2,7 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { Route } from '@lucide/svelte';
 	import Section from './Section.svelte';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import type { Ligne } from '$core/dto/ginko';
 
 	interface Props {

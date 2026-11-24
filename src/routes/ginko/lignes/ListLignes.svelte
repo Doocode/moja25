@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import type { Ligne } from '$core/dto/ginko';
 
 	interface Props {

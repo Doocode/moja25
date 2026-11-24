@@ -1,10 +1,27 @@
+import adapter from '@sveltejs/adapter-vercel';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			compilerOptions: {
+				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
+			},
+			adapter: adapter(),
+			alias: {
+				$lib: 'src/lib',
+				$core: 'src/lib/core',
+				$assets: 'src/lib/assets',
+				$shadcn: 'src/lib/shadcn/ui'
+			}
+		})
+	],
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

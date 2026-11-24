@@ -1,7 +1,7 @@
 <script>
 	import Hero from './Hero.svelte';
 	import { resolve } from '$app/paths';
-	import { Ul, Li } from '$lib/ui/page';
+	import { Ul, Li } from '#lib/ui/page/index.ts';
 	import { Button } from '$shadcn/button';
 	import TilesBlock from './TilesBlock.svelte';
 	import { Map, Bike, Globe, SquareArrowOutUpRight } from '@lucide/svelte';
@@ -30,14 +30,14 @@
 		</Ul>
 
 		<nav class="flex flex-wrap items-start gap-0.5">
-			<Button href={resolve('/velocite/recherche')}>
-				<Bike />
-				<span>Rechercher une station</span>
-			</Button>
-			<Button href={resolve('/velocite/carte')} variant="secondary">
-				<Map />
-				<span>Voir le plan des stations</span>
-			</Button>
+			<Button href={resolve('velocite/recherche')}
+				><Bike /> <span>Rechercher une station</span></Button
+			>
+
+			<Button href={resolve('velocite/carte')} variant="secondary"
+				><Map /> <span>Voir le plan des stations</span></Button
+			>
+
 			<Button
 				href="https://velocite.ginko.voyage/fr/home"
 				variant="link"

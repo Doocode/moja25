@@ -1,6 +1,6 @@
 import { getDetailsVehicule_DR } from '$core/api/GinkoApi';
 import type { VehiculeDR } from '$core/dto/ginko';
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { isAuthorized } from '$core/helper/api';
 
@@ -20,5 +20,5 @@ export const GET: RequestHandler = async ({ request, url, params }) => {
 		error(404, 'Véhicule introuvable');
 	}
 
-	return json(vehicule);
+	return Response.json(vehicule);
 };

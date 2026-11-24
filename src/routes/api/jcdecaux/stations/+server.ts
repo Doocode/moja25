@@ -1,8 +1,8 @@
 import { getStations } from '$core/api/JCDecauxApi';
 import type { FormattedStation, Station } from '$core/dto/jcdecaux';
-import { formatStationName } from '$lib/core/helper/velocite/format';
-import { getUnavailableStands } from '$lib/core/helper/velocite/sort';
-import { error, json } from '@sveltejs/kit';
+import { formatStationName } from '#lib/core/helper/velocite/format.ts';
+import { getUnavailableStands } from '#lib/core/helper/velocite/sort.ts';
+import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { isAuthorized } from '$core/helper/api';
 
@@ -19,5 +19,5 @@ export const GET: RequestHandler = async ({ request, url }) => {
 		unavailableStands: getUnavailableStands(station)
 	}));
 
-	return json(formattedStations);
+	return Response.json(formattedStations);
 };

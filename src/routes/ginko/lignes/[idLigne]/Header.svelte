@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { cn } from 'tailwind-variants';
 	import { Button } from '$shadcn/button';
-	import { BadgeLigne } from '$lib/ui/ginko';
+	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import type { Ligne } from '$core/dto/ginko';
 	import { ExternalLink } from '@lucide/svelte';
 	import { getTypologie, type Typologie } from '../typologies';

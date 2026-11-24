@@ -31,16 +31,15 @@
 				<span>Bus & tram</span>
 			</p>
 
-			<p class="text-3xl leading-none font-black text-balance sm:text-6xl">
-				{currentMessage}
-			</p>
+			<p class="text-3xl leading-none font-black text-balance sm:text-6xl">{currentMessage}</p>
+
 			<p class="mt-2 max-w-lg text-sm text-balance sm:mt-5 sm:text-lg">
 				Retrouvez ici des outils pour faciliter vos déplacements sur le réseau Ginko.
 			</p>
 
 			<!-- TODO: Put a real Searchbar -->
 			<a
-				href={resolve('/ginko/recherche')}
+				href={resolve('ginko/recherche')}
 				class="mt-6 flex max-w-100 items-center gap-3 rounded-full bg-background px-5 py-3 text-foreground shadow-lg shadow-slate-900/15 transition hover:bg-background/80 focus-visible:outline-4 focus-visible:outline-offset-6 focus-visible:outline-slate-950 md:px-6 md:py-5 lg:mt-8 lg:max-w-120"
 			>
 				<Search class="size-5" aria-hidden="true" />

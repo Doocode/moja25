@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Hero from './Hero.svelte';
-	import { resolve } from '$app/paths';
 	import { mainLinks } from './links';
+	import { resolveLink } from '#lib/ui/header/shared.ts';
 	import { BusFront } from '@lucide/svelte';
 </script>
 
@@ -29,7 +29,7 @@
 			{#each mainLinks as link (link.href)}
 				<li>
 					<a
-						href={resolve(link.href)}
+						href={resolveLink(link.href)}
 						class="group flex h-full min-h-52 flex-col rounded-4xl border-5 border-border/20 bg-card p-5 shadow-sm transition duration-200 hover:border-sky-500/50 hover:shadow-lg hover:shadow-sky-950/5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
 					>
 						<div class="flex items-start justify-between">

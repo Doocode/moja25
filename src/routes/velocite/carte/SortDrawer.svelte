@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { countFilters, numberFilters, statusFilters } from './filters';
-	import { VelociteSortField } from '$lib/core/enum/VelociteSortField';
+	import { VelociteSortField } from '#lib/core/enum/VelociteSortField.ts';
 	import { GridSortField, ListSortField, SortSection } from '../shared/ui/tool-bar';
 	import * as Drawer from '$shadcn/drawer';
 

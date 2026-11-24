@@ -21,7 +21,7 @@
 			icon={Map}
 			title="Plan des stations"
 			description="Consulter la carte pour retrouver une station à proximité"
-			href="/velocite/carte"
+			href="velocite/carte"
 			lightImg="/assets/velocite/tiles/map-markers-light.png"
 			darkImg="/assets/velocite/tiles/map-markers-dark.png"
 		/>
@@ -29,7 +29,7 @@
 			icon={Search}
 			title="Rechercher une station"
 			description="Trouvez rapidement une station, ou triez en fonction de la disponibilité des vélos"
-			href="/velocite/recherche"
+			href="velocite/recherche"
 			lightImg="/assets/velocite/tiles/search-light.png"
 			darkImg="/assets/velocite/tiles/search-dark.png"
 			bgSize="contain"
@@ -38,7 +38,7 @@
 			icon={ChartPie}
 			title="Récapitulatif de la station"
 			description="Visualisez la répartition des vélos et des places en un coup d'œil"
-			href="/velocite/stations/1"
+			href="velocite/stations/1"
 			lightImg="/assets/velocite/tiles/station-recap-light.png"
 			darkImg="/assets/velocite/tiles/station-recap-dark.png"
 			bgSize="contain"
@@ -47,7 +47,7 @@
 			icon={Search}
 			title="Aperçu rapide"
 			description="Obtenez un aperçu rapide d'une station en un clic sur la carte"
-			href="/velocite/carte"
+			href="velocite/carte"
 			lightImg="/assets/velocite/tiles/map-popup-light.png"
 			darkImg="/assets/velocite/tiles/map-popup-dark.png"
 		/>

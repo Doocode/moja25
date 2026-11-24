@@ -3,11 +3,13 @@
 	import { ArrowLeft } from '@lucide/svelte';
 	import { resolve } from '$app/paths';
 
-	const fallbackHref = resolve('/ginko/infos-trafic');
+	const fallbackHref = resolve('ginko/infos-trafic');
 	let canGoBack = $state(false);
 
 	// `from` is null when this page is the first one of the session
-	afterNavigate(({ from }) => {
+	afterNavigate(({ from, shallow, type }) => {
+		if (shallow && type === 'goto') return;
+
 		canGoBack = from !== null;
 	});
 
