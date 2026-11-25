@@ -9,10 +9,16 @@
 	interface Props {
 		group: WaitingTimeGroup;
 		largeFontSize?: boolean;
+		selected?: boolean;
 		onPassageClick?: (temps: TempsAttente) => void;
 	}
 
-	let { group, largeFontSize = $bindable(false), onPassageClick }: Props = $props();
+	let {
+		group,
+		largeFontSize = $bindable(false),
+		onPassageClick,
+		selected = false
+	}: Props = $props();
 
 	let listePassages = $derived.by(() => {
 		const listePassageTemps = group.temps.map((t) => t.temps);
@@ -29,7 +35,11 @@
 </script>
 
 <li
-	class="relative grid gap-2 rounded-xl border-b border-slate-400/80 bg-slate-200 p-3 pb-2 md:static md:grid-cols-[1fr_250px] md:pb-3 dark:border-slate-600 dark:bg-slate-800"
+	class={{
+		'relative grid gap-2 rounded-xl border-b p-3 pb-2 md:static md:grid-cols-[1fr_250px] md:pb-3': true,
+		'border-transparent bg-slate-300 ring-4 ring-primary dark:bg-slate-700': selected,
+		'border-slate-400/80 bg-slate-200 dark:border-slate-600 dark:bg-slate-800': !selected
+	}}
 >
 	<header class="flex items-stretch gap-3 md:relative md:items-center">
 		<BadgeLigne ligne={group.ligne} class="shrink-0 py-1.5 md:px-2.5 md:py-1.75" />
