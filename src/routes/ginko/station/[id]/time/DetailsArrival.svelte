@@ -28,10 +28,10 @@
 </script>
 
 <main
-	class="mb-8 grid grid-cols-[1fr_auto] items-center gap-4 rounded-xl bg-secondary/80 p-4 sm:rounded-4xl dark:bg-secondary"
+	class="mb-8 grid grid-cols-[1fr_auto] items-center gap-4 rounded-xl bg-secondary/80 p-4 sm:rounded-4xl 2xl:min-h-70 2xl:grid-cols-1 2xl:justify-between 2xl:py-8 dark:bg-secondary"
 >
 	<header
-		class="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:justify-start sm:gap-4 sm:text-start"
+		class="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:justify-start sm:gap-4 sm:text-start 2xl:flex-col 2xl:items-center 2xl:gap-2 2xl:text-center"
 	>
 		<BadgeLigne
 			ligne={{ numLignePublic, couleurTexte, couleurFond }}

@@ -46,7 +46,7 @@
 <main
 	class={{
 		'mx-auto grid w-full max-w-2xl gap-8': true,
-		'xl:container xl:w-auto xl:grid-cols-2': drawerOpen
+		'xl:container xl:w-auto xl:grid-cols-2 2xl:grid-cols-[600px_1fr]': drawerOpen
 	}}
 >
 	<section class="relative z-1 shrink-0">
@@ -72,8 +72,8 @@
 		</nav>
 
 		<ul class="grid gap-1">
-			{#each groups as group, ii (group.key)}
-				<WaitingTimeCard {group} {largeFontSize} {onPassageClick} selected={ii === 0} />
+			{#each groups as group (group.key)}
+				<WaitingTimeCard {group} {largeFontSize} {onPassageClick} />
 			{:else}
 				<img
 					src="/assets/ginko/vehicule/empty-tram.svg"
@@ -90,24 +90,32 @@
 			<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} {tempsAttente} />
 		{:else if drawerOpen && tempsAttente}
 			{#key numVehicule}
-				<div class="hidden xl:block">
-					<header class="mb-4 flex items-start justify-between">
-						<h2 class="mb-1 text-xs font-bold tracking-widest text-muted-foreground uppercase">
-							Détails du passage
-						</h2>
-						<Button onclick={closeDetails} variant="outline">
-							<X class="size-5" />
-							Masquer les détails
-						</Button>
-					</header>
-					<DetailsArrival {tempsAttente} />
+				<div class="hidden gap-8 xl:block 2xl:grid 2xl:grid-cols-[350px_1fr]">
+					<article class="relative z-1">
+						<header class="mb-4 flex items-start justify-between">
+							<h2 class="mb-1 text-xs font-bold tracking-widest text-muted-foreground uppercase">
+								Détails du passage
+							</h2>
+							<Button onclick={closeDetails} variant="outline" class="2xl:hidden">
+								<X class="size-5" />
+								Masquer les détails
+							</Button>
+						</header>
+						<DetailsArrival {tempsAttente} />
+					</article>
 
-					<header class="mb-2 flex items-start justify-between">
-						<h2 class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
-							Détails du véhicule
-						</h2>
-					</header>
-					<VehiculeGetter {numVehicule} extendedIllustration />
+					<article>
+						<header class="mb-2 flex items-start justify-between">
+							<h2 class="text-xs font-bold tracking-widest text-muted-foreground uppercase">
+								Détails du véhicule
+							</h2>
+							<Button onclick={closeDetails} variant="outline" class="hidden 2xl:flex">
+								<X class="size-5" />
+								Masquer les détails
+							</Button>
+						</header>
+						<VehiculeGetter {numVehicule} extendedIllustration />
+					</article>
 				</div>
 			{/key}
 		{/if}
