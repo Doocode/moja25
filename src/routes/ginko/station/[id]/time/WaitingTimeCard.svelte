@@ -41,13 +41,18 @@
 		'border-slate-400/80 bg-slate-200 dark:border-slate-600 dark:bg-slate-800': !selected
 	}}
 >
-	<header class="flex items-stretch gap-3 md:relative md:items-center">
-		<BadgeLigne ligne={group.ligne} class="shrink-0 py-1.5 md:px-2.5 md:py-1.75" />
+	<header class="flex items-center gap-3 md:relative">
+		<BadgeLigne
+			ligne={group.ligne}
+			class="shrink-0 py-1.5 md:rounded-md md:px-2.5 md:py-1 md:text-xl"
+		/>
 
 		<div class="grid min-w-0 flex-1 items-center">
-			<span class="truncate font-bold">{group.destination}</span>
+			<span class="truncate font-bold md:text-base md:tracking-tight">{group.destination}</span>
 			{#if group.precisionDestination}
-				<span class="text-xs text-muted-foreground">{group.precisionDestination}</span>
+				<span class="hidden text-xs text-muted-foreground sm:inline md:-mt-1">
+					{group.precisionDestination}
+				</span>
 			{/if}
 		</div>
 

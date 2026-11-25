@@ -9,10 +9,12 @@
 	let { velocite = false }: Props = $props();
 </script>
 
-<Tabs.List class="mx-auto h-auto! bg-transparent">
-	<TabButton value="times" name="Bus & tram" icon={BusFront} />
-	<TabButton value="nearby" name="À proximité" icon={Compass} />
-	{#if velocite}
-		<TabButton value="velocite" name="Velocité" icon={Bike} />
-	{/if}
-</Tabs.List>
+<div class="flex flex-1 items-center justify-center">
+	<Tabs.List class="mx-auto flex h-auto! items-center justify-center bg-transparent">
+		<TabButton value="times" name="Bus & tram" icon={BusFront} />
+		<TabButton value="nearby" name="À proximité" icon={Compass} />
+		{#if velocite}
+			<TabButton value="velocite" name="Velocité" icon={Bike} />
+		{/if}
+	</Tabs.List>
+</div>

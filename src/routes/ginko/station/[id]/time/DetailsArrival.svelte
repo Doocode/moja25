@@ -5,7 +5,6 @@
 	import { TypeDeTemps } from './waitingTimes';
 	import LargeMessage from './LargeMessage.svelte';
 	import LargeTime from './LargeTime.svelte';
-	import WaitingTimeItem from './WaitingTimeItem.svelte';
 
 	interface Props {
 		tempsAttente: TempsAttente;
@@ -29,7 +28,7 @@
 </script>
 
 <main
-	class="mb-8 grid grid-cols-[1fr_auto] items-center gap-4 rounded-xl bg-secondary p-4 sm:rounded-4xl"
+	class="mb-8 grid grid-cols-[1fr_auto] items-center gap-4 rounded-xl bg-secondary/80 p-4 sm:rounded-4xl dark:bg-secondary"
 >
 	<header
 		class="flex flex-col items-center justify-center gap-2 text-center sm:flex-row sm:justify-start sm:gap-4 sm:text-start"
@@ -37,7 +36,7 @@
 		<BadgeLigne
 			ligne={{ numLignePublic, couleurTexte, couleurFond }}
 			class={cn(
-				'rounded-lg px-2.75 font-black sm:min-w-20 sm:rounded-xl sm:px-4 sm:py-3',
+				'rounded-lg border border-background px-2.75 font-black sm:min-w-20 sm:rounded-xl sm:px-4 sm:py-3',
 				numLignePublic.length < 4 ? 'text-2xl sm:text-4xl' : '',
 				numLignePublic.length == 4 ? 'text-3xl' : ''
 			)}
@@ -59,8 +58,8 @@
 			'text-orange-600 dark:text-orange-400': isMessage,
 			'less-than-10min': lessThan_10min && !isMessage,
 			'less-than-2min': lessThan_2min && !isMessage,
-			'text-sky-600 dark:text-sky-400': lessThan_10min && !isMessage,
-			'text-red-600 dark:text-red-400': lessThan_2min && !isMessage
+			'text-sky-600 dark:text-sky-300': lessThan_10min && !isMessage,
+			'text-red-600 dark:text-red-300': lessThan_2min && !isMessage
 		}}
 	>
 		{#if isMessage}
