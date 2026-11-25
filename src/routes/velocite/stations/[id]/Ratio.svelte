@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { cn } from '#lib/utils.js';
 
 	interface Props {

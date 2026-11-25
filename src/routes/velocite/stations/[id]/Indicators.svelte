@@ -10,7 +10,7 @@
 		GlobeOff,
 		Ban
 	} from '@lucide/svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import Indicator from './Indicator.svelte';
 	import { cn } from '#lib/utils.js';
 

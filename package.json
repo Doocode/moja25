@@ -63,6 +63,9 @@
 	},
 	"imports": {
 		"#lib": "./src/lib/index.js",
-		"#lib/*": "./src/lib/*"
+		"#lib/*": "./src/lib/*",
+		"#core/*": "./src/lib/core/*",
+		"#assets/*": "./src/lib/assets/*",
+		"#shadcn/*": "./src/lib/shadcn/ui/*"
 	}
 }

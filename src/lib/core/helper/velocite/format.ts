@@ -1,4 +1,4 @@
-import type { FormattedStation } from '$core/dto/jcdecaux';
+import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 
 // Mots à conserver en majuscules
 const UPPERCASE_WORDS = [

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Tabs from '$shadcn/tabs';
+	import * as Tabs from '#shadcn/tabs/index.ts';
 	import { BusFront, Compass, Bike } from '@lucide/svelte';
 	import TabButton from './TabButton.svelte';
 

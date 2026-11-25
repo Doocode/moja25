@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ViewMode from './ViewMode.svelte';
 	import { getTypologie } from './typologies';
-	import type { Ligne } from '$core/dto/ginko';
+	import type { Ligne } from '#core/dto/ginko/index.ts';
 	import GroupLignes from './GroupLignes.svelte';
 	import SearchBar from '#lib/ui/SearchBar.svelte';
 

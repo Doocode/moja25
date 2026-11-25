@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Header from './Header.svelte';
-	import * as Tabs from '$shadcn/tabs';
+	import * as Tabs from '#shadcn/tabs/index.ts';
 	import ListStop from './ListStop.svelte';
 	import { ArrowRight } from '@lucide/svelte';
-	import type { Ligne, Arret } from '$core/dto/ginko';
+	import type { Ligne, Arret } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		data: {

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Ghost, X } from '@lucide/svelte';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 
 	interface Props {
 		queryInput?: string;

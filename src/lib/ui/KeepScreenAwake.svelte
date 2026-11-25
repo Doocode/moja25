@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import { Lightbulb, LightbulbOff } from '@lucide/svelte';
 	import { onMount } from 'svelte';
-	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+	import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 
 	interface Props {
 		enabled?: boolean;

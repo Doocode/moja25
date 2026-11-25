@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Ligne } from '$core/dto/ginko';
+	import type { Ligne } from '#core/dto/ginko/index.ts';
 	import { cn } from '#lib/utils.ts';
 
 	interface Props {

@@ -13,7 +13,7 @@ import {
 	Zap
 } from '@lucide/svelte';
 import type { Component } from 'svelte';
-import { VelociteSortField } from '$core/enum/VelociteSortField';
+import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 
 // Max value for the medium level threshold (orange) in count indicators
 export const MEDIUM_LEVEL_THRESHOLD = 3;

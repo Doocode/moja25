@@ -1,5 +1,5 @@
 import { goto } from '$app/navigation';
-import type { FormattedStation } from '$core/dto/jcdecaux';
+import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 
 const POPUP_ICONS = {
 	mechanical:

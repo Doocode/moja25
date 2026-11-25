@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Check } from '@lucide/svelte';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import { FIELD_CONFIG } from '../../core/sort-config';
 
 	interface Props {

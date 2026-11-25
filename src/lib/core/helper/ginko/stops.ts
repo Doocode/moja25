@@ -1,4 +1,4 @@
-import type { Arret } from '#lib/core/dto/ginko/index.ts';
+import type { Arret } from '#core/dto/ginko/index.ts';
 
 export enum KindOfStop {
 	Bus = 'Bus',

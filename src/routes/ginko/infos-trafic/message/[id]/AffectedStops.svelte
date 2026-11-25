@@ -2,7 +2,7 @@
 	//import { resolve } from '$app/paths';
 	import { MapPin } from '@lucide/svelte';
 	import Section from './Section.svelte';
-	import type { Arret } from '$core/dto/ginko';
+	import type { Arret } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		arrets: Arret[];

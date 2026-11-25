@@ -7,7 +7,7 @@ import type {
 	TempsLieu,
 	VehiculeDR,
 	VehiculeTR
-} from '$core/dto/ginko';
+} from '#core/dto/ginko/index.ts';
 import { GINKO_API_KEY } from '$app/env/private';
 
 // Helper to construct API URL with method and parameters

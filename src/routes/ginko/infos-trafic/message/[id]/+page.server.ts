@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getArrets, getLignes, getMessages } from '$core/api/GinkoApi';
-import type { Arret, Ligne, Message } from '$core/dto/ginko';
+import { getArrets, getLignes, getMessages } from '#core/api/GinkoApi.ts';
+import type { Arret, Ligne, Message } from '#core/dto/ginko/index.ts';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const id = Number(params.id);

@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { cn } from '#lib/utils.ts';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import EmptyResult from './EmptyResult.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { CircleChevronDown, CircleChevronUp } from '@lucide/svelte';
 	import StationRow from '../shared/ui/list-station/StationRow.svelte';
-	import type { VelociteSortField } from '#lib/core/enum/VelociteSortField.ts';
+	import type { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 
 	interface Props {
 		stations: FormattedStation[];

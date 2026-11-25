@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { CircleSlash } from '@lucide/svelte';
-	import type { TempsAttente } from '$core/dto/ginko';
+	import type { TempsAttente } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		temps: TempsAttente;

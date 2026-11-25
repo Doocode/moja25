@@ -1,4 +1,4 @@
-import type { Station } from '$core/dto/jcdecaux';
+import type { Station } from '#core/dto/jcdecaux/index.ts';
 import { JCDECAUX_API_KEY, JCDECAUX_CONTRACT } from '$app/env/private';
 
 const BASE_URL = 'https://api.jcdecaux.com/vls/v3';

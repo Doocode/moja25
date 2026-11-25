@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import AffectedLines from './AffectedLines.svelte';
 	import AffectedStops from './AffectedStops.svelte';
 	import { ExternalLink } from '@lucide/svelte';
-	import type { Arret, Ligne, Message } from '$core/dto/ginko';
+	import type { Arret, Ligne, Message } from '#core/dto/ginko/index.ts';
 	import NavBar from './NavBar.svelte';
 	import Etat from '../../Etat.svelte';
 

@@ -1,5 +1,5 @@
-import type { VehiculeDR } from '$core/dto/ginko';
-import { LocalStorageHelper, LocalStorageKey } from '$core/helper/local_storage';
+import type { VehiculeDR } from '#core/dto/ginko/index.ts';
+import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 
 const CACHE_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours in ms (hours * minutes * seconds * milliseconds)
 

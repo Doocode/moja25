@@ -2,7 +2,7 @@
 	import Header from './Header.svelte';
 	import Legende from './Legende.svelte';
 	import EtatLignes from './EtatLignes.svelte';
-	import type { InfoLigne, Ligne } from '$core/dto/ginko';
+	import type { InfoLigne, Ligne } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		data: {

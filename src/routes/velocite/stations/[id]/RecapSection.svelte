@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Ban, Bike, SquareLetterP, Zap } from '@lucide/svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import RecapCompactTile from './RecapCompactTile.svelte';
 	import RecapTile from './RecapTile.svelte';
 	import { cn } from '#lib/utils.js';

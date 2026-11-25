@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Arret, Ligne } from '$core/dto/ginko';
+	import type { Arret, Ligne } from '#core/dto/ginko/index.ts';
 	import { Accessibility } from '@lucide/svelte';
 
 	interface Props {

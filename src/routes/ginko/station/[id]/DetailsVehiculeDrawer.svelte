@@ -1,5 +1,5 @@
 <script lang="ts">
-	import * as Drawer from '$shadcn/drawer';
+	import * as Drawer from '#shadcn/drawer/index.ts';
 	import VehiculeGetter from './vehicule/VehiculeGetter.svelte';
 
 	interface Props {

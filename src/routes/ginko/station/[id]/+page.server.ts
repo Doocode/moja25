@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { FormattedArret, TempsLieu } from '$core/dto/ginko';
-import { formatArret, groupArrets } from '$core/helper/ginko/format';
-import { getArretsProches, getDetailsArret, getTempsLieu } from '$core/api/GinkoApi';
+import type { FormattedArret, TempsLieu } from '#core/dto/ginko/index.ts';
+import { formatArret, groupArrets } from '#core/helper/ginko/format.ts';
+import { getArretsProches, getDetailsArret, getTempsLieu } from '#core/api/GinkoApi.ts';
 
 const NB_TEMPS = 3;
 const GROUP_STATIONS = true;

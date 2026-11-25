@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Locate, LocateFixed, LocateOff, LoaderCircle } from '@lucide/svelte';
-	import { buttonVariants } from '$shadcn/button';
+	import { buttonVariants } from '#shadcn/button/index.ts';
 	import { cn } from '#lib/utils.ts';
 
 	interface Props {

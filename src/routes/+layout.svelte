@@ -2,7 +2,7 @@
 	import './layout.css';
 	import './fonts.css';
 	import { ModeWatcher } from 'mode-watcher';
-	import favicon from '#lib/assets/favicon.svg';
+	import favicon from '#assets/favicon.svg';
 	import Header from '#lib/ui/header/Header.svelte';
 	import BottomNavBar from '#lib/ui/header/BottomNavBar.svelte';
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import { FIELD_CONFIG } from '../../core/sort-config';
 
 	interface Props {

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { TriangleAlert, CircleCheckBig } from '@lucide/svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import * as Drawer from '$shadcn/drawer';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+	import * as Drawer from '#shadcn/drawer/index.ts';
 
 	interface Props {
 		station: FormattedStation;

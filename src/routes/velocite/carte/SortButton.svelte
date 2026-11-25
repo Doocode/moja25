@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import type { Component } from 'svelte';
 
 	interface Props {

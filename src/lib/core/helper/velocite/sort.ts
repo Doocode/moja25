@@ -1,5 +1,5 @@
-import type { FormattedStation, Station } from '$core/dto/jcdecaux';
-import { VelociteSortField } from '$core/enum/VelociteSortField';
+import type { FormattedStation, Station } from '#core/dto/jcdecaux/index.ts';
+import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 
 // Trie les stations selon un champ et un ordre spécifiés
 export function sortStations(

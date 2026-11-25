@@ -2,8 +2,8 @@
 	import { getDisplayTexts, TypeDeTemps } from './waitingTimes';
 	import LargeTime from './LargeTime.svelte';
 	import LargeMessage from './LargeMessage.svelte';
-	import type { TempsAttente } from '$core/dto/ginko';
-	import { Button } from '$shadcn/button';
+	import type { TempsAttente } from '#core/dto/ginko/index.ts';
+	import { Button } from '#shadcn/button/index.ts';
 
 	interface Props {
 		temps: TempsAttente;

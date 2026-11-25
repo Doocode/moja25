@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { VelociteSortField } from '#lib/core/enum/VelociteSortField.ts';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import { FIELD_CONFIG } from '../shared/core/sort-config';
 	import { EllipsisVertical } from '@lucide/svelte';
 	import SortButton from './SortButton.svelte';

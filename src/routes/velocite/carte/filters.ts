@@ -1,4 +1,4 @@
-import { VelociteSortField } from '$core/enum/VelociteSortField';
+import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 
 export const countFilters = [
 	VelociteSortField.TOTAL_BIKES,

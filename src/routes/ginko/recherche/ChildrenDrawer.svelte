@@ -1,6 +1,6 @@
 <script lang="ts">
-	import * as Drawer from '$shadcn/drawer';
-	import type { FormattedArret } from '$core/dto/ginko';
+	import * as Drawer from '#shadcn/drawer/index.ts';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 	import GroupContent from './GroupContent.svelte';
 	import StopName from './StopName.svelte';
 

@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Header from './Header.svelte';
-	import * as Tabs from '$shadcn/tabs';
+	import * as Tabs from '#shadcn/tabs/index.ts';
 	import TabBar from './tabs/TabBar.svelte';
 	import NearbyStops from './NearbyStops.svelte';
 	import WaitingTimes from './time/WaitingTimes.svelte';
-	import type { Arret, TempsLieu } from '$core/dto/ginko';
+	import type { Arret, TempsLieu } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		data: {

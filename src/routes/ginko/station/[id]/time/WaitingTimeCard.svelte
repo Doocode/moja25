@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
 	import { AArrowDown, AArrowUp } from '@lucide/svelte';
 	import type { WaitingTimeGroup } from './waitingTimes';
-	import type { TempsAttente } from '$core/dto/ginko';
+	import type { TempsAttente } from '#core/dto/ginko/index.ts';
 	import WaitingTimeItem from './WaitingTimeItem.svelte';
 
 	interface Props {

@@ -3,18 +3,18 @@
 	import { page } from '$app/state';
 	import { X } from '@lucide/svelte';
 	import Header from './Header.svelte';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import { scale } from 'svelte/transition';
 	import { browser } from '$app/env';
 	import CountItems from './CountItems.svelte';
 	import ListStations from './ListStations.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { sortStations } from '#lib/core/helper/velocite/sort.ts';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import { filterStations } from '#lib/core/helper/velocite/filter.ts';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+	import { sortStations } from '#core/helper/velocite/sort.ts';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
+	import { filterStations } from '#core/helper/velocite/filter.ts';
 	import { SortButtonGroup, RefreshDropdown, SortForm } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+	import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 
 	interface Props {
 		data: {

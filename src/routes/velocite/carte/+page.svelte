@@ -6,12 +6,12 @@
 	import SortBar from './SortBar.svelte';
 	import { browser } from '$app/env';
 	import SortDrawer from './SortDrawer.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import type { LayerGroup, Map as LeafletMap, Marker } from 'leaflet';
 	import { LocateButton, RefreshDropdown } from '../shared/ui/tool-bar';
 	import { defaultRefreshInterval, refreshIntervals } from '../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+	import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 
 	import { blinkStationMarkers, createUserLocationIcon, renderStationMarkers } from './markers';
 

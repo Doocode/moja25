@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { InfoLigne, Ligne } from '$core/dto/ginko';
+	import type { InfoLigne, Ligne } from '#core/dto/ginko/index.ts';
 	import ListeLignes from './ListeLignes.svelte';
 	import SectionGroup from './SectionGroup.svelte';
 	import type { ItemEtatLigne } from './types';

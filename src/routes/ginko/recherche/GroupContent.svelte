@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormattedArret } from '$core/dto/ginko';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 	import ResultItem from './ResultItem.svelte';
 	import ResultList from './ResultList.svelte';
 

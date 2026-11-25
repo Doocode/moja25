@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
-	import * as Tabs from '$shadcn/tabs';
+	import * as Tabs from '#shadcn/tabs/index.ts';
 
 	interface Props {
 		value: string;

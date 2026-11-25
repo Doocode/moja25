@@ -1,4 +1,4 @@
-import type { Arret, FormattedArret } from '$core/dto/ginko';
+import type { Arret, FormattedArret } from '#core/dto/ginko/index.ts';
 import { KindOfStop, kindOfStop } from './stops';
 
 export function splitNomArret(nom: string): FormattedArret['nomDecoupe'] {

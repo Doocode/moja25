@@ -13,13 +13,7 @@ export default defineConfig({
 				runes: ({ filename }) =>
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
-			adapter: adapter(),
-			alias: {
-				$lib: 'src/lib',
-				$core: 'src/lib/core',
-				$assets: 'src/lib/assets',
-				$shadcn: 'src/lib/shadcn/ui'
-			}
+			adapter: adapter()
 		})
 	],
 	test: {

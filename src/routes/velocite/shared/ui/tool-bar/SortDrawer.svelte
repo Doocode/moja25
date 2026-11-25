@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import * as Drawer from '$shadcn/drawer';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
+	import * as Drawer from '#shadcn/drawer/index.ts';
 	import { SortForm } from './index';
 
 	interface Props {

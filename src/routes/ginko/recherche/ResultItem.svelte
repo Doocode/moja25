@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { FormattedArret } from '$core/dto/ginko';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 	import { BusFront, CircleAlert, FolderOpen, TramFront } from '@lucide/svelte';
-	import { KindOfStop, kindOfStop } from '#lib/core/helper/ginko/stops.ts';
+	import { KindOfStop, kindOfStop } from '#core/helper/ginko/stops.ts';
 	import StopName from './StopName.svelte';
 
 	interface Props {

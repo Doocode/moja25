@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
-	import { ButtonGroup } from '$shadcn/button-group';
+	import { Button } from '#shadcn/button/index.ts';
+	import { ButtonGroup } from '#shadcn/button-group/index.ts';
 	import { TextAlignStart, LayoutGrid } from '@lucide/svelte';
 
 	interface Props {

@@ -1,4 +1,4 @@
-import type { FormattedStation } from '$core/dto/jcdecaux';
+import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 
 // Normalize a string: remove accents and convert to lowercase
 function normalize(str: string): string {

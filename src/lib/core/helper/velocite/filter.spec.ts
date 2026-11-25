@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { filterStations } from './filter';
-import type { Availabilities, FormattedStation, Stands } from '$core/dto/jcdecaux';
+import type { Availabilities, FormattedStation, Stands } from '#core/dto/jcdecaux/index.ts';
 
 // Crée une station minimale pour les tests
 function makeStation(name: string, id = 0): FormattedStation {

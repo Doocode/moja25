@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import { StationColorStatus, getStationColorStatus } from '../../core/sort-config';
 	import StationContext from './StationContext.svelte';
 	import StationIcon from './StationIcon.svelte';

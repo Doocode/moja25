@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { error } from '@sveltejs/kit';
-import { getMessages, getLignes } from '$core/api/GinkoApi';
-import type { Message, Ligne } from '$core/dto/ginko';
+import { getMessages, getLignes } from '#core/api/GinkoApi.ts';
+import type { Message, Ligne } from '#core/dto/ginko/index.ts';
 
 export const load: PageServerLoad = async ({ params }) => {
 	// Validate params

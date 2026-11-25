@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
-	import type { VehiculeDR } from '$core/dto/ginko';
-	import { getVehicule } from '$core/ginko/getVehicule';
+	import { Button } from '#shadcn/button/index.ts';
+	import type { VehiculeDR } from '#core/dto/ginko/index.ts';
+	import { getVehicule } from '#core/ginko/getVehicule.ts';
 	import DetailsVehicule from './DetailsVehicule.svelte';
 
 	interface Props {

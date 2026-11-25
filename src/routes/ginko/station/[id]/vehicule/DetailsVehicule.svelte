@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { VehiculeDR } from '$core/dto/ginko';
+	import type { VehiculeDR } from '#core/dto/ginko/index.ts';
 	import {
 		Accessibility,
 		BusFront,

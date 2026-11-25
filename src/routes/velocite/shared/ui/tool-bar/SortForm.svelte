@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import GridSortField from './GridSortField.svelte';
 	import ListSortField from './ListSortField.svelte';
 	import SortSection from './SortSection.svelte';

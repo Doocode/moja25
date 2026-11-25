@@ -1,4 +1,4 @@
-import type { TempsAttente } from '$core/dto/ginko';
+import type { TempsAttente } from '#core/dto/ginko/index.ts';
 
 // Time types (typeDeTemps field)
 export const TypeDeTemps = {

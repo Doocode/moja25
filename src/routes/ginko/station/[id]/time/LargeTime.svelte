@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TempsAttente } from '$core/dto/ginko';
+	import type { TempsAttente } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		temps: TempsAttente;

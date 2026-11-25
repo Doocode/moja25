@@ -2,7 +2,7 @@
 	import Hero from './Hero.svelte';
 	import { resolve } from '$app/paths';
 	import { Ul, Li } from '#lib/ui/page/index.ts';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import TilesBlock from './TilesBlock.svelte';
 	import { Map, Bike, Globe, SquareArrowOutUpRight } from '@lucide/svelte';
 </script>

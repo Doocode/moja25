@@ -2,14 +2,14 @@
 	import { browser } from '$app/env';
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import { ArrowLeft } from '@lucide/svelte';
 	import { afterNavigate, goto } from '$app/navigation';
 	import AnimatedGridBg from '#lib/ui/AnimatedGridBg.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { RefreshDropdown } from '../../shared/ui/tool-bar';
 	import KeepScreenAwake from '#lib/ui/KeepScreenAwake.svelte';
-	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+	import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
 
 	interface Props {

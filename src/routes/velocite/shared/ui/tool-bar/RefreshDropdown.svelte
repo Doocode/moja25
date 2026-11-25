@@ -1,7 +1,11 @@
 <script lang="ts">
 	import { Ban, RefreshCw, RefreshCwOff } from '@lucide/svelte';
-	import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '$shadcn/dropdown-menu';
-	import { buttonVariants } from '$shadcn/button';
+	import {
+		DropdownMenu,
+		DropdownMenuContent,
+		DropdownMenuTrigger
+	} from '#shadcn/dropdown-menu/index.ts';
+	import { buttonVariants } from '#shadcn/button/index.ts';
 	import { cn } from '#lib/utils.ts';
 
 	interface Props {

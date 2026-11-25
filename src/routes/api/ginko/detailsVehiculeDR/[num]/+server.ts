@@ -1,8 +1,8 @@
-import { getDetailsVehicule_DR } from '$core/api/GinkoApi';
-import type { VehiculeDR } from '$core/dto/ginko';
+import { getDetailsVehicule_DR } from '#core/api/GinkoApi.ts';
+import type { VehiculeDR } from '#core/dto/ginko/index.ts';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { isAuthorized } from '$core/helper/api';
+import { isAuthorized } from '#core/helper/api.ts';
 
 export const GET: RequestHandler = async ({ request, url, params }) => {
 	if (!isAuthorized(request, url.origin)) {

@@ -1,5 +1,5 @@
-import type { FormattedStation } from '$core/dto/jcdecaux';
-import { VelociteSortField } from '$core/enum/VelociteSortField';
+import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 
 /**
  * Returns the "alert state" layer of a station to alternate with the selected layer,

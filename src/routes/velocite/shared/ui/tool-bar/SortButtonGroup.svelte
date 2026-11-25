@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import SortDrawer from './SortDrawer.svelte';
-	import { ButtonGroup } from '$shadcn/button-group';
+	import { ButtonGroup } from '#shadcn/button-group/index.ts';
 	import { FIELD_CONFIG } from '../../core/sort-config';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 	import { ArrowDown01, ArrowDownAZ, ArrowUp01, ArrowUpAZ, ArrowUpDown } from '@lucide/svelte';
 
 	interface Props {

@@ -2,7 +2,7 @@
 	import { cn } from '#lib/utils.ts';
 	import { resolve } from '$app/paths';
 	import { BadgeLigne } from '#lib/ui/ginko/index.ts';
-	import type { Ligne } from '$core/dto/ginko';
+	import type { Ligne } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		items?: Ligne[];

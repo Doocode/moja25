@@ -1,6 +1,6 @@
 import { resolve } from '$app/paths';
-import type { FormattedStation } from '$core/dto/jcdecaux';
-import { VelociteSortField } from '$core/enum/VelociteSortField';
+import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
+import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
 import { StationColorStatus, getStationColorStatus } from '../shared/core/sort-config';
 import { countFilters, numberFilters, statusFilters } from './filters';
 import { getAlertState, getDisplayedFilter } from './alternation';

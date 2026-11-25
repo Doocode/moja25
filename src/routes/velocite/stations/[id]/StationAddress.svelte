@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { cn } from '#lib/utils.js';
 
-	import GoogleLogo from '$assets/logo/google-maps.png';
-	import BingLogo from '$assets/logo/bing-maps.png';
-	import AppleLogo from '$assets/logo/apple-maps.png';
-	import OpenStreetMapLogo from '$assets/logo/osm.png';
-	import HereWeGoLogo from '$assets/logo/here-maps.png';
-	import WazeLogo from '$assets/logo/waze.png';
+	import GoogleLogo from '#assets/logo/google-maps.png';
+	import BingLogo from '#assets/logo/bing-maps.png';
+	import AppleLogo from '#assets/logo/apple-maps.png';
+	import OpenStreetMapLogo from '#assets/logo/osm.png';
+	import HereWeGoLogo from '#assets/logo/here-maps.png';
+	import WazeLogo from '#assets/logo/waze.png';
 
 	interface Props {
 		station: FormattedStation;

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { defaultRefreshInterval, refreshIntervals } from '../../shared/core/settings';
-	import { LocalStorageHelper, LocalStorageKey } from '#lib/core/helper/local_storage/index.ts';
+	import { LocalStorageHelper, LocalStorageKey } from '#core/helper/local_storage/index.ts';
 	import StationAvailabilities from './StationAvailabilities.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import StationAddress from './StationAddress.svelte';
 	import ProgressCells from './ProgressCells.svelte';
 	import StationHeader from './StationHeader.svelte';
@@ -20,6 +20,7 @@
 	let { data }: Props = $props();
 	const station = $derived(data.station);
 	let refreshInterval = $state(defaultRefreshInterval);
+	$inspect(station);
 
 	onMount(() => {
 		const storedInterval = Number(
@@ -51,7 +52,7 @@
 			return;
 		}
 		const newData: { station: FormattedStation } = await res.json();
-		data = newData;
+		data = { station: newData };
 	}
 </script>
 

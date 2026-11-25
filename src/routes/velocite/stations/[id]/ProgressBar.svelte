@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormattedStation } from '#lib/core/dto/jcdecaux/FormattedStation.ts';
+	import type { FormattedStation } from '#core/dto/jcdecaux/FormattedStation.ts';
 
 	let { station }: { station: FormattedStation } = $props();
 

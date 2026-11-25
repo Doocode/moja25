@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
-import { getArrets } from '$core/api/GinkoApi';
-import type { Arret } from '$core/dto/ginko';
-import { formatArret, groupArrets } from '$core/helper/ginko/format';
+import { getArrets } from '#core/api/GinkoApi.ts';
+import type { Arret } from '#core/dto/ginko/index.ts';
+import { formatArret, groupArrets } from '#core/helper/ginko/format.ts';
 
 const GROUP_STATIONS = true;
 

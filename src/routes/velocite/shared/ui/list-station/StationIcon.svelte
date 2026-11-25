@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Ban, Bike, Check, CreditCard, SquareParking, Star, Wifi, Zap } from '@lucide/svelte';
-	import { VelociteSortField } from '$core/enum/VelociteSortField';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import { VelociteSortField } from '#core/enum/VelociteSortField.ts';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { MEDIUM_LEVEL_THRESHOLD } from '../../core/sort-config';
 
 	interface Props {

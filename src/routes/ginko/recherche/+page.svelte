@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import ResultList from './ResultList.svelte';
-	import type { FormattedArret } from '$core/dto/ginko';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 	import ChildrenDrawer from './ChildrenDrawer.svelte';
 	import GroupContent from './GroupContent.svelte';
 	import ResultCount from './ResultCount.svelte';
 	import SearchBar from '#lib/ui/SearchBar.svelte';
-	import { KindOfStop, kindOfStop } from '#lib/core/helper/ginko/stops.ts';
+	import { KindOfStop, kindOfStop } from '#core/helper/ginko/stops.ts';
 	import { BusFront, CircleAlert, CircleDotDashed, TextCursorInput } from '@lucide/svelte';
 
 	interface Props {

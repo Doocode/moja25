@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { cn } from '#lib/utils.js';
-	import { Button } from '$shadcn/button';
+	import { Button } from '#shadcn/button/index.ts';
 	import LegendRow from './LegendRow.svelte';
-	import type { FormattedStation } from '$core/dto/jcdecaux';
+	import type { FormattedStation } from '#core/dto/jcdecaux/index.ts';
 	import { Ban, Bike, SquareLetterP, Zap } from '@lucide/svelte';
 	import UnavailableStandsDrawer from './UnavailableStandsDrawer.svelte';
 

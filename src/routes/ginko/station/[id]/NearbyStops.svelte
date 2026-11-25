@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ResultItem from '../../recherche/ResultItem.svelte';
 	import ChildrenDrawer from '../../recherche/ChildrenDrawer.svelte';
-	import type { FormattedArret } from '$core/dto/ginko';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		arrets: FormattedArret[];

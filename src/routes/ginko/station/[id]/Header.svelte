@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { FormattedArret } from '$core/dto/ginko';
+	import type { FormattedArret } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		arret: FormattedArret;

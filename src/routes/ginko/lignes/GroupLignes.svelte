@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Ligne } from '$core/dto/ginko';
+	import type { Ligne } from '#core/dto/ginko/index.ts';
 	import type { Component } from 'svelte';
 	import ListLignes from './ListLignes.svelte';
 	import GridLignes from './GridLignes.svelte';
