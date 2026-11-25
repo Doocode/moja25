@@ -8,6 +8,7 @@
 	import { LocalStorageKey } from '#core/helper/local_storage/index.ts';
 	import VehiculeGetter from '../vehicule/VehiculeGetter.svelte';
 	import DetailsVehiculeDrawer from '../DetailsVehiculeDrawer.svelte';
+	import DetailsArrival from './DetailsArrival.svelte';
 	import { fade } from 'svelte/transition';
 
 	interface Props {
@@ -21,6 +22,7 @@
 	let largeFontSize = $derived(groups.length < 4);
 	let drawerOpen = $state(false);
 	let numVehicule = $state('');
+	let tempsAttente = $state<TempsAttente | null>(null);
 	let clientWidth = $state(1300);
 
 	function toggleFontSize() {
@@ -30,11 +32,13 @@
 	function onPassageClick(temps: TempsAttente) {
 		drawerOpen = true;
 		numVehicule = temps.numVehicule;
+		tempsAttente = temps;
 	}
 
 	function closeDetails() {
 		drawerOpen = false;
 		numVehicule = '';
+		tempsAttente = null;
 	}
 </script>
 
@@ -83,11 +87,19 @@
 	</section>
 
 	<section class="min-w-0">
-		{#if clientWidth < 1280}
-			<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} />
-		{:else if drawerOpen}
+		{#if clientWidth < 1280 && tempsAttente}
+			<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} {tempsAttente} />
+		{:else if drawerOpen && tempsAttente}
 			{#key numVehicule}
 				<div class="hidden xl:block" in:fade|global={{ duration: 150 }}>
+					<header class="mb-4 flex items-start justify-between">
+						<h2 class="mb-1 text-xs font-bold tracking-widest text-muted-foreground uppercase">
+							Détails du passage
+						</h2>
+						<Button onclick={closeDetails} variant="outline">Fermer</Button>
+					</header>
+					<DetailsArrival {tempsAttente} />
+
 					<header class="mb-4 flex items-start justify-between">
 						<h2 class="mb-1 text-xs font-bold tracking-widest text-muted-foreground uppercase">
 							Détails du véhicule

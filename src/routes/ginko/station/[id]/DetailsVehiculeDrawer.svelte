@@ -1,13 +1,16 @@
 <script lang="ts">
 	import * as Drawer from '#shadcn/drawer/index.ts';
+	import DetailsArrival from './time/DetailsArrival.svelte';
 	import VehiculeGetter from './vehicule/VehiculeGetter.svelte';
+	import type { TempsAttente } from '#core/dto/ginko/index.ts';
 
 	interface Props {
 		open: boolean;
 		numVehicule: string;
+		tempsAttente: TempsAttente;
 	}
 
-	let { open = $bindable(false), numVehicule }: Props = $props();
+	let { open = $bindable(false), numVehicule, tempsAttente }: Props = $props();
 </script>
 
 <Drawer.Root bind:open>
@@ -18,6 +21,7 @@
 
 		<div class="overflow-y-auto px-4 pb-4 md:px-10">
 			{#if open}
+				<DetailsArrival {tempsAttente} />
 				<VehiculeGetter {numVehicule} />
 			{/if}
 		</div>
