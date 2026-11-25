@@ -44,7 +44,7 @@
 
 		<Button
 			href={`https://www.ginko.voyage/se-deplacer/toutes-les-lignes-ginko?ligne_id=${ligne.id}`}
-			variant="outline"
+			variant="secondary"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="text-foreground"

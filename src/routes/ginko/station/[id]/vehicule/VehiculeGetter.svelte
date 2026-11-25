@@ -53,7 +53,12 @@
 {#if loading}
 	<p role="status" class="text-muted-foreground">Chargement des informations…</p>
 {:else if errorMessage}
-	<p role="alert" class="text-muted-foreground">{errorMessage}</p>
+	<img
+		src="/assets/ginko/vehicule/empty-tram.svg"
+		alt="Aucun véhicule disponible"
+		class="mx-auto mb-4 w-50 rounded-[25%] bg-slate-700 hue-rotate-180 invert-100 dark:hue-rotate-0 dark:invert-0"
+	/>
+	<p role="alert" class="text-center text-muted-foreground">{errorMessage}</p>
 	{#if numVehicule?.trim()}
 		<Button variant="outline" class="mt-4" onclick={() => attempt++}>Réessayer</Button>
 	{/if}

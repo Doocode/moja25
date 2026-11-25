@@ -72,6 +72,11 @@
 			{#each groups as group (group.key)}
 				<WaitingTimeCard {group} {largeFontSize} {onPassageClick} />
 			{:else}
+				<img
+					src="/assets/ginko/vehicule/empty-tram.svg"
+					alt="Aucun véhicule disponible"
+					class="mx-auto w-50 bg-slate-700 invert-100 hue-rotate-180 dark:hue-rotate-0 dark:invert-0 rounded-[25%] mb-2"
+				/>
 				<li class="text-center text-muted-foreground">Aucun passage prévu prochainement.</li>
 			{/each}
 		</ul>
@@ -80,7 +85,7 @@
 	<section class="min-w-0">
 		{#if clientWidth < 1280}
 			<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} />
-		{:else if drawerOpen && numVehicule.trim().length > 0}
+		{:else if drawerOpen}
 			{#key numVehicule}
 				<div class="hidden xl:block" in:fade|global={{ duration: 150 }}>
 					<header class="mb-4 flex items-start justify-between">
