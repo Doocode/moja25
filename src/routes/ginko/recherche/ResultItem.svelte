@@ -35,6 +35,7 @@
 			'rounded-r-lg': !onchildren || !isParent,
 			'bg-yellow-500/30! py-4': recommended
 		}}
+		data-sveltekit-preload-data="tap"
 	>
 		{#if isParent}
 			<FolderOpen class="size-5 shrink-0 text-yellow-700 dark:text-yellow-400" />
