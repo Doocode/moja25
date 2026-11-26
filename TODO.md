@@ -41,7 +41,6 @@
   - 🗺️ Carte des stations
     - 🟩 FEATURE: Barre de recherche + flyout de completion
     - 🟦 IMPROVEMENT: Nouveau header avec un fond flou (backdrop filter blur) + css mask, inspiré du site https://ardia.dev/
-    - 🟦 IMPROVEMENT: Refonte des marqueurs en mode clair
     - 🟩 FEATURE: Réglages de la carte
       - 🟩 FEATURE: Option pour afficher plus/moins de détails sur le tooltip des marqueurs (nom uniquement ou + stats/recap + indicateurs/voyants/etats)
       - 🟩 FEATURE: Action à réaliser au clic sur le marqueur
