@@ -54,7 +54,6 @@
 		}}
 	>
 		{#if large}
-			<!-- TODO: Add support for alternance & text (from TempsAttente.temps)-->
 			{#if isMessage}
 				<LargeMessage {temps} />
 			{:else}

@@ -45,7 +45,7 @@ Les fonctionnalités liées au réseau de transport en commun Ginko (le réseau 
 
 ## Fonctionnalités majeures à mettre en œuvre
 
-[![Prototype de l'application mobile de Terminus](./images/mobile_app.png)](./images/mobile_app.png)
+[![Prototype de l'application mobile de Asap](./images/mobile_app.png)](./images/mobile_app.png)
 
 - Implémentation des mécanismes PWA (Progressive Web App) ;
 - Création et déploiement d'une application mobile native ;

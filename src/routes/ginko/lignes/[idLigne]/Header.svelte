@@ -23,7 +23,6 @@
 	style:color={`#${ligne.couleurTexte}`}
 >
 	<div class="container m-auto grid justify-items-center gap-3">
-		<!-- TODO: Add back button -->
 		<BadgeLigne
 			{ligne}
 			invertColors

@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Terminus Besançon</title>
+	<title>Asap Besançon</title>
 </svelte:head>
 
 <main class="mx-auto max-w-150 p-8 text-center sm:p-12">
@@ -11,7 +11,7 @@
 		<img
 			src="/assets/favicon.svg"
 			class="mx-auto size-50 rounded-full"
-			alt="Logo de Terminus Besançon"
+			alt="Logo de Asap Besançon"
 			in:scale|global
 		/>
 
@@ -19,7 +19,7 @@
 			class="heading-font text-4xl leading-none font-black tracking-tight md:text-start"
 			in:fade|global={{ delay: 150 }}
 		>
-			Terminus
+			Asap
 			<span class="block font-light text-blue-600 dark:text-blue-400">Besançon</span>
 		</h1>
 	</div>

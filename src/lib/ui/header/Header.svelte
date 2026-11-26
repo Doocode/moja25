@@ -27,7 +27,7 @@
 				href={resolve('/')}
 				class="whitespace-nowrap underline-offset-3 hover:text-primary hover:underline"
 			>
-				Terminus
+				Asap
 				<span class="font-light text-primary">Besançon</span>
 			</a>
 		</h1>

@@ -1,8 +1,8 @@
-# Terminus
+# Asap Besançon
 
-Terminus is a web app designed to be an alternative to the official "Ginko Mobilités" app.
+Asap Besançon is a web app designed to be an alternative to the official "Ginko Mobilités" app.
 
-[![Screenshot of Terminus](./wiki/images/ginko-homepage.png)](./wiki/images/ginko-homepage.png)
+[![Screenshot of Asap Besançon](./wiki/images/ginko-homepage.png)](./wiki/images/ginko-homepage.png)
 
 **[WARNING] This project is still under development and many bugs remain unresolved. As this is a proof-of-concept project, the final result may be entirely different.**
 

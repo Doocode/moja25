@@ -17,7 +17,7 @@
 	let { stations, sortField, queryInput = $bindable(''), class: className = '' }: Props = $props();
 
 	const LIMIT_PER_PAGE = 15;
-	let limitEnabled = $state(true);
+	let limitEnabled = $state(false);
 	let currentLimit = $state(20);
 	let nextIncreaseLimit = $derived(Math.min(currentLimit + LIMIT_PER_PAGE, stations.length));
 

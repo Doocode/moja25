@@ -13,7 +13,7 @@
 	<!-- <link rel="icon" href={favicon} /> -->
 	<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Terminus Besançon</title>
+	<title>Asap Besançon</title>
 </svelte:head>
 
 <main>
