@@ -8,7 +8,7 @@ import { buildStationPopup } from './popup';
 import type { DivIcon, LayerGroup, Marker } from 'leaflet';
 import { goto } from '$app/navigation';
 
-const enableMarkerPopup = false; // TODO: Bind to localStorage
+const enableMarkerPopup = true; // TODO: Bind to localStorage
 
 type CountFilter = (typeof countFilters)[number];
 type NumberFilter = (typeof numberFilters)[number];

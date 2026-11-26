@@ -24,10 +24,10 @@
 	<Header arret={data.arret} />
 
 	<div class="container mx-auto gap-0 px-4 pb-22">
-		<Tabs.Content value="times" class="mt-6 grid md:mt-0">
+		<Tabs.Content value="times" class="grid">
 			<WaitingTimes temps={data.tempsLieu?.listeTemps ?? []} />
 		</Tabs.Content>
-		<Tabs.Content value="nearby" class="mt-6">
+		<Tabs.Content value="nearby">
 			<NearbyStops arrets={data.arretsProches} />
 		</Tabs.Content>
 	</div>

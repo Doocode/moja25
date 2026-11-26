@@ -158,4 +158,24 @@
 		background: #705967;
 		color: #fff;
 	}
+
+	.velocite-map-marker--danger,
+	.velocite-map-marker-compact.velocite-map-marker--danger {
+		background: linear-gradient(to top, #ffa9ec, #bb0401 40%, #f36a61);
+		color: #fff;
+	}
+
+	.velocite-map-marker--warning,
+	.velocite-map-marker-compact.velocite-map-marker--warning {
+		background: linear-gradient(to top, #fffd71, #cf7c00 40%, #ffcc81);
+		color: #fff;
+	}
+
+	.velocite-map-marker--success,
+	.velocite-map-marker-compact.velocite-map-marker--success,
+	.velocite-map-marker--status-on,
+	.velocite-map-marker-compact.velocite-map-marker--status-on {
+		background: linear-gradient(to top, #00ff04, #308633 40%, #5ac75e);
+		color: #fff;
+	}
 }
