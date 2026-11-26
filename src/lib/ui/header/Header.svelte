@@ -16,6 +16,7 @@
 
 <header
 	class={{
+		'hidden sm:block': true,
 		'border-b border-[#00000077] bg-background dark:border-[#ffffff77]':
 			!enableTransparentBackground(),
 		'absolute inset-[0_0_auto] z-10': enableAbsolutePositioning()
