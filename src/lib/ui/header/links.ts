@@ -10,4 +10,5 @@ const menuPage: Link = { href: '/menu', label: 'Menu', icon: Menu };
 
 // Menu links
 export const topBarLinks: Link[] = [ginkoPage, velocitePage]; // Warning: never put more than 3 items here
+export const menuHubLinks: Link[] = [homePage, ginkoPage, velocitePage]; // Warning: never put more than 3 items here (links for the /menu page)
 export const bottomBarLinks: Link[] = [homePage, ginkoPage, velocitePage, menuPage]; // Warning: never put more than 5 items here
