@@ -22,7 +22,7 @@
 	let drawerOpen = $state(false);
 	let numVehicule = $state('');
 	let tempsAttente = $state<TempsAttente | null>(null);
-	let clientWidth = $state(1300);
+	let pageWidth = $state(1300);
 
 	function toggleFontSize() {
 		largeFontSize = !largeFontSize;
@@ -41,12 +41,12 @@
 	}
 </script>
 
-<svelte:body bind:clientWidth />
+<svelte:window bind:innerWidth={pageWidth} />
 
 <main
 	class={{
 		'mx-auto grid w-full max-w-2xl gap-8': true,
-		'xl:container xl:w-auto xl:grid-cols-2 2xl:grid-cols-[600px_1fr]': drawerOpen
+		'xl:container xl:w-auto xl:grid-cols-[600px_1fr]': drawerOpen
 	}}
 >
 	<section class="relative z-1 shrink-0">
@@ -86,7 +86,7 @@
 	</section>
 
 	<section class="min-w-0">
-		{#if clientWidth < 1280 && tempsAttente}
+		{#if pageWidth < 1280 && tempsAttente}
 			<DetailsVehiculeDrawer bind:open={drawerOpen} {numVehicule} {tempsAttente} />
 		{:else if drawerOpen && tempsAttente}
 			{#key numVehicule}

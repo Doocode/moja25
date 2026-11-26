@@ -128,6 +128,7 @@
     - Apparence
       - 🟩 FEATURE: Langue
       - 🟩 FEATURE: Thème
+      - 🟩 FEATURE: BottomNavBar: Masquer les libellés
     - Données
       - 🟩 FEATURE: Exporter les données
       - 🟩 FEATURE: Importer les données
